@@ -1,95 +1,102 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Join</title>
-
-<style type="text/css">
-button.check {
-	background-color: blue;
-	text-align: center;
-	color: white;
-}
-
-.d-none {
-	display: none;
-}
-</style>
-
+	<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>JoinForm</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath }/resources/assets/favicon.ico"/>
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet"/>
 </head>
 <body>
-	<div class="joinType">
-		<button type="button" class="selectType check" onclick="selectTypeBtn(this)" value="p">개인회원</button>
-		<button type="button" class="selectType" onclick="selectTypeBtn(this)" value="c">기업회원</button>
-	</div>
-	<div class="joinContext">
-		<!-- 일반회원 양식 -->
-		<div class="person">
-			<form action="${pageContext.request.contextPath }/joinMember" method="post" onsubmit="return joinFormCheck(this)">
-				<div>
-					<label>아이디</label><br>
-					<input type="text" id="mid" name="mid">
-					<button type="button" onclick="checkSameId()">중복체크</button>
-					<br>
-					<span id="idCheckResult"></span>
+	<div class="container">
+	    <div class="row">
+			<div class="col-lg-10 col-xl-8 mx-auto">
+				<div class="card flex-row my-5 border-0 shadow rounded-3">
+					<div class="card-body p-4 p-sm-5 mb-3">
+						<div class="d-grid mb-4">
+							<div class="btn-group btn-group-lg">
+								<button type="button" class="btn btn-outline-dark" onclick="selectTypeBtn(this)" value="p">개인회원</button>
+								<button type="button" class="btn btn-outline-dark" onclick="selectTypeBtn(this)" value="c">기업회원</button>
+							</div>
+						</div>
+						<!-- 일반회원 양식 -->
+						<div class="person">
+							<form action="${pageContext.request.contextPath }/joinMember" method="post" onsubmit="return joinFormCheck(this)">
+								<div class="input-group input-group-lg mb-1">
+									<input type="text" class="form-control" id="mid" name="mid" placeholder="아이디"> 
+									<button type="button" class="btn btn-secondary" onclick="checkSameId()">중복체크</button>
+								</div>
+								<div class="mb-3">
+									<span id="idCheckResult"></span>
+								</div>
+								<div class="input-group input-group-lg mb-3">
+									<input type="text" class="form-control" name="mpw" maxlength="16" placeholder="비밀번호"> 
+								</div>
+								<div class="input-group input-group-lg mb-3">
+									<input type="text" class="form-control" name="mname" placeholder="이름"> 
+								</div>
+								<div class="input-group input-group-lg mb-3">
+									<input type="date" class="form-control" name="mbirth" placeholder="생년월일"> 
+								</div>
+								<div class="input-group">
+									<input type="text" id="postcode" placeholder="우편번호" disabled="disabled" class="form-control">
+									<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" class="btn btn-secondary">
+								</div>
+								<div class="input-group mb-3">
+									<input type="text" id="address" placeholder="주소" disabled="disabled" class="form-control">
+									<input type="text" id="detailAddress" placeholder="상세주소" disabled="disabled" onchange="createAddr()" class="form-control">
+									<input type="text" id="extraAddress" placeholder="참고항목" disabled="disabled" class="form-control">
+									<input type="hidden" id="maddr" name="maddr">
+								</div>
+								<div class="input-group input-group-lg mb-3">
+									<input type="hidden" class="form-control" id="memail" name="memail" placeholder="이메일">
+									<input type="text" class="form-control" id="emailId" onchange="createEmail()" placeholder="이메일">
+									<span class="input-group-text">@</span>
+									<input type="text" id="domain" onchange="createEmail()" class="form-control">
+									<select onchange="domainSelect(this)" class="form-select">
+										<option value="">직접입력</option>
+										<option value="daum.com">다음</option>
+										<option value="naver.com">네이버</option>
+										<option value="gmail.com">구글</option>
+										<option value="kakao.com">카카오</option>
+									</select>
+								</div>
+								<div class="input-group mb-1">
+									<input type="text" id="inputCode" disabled="disabled" maxlength="6" placeholder="인증번호 6자리 입력" class="form-control">
+									<input type="hidden" id="emailCode" disabled="disabled" maxlength="6" placeholder="인증번호 6자리 입력">
+									<button type="button" id="mailCheckBtn" class="btn btn-secondary">이메일 인증번호 받기</button>
+								</div>
+								<div class="mb-4">
+									<span id="mailCheckResult"></span>
+								</div>
+								<div class="d-grid mb-4">
+									<button class="btn btn-dark btn-lg" type="submit">회원가입</button>
+								</div>
+								<hr class="my-4">
+							</form>
+						</div>
+						<!-- 기업회원 양식 -->
+						<div class="company">
+							<p>기업회원 양식</p>
+						</div>
+					</div>
 				</div>
-				<div>
-					<label>비밀번호</label><br>
-					<input type="text" name="mpw" maxlength="16">
-				</div>
-				<div>
-					<label>이름</label><br>
-					<input type="text" name="mname">
-				</div>
-				<div>
-					<label>주소</label><br>
-					<input type="text" id="postcode" placeholder="우편번호" disabled="disabled">
-					<input type="button" id="postBtn" onclick="execDaumPostcode()" value="우편번호 찾기">
-					<br>
-					<input type="text" id="address" placeholder="주소" disabled="disabled">
-					<br>
-					<input type="text" id="detailAddress" placeholder="상세주소" disabled="disabled" onchange="createAddr()">
-					<input type="text" id="extraAddress" placeholder="참고항목" disabled="disabled">
-					<input type="hidden" id="maddr" name="maddr">
-				</div>
-				<div>
-					<label>생년월일</label><br>
-					<input type="date" name="mbirth">
-				</div>
-				<div>
-					<label>이메일</label><br>
-					<input type="hidden" id="memail" name="memail">
-					<input type="text" id="emailId" onchange="createEmail()">
-					@
-					<input type="text" id="domain" onchange="createEmail()">
-					<select onchange="domainSelect(this)">
-						<option value="">직접입력</option>
-						<option value="daum.com">다음</option>
-						<option value="naver.com">네이버</option>
-						<option value="gmail.com">구글</option>
-						<option value="kakao.com">카카오</option>
-					</select>
-					<button type="button" id="mailCheckBtn">본인인증</button>
-					<br>
-					<input type="text" id="inputCode" disabled="disabled" maxlength="6" placeholder="인증번호 6자리 입력">
-					<input type="hidden" id="emailCode" disabled="disabled" maxlength="6">
-					<br>
-					<span id="mailCheckResult"></span>
-				</div>
-				<button type="submit">회원가입</button>
-			</form>
+			</div>
 		</div>
-
-		<!-- 기업회원 양식 -->
-		<div class="company d-none">
-		회원가입 양식2
-		</div>
 	</div>
-
+	
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+	
 	<!-- html -->
 	<script type="text/javascript">
 		// ID 중복확인 여부
@@ -121,13 +128,13 @@ button.check {
 				alert('이름을 입력해 주세요');
 				mname.focus();
 				return false;
-			} else if (maddr.value.length == 0) {
-				alert('주소를 입력해 주세요');
-				$('#postBtn').focus();
-				return false;
 			} else if (mbirth.value.length == 0) {
 				alert('생년월일을 입력해 주세요');
 				mbirth.focus();
+				return false;
+			} else if (maddr.value.length == 0) {
+				alert('주소를 입력해 주세요');
+				$('#postBtn').focus();
 				return false;
 			} else if (emailId.val().length == 0) {
 				alert('이메일을 입력해 주세요.');
@@ -172,11 +179,11 @@ button.check {
 					console.log(result);
 					if (result == 'OK') {
 						isCheckId = true;
-						$('#idCheckResult').text('사용 가능한 아이디').css('color',
+						$('#idCheckResult').text('사용 가능한 아이디!').css('color',
 								'green');
 					} else {
 						isCheckId = false;
-						$('#idCheckResult').text('사용중인 아이디')
+						$('#idCheckResult').text('사용중인 아이디!')
 								.css('color', 'red');
 					}
 					
@@ -302,6 +309,7 @@ button.check {
 			console.log(isCheckEmail);
 		});
 	</script>
+	
 	
 </body>
 </html>
