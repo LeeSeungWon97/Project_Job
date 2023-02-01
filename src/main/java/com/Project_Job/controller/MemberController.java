@@ -1,0 +1,61 @@
+package com.Project_Job.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.Project_Job.dto.MemberDto;
+import com.Project_Job.service.MailService;
+import com.Project_Job.service.MemberService;
+
+@Controller
+public class MemberController {
+	@Autowired
+	private MemberService msvc;
+	@Autowired
+	private MailService emsvc;
+
+	// 회원가입 페이지 이동
+	@RequestMapping(value = "/join")
+	public String joinPage() {
+		System.out.println("회원가입 페이지 이동 요청");
+		return "member/Join";
+	}
+
+	// 이메일 본인인증
+	@RequestMapping(value = "/mailCheck")
+	public @ResponseBody String mailCheck(String email) {
+		System.out.println("이메일 본인인증 요청");
+		String inputEmail = email;
+		System.out.println("요청한 이메일: " + inputEmail);
+		return emsvc.sendCode(inputEmail);
+	}
+
+	// 회원가입 요청
+	@RequestMapping(value = "/joinMember")
+	public String joinMember(MemberDto joinInfo) {
+		System.out.println("회원가입 요청");
+		System.out.println(joinInfo);
+		int insertResult = msvc.joinMember(joinInfo);
+		if (insertResult == 1) {
+			return "Main";
+		} else {
+			return "member/Join";
+		}
+	}
+
+	// 회원가입 ID 중복체크
+	@RequestMapping(value = "/joinIdCheck")
+	public @ResponseBody String joinIdCheck(String mid) {
+		System.out.println("ID 중복확인 요청");
+		System.out.println("입력한 아이디: " + mid);
+		String result = "OK";
+		String checkId = msvc.checkId(mid);
+		System.out.println(checkId);
+		if (checkId != null) {
+			result = "NO";
+		}
+		return result;
+	}
+}
