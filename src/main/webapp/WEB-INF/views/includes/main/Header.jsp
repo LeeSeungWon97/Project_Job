@@ -11,8 +11,8 @@
     		<div class="search">    
  				<div class="navbar bg-light">
  					<form class="d-flex" role="search">
-      					<input class="form-control me-2" type="search" placeholder="search..." aria-label="Search">
-      					<button class="btn btn-outline-dark" type="submit">search</button>
+      					<input class="form-control me-2" type="search" placeholder="search for..." aria-label="Search">
+      					<button class="btn btn-outline-dark" type="submit">Search</button>
      				</form>
  				</div>
 			</div>
