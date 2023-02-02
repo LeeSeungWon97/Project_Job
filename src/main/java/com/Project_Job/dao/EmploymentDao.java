@@ -13,7 +13,7 @@ public interface EmploymentDao {
 	String selectMaxEpnum();
 	
 	@Select("SELECT EPNAME FROM EMPLOYMENT WHERE EPNAME = #{epname} AND EPCINAME = #{epciname}")
-	String checkEp(@Param("epname")String mvtitle6, @Param("epciname")String test);
+	String checkEp(@Param("epname")String epname, @Param("epciname")String epciname);
 
 	@Insert("INSERT INTO EMPLOYMENT(EPNUM, EPNAME, EPCINAME, EPEDU, EPCAREER, EPTREAT, EPTYPE, EPMONEY, EPAREA, EPTIME, EPSTATE, EPPOST, EPDEADLINE )"
 			+ " VALUES(#{epnum},#{epname},#{epciname},#{epedu},#{epcareer},#{eptreat},#{eptype},#{epmoney},#{eparea},#{eptime},#{epstate}, #{eppost}, #{epdeadline} ) ")
