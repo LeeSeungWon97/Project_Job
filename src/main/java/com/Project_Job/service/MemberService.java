@@ -12,18 +12,30 @@ public class MemberService {
 	@Autowired
 	private MemberDao mdao;
 	
-	// 아이디 존재 확인
+	// 아이디 확인
 	public String checkId(String mid) {
 		System.out.println("MemberService checkId() 호출");
 		String checkIdResult = mdao.selectCheckId(mid); 
 		return checkIdResult;
 	}
 
-	// 회원가입 진행
+	// 회원가입 요청
 	public int joinMember(MemberDto joinInfo) {
 		System.out.println("MemberService joinMember() 호출");
 		int insertResult = mdao.insertJoinMember(joinInfo);
 		return insertResult;
+	}
+
+	// 로그인 요청
+	public MemberDto loginMember(String loginType, String mid, String mpw) {
+		System.out.println("MemberService loginMember() 호출");
+		if(loginType.equals("개인")) {
+			MemberDto loginInfo = mdao.selectMemberLogin(mid, mpw);
+			return loginInfo;
+		} else {
+			System.out.println("기업회원 유저 검색");
+			return null;
+		}
 	}	
 
 }

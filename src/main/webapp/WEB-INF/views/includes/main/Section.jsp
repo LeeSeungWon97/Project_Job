@@ -81,8 +81,9 @@
 					<c:if test="${sessionScope.loginInfo == null }">
 						<div class="card-body mx-auto">
 							<div class="btn-group btn-group-lg">
-								<button type="button" class="btn btn-outline-dark">개인회원 로그인</button>
-								<button type="button" class="btn btn-outline-dark">기업회원 로그인</button>
+								<a href="${pageContext.request.contextPath }/login">
+									<button type="button" class="btn btn-outline-dark">로그인</button>
+								</a>
 							</div>
 						</div>
 						<div class="card-footer">
