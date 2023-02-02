@@ -2,9 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <section id="section">
+	<div class="container-fluid">
 	<div class="row">
 		<!-- Blog entries-->
-		<div class="col-lg-8 mt-4">
+		<div class="col-md-8 mt-4">
 			<!-- Nested row for non-featured blog posts-->
 			<div class="row">
 				<div class="col-lg-6">
@@ -75,7 +76,8 @@
 			</nav>
 		</div>
 		<!-- Side widgets-->
-		<div class="col-lg-4 mt-4">
+		
+		<div class="col-md-4 mt-4">
 			<!-- Search widget-->
 			<div class="card mb-8">
 				<div class="card-body mx-auto">
@@ -121,5 +123,8 @@
 				<button type="button" class="btn btn-outline-warning">공지사항</button>
 			</div>
 		</div>
-	</div>
+		</div>
+		</div>
+		
+
 </section>
