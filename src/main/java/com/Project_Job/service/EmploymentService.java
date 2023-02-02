@@ -26,10 +26,10 @@ public class EmploymentService {
 		Document doc = Jsoup.connect(jobUrl).get();
 		
 		Elements charDiv = doc.select("#dev-gi-list > div > div.tplList.tplJobList > table > tbody");
-		Elements movLi = charDiv.select("tr");
+		Elements JobLi = charDiv.select("tr");
 		
 		int insertResult = 0;
-		System.out.println(movLi.size());
+		System.out.println(JobLi.size());
 		/*
 		 * 잡코리아 내부 서버에서 과도한 접속으로 인해 차단당함
 		 * 3회씩 반복문을 돌리면 오류 발생 X
@@ -38,63 +38,55 @@ public class EmploymentService {
 		 */
 		for(int i = 30; i < 40; i++) {
 			//5. 잡코리아 채용정보에서 공고 선택시 url 주소
-			String detailUrl = "https://www.jobkorea.co.kr/"+movLi.eq(i).select("td.tplTit > div > strong > a").eq(0).attr("href");
+			String detailUrl = "https://www.jobkorea.co.kr/"+JobLi.eq(i).select("td.tplTit > div > strong > a").eq(0).attr("href");
 			Document detailDoc = Jsoup.connect(detailUrl).get();
 			
 			Elements baseMovie = detailDoc.select("#container > section > div.readSumWrap.clear > article");
-			String mvtitle = baseMovie.select("div.sumTit > h3").text();
 			System.out.println("================================");
-			Elements mvtitle4 = baseMovie.select("div.sumTit > h3");
-			Elements mvtitle5 =mvtitle4.select("div").remove();
+			Elements Exciname = baseMovie.select("div.sumTit > h3");
+			Elements removerole =Exciname.select("div").remove();
 			
 			//공고명
-			String mvtitle6 = mvtitle4.text();
+			String epname = Exciname.text();
 			//회사명
-			String test = movLi.eq(i).select("td.tplCo > a").text();
+			String epciname = JobLi.eq(i).select("td.tplCo > a").text();
 			//경력
-			String test1 = baseMovie.select("div.tbRow.clear > div:nth-child(1) > dl > dd:nth-child(2)").text();
+			String epcareer = baseMovie.select("div.tbRow.clear > div:nth-child(1) > dl > dd:nth-child(2)").text();
 			//학력
-			String test2 = baseMovie.select("div.tbRow.clear > div:nth-child(1) > dl > dd:nth-child(4)").text();
+			String epedu = baseMovie.select("div.tbRow.clear > div:nth-child(1) > dl > dd:nth-child(4)").text();
 			//고용형태
-			String test3 = baseMovie.select("div.tbRow.clear > div:nth-child(2) > dl > dd:nth-child(2)").text();
+			String eptype = baseMovie.select("div.tbRow.clear > div:nth-child(2) > dl > dd:nth-child(2)").text();
 			//급여
-			String test4 = baseMovie.select("div.tbRow.clear > div:nth-child(2) > dl > dd:nth-child(4)").text();
+			String epmoney = baseMovie.select("div.tbRow.clear > div:nth-child(2) > dl > dd:nth-child(4)").text();
 			//시간
-			String test6 = baseMovie.select("div.tbRow.clear > div:nth-child(2) > dl > dd:nth-child(8)").text();
+			String eptime = baseMovie.select("div.tbRow.clear > div:nth-child(2) > dl > dd:nth-child(8)").text();
 			//지역
-			String test7 = baseMovie.select("div.tbRow.clear > div:nth-child(2) > dl > dd:nth-child(6)").text();
+			String eparea = baseMovie.select("div.tbRow.clear > div:nth-child(2) > dl > dd:nth-child(6)").text();
 			//우대
 			//#dlPref > dd > span
-			String test8 = baseMovie.select("#dlPref > dd > span").text();
+			String eptreat = baseMovie.select("#dlPref > dd > span").text();
 			
 			//시작일
-			String start = detailDoc.select("#tab02 > div > article.artReadPeriod > div > dl.date > dd:nth-child(2) > span").text();
+			String eppost = detailDoc.select("#tab02 > div > article.artReadPeriod > div > dl.date > dd:nth-child(2) > span").text();
 			//마감일
-			String end = detailDoc.select("#tab02 > div > article.artReadPeriod > div > dl.date > dd:nth-child(4) > span").text();
-			
-			Elements loLi = baseMovie.select("div.tbRow.clear > div:nth-child(2) > dl > dd:nth-child(6) > a");
-			
-			
-			
-			
-			System.out.println("loLi size: " + loLi.size());
+			String epdeadline = detailDoc.select("#tab02 > div > article.artReadPeriod > div > dl.date > dd:nth-child(4) > span").text();
 			
 			//공고 dto
 			 EmploymentDto epinfo = new EmploymentDto();
 			
 			//잡코리아 상세 페이지 내부 selector에 차이가 있어 순서가 바뀌는 경우가 발생 
 			System.out.println(detailUrl);
-			System.out.println("회사명 : " +i+"번 "+ test);
-			System.out.println("공고명 : " +i+"번 "+ mvtitle6);
-			System.out.println("경력 : " +i+"번 "+ test1);
-			System.out.println("학력 : " +i+"번 "+ test2);
-			System.out.println("고용형태 : " +i+"번 "+ test3);
-			System.out.println("급여 : " +i+"번 "+ test4);
-			System.out.println("시간 : " +i+"번 "+ test6);
-			System.out.println("지역 : " +i+"번 "+ test7);
-			System.out.println("우대 : " +i+"번 "+ test8);
-			System.out.println("시작일 : " +i+"번 "+ start);
-			System.out.println("마감일 : " +i+"번 "+ end);
+			System.out.println("회사명 : " +i+"번 "+ epciname);
+			System.out.println("공고명 : " +i+"번 "+ epname);
+			System.out.println("경력 : " +i+"번 "+ epcareer);
+			System.out.println("학력 : " +i+"번 "+ epedu);
+			System.out.println("고용형태 : " +i+"번 "+ eptype);
+			System.out.println("급여 : " +i+"번 "+ epmoney);
+			System.out.println("시간 : " +i+"번 "+ eptime);
+			System.out.println("지역 : " +i+"번 "+ eparea);
+			System.out.println("우대 : " +i+"번 "+ eptreat);
+			System.out.println("시작일 : " +i+"번 "+ eppost);
+			System.out.println("마감일 : " +i+"번 "+ epdeadline);
 			
 			
 			
@@ -111,23 +103,23 @@ public class EmploymentService {
 			System.out.println("공고코드 : "+epcode);
 			
 			
-			String mvCheck = epdao.checkEp(mvtitle6, test);
-			if(mvCheck != null) {
+			String epCheck = epdao.checkEp(epname, epciname);
+			if(epCheck != null) {
 				continue;
 			}
 			
 			epinfo.setEpnum(epcode);
-			epinfo.setEpname(mvtitle6);
-			epinfo.setEpciname(test);
-			epinfo.setEpcareer(test1);
-			epinfo.setEpedu(test2);
-			epinfo.setEptype(test3);
-			epinfo.setEpmoney(test4);
-			epinfo.setEptime(test6);
-			epinfo.setEparea(test7);
-			epinfo.setEptreat(test8);
-			epinfo.setEppost(start);
-			epinfo.setEpdeadline(end);
+			epinfo.setEpname(epname);
+			epinfo.setEpciname(epciname);
+			epinfo.setEpcareer(epcareer);
+			epinfo.setEpedu(epedu);
+			epinfo.setEptype(eptype);
+			epinfo.setEpmoney(epmoney);
+			epinfo.setEptime(eptime);
+			epinfo.setEparea(eparea);
+			epinfo.setEptreat(eptreat);
+			epinfo.setEppost(eppost);
+			epinfo.setEpdeadline(epdeadline);
 			epinfo.setEpstate("Y");
 			
 			System.out.println();
