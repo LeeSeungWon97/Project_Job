@@ -19,22 +19,26 @@ public class MemberController {
 	@Autowired
 	private MailService emsvc;
 
+	
+	/*** 페이지 이동 ***/
+	
 	// 회원가입 페이지 이동
 	@RequestMapping(value = "/join")
 	public String joinPage() {
 		System.out.println("회원가입 페이지 이동 요청");
 		return "member/Join";
 	}
-
-	// 이메일 본인인증
-	@RequestMapping(value = "/mailCheck")
-	public @ResponseBody String mailCheck(String email) {
-		System.out.println("이메일 본인인증 요청");
-		String inputEmail = email;
-		System.out.println("요청한 이메일: " + inputEmail);
-		return emsvc.sendCode(inputEmail);
+	
+	// 로그인 페이지 이동
+	@RequestMapping(value = "/login")
+	public String loginPage() {
+		System.out.println("로그인 페이지 이동 요청");
+		return "member/Login";
 	}
 
+	
+	/*** 회원가입 관련 컨트롤러 ***/
+	
 	// 회원가입 요청
 	@RequestMapping(value = "/joinMember")
 	public String joinMember(MemberDto joinInfo) {
@@ -48,6 +52,15 @@ public class MemberController {
 		}
 	}
 	
+	// 이메일 본인인증
+	@RequestMapping(value = "/mailCheck")
+	public @ResponseBody String mailCheck(String email) {
+		System.out.println("이메일 본인인증 요청");
+		String inputEmail = email;
+		System.out.println("요청한 이메일: " + inputEmail);
+		return emsvc.sendCode(inputEmail);
+	}
+
 	// 회원가입 ID 중복체크
 	@RequestMapping(value = "/joinIdCheck")
 	public @ResponseBody String joinIdCheck(String mid) {
@@ -71,4 +84,24 @@ public class MemberController {
 			return mav;
 		}
 	
+
+	
+	/*** 로그인 관련 컨트롤러 ***/
+	
+	//로그인 요청
+	@RequestMapping(value = "/loginMember")
+	public ModelAndView loginMember(String loginType, String mid, String mpw) {
+		System.out.println("로그인 요청");
+		System.out.println("로그인 타입: " + loginType);
+		System.out.println("로그인 아이디: " + mid);
+		System.out.println("로그인 비밀번호: " + mpw);
+		if(loginType.equals("개인")) {
+			System.out.println("개인회원 로그인 요청");
+			MemberDto loginInfo = msvc.loginMember(loginType, mid, mpw);
+			System.out.println(loginInfo.getMid());
+		}else {
+			System.out.println("기업회원 로그인 요청");
+		}
+		return null;
+	}
 }
