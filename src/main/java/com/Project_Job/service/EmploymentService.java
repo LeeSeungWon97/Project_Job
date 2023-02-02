@@ -1,6 +1,8 @@
 package com.Project_Job.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.Project_Job.dao.EmploymentDao;
 import com.Project_Job.dto.EmploymentDto;
+import com.google.gson.Gson;
 
 
 @Service
@@ -130,4 +133,13 @@ public class EmploymentService {
 		System.out.println("등록된 공고 수 : " + insertResult);
 		return insertResult;
 	}
+
+	public String getWPList(String ciname) {
+		System.out.println("Service getWPList 요청");
+		ArrayList<Map<String, String>> ciList = epdao.getWPList(ciname);
+		System.out.println();
+		return new Gson().toJson(ciList);
+	}
+	
+	
 }

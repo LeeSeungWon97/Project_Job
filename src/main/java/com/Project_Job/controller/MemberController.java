@@ -1,9 +1,12 @@
 package com.Project_Job.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.Project_Job.dto.MemberDto;
 import com.Project_Job.service.MailService;
@@ -44,7 +47,7 @@ public class MemberController {
 			return "member/Join";
 		}
 	}
-
+	
 	// 회원가입 ID 중복체크
 	@RequestMapping(value = "/joinIdCheck")
 	public @ResponseBody String joinIdCheck(String mid) {
@@ -58,4 +61,14 @@ public class MemberController {
 		}
 		return result;
 	}
+	
+	// 기업 회원가입시 회사 검색 요청 - 팝업창
+		@RequestMapping(value = "/find_WP")
+		public ModelAndView find_WP() throws IOException {
+			System.out.println("회사 검색 페이지 팝업 요청");
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("member/findWPpop");
+			return mav;
+		}
+	
 }
