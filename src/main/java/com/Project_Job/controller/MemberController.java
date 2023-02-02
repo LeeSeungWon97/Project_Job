@@ -1,5 +1,7 @@
 package com.Project_Job.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,6 +52,7 @@ public class MemberController {
 		}
 	}
 	
+
 	// 이메일 본인인증
 	@RequestMapping(value = "/mailCheck")
 	public @ResponseBody String mailCheck(String email) {
@@ -58,6 +61,7 @@ public class MemberController {
 		System.out.println("요청한 이메일: " + inputEmail);
 		return emsvc.sendCode(inputEmail);
 	}
+
 
 	// 회원가입 ID 중복체크
 	@RequestMapping(value = "/joinIdCheck")
@@ -72,6 +76,17 @@ public class MemberController {
 		}
 		return result;
 	}
+
+	// 기업 회원가입시 회사 검색 요청 - 팝업창
+		@RequestMapping(value = "/find_WP")
+		public ModelAndView find_WP() throws IOException {
+			System.out.println("회사 검색 페이지 팝업 요청");
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("member/findWPpop");
+			return mav;
+		}
+	
+
 
 	
 	/*** 로그인 관련 컨트롤러 ***/
@@ -92,4 +107,5 @@ public class MemberController {
 		}
 		return null;
 	}
+
 }
