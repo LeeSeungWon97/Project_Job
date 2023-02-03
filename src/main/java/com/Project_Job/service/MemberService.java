@@ -8,16 +8,24 @@ import com.Project_Job.dto.MemberDto;
 
 @Service
 public class MemberService {
-	
+
 	@Autowired
 	private MemberDao mdao;
-	
-	// 아이디 확인
-	public String checkId(String mid) {
-		System.out.println("MemberService checkId() 호출");
-		String checkIdResult = mdao.selectCheckId(mid); 
+
+	// 개인회원 아이디 확인
+	public String checkMId(String mid) {
+		System.out.println("개인회원 아이디 조회");
+		String checkIdResult = "";
+		checkIdResult = mdao.selectMCheckId(mid);
 		return checkIdResult;
 	}
+	// 기업회원 아이디 확인
+		public String checkCId(String cid) {
+			System.out.println("개인회원 아이디 조회");
+			String checkIdResult = "";
+			checkIdResult = mdao.selectCCheckId(cid);
+			return checkIdResult;
+		}
 
 	// 회원가입 요청
 	public int joinMember(MemberDto joinInfo) {
@@ -29,13 +37,13 @@ public class MemberService {
 	// 로그인 요청
 	public MemberDto loginMember(String loginType, String mid, String mpw) {
 		System.out.println("MemberService loginMember() 호출");
-		if(loginType.equals("개인")) {
+		if (loginType.equals("개인")) {
 			MemberDto loginInfo = mdao.selectMemberLogin(mid, mpw);
 			return loginInfo;
 		} else {
 			System.out.println("기업회원 유저 검색");
 			return null;
 		}
-	}	
+	}
 
 }

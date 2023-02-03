@@ -19,16 +19,29 @@ public class MemberController {
 	@Autowired
 	private MailService emsvc;
 
-	
 	/*** 페이지 이동 ***/
-	
+
 	// 회원가입 페이지 이동
 	@RequestMapping(value = "/join")
 	public String joinPage() {
-		System.out.println("회원가입 페이지 이동 요청");
+		System.out.println("회원가입 선택창 이동 요청");
 		return "member/Join";
 	}
-	
+
+	// 개인 회원가입 페이지 이동
+	@RequestMapping(value = "/joinMemberPage")
+	public String joinMemberPage() {
+		System.out.println("개인 회원가입 페이지 이동 요청");
+		return "member/JoinMember";
+	}
+
+	// 기업 회원가입 페이지 이동
+	@RequestMapping(value = "/joinCompanyPage")
+	public String joinCompanyPage() {
+		System.out.println("기업 회원가입 페이지 이동 요청");
+		return "member/JoinCompany";
+	}
+
 	// 로그인 페이지 이동
 	@RequestMapping(value = "/login")
 	public String loginPage() {
@@ -36,9 +49,8 @@ public class MemberController {
 		return "member/Login";
 	}
 
-	
-	/*** 회원가입 관련 컨트롤러 ***/
-	
+	/*** 회원가입 컨트롤러 ***/
+
 	// 회원가입 요청
 	@RequestMapping(value = "/joinMember")
 	public String joinMember(MemberDto joinInfo) {
@@ -51,7 +63,6 @@ public class MemberController {
 			return "member/Join";
 		}
 	}
-	
 
 	// 이메일 본인인증
 	@RequestMapping(value = "/mailCheck")
@@ -62,14 +73,27 @@ public class MemberController {
 		return emsvc.sendCode(inputEmail);
 	}
 
-
-	// 회원가입 ID 중복체크
-	@RequestMapping(value = "/joinIdCheck")
-	public @ResponseBody String joinIdCheck(String mid) {
+	// 개인 회원가입 ID 중복체크
+	@RequestMapping(value = "/joinMIdCheck")
+	public @ResponseBody String joinMIdCheck(String mid) {
 		System.out.println("ID 중복확인 요청");
 		System.out.println("입력한 아이디: " + mid);
 		String result = "OK";
-		String checkId = msvc.checkId(mid);
+		String checkId = msvc.checkMId(mid);
+		System.out.println(checkId);
+		if (checkId != null) {
+			result = "NO";
+		}
+		return result;
+	}
+
+	// 기업 회원가입 ID 중복체크
+	@RequestMapping(value = "/joinMIdCheck")
+	public @ResponseBody String joinCIdCheck(String cid) {
+		System.out.println("ID 중복확인 요청");
+		System.out.println("입력한 아이디: " + cid);
+		String result = "OK";
+		String checkId = msvc.checkCId(cid);
 		System.out.println(checkId);
 		if (checkId != null) {
 			result = "NO";
@@ -78,31 +102,28 @@ public class MemberController {
 	}
 
 	// 기업 회원가입시 회사 검색 요청 - 팝업창
-		@RequestMapping(value = "/find_WP")
-		public ModelAndView find_WP() throws IOException {
-			System.out.println("회사 검색 페이지 팝업 요청");
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("member/findWPpop");
-			return mav;
-		}
-	
+	@RequestMapping(value = "/find_WP")
+	public ModelAndView find_WP() throws IOException {
+		System.out.println("회사 검색 페이지 팝업 요청");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/findWPpop");
+		return mav;
+	}
 
-
-	
 	/*** 로그인 관련 컨트롤러 ***/
-	
-	//로그인 요청
+
+	// 로그인 요청
 	@RequestMapping(value = "/loginMember")
 	public ModelAndView loginMember(String loginType, String mid, String mpw) {
 		System.out.println("로그인 요청");
 		System.out.println("로그인 타입: " + loginType);
 		System.out.println("로그인 아이디: " + mid);
 		System.out.println("로그인 비밀번호: " + mpw);
-		if(loginType.equals("개인")) {
+		if (loginType.equals("개인")) {
 			System.out.println("개인회원 로그인 요청");
 			MemberDto loginInfo = msvc.loginMember(loginType, mid, mpw);
 			System.out.println(loginInfo.getMid());
-		}else {
+		} else {
 			System.out.println("기업회원 로그인 요청");
 		}
 		return null;

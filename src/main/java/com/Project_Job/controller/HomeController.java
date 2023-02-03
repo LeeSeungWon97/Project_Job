@@ -15,15 +15,14 @@ import com.Project_Job.service.EmploymentService;
 @Controller
 public class HomeController {
 	
+	@Autowired
+	private EmploymentService epsvc;
+	
 	@RequestMapping(value = "/")
 	public String home() {
 		System.out.println("메인페이지 이동 요청");
 		return "Main";
 	}
-	@Autowired
-	private EmploymentService epsvc;
-	
-	
 	
 	@RequestMapping(value = "/jobInsert2")
 	public ModelAndView jobInsert2() throws IOException {
