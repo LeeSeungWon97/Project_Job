@@ -2,6 +2,8 @@ package com.Project_Job.controller;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,9 @@ public class MemberController {
 	private MemberService msvc;
 	@Autowired
 	private MailService emsvc;
+	@Autowired
+	private HttpSession session;
+	
 
 	/*** 페이지 이동 ***/
 
@@ -132,19 +137,37 @@ public class MemberController {
 
 	// 로그인 요청
 	@RequestMapping(value = "/loginMember")
-	public ModelAndView loginMember(String loginType, String mid, String mpw) {
+	public ModelAndView loginMember(String loginType, String id, String pw) {
 		System.out.println("로그인 요청");
 		System.out.println("로그인 타입: " + loginType);
-		System.out.println("로그인 아이디: " + mid);
-		System.out.println("로그인 비밀번호: " + mpw);
+		System.out.println("로그인 아이디: " + id);
+		System.out.println("로그인 비밀번호: " + pw);
+		
+		ModelAndView mav = new ModelAndView();
 		if (loginType.equals("개인")) {
 			System.out.println("개인회원 로그인 요청");
-			MemberDto loginInfo = msvc.loginMember(loginType, mid, mpw);
-			System.out.println(loginInfo.getMid());
+			MemberDto loginMInfo = msvc.loginMember(id, pw);
+			if(loginMInfo == null) {
+				mav.addObject("msg", "존재하지 않는 회원입니다.");
+				mav.addObject("url", "login");
+				mav.setViewName("AlertScreen");
+			} else{
+				session.setAttribute("loginInfo", loginMInfo);
+				mav.setViewName("Main");
+			}
 		} else {
 			System.out.println("기업회원 로그인 요청");
+			CmemberDto loginCInfo = msvc.loginCompany(id, pw);
+			if(loginCInfo == null) {
+				mav.addObject("msg", "존재하지 않는 회원입니다.");
+				mav.addObject("url", "login");
+				mav.setViewName("AlertScreen");
+			} else{
+				session.setAttribute("loginInfo", loginCInfo);
+				mav.setViewName("Main");
+			}
 		}
-		return null;
+		return mav;
 	}
 
 }

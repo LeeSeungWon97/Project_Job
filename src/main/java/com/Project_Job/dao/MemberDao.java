@@ -11,16 +11,21 @@ public interface MemberDao {
 
 	/*** Select ***/
 	
-	// 아이디 확인 SQL
+	// 개인회원 아이디 확인
 	@Select("SELECT MID FROM MEMBERS WHERE MID = #{mid}")
 	String selectMCheckId(String mid);
 	
+	// 기업회원 아이디 확인
 	@Select("SELECT CMID FROM CMEMBERS WHERE CMID = #{cmid}")
 	String selectCCheckId(String cmid);
 
-	// 로그인(개인) SQL
-	@Select("SELECT * FROM MEMBERS WHERE MID = #{mid} AND MPW = #{mpw}")
-	MemberDto selectMemberLogin(@Param("mid") String mid, @Param("mpw") String mpw);
+	// 로그인(개인)
+	@Select("SELECT * FROM MEMBERS WHERE MID = #{id} AND MPW = #{pw}")
+	MemberDto selectMemberLogin(@Param("id") String id, @Param("pw") String pw);
+	
+	// 로그인(기업)
+	@Select("SELECT * FROM CMEMBERS WHERE CMID = #{id} AND CMPW = #{pw}")
+	CmemberDto selectCompanyLogin(@Param("id") String id, @Param("pw")String pw);
 	
 	/*** Insert ***/	
 	// 회원가입(개인) SQL
@@ -30,6 +35,7 @@ public interface MemberDao {
 	// 회원가입(기업) SQL
 	@Insert("INSERT INTO CMEMBERS(CMCINUM,CMID,CMPW,CMNAME,CMEMAIL,CMSTATE) VALUES(#{cmcinum},#{cmid},#{cmpw},#{cmname},#{cmemail},'0')")
 	int insertCiJoinMember(CmemberDto joinInfo);
+
 
 
 }

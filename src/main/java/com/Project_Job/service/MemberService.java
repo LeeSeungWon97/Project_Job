@@ -41,15 +41,17 @@ public class MemberService {
 	}
 
 	// 로그인 요청
-	public MemberDto loginMember(String loginType, String mid, String mpw) {
+	public MemberDto loginMember(String id, String pw) {
 		System.out.println("MemberService loginMember() 호출");
-		if (loginType.equals("개인")) {
-			MemberDto loginInfo = mdao.selectMemberLogin(mid, mpw);
-			return loginInfo;
-		} else {
-			System.out.println("기업회원 유저 검색");
-			return null;
+		MemberDto loginMInfo = new MemberDto();
+
+		try {
+			loginMInfo = mdao.selectMemberLogin(id, pw);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
+		return loginMInfo;
 	}
 
 	public int joinCiMember(CmemberDto joinInfo, String ciaddr) {
@@ -57,8 +59,19 @@ public class MemberService {
 		System.out.println(ciaddr);
 		int insertResult = mdao.insertCiJoinMember(joinInfo);
 		String cinum = joinInfo.getCmcinum();
-		int updateResult = epdao.updateCiAddr(cinum, ciaddr);
+		epdao.updateCiAddr(cinum, ciaddr);
 		return insertResult;
+	}
+
+	public CmemberDto loginCompany(String id, String pw) {
+		System.out.println("MemberService loginCompany() 호출");
+		CmemberDto loginCInfo = new CmemberDto();
+		try {
+			loginCInfo = mdao.selectCompanyLogin(id, pw);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return loginCInfo;
 	}
 
 }
