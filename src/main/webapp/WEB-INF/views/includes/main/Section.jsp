@@ -87,8 +87,11 @@
 				</div>
 				<div class="card-footer">
 					<div class="d-grid gap-2 d-md-block">
-						<a href="${pageContext.request.contextPath }/join">
+						<a href="${pageContext.request.contextPath }/join"> 
 							<button class="btn btn-outline-secondary" type="button">회원가입</button>
+						</a>
+						<a href="${pageContext.request.contextPath }/FindMemberPage">
+							<button class="btn btn-outline-secondary" type="button">ID/PW 찾기</button>
 						</a>
 						<button class="btn btn-outline-secondary" type="button">ID/PW 찾기</button>
 					</div>

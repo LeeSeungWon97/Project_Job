@@ -150,7 +150,7 @@
 			$
 					.ajax({
 						type : 'get',
-						url : '${pageContext.request.contextPath }/joinCIdCheck?mid='
+						url : '${pageContext.request.contextPath }/joinMIdCheck?mid='
 								+ inputId,
 						success : function(result) {
 							console.log(result);
