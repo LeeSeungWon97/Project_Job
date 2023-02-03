@@ -80,14 +80,14 @@
 					<%-- 비로그인--%>
 					<c:if test="${sessionScope.loginInfo == null }">
 						<div class="card-body mx-auto">
-							<div class="btn-group btn-group-lg">
+							<div class="d-grid">
 								<a href="${pageContext.request.contextPath }/login">
-									<button type="button" class="btn btn-outline-dark">로그인</button>
+									<button type="button" class="btn btn-dark btn-lg">개인/기업 로그인</button>
 								</a>
 							</div>
 						</div>
 						<div class="card-footer">
-							<div class="d-grid gap-1 d-md-block">
+							<div class="d-flex justify-content-center gap-1">
 								<a href="${pageContext.request.contextPath }/join">
 									<button class="btn btn-outline-secondary btn-sm" type="button">회원가입</button>
 								</a>
@@ -99,9 +99,9 @@
 					<c:if test="${sessionScope.loginInfo != null }">
 						<div class="card-body mx-auto">
 							<div class="info">
-								<span class="">${sessionScope.loginInfo.mname}지훈님</span>&ensp;&ensp;&ensp;
-								<a href="${pageContext.request.contextPath }/">
-									<button type="button" class="btn btn-secondary btn-sm">로그아웃</button>
+								<span>${sessionScope.loginInfo.mname}지훈님</span>&ensp;&ensp;&ensp;&ensp;
+								<a href="${pageContext.request.contextPath }/logout">
+									<button type="button" class="btn btn-dark">로그아웃</button>
 								</a>
 							</div>
 						</div>
@@ -143,7 +143,9 @@
 					</div>
 				</div>
 				<div class="card-footer">
-					<button type="button" class="btn btn-warning btn-sm">공지사항</button>
+					<div class="d-flex justify-content-center">
+						<button type="button" class="btn btn-warning btn-sm">공지사항</button>
+					</div>
 				</div>
 			</div>
 		</div>
