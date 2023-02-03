@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Project_Job.dao.EmploymentDao;
+import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.EmploymentDto;
 import com.google.gson.Gson;
 
@@ -111,6 +112,37 @@ public class EmploymentService {
 				continue;
 			}
 			
+			
+			if(epname.equals("")) {
+				epname = "-";
+			}if(epciname.equals("")) {
+				epciname = "-";
+			}if(epcareer.equals("")) {
+				epcareer = "-";
+			}if(epedu.equals("")) {
+				epedu = "-";
+			}if(eptype.equals("")) {
+				eptype = "-";
+			}if(epmoney.equals("")) {
+				epmoney = "-";
+			}if(eptime.equals("")) {
+				eptime ="-";
+			}if(eparea.equals("")) {
+				eparea ="-";
+			}if(eptreat.equals("")) {
+				eptreat = "-";
+			}if(eppost.equals("")) {
+				eppost = "-";
+			}if(epdeadline.equals("")) {
+				epdeadline = "-";
+			}
+			
+			
+			
+			
+			
+			
+			
 			epinfo.setEpnum(epcode);
 			epinfo.setEpname(epname);
 			epinfo.setEpciname(epciname);
@@ -139,6 +171,158 @@ public class EmploymentService {
 		ArrayList<Map<String, String>> ciList = epdao.getWPList(ciname);
 		System.out.println();
 		return new Gson().toJson(ciList);
+	}
+
+	public int jobInsert1() throws Exception {
+		//1. 잡코리아 채용정보 페이지 URL 
+		String jobUrl = "https://www.jobkorea.co.kr/recruit/joblist?menucode=local&localorder=1";
+		
+		//2. Jsoup URL 접속
+		Document doc = Jsoup.connect(jobUrl).get();
+		Elements charDiv = doc.select("#dev-gi-list > div > div.tplList.tplJobList > table > tbody");
+		Elements movLi = charDiv.select("tr");
+		
+		int insertResult = 0;
+		System.out.println(movLi.size());
+		for(int i = 0; i < 5; i++) {
+			//5. 잡코리아 기업 상세정보 페이지 url 주소
+			String detailUrl = "https://www.jobkorea.co.kr/"+movLi.eq(i).select("td.tplCo > a").eq(0).attr("href");
+			//System.out.println(detailUrl);
+			Document detailDoc = Jsoup.connect(detailUrl).get();
+			Elements baseC = detailDoc.select("#container > section > div.readSumWrap.clear > article");
+			System.out.println("================================");
+			//회사 상세정보 
+			String baseCName = movLi.eq(i).select("td.tplCo > a").text();
+			System.out.println(detailUrl);
+			Document cDoc = Jsoup.connect(detailUrl).get();
+			Elements baseCom = cDoc.select("#company-body > div.company-body-infomation");
+			System.out.println("tbody > tr사이즈 : "+baseCom.select("tbody > tr").size());
+			System.out.println("tbody : "+baseCom.select("tbody").size());
+			//잡코리아 상세 페이지 내부 selector에 차이가 있어 순서가 바뀌는 경우가 발생
+			//산업
+			String ciind = baseCom.select("tbody > tr:nth-child(1) > td:nth-child(2) > div > div").text();
+			//사원수
+			String cipeople = baseCom.select("tbody > tr:nth-child(1) > td:nth-child(4) > div > div > div.value").text();
+			//기업구분
+			String citype = baseCom.select("tbody > tr:nth-child(2) > td:nth-child(2) > div > div").text();
+			//설립일
+			String ciest = baseCom.select("tbody > tr:nth-child(2) > td:nth-child(4) > div > div > div.value").text();
+			//자본금
+			String cimoney = baseCom.select("tbody > tr:nth-child(3) > td:nth-child(2) > div > div").text();
+			//매출액
+			String cisales = baseCom.select("tbody > tr:nth-child(3) > td:nth-child(4) > div > div").text();
+			//대표자
+			String cileader = baseCom.select("tbody > tr:nth-child(4) > td:nth-child(2) > div > div").text();
+			//대졸초임
+			String ciwage = baseCom.select("tbody > tr:nth-child(4) > td:nth-child(4) > div > div > div > div").text();
+			  try{
+		            Integer number = Integer.valueOf(ciwage);
+		            System.out.println(number);
+		        }
+		        catch (NumberFormatException ex){
+		           ciwage = baseCom.select("tbody > tr:nth-child(4) > td:nth-child(4) > div > div > div > div").text();
+		        }
+			//주요사업
+			String cimajor = baseCom.select("tbody > tr:nth-child(5) > td:nth-child(2) > div > div").text();
+			//4대보험
+			String ciinsurance = baseCom.select("tbody > tr:nth-child(5) > td:nth-child(4) > div > div").text();
+			if(cimajor.contains("보험")) {
+				ciinsurance = cimajor;
+				cimajor = baseCom.select("tbody > tr:nth-child(4) > td:nth-child(4) > div > div").text();
+			}
+			//홈페이지
+			String cihomepage = baseCom.select("tbody > tr:nth-child(6) > td:nth-child(2) > div > div > a").text();
+			//주소
+			String ciaddr = baseCom.select("tbody > tr:nth-child(6) > td:nth-child(4) > div > div.value").text();
+			//잡코리아 상세 페이지 내부 selector에 차이가 있어 순서가 바뀌는 경우가 발생
+			CinfoDto cinfo = new CinfoDto();
+			System.out.println("순서 : " + i);
+			
+			System.out.println("기업명 : " + baseCName);
+			System.out.println("산업 : " + ciind);
+			System.out.println("사원수  : " + cipeople);
+			System.out.println("기업구분  : " +citype);
+			System.out.println("설립일  : " + ciest);
+			System.out.println("자본금  : " + cimoney);
+			System.out.println("매출액  : " + cisales);
+			System.out.println("대표자  : " + cileader);
+			System.out.println("대졸초임  : " + ciwage);
+			System.out.println("주요사업  : " + cimajor);
+			System.out.println("4대보험  : " + ciinsurance);
+			System.out.println("홈페이지  : " + cihomepage);
+			System.out.println("주소  : " + ciaddr);
+			
+			
+			
+			
+			String maxCicode = "";//mvdao.selectMaxCinum();
+			System.out.println("회사코드 최대값 : " + maxCicode);
+			String cicode = "CI";
+			if(maxCicode == null) {
+				cicode = cicode + String.format("%03d", 1);
+				System.out.println("처음 회사코드 : "+cicode);
+			}else {
+				int mvcodeNum = Integer.parseInt(maxCicode.replace("CI", "")) +1;
+				cicode =  cicode + String.format("%03d", maxCicode);
+			}
+			System.out.println("회사코드 : "+cicode);
+			
+			String mvCheck = epdao.checkCom(baseCName);
+			if(mvCheck != null) {
+				continue;}
+			
+			if(baseCName.equals("")) {
+				baseCName = "-";
+			}if(ciind.equals("")) {
+				ciind = "-";
+			}if(cipeople.equals("")) {
+				cipeople = "-";
+			}if(citype.equals("")) {
+				citype = "-";
+			}if(ciest.equals("")) {
+				ciest = "-";
+			}if(cimoney.equals("")) {
+				cimoney = "-";
+			}if(cisales.equals("")) {
+				cisales = "-";
+			}if(cileader.equals("")) {
+				cileader = "-";
+			}if(ciwage.equals("")) {
+				ciwage = "-";
+			}if(cimajor.equals("")) {
+				cimajor = "-";
+			}if(ciinsurance.equals("")) {
+				ciinsurance = "-";
+			}if(cihomepage.equals("")) {
+				cihomepage = "-";
+			}if(ciaddr.equals("")) {
+				ciaddr = "-";
+			}
+			//회사테이블 
+			cinfo.setCinum(cicode);
+			cinfo.setCiname(baseCName);
+			cinfo.setCiind(ciind);
+			cinfo.setCipeople(cipeople);
+			cinfo.setCitype(citype);
+			cinfo.setCiest(ciest);
+			cinfo.setCimoney(cimoney);
+			cinfo.setCisales(cisales);
+			cinfo.setCileader(cileader);
+			cinfo.setCiwage(ciwage);
+			cinfo.setCimajor(cimajor);
+			cinfo.setCiinsurance(ciinsurance);
+			cinfo.setCihomepage(cihomepage);
+			cinfo.setCiaddr(ciaddr);
+			
+			insertResult += epdao.insertCinfo(cinfo);
+			
+			System.out.println();
+			
+			
+		}
+		
+		System.out.println("등록된 회사 수 : " + insertResult);
+		return 0;
 	}
 	
 	

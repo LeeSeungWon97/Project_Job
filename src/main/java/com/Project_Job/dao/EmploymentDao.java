@@ -6,7 +6,9 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
+import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.EmploymentDto;
 
 
@@ -24,6 +26,17 @@ public interface EmploymentDao {
 
 	@Select("SELECT * FROM CINFO WHERE CINAME LIKE '%${ciname}%'  ")
 	ArrayList<Map<String, String>> getWPList(String ciname);
+	
+	@Select("SELECT CINAME FROM CINFO WHERE CINAME = #{baseMovieName}")
+	String checkCom(String baseCName);
+
+	@Insert("INSERT INTO CINFO(CINUM, CINAME, CIIND, CITYPE, CIMONEY, CILEADER, CIMAJOR, CIHOMEPAGE,CIPEOPLE ,CIEST, CISALES,CIINSURANCE, CIWAGE, CIADDR ) "
+			+ "VALUES( #{cinum},#{ciname},#{ciind},#{citype},#{cimoney},"
+			+ " #{cileader},#{cimajor},#{cihomepage},#{cipeople},#{ciest},#{cisales},#{ciinsurance},#{ciwage},#{ciaddr} )")
+	int insertCinfo(CinfoDto cinfo);
+
+	@Update("UPDATE CINFO SET CIADDR = #{ciaddr} WHERE CINUM = #{cinum} ")
+	int updateCiAddr(@Param("cinum")String cinum,@Param("ciaddr")String ciaddr);
 
 	
 }
