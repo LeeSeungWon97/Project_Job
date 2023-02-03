@@ -23,6 +23,7 @@
 					<div class="card-body p-4 p-sm-5 mb-3">
 						<div class="d-grid mb-4">
 							<div class="btn-group btn-group-lg">
+
 								<a href="${pageContext.request.contextPath }/joinMemberPage">
 									<button type="button" class="btn btn-outline-dark">개인회원</button>
 								</a>
@@ -31,6 +32,7 @@
 								</a>
 							</div>
 						</div>
+
 					</div>
 				</div>
 			</div>
