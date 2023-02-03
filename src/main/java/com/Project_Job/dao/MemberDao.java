@@ -15,8 +15,8 @@ public interface MemberDao {
 	@Select("SELECT MID FROM MEMBERS WHERE MID = #{mid}")
 	String selectMCheckId(String mid);
 	
-	@Select("SELECT CID FROM CMEMBERS WHERE CMID = #{cid}")
-	String selectCCheckId(String mid);
+	@Select("SELECT CMID FROM CMEMBERS WHERE CMID = #{cmid}")
+	String selectCCheckId(String cmid);
 
 	// 로그인(개인) SQL
 	@Select("SELECT * FROM MEMBERS WHERE MID = #{mid} AND MPW = #{mpw}")

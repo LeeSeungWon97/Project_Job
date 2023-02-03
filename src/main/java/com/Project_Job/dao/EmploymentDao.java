@@ -35,8 +35,8 @@ public interface EmploymentDao {
 			+ " #{cileader},#{cimajor},#{cihomepage},#{cipeople},#{ciest},#{cisales},#{ciinsurance},#{ciwage},#{ciaddr} )")
 	int insertCinfo(CinfoDto cinfo);
 
-	@Update("UPDATE CINFO SET CIADDR = #{cmaddr} WHERE CINUM = #{cinum} ")
-	int updateCiAddr(@Param("cinum")String cinum,@Param("cmaddr")String cmaddr);
+	@Update("UPDATE CINFO SET CIADDR = #{ciaddr} WHERE CINUM = #{cinum} ")
+	int updateCiAddr(@Param("cinum")String cinum,@Param("ciaddr")String ciaddr);
 
 	
 }

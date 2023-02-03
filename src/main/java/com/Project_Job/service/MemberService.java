@@ -26,10 +26,10 @@ public class MemberService {
 	private EmploymentDao epdao;
 
 	// 기업회원 아이디 확인
-	public String checkCId(String cid) {
+	public String checkCId(String cmid) {
 		System.out.println("개인회원 아이디 조회");
 		String checkIdResult = "";
-		checkIdResult = mdao.selectCCheckId(cid);
+		checkIdResult = mdao.selectCCheckId(cmid);
 		return checkIdResult;
 	}
 
@@ -52,12 +52,12 @@ public class MemberService {
 		}
 	}
 
-	public int joinCiMember(CmemberDto joinInfo, String cmaddr) {
+	public int joinCiMember(CmemberDto joinInfo, String ciaddr) {
 		System.out.println(joinInfo);
-		System.out.println(cmaddr);
+		System.out.println(ciaddr);
 		int insertResult = mdao.insertCiJoinMember(joinInfo);
 		String cinum = joinInfo.getCmcinum();
-		int updateResult = epdao.updateCiAddr(cinum, cmaddr);
+		int updateResult = epdao.updateCiAddr(cinum, ciaddr);
 		return insertResult;
 	}
 
