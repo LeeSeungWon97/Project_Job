@@ -12,14 +12,16 @@ public interface MemberDao {
 	
 	// 아이디 확인 SQL
 	@Select("SELECT MID FROM MEMBERS WHERE MID = #{mid}")
-	String selectCheckId(String mid);
+	String selectMCheckId(String mid);
+	
+	@Select("SELECT CID FROM CMEMBERS WHERE CMID = #{cid}")
+	String selectCCheckId(String mid);
 
 	// 로그인(개인) SQL
 	@Select("SELECT * FROM MEMBERS WHERE MID = #{mid} AND MPW = #{mpw}")
 	MemberDto selectMemberLogin(@Param("mid") String mid, @Param("mpw") String mpw);
 	
-	/*** Insert ***/
-	
+	/*** Insert ***/	
 	// 회원가입(개인) SQL
 	@Insert("INSERT INTO MEMBERS(MID,MPW,MNAME,MADDR,MBIRTH,MEMAIL,MSTATE) VALUES(#{mid},#{mpw},#{mname},#{maddr},#{mbirth},#{memail},'0')")
 	int insertJoinMember(MemberDto joinInfo);
