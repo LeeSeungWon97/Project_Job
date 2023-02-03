@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.EmploymentDto;
@@ -33,6 +34,9 @@ public interface EmploymentDao {
 			+ "VALUES( #{cinum},#{ciname},#{ciind},#{citype},#{cimoney},"
 			+ " #{cileader},#{cimajor},#{cihomepage},#{cipeople},#{ciest},#{cisales},#{ciinsurance},#{ciwage},#{ciaddr} )")
 	int insertCinfo(CinfoDto cinfo);
+
+	@Update("UPDATE CINFO SET CIADDR = #{cmaddr} WHERE CINUM = #{cinum} ")
+	int updateCiAddr(@Param("cinum")String cinum,@Param("cmaddr")String cmaddr);
 
 	
 }
