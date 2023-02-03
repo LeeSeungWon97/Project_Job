@@ -68,11 +68,11 @@ public class MemberController {
 
 	// 기업 회원가입 요청
 	@RequestMapping(value = "/joinCiMember")
-	public String cjoinMember(@Param("joinInfo")CmemberDto joinInfo, @Param("cmaddr")String cmaddr) {
+	public String cjoinMember(@Param("joinInfo")CmemberDto joinInfo, @Param("ciaddr")String ciaddr) {
 		System.out.println("기업 회원가입 요청");
 		System.out.println(joinInfo);
-		System.out.println("cmaddr : "+cmaddr);
-		int insertResult = msvc.joinCiMember(joinInfo,cmaddr);
+		System.out.println("ciaddr : "+ciaddr);
+		int insertResult = msvc.joinCiMember(joinInfo,ciaddr);
 		
 		if (insertResult == 1) {
 		return "Main";
@@ -106,11 +106,11 @@ public class MemberController {
 
 	// 기업 회원가입 ID 중복체크
 	@RequestMapping(value = "/joinCIdCheck")
-	public @ResponseBody String joinCIdCheck(String cid) {
+	public @ResponseBody String joinCIdCheck(String cmid) {
 		System.out.println("ID 중복확인 요청");
-		System.out.println("입력한 아이디: " + cid);
+		System.out.println("입력한 아이디: " + cmid);
 		String result = "OK";
-		String checkId = msvc.checkCId(cid);
+		String checkId = msvc.checkCId(cmid);
 		System.out.println(checkId);
 		if (checkId != null) {
 			result = "NO";

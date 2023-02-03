@@ -36,7 +36,7 @@
 
 
 							<div class="input-group input-group-lg mb-3">
-								<input type="text" id="inputCiaddr" name="cmciaddr" placeholder="회사주소" readonly="readonly" class="form-control">
+								<input type="text" id="inputCiaddr" name="ciaddr" placeholder="회사주소" readonly="readonly" class="form-control">
 								<input type="button" onclick="DaumPostcode()" value="우편번호 찾기" class="btn btn-secondary">
 							</div>
 
@@ -143,12 +143,12 @@
 		}
 
 		function checkSameCId() {
-			var inputId = $('#cid').val();
+			var inputId = $('#cmid').val();
 			console.log(inputId);
 			$
 					.ajax({
 						type : 'get',
-						url : '${pageContext.request.contextPath }/joinCIdCheck?cid='
+						url : '${pageContext.request.contextPath }/joinCIdCheck?cmid='
 								+ inputId,
 						success : function(result) {
 							console.log(result);
@@ -231,20 +231,20 @@
 									extraAddr = ' (' + extraAddr + ')';
 								}
 								// 조합된 참고항목을 해당 필드에 넣는다.
-								document.getElementById("extraAddress").value = extraAddr;
+								//document.getElementById("extraAddress").value = extraAddr;
 
-							} else {
-								document.getElementById("extraAddress").value = '';
-							}
+							} //else {
+								//document.getElementById("extraAddress").value = '';
+							//}
 
 							// 우편번호와 주소 정보를 해당 필드에 넣는다.
-							document.getElementById('postcode').value = data.zonecode;
-							document.getElementById("address").value = addr;
+							//document.getElementById('postcode').value = data.zonecode;
+							//document.getElementById("address").value = addr;
 							document.getElementById("inputCiaddr").value = addr;
 
 							// 커서를 상세주소 필드로 이동한다.
-							$('#detailAddress').attr('disabled', false);
-							document.getElementById("detailAddress").focus();
+							//$('#detailAddress').attr('disabled', false);
+							//document.getElementById("detailAddress").focus();
 						}
 					}).open();
 		}
@@ -253,10 +253,10 @@
 	<!-- email -->
 	<script type="text/javascript">
 		// 인증코드 전송
-		$('#mailCheckBtn')
+		$('#cmailCheckBtn')
 				.click(
 						function() {
-							var email = $('#memail').val();
+							var email = $('#cmemail').val();
 							console.log(email);
 							$
 									.ajax({
@@ -265,11 +265,11 @@
 												+ email,
 										success : function(data) {
 											console.log(data);
-											$('#emailCode').attr('value', data);
+											$('#cemailCode').attr('value', data);
 											alert('인증번호가 발송되었습니다.');
-											$('#inputCode').attr('disabled',
+											$('#cinputCode').attr('disabled',
 													false);
-											$('#inputCode').focus();
+											$('#cinputCode').focus();
 										}
 									});
 						});
