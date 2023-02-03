@@ -76,6 +76,7 @@ public class MemberController {
 		}
 		return result;
 	}
+	
 
 	// 기업 회원가입시 회사 검색 요청 - 팝업창
 		@RequestMapping(value = "/find_WP")
