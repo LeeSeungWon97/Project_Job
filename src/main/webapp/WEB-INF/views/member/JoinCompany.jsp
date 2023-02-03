@@ -21,7 +21,7 @@
 			<div class="col-lg-10 col-xl-8 mx-auto">
 				<div class="card flex-row my-5 border-0 shadow rounded-3">
 					<div class="card-body p-4 p-sm-5 mb-3">
-						<form action="${pageContext.request.contextPath }/joinCiMember" method="post" onsubmit="return cmjoinFormCheck(this)">
+						<form action="${pageContext.request.contextPath }/joinCiMember" method="post" onsubmit="return joinFormCheck(this)">
 
 							<div class="input-group input-group-lg mb-3">
 								<input type="text" class="form-control" disabled="disabled" id="inputCiname" name="cmciname" placeholder="회사명">
@@ -29,19 +29,14 @@
 							</div>
 
 							<div class="input-group input-group-lg mb-3">
-								<input type="password" class="form-control" disabled="disabled" id="inputCinum" name="cmcinum" placeholder="사업자 등록번호">
+								<input type="hidden" class="form-control" readonly="readonly" id="inputCinum" name="cmcinum" placeholder="사업자 등록번호">
 								<input type="text" class="form-control" disabled="disabled" id="inputCileader" name="cmcileader" placeholder="대표자">
 								<input type="text" class="form-control" disabled="disabled" id="inputCitype" name="inputCitype" placeholder="기업형태">
-								<select onchange="citypeSelect(this)" class="form-select">
-									<option value="">직접입력</option>
-									<option value="대기업">대기업</option>
-									<option value="공기업">공기업</option>
-									<option value="중소기업">중소기업</option>
-								</select>
 							</div>
 
+
 							<div class="input-group input-group-lg mb-3">
-								<input type="text" id="inputCiaddr" name="cmciaddr" placeholder="회사주소" disabled="disabled" class="form-control">
+								<input type="text" id="inputCiaddr" name="cmciaddr" placeholder="회사주소" readonly="readonly" class="form-control">
 								<input type="button" onclick="DaumPostcode()" value="우편번호 찾기" class="btn btn-secondary">
 							</div>
 
@@ -73,6 +68,7 @@
 									<option value="kakao.com">카카오</option>
 								</select>
 							</div>
+							
 							<div class="input-group mb-1">
 								<input type="text" id="cinputCode" disabled="disabled" maxlength="6" placeholder="인증번호 6자리 입력" class="form-control">
 								<input type="hidden" id="cemailCode" disabled="disabled" maxlength="6">
@@ -103,63 +99,42 @@
 		var isCheckId = false;
 		var isCheckEmail = false;
 
-		function cmjoinFormCheck(formObj) {
-			console.log("cmjoinFormCheck() 호출");
-
-			var cmciname = formObj.cmciname;
-			var cmcileader = formObj.cmcileader;
-			var cmcitype = formObj.cmcitype;
-			var cmnum = formObj.cmnum;
-
-			var mid = formObj.cmid;
-			var mpw = formObj.cmpw;
-			var mname = formObj.cmname;
-			var maddr = formObj.cmciaddr;
-			var memail = formObj.cmemail;
-
-			var emailId = $('#cemailId');
-			var domain = $('#cdomain');
-
-			if (mid.value.length == 0) {
-				alert('아이디를 입력해 주세요');
+		function joinFormCheck(formObj) {
+			console.log("joinFormCheck() 호출");
+			var ciname = formObj.cmciname;
+			var cmid = formObj.cmid;
+			var cmpw = formObj.cmpw;
+			var cmname = formObj.cmname;
+			var cemailId = $('#cemailId');
+			var cdomain = $('#cdomain');
+			
+			if(ciname.value.length == 0){
+				alert("기업정보를 입력해주세요");
+				return false;
+			} else if(cmid.value.length == 0){
+				alert("아이디를 입력해주세요");
 				cmid.focus();
 				return false;
-			} else if (mpw.value.length == 0) {
-				alert('비밀번호를 입력해 주세요');
+			} else if(cmpw.value.length == 0){
+				alert("비밀번호를 입력해주세요");
 				cmpw.focus();
 				return false;
-			} else if (mname.value.length == 0) {
-				alert('이름을 입력해 주세요');
+			} else if(cmname.value.length == 0){
+				alert("이름을 입력해주세요");
 				cmname.focus();
 				return false;
-			} else if (maddr.value.length == 0) {
-				alert('주소를 입력해 주세요');
-				$('#postBtn').focus();
-				return false;
-			} else if (emailId.val().length == 0) {
-				alert('이메일을 입력해 주세요.');
+			} else if(cemailId.val().length == 0){
+				alert("이메일을 입력해주세요");
 				cemailId.focus();
 				return false;
-			} else if (domain.val().length == 0) {
-				alert('이메일을 입력해 주세요.');
+			} else if(cdomain.val().length == 0){
+				alert("도메인을 입력해주세요");
 				cdomain.focus();
 				return false;
 			} else if (!isCheckId) {
 				alert('아이디 중복확인을 해주세요');
 				return false;
 			} else if (!isCheckEmail) {
-				alert('이메일 인증번호를 입력해주세요');
-				return false;
-			} else if (cmcinum.val.length == 0) {
-				alert('이메일 인증번호를 입력해주세요');
-				return false;
-			} else if (cmciname.val.length == 0) {
-				alert('이메일 인증번호를 입력해주세요');
-				return false;
-			} else if (cmcileader.val.length == 0) {
-				alert(cmcitype.val.length == 0);
-				return false;
-			} else if (cmcitype.val.length == 0) {
 				alert('이메일 인증번호를 입력해주세요');
 				return false;
 			} else {
@@ -300,20 +275,20 @@
 						});
 
 		// 이메일 인증 번호 확인
-		$('#inputCode').change(function() {
-			var inputVal = $('#inputCode').val();
-			var correctCode = $('#emailCode').val();
+		$('#cinputCode').change(function() {
+			var inputVal = $('#cinputCode').val();
+			var correctCode = $('#cemailCode').val();
 			console.log(inputVal.length);
 			if (inputVal == correctCode) {
-				$('#mailCheckResult').text('인증성공!')
-				$('#mailCheckResult').css('color', 'green');
+				$('#cmailCheckResult').text('인증성공!')
+				$('#cmailCheckResult').css('color', 'green');
 				isCheckEmail = true;
 			} else if (inputVal.length < 6) {
-				$('#mailCheckResult').text('');
+				$('#cmailCheckResult').text('');
 				isCheckEmail = false;
 			} else {
-				$('#mailCheckResult').text('인증실패!');
-				$('#mailCheckResult').css('color', 'red');
+				$('#cmailCheckResult').text('인증실패!');
+				$('#cmailCheckResult').css('color', 'red');
 				isCheckEmail = false;
 			}
 			console.log(isCheckEmail);

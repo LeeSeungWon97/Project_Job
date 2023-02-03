@@ -88,7 +88,7 @@ public class MemberController {
 	}
 
 	// 기업 회원가입 ID 중복체크
-	@RequestMapping(value = "/joinMIdCheck")
+	@RequestMapping(value = "/joinCIdCheck")
 	public @ResponseBody String joinCIdCheck(String cid) {
 		System.out.println("ID 중복확인 요청");
 		System.out.println("입력한 아이디: " + cid);
