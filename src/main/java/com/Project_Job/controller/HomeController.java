@@ -23,7 +23,15 @@ public class HomeController {
 	@Autowired
 	private EmploymentService epsvc;
 	
-	
+	@RequestMapping(value = "/jobInsert1")
+	public ModelAndView jobInsert1() throws Exception {
+		System.out.println("/jobInsert1 요청");
+		int insertResult = epsvc.jobInsert1();
+		System.out.println(insertResult);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("home");
+		return mav;
+	}
 	
 	@RequestMapping(value = "/jobInsert2")
 	public ModelAndView jobInsert2() throws IOException {
