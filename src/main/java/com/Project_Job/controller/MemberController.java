@@ -2,12 +2,14 @@ package com.Project_Job.controller;
 
 import java.io.IOException;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Project_Job.dto.CmemberDto;
 import com.Project_Job.dto.MemberDto;
 import com.Project_Job.service.MailService;
 import com.Project_Job.service.MemberService;
@@ -59,6 +61,21 @@ public class MemberController {
 		int insertResult = msvc.joinMember(joinInfo);
 		if (insertResult == 1) {
 			return "Main";
+		} else {
+			return "member/Join";
+		}
+	}
+
+	// 기업 회원가입 요청
+	@RequestMapping(value = "/joinCiMember")
+	public String cjoinMember(@Param("joinInfo")CmemberDto joinInfo, @Param("cmaddr")String cmaddr) {
+		System.out.println("기업 회원가입 요청");
+		System.out.println(joinInfo);
+		System.out.println("cmaddr : "+cmaddr);
+		int insertResult = msvc.joinCiMember(joinInfo,cmaddr);
+		
+		if (insertResult == 1) {
+		return "Main";
 		} else {
 			return "member/Join";
 		}
