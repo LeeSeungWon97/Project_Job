@@ -56,6 +56,13 @@ public class MemberController {
 		return "member/Login";
 	}
 
+	// 아이디 찾기 페이지 이동
+	@RequestMapping(value = "/FindMemberPage")
+	public String FindMember() {
+		System.out.println("아이디찾기");
+		return "member/FindMember";
+	}
+
 	/*** 회원가입 컨트롤러 ***/
 
 	// 회원가입 요청
@@ -92,7 +99,7 @@ public class MemberController {
 		System.out.println("이메일 본인인증 요청");
 		String inputEmail = email;
 		System.out.println("요청한 이메일: " + inputEmail);
-		return emsvc.sendCode(inputEmail);
+		return emsvc.sendId(inputEmail,"x");
 	}
 
 	// 개인 회원가입 ID 중복체크
@@ -166,6 +173,47 @@ public class MemberController {
 				session.setAttribute("loginInfo", loginCInfo);
 				mav.setViewName("Main");
 			}
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value = "/FindMember")
+	public ModelAndView FindMember(String loginType, String mname, String memail, String ciname) {
+		System.out.println("아이디 찾기 요청");
+		System.out.println("아이디 찾기 타입: " + loginType);
+		System.out.println("입력 이름: " + mname);
+		System.out.println("입력 이메일: " + memail);
+		System.out.println("입력 기업명: " + ciname);
+		ModelAndView mav = new ModelAndView();
+		if (loginType.equals("개인")) {
+			System.out.println("개인회원 아이디 찾기 요청");
+			String FindMid = msvc.FindMember(mname, memail);
+			if(FindMid == null) {
+				mav.addObject("msg", "존재하지 않는 회원입니다.");
+				mav.addObject("url", "login");
+				mav.setViewName("AlertScreen");
+			} else{
+				emsvc.sendId(memail,FindMid);
+				mav.setViewName("Main");
+			}
+		} else {
+			System.out.println("기업회 아이디 찾기 요청");
+			String FindMid = msvc.FindCMember(mname, memail, ciname);
+			if(FindMid == null) {
+				mav.addObject("msg", "존재하지 않는 회원입니다.");
+				mav.addObject("url", "login");
+				mav.setViewName("AlertScreen");
+			} else{
+				emsvc.sendId(memail,FindMid);
+				mav.setViewName("Main");
+			}
+			/*
+			 * System.out.println("기업회원 아이디 찾기 요청"); CmemberDto loginCInfo =
+			 * msvc.loginCompany(id, pw); if(loginCInfo == null) { mav.addObject("msg",
+			 * "존재하지 않는 회원입니다."); mav.addObject("url", "login");
+			 * mav.setViewName("AlertScreen"); } else{ session.setAttribute("loginInfo",
+			 * loginCInfo); mav.setViewName("Main"); }
+			 */
 		}
 		return mav;
 	}

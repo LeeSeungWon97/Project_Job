@@ -34,7 +34,7 @@ public class HomeController {
 		return mav;
 	}	
 	@RequestMapping(value = "/jobInsert2")
-	public ModelAndView jobInsert2() throws IOException {
+	public ModelAndView jobInsert2() throws Exception {
 		System.out.println("/jobInsert2 요청");
 		int insertResult = epsvc.jobInsert2();
 		System.out.println(insertResult);

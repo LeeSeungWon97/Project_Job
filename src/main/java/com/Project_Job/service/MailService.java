@@ -29,6 +29,27 @@ public class MailService {
 		mailSend(setFrom, toMail, title, content);
 		return Integer.toString(authNumber);
 	}
+	
+	// 인증메일 발송 메소드
+		public String sendId(String email, String findMid) {
+				String setFrom = "icia0803@gmail.com";
+				String toMail = email;
+				String title = "";
+				String content = "";
+				if(findMid.equals("x")) {
+					makeRandomNumber();
+					title = "회원 가입 인증 이메일 입니다.";
+					content = "홈페이지를 방문해주셔서 감사합니다." + "<br><br>" + "인증 번호는 " + authNumber + "입니다." + "<br>"
+							+ "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+					mailSend(setFrom, toMail, title, content);
+					return Integer.toString(authNumber);
+				}else {
+					title = "아이디 찾기 결과입니다..";
+					content = "홈페이지를 방문해주셔서 감사합니다." + "<br><br>" + "회원님의 아이디는 " + findMid + "입니다." + "<br>";
+					mailSend(setFrom, toMail, title, content);
+					return findMid;
+				}
+		}
 
 	// 난수발생 메소드(6자리)
 	public void makeRandomNumber() {

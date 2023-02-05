@@ -37,6 +37,9 @@ public interface EmploymentDao {
 
 	@Update("UPDATE CINFO SET CIADDR = #{ciaddr} WHERE CINUM = #{cinum} ")
 	int updateCiAddr(@Param("cinum")String cinum,@Param("ciaddr")String ciaddr);
+	
+	@Select("SELECT MAX(CINUM) FROM CINFO ")
+	String selectMaxCinum();
 
 	
 }

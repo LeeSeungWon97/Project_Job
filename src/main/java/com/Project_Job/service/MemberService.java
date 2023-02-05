@@ -73,5 +73,17 @@ public class MemberService {
 		}
 		return loginCInfo;
 	}
+	
+	//개인 회원 아이디 찾기
+	public String FindMember(String mname, String memail) {
+		System.out.println("MemberService FindMember() 호출");
+		String FindMid = mdao.FindMember(mname, memail);
+		return FindMid;
+	}
+
+	public String FindCMember(String mname, String memail, String ciname) {
+		String FindMid = mdao.FindCMember(mname, memail, ciname);
+		return FindMid;
+	}
 
 }
