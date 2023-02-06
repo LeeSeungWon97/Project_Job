@@ -4,16 +4,18 @@
 
 <header id="header">
     <div class="navbar navbar-expand-lg navbar-light bg-light">
-    	<div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href=""><img src="${pageContext.request.contextPath }/resources/assets/img/logo.png" style="width:120px; height:100px;"></a>       
- 			<nav class="navbar bg-light">
-    			<div class="container-fluid">
-    				<form class="d-flex" role="search">
-      					<input class="form-control me-2" type="search" placeholder="search..." aria-label="Search">
-      					<button class="btn btn-outline-dark" type="submit">search</button>
+    	<div class="container-fluid">
+    		<div class="logo">
+    			<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/logo.png" style="width:120px; height:100px;"></a> 
+    		</div>
+    		<div class="search">    
+ 				<div class="navbar bg-light">
+ 					<form class="d-flex" role="search">
+      					<input class="form-control me-2" type="search" placeholder="search for..." aria-label="Search">
+      					<button class="btn btn-outline-dark" type="submit">Search</button>
      				</form>
-  				</div>
-			</nav>
+ 				</div>
+			</div>
     	</div>
     </div>
 </header>

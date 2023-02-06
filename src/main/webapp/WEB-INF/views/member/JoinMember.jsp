@@ -17,9 +17,12 @@
 </head>
 <body>
 	<div class="container">
+		<div class="d-flex justify-content-center">
+    		<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/logo.png" style="width:120px; height:100px;"></a> 
+    	</div>
 		<div class="row">
 			<div class="col-lg-10 col-xl-8 mx-auto">
-				<div class="card flex-row my-5 border-0 shadow rounded-3">
+				<div class="card flex-row my-4 border-0 shadow rounded-3">
 					<div class="card-body p-4 p-sm-5 mb-3">
 						<form action="${pageContext.request.contextPath }/joinMember" method="post" onsubmit="return joinFormCheck(this)">
 							<div class="input-group input-group-lg mb-1">
