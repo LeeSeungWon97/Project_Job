@@ -2,10 +2,69 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <section id="section">
-	<div class="container-fluid">
-		<div class="row">
-			<!-- Post entries-->
-			<div class="col-md-8 mt-4">
+	<div class="row">
+		<!-- Blog entries-->
+		<div class="col-lg-8 mt-4">
+		       <div class="card mb-4">
+               <div class="border border border-secondary-subtle p-2 border">
+              <div class="d-flex align-items-start">
+  <div class="nav flex-column nav-pills me-3 mt-5 " id="v-pills-tab" role="tablist" aria-orientation="vertical" style="z-index: 0;">
+    <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">MY 공고</button>
+    <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">TOP 기업</button>
+    <button class="nav-link" id="v-pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#v-pills-disabled" type="button" role="tab" aria-controls="v-pills-disabled" aria-selected="false"><a href="">직업별 공고</a></button>
+    <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false"><a href="">지역별 공고</a></button>
+    <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">커뮤니티</button>
+  </div>
+  <div class="tab-content" id="v-pills-tabContent">
+    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">[MY공고 내용]
+          <div class="flex-container">
+        <div class="flex-item mx-4 ">
+            <div class="card mb-4">
+                                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                                <div class="card-body">
+                                    <div class="small text-muted">회사</div>
+                                    <h3 class="card-title h5">공고이름</h3>
+                                    <p class="card-text">공고내용</p>
+                                  
+                                </div>
+                            </div>
+        </div>
+        <div class="flex-item mx-4">
+              <div class="card mb-4">
+                                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                                <div class="card-body">
+                                    <div class="small text-muted">회사</div>
+                                    <h3 class="card-title h5">공고이름</h3>
+                                    <p class="card-text">공고내용</p>
+                                  
+                                </div>
+                            </div>
+        </div>
+        <div class="flex-item mx-4">
+              <div class="card mb-4">
+                                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                                <div class="card-body">
+                                    <div class="small text-muted">회사</div>
+                                    <h3 class="card-title h5">공고이름</h3>
+                                    <p class="card-text">공고내용</p>
+                             
+                                </div>
+                            </div>
+        </div>
+
+    </div>
+<div class="border border-success p-2 ">공지사항</div>
+    </div>
+    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">[TOP 기업 내용]</div>
+    <div class="tab-pane fade" id="v-pills-disabled" role="tabpanel" aria-labelledby="v-pills-disabled-tab" tabindex="0">[직업별 공고]</div>
+    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">[지역별 공고]</div>
+    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" tabindex="0">커뮤니티</div>
+  </div>
+</div>
+               </div>
+               
+
+                    </div>
 				<div class="row">
 					<div class="col-lg-6">
 						<!-- Blog post-->
@@ -16,7 +75,7 @@
 							<div class="card-body">
 								<div class="small text-muted">January 1, 2022</div>
 								<h2 class="card-title h4">Post Title</h2>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+								<p class="card-text">.</p>
 								<a class="btn btn-primary" href="#!">Read more →</a>
 							</div>
 						</div>
@@ -28,7 +87,7 @@
 							<div class="card-body">
 								<div class="small text-muted">January 1, 2022</div>
 								<h2 class="card-title h4">Post Title</h2>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+								<p class="card-text">.</p>
 								<a class="btn btn-primary" href="#!">Read more →</a>
 							</div>
 						</div>
@@ -42,7 +101,7 @@
 							<div class="card-body">
 								<div class="small text-muted">January 1, 2022</div>
 								<h2 class="card-title h4">Post Title</h2>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+								<p class="card-text">.</p>
 								<a class="btn btn-primary" href="#!">Read more →</a>
 							</div>
 						</div>
@@ -54,7 +113,7 @@
 							<div class="card-body">
 								<div class="small text-muted">January 1, 2022</div>
 								<h2 class="card-title h4">Post Title</h2>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+								<p class="card-text">.</p>
 								<a class="btn btn-primary" href="#!">Read more →</a>
 							</div>
 						</div>
