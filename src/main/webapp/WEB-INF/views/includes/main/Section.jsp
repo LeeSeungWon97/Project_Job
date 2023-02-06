@@ -145,6 +145,16 @@
 				<div class="card-footer">
 					<div class="d-flex justify-content-center">
 						<button type="button" class="btn btn-warning btn-sm">공지사항</button>
+					<div class="d-grid gap-2 d-md-block">
+						<a href="${pageContext.request.contextPath }/join"> 
+							<button class="btn btn-outline-secondary" type="button">회원가입</button>
+						</a>
+						<a href="${pageContext.request.contextPath }/FindIdPage">
+							<button class="btn btn-outline-secondary" type="button">아이디 찾기</button>
+						</a>
+						<a href="${pageContext.request.contextPath }/FindPwPage">
+							<button class="btn btn-outline-secondary" type="button">비밀번호 찾기</button>
+						</a>
 					</div>
 				</div>
 			</div>

@@ -27,7 +27,36 @@ public interface MemberDao {
 	@Select("SELECT * FROM CMEMBERS WHERE CMID = #{id} AND CMPW = #{pw}")
 	CmemberDto selectCompanyLogin(@Param("id") String id, @Param("pw")String pw);
 	
+	//아이디찾기(개인)
+	@Select("SELECT MID FROM MEMBERS WHERE MNAME = #{mname} AND MEMAIL = #{memail}")
+	String FindMemberId(@Param("mname")String mname, @Param("memail")String memail);
+	
+	//아이디찾기(기업)
+	@Select("SELECT CMID "
+			+ "FROM CMEMBERS, CINFO "
+			+ "WHERE CMEMBERS.CMCINUM = CINFO.CINUM "
+			+ "AND CINFO.CINAME LIKE '%${ciname}%' AND CMEMBERS.CMNAME = #{mname} "
+			+ "AND CMEMBERS.CMEMAIL = #{memail} ")
+	String FindCMemberId(@Param("mname")String mname, @Param("memail")String memail,@Param("ciname") String ciname);
+	
+	// 비밀번호 찾기(개인)
+	@Select("SELECT MPW FROM MEMBERS WHERE MID = #{id}")
+	String selectMemberPw(String id);
+	
+	// 비밀번호 찾기(기업)
+	@Select("SELECT CMPW FROM CMEMBERS WHERE CMID = #{id}")
+	String selectCMemberPw(String id);
+	
+	// 이메일 찾기(개인)
+	@Select("SELECT MEMAIL FROM MEMBERS WHERE MID = #{id}")
+	String selectMemberEmail(String id);
+	
+	// 이메일 찾기(기업)
+	@Select("SELECT CMEMAIL FROM CMEMBERS WHERE CMID = #{id}")
+	String selectCMemberEmail(String id);
+	
 	/*** Insert ***/	
+	
 	// 회원가입(개인) SQL
 	@Insert("INSERT INTO MEMBERS(MID,MPW,MNAME,MADDR,MBIRTH,MEMAIL,MSTATE) VALUES(#{mid},#{mpw},#{mname},#{maddr},#{mbirth},#{memail},'0')")
 	int insertJoinMember(MemberDto joinInfo);
@@ -35,6 +64,16 @@ public interface MemberDao {
 	// 회원가입(기업) SQL
 	@Insert("INSERT INTO CMEMBERS(CMCINUM,CMID,CMPW,CMNAME,CMEMAIL,CMSTATE) VALUES(#{cmcinum},#{cmid},#{cmpw},#{cmname},#{cmemail},'0')")
 	int insertCiJoinMember(CmemberDto joinInfo);
+
+
+
+	
+
+
+
+	
+
+	
 
 
 

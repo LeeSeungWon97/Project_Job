@@ -13,6 +13,8 @@ public class MemberService {
 
 	@Autowired
 	private MemberDao mdao;
+	@Autowired
+	private EmploymentDao epdao;
 
 	// 개인회원 아이디 확인
 	public String checkMId(String mid) {
@@ -21,9 +23,6 @@ public class MemberService {
 		checkIdResult = mdao.selectMCheckId(mid);
 		return checkIdResult;
 	}
-
-	@Autowired
-	private EmploymentDao epdao;
 
 	// 기업회원 아이디 확인
 	public String checkCId(String cmid) {
@@ -54,6 +53,7 @@ public class MemberService {
 		return loginMInfo;
 	}
 
+	// 기업회원 가입
 	public int joinCiMember(CmemberDto joinInfo, String ciaddr) {
 		System.out.println(joinInfo);
 		System.out.println(ciaddr);
@@ -63,15 +63,43 @@ public class MemberService {
 		return insertResult;
 	}
 
+	// 기업회원 로그인
 	public CmemberDto loginCompany(String id, String pw) {
 		System.out.println("MemberService loginCompany() 호출");
 		CmemberDto loginCInfo = new CmemberDto();
 		try {
-			loginCInfo = mdao.selectCompanyLogin(id, pw);	
+			loginCInfo = mdao.selectCompanyLogin(id, pw);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return loginCInfo;
+	}
+	
+	//개인 회원 아이디 찾기
+	public String FindMemberId(String mname, String memail) {
+		System.out.println("MemberService FindMemberId() 호출");
+		String FindMid = mdao.FindMemberId(mname, memail);
+		return FindMid;
+	}
+
+	// 기업 회원 아이디 찾기
+	public String FindCMemberId(String mname, String memail, String ciname) {
+		String FindCid = mdao.FindCMemberId(mname, memail, ciname);
+		return FindCid;
+	}
+
+	// 개인 회원 비밀번호 찾기
+	public String FindMemberPw(String id) {
+		System.out.println("MemberService FindMemberPw() 호출");
+		String FindMpw = mdao.selectMemberPw(id);
+		return FindMpw;
+	}
+
+	// 기업 회원 비밀번호 찾기
+	public String FindCMemberPw(String id) {
+		System.out.println("MemberService FindCMemberPw() 호출");
+		String FindCMpw = mdao.selectCMemberPw(id);
+		return FindCMpw;
 	}
 
 }
