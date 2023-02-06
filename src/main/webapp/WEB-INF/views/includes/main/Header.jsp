@@ -6,7 +6,7 @@
     <div class="navbar navbar-expand-lg navbar-light bg-light">
     	<div class="container-fluid">
     		<div class="logo">
-    			<a class="navbar-brand" href=""><img src="${pageContext.request.contextPath }/resources/assets/img/logo.png" style="width:120px; height:100px;"></a> 
+    			<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/logo.png" style="width:120px; height:100px;"></a> 
     		</div>
     		<div class="search">    
  				<div class="navbar bg-light">
