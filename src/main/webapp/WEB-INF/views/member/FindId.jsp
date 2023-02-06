@@ -29,16 +29,16 @@
 			<div class="col-xs-7 col-xl-4 mx-auto">
 				<div class="card flex-row my-2 border-0 shadow rounded-3">
 					<div class="card-body p-4 p-sm-5 mb-3">
-						<form action="${pageContext.request.contextPath }/FindMember" method="post" onsubmit="return checkInputVal(this)">
+						<form action="${pageContext.request.contextPath }/FindMemberId" method="post" onsubmit="return checkInputVal(this)">
 							<div>
-								<input type="radio" id="personal" name="loginType" value="개인">
+								<input type="radio" id="personal" name="loginType" value="개인" checked="checked">
 								<label for="personal">개인</label>
 								<input type="radio" id="company" name="loginType" value="기업">
 								<label for="company">기업</label>
 							</div>
 							
 							<div class="input-group input-group-xs mt-1 mb-2">
-								<input type="text" class="form-control" id="ciname" name="ciname" placeholder="기업명">
+								<input type="text" class="form-control d-none" id="ciname" name="ciname" placeholder="기업명">
 							</div>
 							
 							<div class="input-group input-group-xs mt-1 mb-2">
@@ -55,7 +55,9 @@
 								<button class="btn btn-dark" type="submit">아이디 찾기</button>
 							</div>
 						</form>
-
+						<div>
+							<span>비밀번호가 기억나지 않는다면? <a href="${pageContext.request.contextPath }/FindPwPage">비밀번호 찾기</a></span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -71,11 +73,11 @@
 			var mname = formObj.mname;
 			var memail = formObj.memail;
 			if (mname.value.length == 0) {
-				alert("아이디를 입력해주세요.");
+				alert("이름을 입력해주세요.");
 				mname.focus();
 				return false;
 			} else if (memail.value.length == 0) {
-				alert("비밀번호를 입력해주세요.");
+				alert("이메일을 입력해주세요.");
 				memail.focus();
 				return false;
 			} else {
@@ -87,15 +89,13 @@
 		$("input:radio[name=loginType]").click(function(){
 		    console.log('radio버튼 선택')
 		    if($("input:radio[name=loginType]:checked").val()=='기업'){
-		    console.log('기업 선택')
+		    	console.log('기업 선택')
 		        $("#ciname").removeClass("d-none");
-		    }else{
-		    console.log('개인 선택')
+		    } else{
+		    	console.log('개인 선택')
 		        $("#ciname").addClass("d-none");
 		    }
 		});
-	
-		
 	</script>
 </body>
 </html>
