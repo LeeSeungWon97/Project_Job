@@ -90,10 +90,12 @@
 						<a href="${pageContext.request.contextPath }/join"> 
 							<button class="btn btn-outline-secondary" type="button">회원가입</button>
 						</a>
-						<a href="${pageContext.request.contextPath }/FindMemberPage">
-							<button class="btn btn-outline-secondary" type="button">ID/PW 찾기</button>
+						<a href="${pageContext.request.contextPath }/FindIdPage">
+							<button class="btn btn-outline-secondary" type="button">아이디 찾기</button>
 						</a>
-						<button class="btn btn-outline-secondary" type="button">ID/PW 찾기</button>
+						<a href="${pageContext.request.contextPath }/FindPwPage">
+							<button class="btn btn-outline-secondary" type="button">비밀번호 찾기</button>
+						</a>
 					</div>
 				</div>
 			</div>
