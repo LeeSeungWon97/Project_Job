@@ -16,21 +16,16 @@
 <body>
 
 
-	<div>
-		<div class="mt-5 pt-4">
-			<h3 class="card-title text-center pb-0 ">비밀번호 찾기</h3>
-		</div>
-	</div>
-
-
-	<div class="containe">
+	<div class="container">
+		<div class="d-flex justify-content-center">
+    		<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/logo.png" style="width:120px; height:100px;"></a> 
+    	</div>
 		<div class="row">
-
-			<div class="col-xs-7 col-xl-4 mx-auto">
-				<div class="card flex-row my-2 border-0 shadow rounded-3">
+			<div class="col-lg-10 col-xl-5 mx-auto">
+				<div class="card flex-row my-4 border-0 shadow rounded-3">
 					<div class="card-body p-4 p-sm-5 mb-3">
 						<form action="${pageContext.request.contextPath }/FindMemberPw" method="post" onsubmit="return checkInputVal(this)">
-							<div>
+							<div class="mb-2">
 								<input type="radio" id="personal" name="loginType" value="개인" checked="checked">
 								<label for="personal">개인</label>
 								<input type="radio" id="company" name="loginType" value="기업">
