@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <title>Login</title>
 <!-- Favicon-->
-<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath }/resources/assets/favicon.ico" />
+ <link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png">
 <!-- Bootstrap icons-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
@@ -16,7 +16,7 @@
 <body>
 
 	<div class="d-flex justify-content-center">
-    	<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/logo.png" style="width:120px; height:100px;"></a> 
+    	<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/company-logo.png" style="width:120px; height:100px;"></a> 
     </div>
 
 	<div class="container">
