@@ -12,7 +12,7 @@
 		
 		<div class="bg-div">
 			<span>
-				공고
+				공고(슬라이드 배너)
 			</span>
 		</div>
 	</div>
@@ -25,19 +25,16 @@
 			
 				<div class="col-4" style="padding:15px;">
 					<div class="my-card">
-						<img src="https://img.freepik.com/free-vector/corporate-logo-designs_53876-93276.jpg"/>						
+						<img src="https://img.freepik.com/free-vector/corporate-logo-designs_53876-93276.jpg"/>
 						<span class="t1">공고 제목</span>
 						<span class="t2">회사 이름</span>
-						
 						<p>
 							키워드??
 						</p>
 						
-						<a href="${pageContext.request.contextPath }/announcement/aform ">
 						<button>
 							자세히 보기
 						</button>
-						</a>
 						
 					</div>
 				

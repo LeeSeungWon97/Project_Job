@@ -5,7 +5,7 @@
 	<div class="header">
 		
 		<div class="logo">
-			<a class="logo-link" href="${pageContext.request.contextPath }/">
+			<a class="logo-link" href="">
 			<img class="logo-img" src="${pageContext.request.contextPath }/resources/assets/img/main-logo.png">
 			</a>
 		</div>
@@ -20,9 +20,7 @@
 		</div>
 			
 		<div class="top-menu">
-			<a class="tmenu-text" href="${pageContext.request.contextPath }/login ">로그인</a>
-			<a class="tmenu-text" href="${pageContext.request.contextPath }/joinMemberPage">회원가입</a>
-			<a class="tmenu-text" href="${pageContext.request.contextPath }/MainCompany ">기업회원 홈</a>
+			알림, 이력서작성 등 로그인 이후 기능
 		</div>
 		
 	</div>

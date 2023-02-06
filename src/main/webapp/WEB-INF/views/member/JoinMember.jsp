@@ -1,59 +1,86 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<title>JoinForm</title>
-<!-- Favicon-->
-<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath }/resources/assets/favicon.ico" />
-<!-- Bootstrap icons-->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
+	<meta charset="utf-8" />
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+
+	<title>회원가입-일반회원 | 굿잡</title>
+	<link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png" />
+
+    <link href="${pageContext.request.contextPath }/resources/assets/css/style.css" rel="stylesheet" />
 </head>
-<body>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-10 col-xl-8 mx-auto">
-				<div class="card flex-row my-5 border-0 shadow rounded-3">
-					<div class="card-body p-4 p-sm-5 mb-3">
+
+
+<body style="background: #F8FBFE;">
+	<div class="join-container1">
+		<div class="logo-join">
+			<div class="logo">
+				<a class="logo-link" href="${pageContext.request.contextPath }/">
+				<img class="logo-img" style="padding-left:0px; width: 270px; height: auto; margin: 15px 0px 0px 0px;"
+					src="${pageContext.request.contextPath }/resources/assets/img/main-logo.png">
+				</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="join-container2">
+		<div class="joinMember-box">
+			<div class="choose-member">
+				<a class="choose choose-common" href="${pageContext.request.contextPath }/joinMemberPage">
+					<button class="choose-btn common-btn" type="button">일반회원</button>
+				</a>
+				<a class="choose choose-company" href="${pageContext.request.contextPath }/joinCompanyPage">
+					<button class="choose-btn company-btn" type="button">기업회원</button>
+				</a>
+			</div>
+			
+
+<div class="card-body p-4 p-sm-5 mb-3">
 						<form action="${pageContext.request.contextPath }/joinMember" method="post" onsubmit="return joinFormCheck(this)">
-							<div class="input-group input-group-lg mb-1">
-								<input type="text" class="form-control" id="mid" name="mid" placeholder="아이디">
-								<button type="button" class="btn btn-secondary" onclick="checkSameId()">중복체크</button>
+							
+							<div class="mid-div">
+								<input id="mid" class="mid join-input" name="mid" type="text" placeholder="아이디">
+								<button class="check-btn" type="button" onclick="checkSameId()">중복체크</button>
 							</div>
-							<div class="mb-3">
+							<div class="mid-check">
 								<span id="idCheckResult"></span>
 							</div>
-							<div class="input-group input-group-lg mb-3">
-								<input type="text" class="form-control" name="mpw" maxlength="16" placeholder="비밀번호">
+							
+							<div class="mpw-div">
+								<input id="mpw" class="mpw join-input" name="mpw" type="password" maxlength="16" placeholder="비밀번호">
 							</div>
-							<div class="input-group input-group-lg mb-3">
-								<input type="text" class="form-control" name="mname" placeholder="이름">
+							
+							<div class="mname-div">
+								<input id="mname" class="mname join-input" name="mname" type="text" placeholder="이름">
 							</div>
-							<div class="input-group input-group-lg mb-3">
-								<input type="date" class="form-control" name="mbirth" placeholder="생년월일">
+							
+							<div class="mbirth-div">
+								<input id="mbirth" class="mbirth join-input" name="mbirth" type="date" placeholder="생년월일">
 							</div>
-							<div class="input-group">
-								<input type="text" id="postcode" placeholder="우편번호" disabled="disabled" class="form-control">
-								<input type="button" onclick="DaumPostcode()" value="우편번호 찾기" class="btn btn-secondary">
+							
+							<div class="mpostcode-div">
+								<input type="text" id="postcode" placeholder="우편번호" disabled="disabled" class="join-input">
+								<input type="button" onclick="DaumPostcode()" value="우편번호 찾기" class="join-input-btn join-input-btn1">
 							</div>
-							<div class="input-group mb-3">
-								<input type="text" id="address" placeholder="주소" disabled="disabled" class="form-control">
-								<input type="text" id="detailAddress" placeholder="상세주소" disabled="disabled" onchange="createAddr()" class="form-control">
-								<input type="text" id="extraAddress" placeholder="참고항목" disabled="disabled" class="form-control">
+							
+							<div class="madd-div">
+								<input type="text" id="address" placeholder="주소" disabled="disabled" class="join-input">
+								<input type="text" id="detailAddress" placeholder="상세주소" disabled="disabled" onchange="createAddr()" class="join-input" style="margin-left: 5px;">
+								<input type="text" id="extraAddress" placeholder="참고항목" disabled="disabled" class="join-input" style="margin-left: 5px;">
 								<input type="hidden" id="maddr" name="maddr">
 							</div>
 							<div class="input-group input-group-lg mb-3">
-								<input type="hidden" class="form-control" id="memail" name="memail" placeholder="이메일">
-								<input type="text" class="form-control" id="emailId" onchange="createEmail()" placeholder="이메일">
+								<input type="hidden" class="join-input" id="memail" name="memail" placeholder="이메일">
+								<input type="text" class="join-input" id="emailId" onchange="createEmail()" placeholder="이메일">
 								<span class="input-group-text">@</span>
-								<input type="text" id="domain" onchange="createEmail()" class="form-control">
-								<select onchange="domainSelect(this)" class="form-select">
+								<input type="text" id="domain" onchange="createEmail()" class="join-input" style="margin-left: 5px;">
+								<select onchange="domainSelect(this)" class="join-select">
 									<option value="">직접입력</option>
 									<option value="daum.com">다음</option>
 									<option value="naver.com">네이버</option>
@@ -62,23 +89,26 @@
 								</select>
 							</div>
 							<div class="input-group mb-1">
-								<input type="text" id="inputCode" disabled="disabled" maxlength="6" placeholder="인증번호 6자리 입력" class="form-control">
+								<input type="text" id="inputCode" disabled="disabled" maxlength="6" placeholder="인증번호 6자리 입력" class="join-input">
 								<input type="hidden" id="emailCode" disabled="disabled" maxlength="6" placeholder="인증번호 6자리 입력">
-								<button type="button" id="mailCheckBtn" class="btn btn-secondary">이메일 인증번호 받기</button>
+								<button type="button" id="mailCheckBtn" class="join-input-btn join-input-btn2">인증번호 요청</button>
 							</div>
 							<div class="mb-4">
 								<span id="mailCheckResult"></span>
 							</div>
-							<div class="d-grid mb-4">
-								<button class="btn btn-dark btn-lg" type="submit">회원가입</button>
+							<div class="mjoin-btn">
+								<button class="join-input-btn3" type="submit">회원가입</button>
 							</div>
-							<hr class="my-4">
 						</form>
 					</div>
-				</div>
-			</div>
+
+
+
 		</div>
 	</div>
+
+
+
 
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

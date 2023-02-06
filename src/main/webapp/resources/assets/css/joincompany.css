@@ -1,0 +1,106 @@
+/* JoinCompany */
+
+.logo-join2{
+	width: 850px;
+	height: 100%;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 80px;
+	padding-bottom: 35px;
+	border-bottom: 2px solid #084A83;
+}
+
+.cjoin-common{
+	width: 45%;
+	border-bottom: 3px solid #084A83;
+}
+
+.cjoin-company{
+	width: 55%;
+	background: #084A83;
+	border-bottom: 3px solid #084A83;
+}
+
+.cjoin-common-btn{
+	color: #084A83;	
+}
+
+.cjoin-company-btn2{
+	color: #F8F9F9;
+}
+
+.find-company{
+	height: 40px;
+	background: #0A62AA;
+	border: none;
+	border-radius: 16px;
+	color: white;
+	font-weight: bold;
+}
+
+.joinMember-box2{
+	width: 55%;
+	background: #F8F9F9;
+}
+
+.join-input2{
+	width: 200px;
+	height: 40px;
+	border: 1px solid #0A62AA;
+	border-radius: 10px;
+	margin: 16px 6px 0px 30px;
+}
+
+.check-btn2{
+	height: 40px;
+	background: #0A62AA;
+	border-radius: 16px;
+	color: white;
+	font-weight: bold;
+}
+
+.join-input2-btn{
+	background: #0A62AA;
+	border: none;
+	border-radius: 16px;
+	color: white;
+	font-weight: bold;
+	margin: 16px 6px 0px 5px;
+	cursor: pointer;
+}
+
+.join-input2-btn1{
+	width: 100px;
+	height: 40px;
+}
+
+.join-select2{
+	width: 100px;
+	height: 40px;
+	border: 1px solid #0A62AA;
+	border-radius: 10px;
+	margin: 16px 6px 0px 5px;
+}
+
+.join-input2-btn2{
+	width: 100px;
+	height: 40px;
+}
+
+.mjoin-btn{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.join-input2-btn3{
+	width: 60%;
+	height: 40px;
+	background: #084A83;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	border-radius: 16px;
+	margin: 30px 0px;
+}

@@ -24,6 +24,12 @@ public class HomeController {
 		return "Main";
 	}
 
+	@RequestMapping(value = "/MainCompany")
+	public String company() {
+		System.out.println("기업페이지로 이동 요청");
+		return "MainCompany";
+	}
+
 	@RequestMapping(value = "/jobInsert1")
 	public ModelAndView jobInsert1() throws Exception {
 		System.out.println("/jobInsert1 요청");
@@ -42,7 +48,20 @@ public class HomeController {
 		mav.setViewName("home");
 		return mav;
 	}
+
 	
+	
+	@RequestMapping(value = "announcement/aform")
+	public String test() {
+		System.out.println("공고페이지로 이동");
+		return "announcement/aform";
+	}
+
+	@RequestMapping(value = "includes/main/List")
+	public String list() {
+		System.out.println("공고페이지로 이동");
+		return "includes/main/List";
+	}
 	
 	
 }

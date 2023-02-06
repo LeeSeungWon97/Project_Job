@@ -35,7 +35,38 @@
     <!-- End Nav -->  
   	
 	<!-- Start Section -->
-	<%@ include file="/WEB-INF/views/includes/main/Section.jsp" %>
+	<div style="width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+	
+	<div style="border: solid black; width: 60%; text-align: center;">
+	<a href="${pageContext.request.contextPath }/announcement/aform ">채용공고</a>
+	</div>
+	<div style="border: solid black; width: 60%; text-align: center;">
+	<a href="${pageContext.request.contextPath }/announcement/aform ">채용공고</a>
+	</div>
+	<div style="border: solid black; width: 60%; text-align: center;">
+	<a href="${pageContext.request.contextPath }/announcement/aform ">채용공고</a>
+	</div>
+	<div style="border: solid black; width: 60%; text-align: center;">
+	<a href="${pageContext.request.contextPath }/announcement/aform ">채용공고</a>
+	</div>
+	<div style="border: solid black; width: 60%; text-align: center;">
+	<a href="${pageContext.request.contextPath }/announcement/aform ">채용공고</a>
+	</div>
+	<div style="border: solid black; width: 60%; text-align: center;">
+	<a href="${pageContext.request.contextPath }/announcement/aform ">채용공고</a>
+	</div>
+	<div style="border: solid black; width: 60%; text-align: center;">
+	<a href="${pageContext.request.contextPath }/announcement/aform ">채용공고</a>
+	</div>
+	<div style="border: solid black; width: 60%; text-align: center;">
+	<a href="${pageContext.request.contextPath }/announcement/aform ">채용공고</a>
+	</div>
+	
+	
+	
+	
+	
+	</div>
    	<!-- End Section -->
        
 	<!-- Start Footer-->

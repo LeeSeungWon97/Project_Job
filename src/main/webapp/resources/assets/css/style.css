@@ -1,0 +1,230 @@
+@charset "UTF-8";
+
+*{
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+:root{
+	min-width: 1280px;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+button{
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+
+input:focus {
+	outline: none;
+	}
+
+a{
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* Join */
+
+
+.join-container1{
+	width: 100%;
+	height: 100px;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.logo-join{
+	width: 850px;
+	height: 100%;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 80px;
+	padding-bottom: 35px;
+	border-bottom: 2px solid #539DDB;
+}
+
+.join-container2{
+	width: 100%;
+	height: 800px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.join-box{
+	width: 60%;
+	height: 400px;
+	background: white;
+}
+
+.choose-common{
+	width: 55%;
+	background: #539DDB;
+	border-bottom: 3px solid #539DDB;
+}
+
+.choose-company{
+	width: 45%;
+	border-bottom: 3px solid #539DDB;
+}
+
+.choose{
+	text-align: center;
+	float: left;
+	height: 50px;
+}
+
+.choose-btn{
+	font-size: 23px;
+	font-weight: bold;
+	margin-top: 8px;
+}
+
+.common-btn{
+	color: white;	
+}
+
+.company-btn{
+	color: #539DDB;
+}
+
+
+/* JoinMember */
+
+
+.joinMember-box{
+	width: 55%;
+	background: white;
+}
+
+.join-input{
+	width: 200px;
+	height: 40px;
+	border: 1px solid #77B2E3;
+	border-radius: 10px;
+	margin: 16px 6px 0px 30px;
+}
+
+.check-btn{
+	height: 40px;
+	background: #77B2E3;
+	border-radius: 16px;
+	color: white;
+	font-weight: bold;
+}
+
+.join-input-btn{
+	background: #77B2E3;
+	border: none;
+	border-radius: 16px;
+	color: white;
+	font-weight: bold;
+	margin: 16px 6px 0px 5px;
+	cursor: pointer;
+}
+
+.join-input-btn1{
+	width: 100px;
+	height: 40px;
+}
+
+.join-select{
+	width: 100px;
+	height: 40px;
+	border: 1px solid #77B2E3;
+	border-radius: 10px;
+	margin: 16px 6px 0px 5px;
+}
+
+.join-input-btn2{
+	width: 100px;
+	height: 40px;
+}
+
+.mjoin-btn{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.join-input-btn3{
+	width: 60%;
+	height: 40px;
+	background: #539DDB;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	border-radius: 16px;
+	margin: 30px 0px;
+}
+
+
+/* Login*/
+
+
+.login-container{
+	width: 100%;
+	height: 600px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.login-box{
+	width: 50%;
+	height: 300px;
+	background: white;
+	text-align: center;
+}
+
+.login-select {
+    padding: 40px 0px 20px 0px;
+}
+.login-select input[type=radio]{
+    display: none;
+}
+.login-select input[type=radio]+label{
+    display: inline-block;
+    cursor: pointer;
+    width: 105px;
+    height: 30px;
+    border: 1px solid #539DDB;
+    line-height: 24px;
+    text-align: center;
+    font-weight:bold;
+    font-size:13px;
+}
+.login-select input[type=radio]+label{
+    background-color: #ffffff;
+    color: #539DDB;
+}
+.login-select input[type=radio]:checked+label{
+    background-color: #539DDB;
+    color: #ffffff;
+}
+
+.login-btn{
+	width: 170px;
+	height: 40px;
+	background: #539DDB;
+	border-radius: 28px;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	margin-top: 28px;
+}
+
+.login-input{
+	width: 280px;
+	height: 40px;
+	border: 1px solid #77B2E3;
+	border-radius: 10px;
+	margin: 16px 6px 0px 0px;
+}
+
+
+
+

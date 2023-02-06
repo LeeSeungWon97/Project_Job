@@ -9,11 +9,11 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     
-    <title>좋은 직장을 위한 취업플랫폼, 굿잡</title>
+    <title>기업회원 홈|굿잡</title>
 	<link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png" />
     
     <link href="${pageContext.request.contextPath }/resources/assets/css/header.css" rel="stylesheet" />
-	<link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
 	<link href="${pageContext.request.contextPath }/resources/assets/css/section.css" rel="stylesheet" />
 	<link href="${pageContext.request.contextPath }/resources/assets/css/joincompany.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath }/resources/assets/css/style.css" rel="stylesheet" />
@@ -25,21 +25,21 @@
 
 </head>
 
-<body>
+<body style="background: #E4E8EB;">
 	<!-- Start Header -->
-	<%@ include file="/WEB-INF/views/includes/main/Header.jsp" %>
+	<%@ include file="/WEB-INF/views/includes/company/Header.jsp" %>
     <!-- End Header -->  
     
     <!-- Start Nav -->
-    <%@ include file="/WEB-INF/views/includes/main/Nav.jsp" %>
+    <%@ include file="/WEB-INF/views/includes/company/Nav.jsp" %>
     <!-- End Nav -->  
   	
 	<!-- Start Section -->
-	<%@ include file="/WEB-INF/views/includes/main/Section.jsp" %>
+	<%@ include file="/WEB-INF/views/includes/company/Section.jsp" %>
    	<!-- End Section -->
        
 	<!-- Start Footer-->
-    <%@ include file="/WEB-INF/views/includes/main/Footer.jsp" %>
+    <%@ include file="/WEB-INF/views/includes/company/Footer.jsp" %>
     <!-- End Footer-->
     
     <!-- Bootstrap core JS-->

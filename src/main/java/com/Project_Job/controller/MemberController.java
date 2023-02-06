@@ -153,7 +153,7 @@ public class MemberController {
 				mav.setViewName("AlertScreen");
 			} else{
 				session.setAttribute("loginInfo", loginMInfo);
-				mav.setViewName("Main");
+				mav.setViewName("MainCommon");
 			}
 		} else {
 			System.out.println("기업회원 로그인 요청");
@@ -164,7 +164,7 @@ public class MemberController {
 				mav.setViewName("AlertScreen");
 			} else{
 				session.setAttribute("loginInfo", loginCInfo);
-				mav.setViewName("Main");
+				mav.setViewName("MainCompany");
 			}
 		}
 		return mav;

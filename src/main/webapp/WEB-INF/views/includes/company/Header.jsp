@@ -5,16 +5,16 @@
 	<div class="header">
 		
 		<div class="logo">
-			<a class="logo-link" href="${pageContext.request.contextPath }/">
-			<img class="logo-img" src="${pageContext.request.contextPath }/resources/assets/img/main-logo.png">
+			<a class="logo-link" href="">
+			<img class="logo-img" src="${pageContext.request.contextPath }/resources/assets/img/company-logo.png">
 			</a>
 		</div>
 		
 		<div class="search">
-			<div class="search-box">
-			<input class="stext" type="text" placeholder="오늘도 역시 굿잡!">
+			<div class="company-search-box">
+			<input class="company-stext" type="text" placeholder="인재는 역시 굿잡!">
 			<button class="sbtn" type="button">
-			<img class="sbtn-img" src="${pageContext.request.contextPath }/resources/assets/img/icon/icon_search.png">
+			<img class="sbtn-img" src="${pageContext.request.contextPath }/resources/assets/img/icon/company_icon_search.png">
 			</button>
 			</div>
 		</div>

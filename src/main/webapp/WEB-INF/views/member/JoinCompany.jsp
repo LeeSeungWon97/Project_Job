@@ -1,66 +1,86 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<title>JoinForm</title>
-<!-- Favicon-->
-<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath }/resources/assets/favicon.ico" />
-<!-- Bootstrap icons-->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
+	<meta charset="utf-8" />
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+
+	<title>회원가입-기업회원 | 굿잡</title>
+	<link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png" />
+	<link href="${pageContext.request.contextPath }/resources/assets/css/joincompany.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath }/resources/assets/css/style.css" rel="stylesheet" />
 </head>
-<body>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-10 col-xl-8 mx-auto">
-				<div class="card flex-row my-5 border-0 shadow rounded-3">
-					<div class="card-body p-4 p-sm-5 mb-3">
+
+
+<body style="background: #E4E8EB;">
+
+	<div class="join-container1">
+		<div class="logo-join2">
+			<div class="logo">
+				<a class="logo-link" href="${pageContext.request.contextPath }/">
+				<img class="logo-img" style="padding-left:0px; width: 270px; height: auto; margin: 15px 0px 0px 0px;"
+					src="${pageContext.request.contextPath }/resources/assets/img/company-logo.png">
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="join-container2">
+		<div class="joinMember-box2">
+			<div class="choose-member">
+				<a class="choose cjoin-common" href="${pageContext.request.contextPath }/joinMemberPage">
+					<button class="choose-btn cjoin-common-btn" type="button">일반회원</button>
+				</a>
+				<a class="choose cjoin-company" href="${pageContext.request.contextPath }/joinCompanyPage">
+					<button class="choose-btn cjoin-company-btn2" type="button">기업회원</button>
+				</a>
+				
+				<div class="card-body p-4 p-sm-5 mb-3">
 						<form action="${pageContext.request.contextPath }/joinCiMember" method="post" onsubmit="return joinFormCheck(this)">
 
 							<div class="input-group input-group-lg mb-3">
-								<input type="text" class="form-control" disabled="disabled" id="inputCiname" name="cmciname" placeholder="회사명">
-								<input type="button" onclick="findWP()" class="btn btn-secondary" value="회사검색">
+								<input type="text" class="join-input2" disabled="disabled" id="inputCiname" name="cmciname" placeholder="회사명">
+								<input type="button" onclick="findWP()" class="find-company" value="회사검색">
 							</div>
 
 							<div class="input-group input-group-lg mb-3">
-								<input type="hidden" class="form-control" readonly="readonly" id="inputCinum" name="cmcinum" placeholder="사업자 등록번호">
-								<input type="text" class="form-control" disabled="disabled" id="inputCileader" name="cmcileader" placeholder="대표자">
-								<input type="text" class="form-control" disabled="disabled" id="inputCitype" name="inputCitype" placeholder="기업형태">
+								<input type="hidden" class="join-input2" readonly="readonly" id="inputCinum" name="cmcinum" placeholder="사업자 등록번호">
+								<input type="text" class="join-input2" disabled="disabled" id="inputCileader" name="cmcileader" placeholder="대표자">
+								<input type="text" class="join-input2" disabled="disabled" id="inputCitype" name="inputCitype" placeholder="기업형태" style="margin-left: 5px;">
 							</div>
 
 
 							<div class="input-group input-group-lg mb-3">
-								<input type="text" id="inputCiaddr" name="ciaddr" placeholder="회사주소" readonly="readonly" class="form-control">
-								<input type="button" onclick="DaumPostcode()" value="우편번호 찾기" class="btn btn-secondary">
+								<input type="text" id="inputCiaddr" name="ciaddr" placeholder="회사주소" readonly="readonly" class="join-input2">
+								<input type="button" onclick="DaumPostcode()" value="우편번호 찾기" class="join-input2-btn join-input2-btn1">
 							</div>
 
 
 							<div class="input-group input-group-lg mb-1">
-								<input type="text" class="form-control" id="cmid" name="cmid" placeholder="아이디">
-								<button type="button" class="btn btn-secondary" onclick="checkSameCId()">중복체크</button>
+								<input type="text" class="join-input2" id="cmid" name="cmid" placeholder="아이디">
+								<button type="button" class="check-btn2" onclick="checkSameCId()">중복체크</button>
 							</div>
 							<div class="mb-3">
 								<span id="idCheckResult"></span>
 							</div>
 							<div class="input-group input-group-lg mb-3">
-								<input type="text" class="form-control" name="cmpw" maxlength="16" placeholder="비밀번호">
+								<input type="text" class="join-input2" name="cmpw" maxlength="16" placeholder="비밀번호">
 							</div>
 							<div class="input-group input-group-lg mb-3">
-								<input type="text" class="form-control" name="cmname" placeholder="이름">
+								<input type="text" class="join-input2" name="cmname" placeholder="이름">
 							</div>
 
 							<div class="input-group input-group-lg mb-3">
-								<input type="hidden" class="form-control" id="cmemail" name="cmemail" placeholder="이메일">
-								<input type="text" class="form-control" id="cemailId" onchange="createEmail()" placeholder="이메일">
+								<input type="hidden" class="join-input2" id="cmemail" name="cmemail" placeholder="이메일">
+								<input type="text" class="join-input2" id="cemailId" onchange="createEmail()" placeholder="이메일">
 								<span class="input-group-text">@</span>
-								<input type="text" id="cdomain" onchange="createEmail()" class="form-control">
-								<select onchange="domainSelect(this)" class="form-select">
+								<input type="text" id="cdomain" onchange="createEmail()" class="join-input2" style="margin-left: 5px;">
+								<select onchange="domainSelect(this)" class="join-select2">
 									<option value="">직접입력</option>
 									<option value="daum.com">다음</option>
 									<option value="naver.com">네이버</option>
@@ -70,23 +90,22 @@
 							</div>
 							
 							<div class="input-group mb-1">
-								<input type="text" id="cinputCode" disabled="disabled" maxlength="6" placeholder="인증번호 6자리 입력" class="form-control">
+								<input type="text" id="cinputCode" disabled="disabled" maxlength="6" placeholder="인증번호 6자리 입력" class="join-input2">
 								<input type="hidden" id="cemailCode" disabled="disabled" maxlength="6">
-								<button type="button" id="cmailCheckBtn" class="btn btn-secondary">이메일 인증번호 받기</button>
+								<button type="button" id="cmailCheckBtn" class="join-input2-btn join-input2-btn2">인증번호 요청</button>
 							</div>
 							<div class="mb-4">
 								<span id="cmailCheckResult"></span>
 							</div>
-							<div class="d-grid mb-4">
-								<button class="btn btn-dark btn-lg" type="submit">회원가입</button>
+							<div class="mjoin-btn">
+								<button class="join-input2-btn3" type="submit">회원가입</button>
 							</div>
-							<hr class="my-4">
 						</form>
 					</div>
-				</div>
+				
 			</div>
-		</div>
-	</div>
+			
+
 
 
 	<!-- Script Start -->
