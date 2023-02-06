@@ -182,6 +182,7 @@ public class MemberController {
 		return mav;
 	}
 
+	// 아이디 찾기
 	@RequestMapping(value = "/FindMemberId")
 	public ModelAndView FindMemberId(String loginType, String mname, String memail, String ciname) {
 		System.out.println("아이디 찾기 요청");
@@ -216,6 +217,7 @@ public class MemberController {
 		return mav;
 	}
 
+	// 비밀번호 찾기
 	@RequestMapping(value = "/FindMemberPw")
 	public ModelAndView FindMemberPw(String loginType, String id) {
 		System.out.println("비밀번호 찾기 요청");
@@ -245,5 +247,4 @@ public class MemberController {
 		}
 		return mav;
 	}
-
 }

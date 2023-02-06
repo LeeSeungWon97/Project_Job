@@ -16,8 +16,10 @@
 <body>
 
 	<div class="d-flex justify-content-center">
-    	<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/logo.png" style="width:120px; height:100px;"></a> 
-    </div>
+		<a class="navbar-brand" href="${pageContext.request.contextPath }/">
+			<img src="${pageContext.request.contextPath }/resources/assets/img/logo.png" style="width: 120px; height: 100px;">
+		</a>
+	</div>
 
 	<div class="container">
 		<div class="row">
@@ -42,6 +44,17 @@
 
 							<div class="d-grid mb-3">
 								<button class="btn btn-dark" type="submit">로그인</button>
+							</div>
+							<div>
+								<span>
+									아이디가 기억나지 않는다면?
+									<a href="${pageContext.request.contextPath }/FindIdPage">아이디 찾기</a>
+								</span>
+								<br>
+								<span>
+									비밀번호가 기억나지 않는다면?
+									<a href="${pageContext.request.contextPath }/FindPwPage">비밀번호 찾기</a>
+								</span>
 							</div>
 						</form>
 
