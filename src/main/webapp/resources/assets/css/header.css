@@ -1,0 +1,25 @@
+header{
+	width: 1280px;
+	display: flex;
+	justify-content: center;
+}
+
+.header-div{
+	width: 1060px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.logo{
+	flex-grow: 3;
+}
+
+.search{
+	flex-grow: 4;
+}
+
+.top-menu{
+	flex-grow: 3;
+}
