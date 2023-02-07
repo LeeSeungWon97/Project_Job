@@ -164,6 +164,7 @@ public class MemberController {
 				mav.addObject("url", "login");
 				mav.setViewName("AlertScreen");
 			} else {
+				session.setAttribute("loginType", "P");
 				session.setAttribute("loginInfo", loginMInfo);
 				mav.setViewName("Main");
 			}
@@ -175,6 +176,7 @@ public class MemberController {
 				mav.addObject("url", "login");
 				mav.setViewName("AlertScreen");
 			} else {
+				session.setAttribute("loginType", "C");
 				session.setAttribute("loginInfo", loginCInfo);
 				mav.setViewName("Main");
 			}
@@ -257,6 +259,15 @@ public class MemberController {
 				mav.setViewName("AlertScreen");
 			}
 		}
+		return mav;
+	}
+	
+	@RequestMapping(value = "/logout")
+	public ModelAndView logout() {
+		System.out.println("로그아웃 요청");
+		ModelAndView mav = new ModelAndView();
+		session.invalidate();
+		mav.setViewName("Main");
 		return mav;
 	}
 }

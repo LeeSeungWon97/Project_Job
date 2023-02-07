@@ -163,7 +163,7 @@
 					<c:if test="${sessionScope.loginInfo != null }">
 						<div class="card-body mx-auto">
 							<div class="info">
-								<span>${sessionScope.loginInfo.mname}지훈님</span>
+								<span>${sessionScope.loginInfo.mname}</span>
 								&ensp;&ensp;&ensp;&ensp;
 								<a href="${pageContext.request.contextPath }/logout">
 									<button type="button" class="btn btn-dark">로그아웃</button>
