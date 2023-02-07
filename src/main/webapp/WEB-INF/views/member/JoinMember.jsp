@@ -100,7 +100,7 @@
 	<!-- 정규식 -->
 	<script type="text/javascript">
 		const regex_En = /[a-zA-Z]/;
-		const regex_Ko = /[가-힣]/;
+		const regex_Ko = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 		const regex_Num = /[0-9]/;
 		const regex_Sc = /[\!\@\#\$\%]/;
 		
@@ -199,7 +199,7 @@
 				isCheckId = false;
 				$('#idCheckResult').text('아이디는 최소 4글자 이상입니다.').css('color',
 						'red');
-			} else if(checkRegex(inputId,'ko') || checkRegex(inputId,'sc') || !checkRegex(inputId,'en')){
+			} else if(checkRegex(inputId,'ko') || checkRegex(inputId,'sc')||!checkRegex(inputId,'en')){
 				isCheckId = false;
 				$('#idCheckResult').text('아이디는 영문+숫자입니다.').css('color',
 				'red');
@@ -381,6 +381,7 @@
 												+ email,
 										success : function(data) {
 											console.log(data);
+											alert('인증번호가 발송되었습니다.');
 											$('#emailCode').attr('value', data);
 											$('#inputCode').attr('disabled',
 													false);
