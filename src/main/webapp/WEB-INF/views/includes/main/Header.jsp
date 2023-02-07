@@ -14,7 +14,7 @@
     	
     	<div class="logo">
     		<a class="navbar-brand" href="${pageContext.request.contextPath }/">
-    		<img src="${pageContext.request.contextPath }/resources/assets/img/logo.png" style="width:120px; height:100px;">
+    		<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width:80%; height:auto;">
     		</a> 
     	</div>
     	
@@ -22,7 +22,9 @@
  			<div class="search-box">
  					<form class="d-flex" role="search">
       				<input class="form-control me-2" type="search" placeholder="search for..." aria-label="Search">
-      				<button class="btn btn-outline-dark" type="submit">Search</button>
+      				<button class="search-btn" type="submit">
+					<img src="${pageContext.request.contextPath }/resources/assets/img/update/search-icon.png" style="width:90%; height:auto;">
+					</button>
      				</form>
  			</div>
 		</div>
