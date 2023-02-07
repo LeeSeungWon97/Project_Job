@@ -3,17 +3,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>굿잡</title>
-    <!-- Favicon-->
-   <link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png">
-    <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
+<meta charset="UTF-8">
+<title>로그인 | 굿잡</title>
+<link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/update/main-icon.png" />
+
+<!-- Bootstrap icons-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
+
+
+<link href="${pageContext.request.contextPath }/resources/assets/css/header.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/section.css" rel="stylesheet" />
+
 </head>
 <body>
 
@@ -56,6 +59,11 @@
 								<span>
 									비밀번호가 기억나지 않는다면?
 									<a href="${pageContext.request.contextPath }/FindPwPage">비밀번호 찾기</a>
+								</span>
+								<br>
+								<span>
+									회원가입이 필요하다면?
+									<a href="${pageContext.request.contextPath }/join">회원가입</a>
 								</span>
 							</div>
 						</form>

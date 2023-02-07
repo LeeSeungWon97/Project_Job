@@ -272,11 +272,13 @@
 		// 이름 양식 확인 체크
 		function checkName() {
 			var inputName = $('#cmname').val();
-			isCheckName = true;
+			isCheckName = false;
 			if (inputName.length < 2) {
 				isCheckName = false;
 			} else if(checkRegex(inputName,'num')||checkRegex(inputName,'sc')){
 				isCheckName = false;
+			} else{
+				isCheckName = true;
 			}
 			console.log("isCheckName: " + isCheckName);
 		}
