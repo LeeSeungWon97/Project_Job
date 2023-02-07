@@ -96,7 +96,7 @@
 								</a>
 								<a href="${pageContext.request.contextPath }/FindPwPage">
 									<button class="btn btn-outline-secondary btn-sm" type="button">비밀번호 찾기</button>
-								</a>			
+								</a>
 							</div>
 						</div>
 					</c:if>
@@ -104,7 +104,8 @@
 					<c:if test="${sessionScope.loginInfo != null }">
 						<div class="card-body mx-auto">
 							<div class="info">
-								<span>${sessionScope.loginInfo.mname}지훈님</span>&ensp;&ensp;&ensp;&ensp;
+								<span>${sessionScope.loginInfo.mname}지훈님</span>
+								&ensp;&ensp;&ensp;&ensp;
 								<a href="${pageContext.request.contextPath }/logout">
 									<button type="button" class="btn btn-dark">로그아웃</button>
 								</a>
@@ -121,7 +122,7 @@
 								</div>
 							</div>
 						</div>
-					</c:if>	
+					</c:if>
 				</div>
 				<!-- Categories widget-->
 				<div class="card mt-2">
