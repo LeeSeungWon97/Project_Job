@@ -18,7 +18,7 @@
 <body>
 	<div class="container">
 		<div class="d-flex justify-content-center">
-    		<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/company-logo.png" style="width:120px; height:100px;"></a> 
+    		<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 200px; height:100px;"></a> 
     	</div>
 		<div class="row">
 			<div class="col-lg-10 col-xl-8 mx-auto">
@@ -76,7 +76,7 @@
 								<span id="mailCheckResult"></span>
 							</div>
 							<div class="d-grid mb-4">
-								<button class="btn btn-dark btn-lg" type="submit">회원가입</button>
+								<button class="btn-lg" type="submit" style="background-color: #539DDB; border: solid #539DDB;"><span style="color: white;">회원가입</span></button>
 							</div>
 							<hr class="my-4">
 						</form>

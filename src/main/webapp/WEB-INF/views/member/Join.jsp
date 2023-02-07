@@ -18,7 +18,7 @@
 <body>
 	<div class="container">
 		<div class="d-flex justify-content-center">
-    		<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/company-logo.png" style="width:120px; height:100px;"></a> 
+    		<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 200px; height:100px;"></a> 
     	</div>
 		<div class="row">
 			<div class="col-lg-10 col-xl-8 mx-auto">
@@ -26,10 +26,10 @@
 					<div class="card-body p-4 p-sm-5 mb-3">
 						<div class="d-grid mb-3">
 							<div class="btn-group btn-group-lg">
-								<a href="${pageContext.request.contextPath }/joinMemberPage" class="btn btn-outline-dark"><span class="fs-3">개인회원</span><br>
+								<a href="${pageContext.request.contextPath }/joinMemberPage" class="btn btn-outline-info" style="border: solid #539DDB;"><span class="fs-3" style="color: blue;">개인회원</span><br>
 									<img src="${pageContext.request.contextPath }/resources/assets/img/person.png" style="width:200px; height:200px;">
 								</a>
-								<a href="${pageContext.request.contextPath }/joinCompanyPage" class="btn btn-outline-dark"><span class="fs-3">기업회원</span><br>
+								<a href="${pageContext.request.contextPath }/joinCompanyPage" class="btn btn-outline-info"  style="border: solid #539DDB;"><span class="fs-3" style="color: blue;">기업회원</span><br>
 									<img src="${pageContext.request.contextPath }/resources/assets/img/company.png" style="width:200px; height:200px;">
 								</a>
 							</div>

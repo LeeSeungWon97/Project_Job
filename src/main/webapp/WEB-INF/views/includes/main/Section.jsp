@@ -4,12 +4,6 @@
 <section id="section">
 	<div class="section-div">
 		<div class="section-l">
-
-			<div class="section-l-top">
-				<div style="width: 690px; height: 150px; background: #f2f2f2; margin-right: 32px; text-align: center;">슬라이드 메뉴 > 마감 임박 공고</div>
-			</div>
-
-
 			<div class="section-l-bottom">
 				<div class="container-fluid section-div">
 
@@ -123,7 +117,7 @@
 							<div class="card-body mx-auto">
 								<div class="d-grid">
 									<a href="${pageContext.request.contextPath }/login">
-										<button type="button" class="btn btn-dark btn-lg">개인/기업 로그인</button>
+										<button type="button" class="btn-lg" style="background-color: #539DDB; border: solid: #539DDB;"><span style="color: white;">개인/기업 로그인</span></button>
 									</a>
 								</div>
 							</div>
@@ -148,7 +142,7 @@
 									<span>${sessionScope.loginInfo.mname}</span>
 									&ensp;&ensp;&ensp;&ensp;
 									<a href="${pageContext.request.contextPath }/logout">
-										<button type="button" class="btn btn-dark">로그아웃</button>
+										<button type="button" style="background-color: #539DDB; border: solid: #539DDB;"><span style="color: white;">로그아웃</span></button>
 									</a>
 								</div>
 							</div>

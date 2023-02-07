@@ -2,9 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<header id="header">    
+<header id="header"> 
     <div class="header-div">
-    	
     	<div class="logo">
     		<a class="navbar-brand" href="${pageContext.request.contextPath }/">
     		<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width:80%; height:auto;">
@@ -25,9 +24,7 @@
 		<div class="top-menu">
 			<a class="tmenu-text" href="${pageContext.request.contextPath }/login ">로그인</a>
 			<a class="tmenu-text" href="${pageContext.request.contextPath }/join">회원가입</a>
-			<a class="tmenu-text" href="${pageContext.request.contextPath }/">기업회원 홈</a>
 		</div>
 		
     </div>
-    
 </header>

@@ -21,8 +21,8 @@
 <body>
 
 	<div class="d-flex justify-content-center">
-    	<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/company-logo.png" style="width:120px; height:100px;"></a> 
-    </div>
+    		<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 200px; height:100px;"></a> 
+    	</div>
 	
 
 
@@ -48,7 +48,7 @@
 							</div>
 
 							<div class="d-grid mb-3">
-								<button class="btn btn-dark" type="submit">로그인</button>
+								<button type="submit" class="btn-lg" style="background-color: #539DDB;"><span style="color: white;">로그인</span></button>
 							</div>
 							<div>
 								<span>

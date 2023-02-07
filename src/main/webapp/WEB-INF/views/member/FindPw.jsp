@@ -18,7 +18,7 @@
 
 	<div class="container">
 		<div class="d-flex justify-content-center">
-    		<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/company-logo.png" style="width:120px; height:100px;"></a> 
+    		<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 200px; height:100px;"></a> 
     	</div>
 		<div class="row">
 			<div class="col-lg-10 col-xl-5 mx-auto">
@@ -36,7 +36,7 @@
 								<input type="text" class="form-control" id="id" name="id" maxlength="15" placeholder="아이디">
 							</div>
 							<div class="d-grid mb-3">
-								<button class="btn btn-dark" type="submit">비밀번호 찾기</button>
+								<button class="btn-lg" type="submit" style="background-color: #539DDB; border: solid #539DDB;"><span style="color: white;">비밀번호 찾기</span></button>
 							</div>
 						</form>
 						<div>
