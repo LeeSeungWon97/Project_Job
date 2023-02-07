@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <section id="section">
@@ -9,7 +8,7 @@
 		<div class="section-l">
 
 			<div class="section-l-top">
-			<div style="width: 690px; height: 150px; background: #f2f2f2; margin-right: 32px; text-align: center;">슬라이드 메뉴 > 마감 임박 공고</div>
+				<div style="width: 690px; height: 150px; background: #f2f2f2; margin-right: 32px; text-align: center;">슬라이드 메뉴 > 마감 임박 공고</div>
 			</div>
 
 
@@ -23,30 +22,26 @@
 								<div class="col-lg-4">
 
 									<div class="card mb-4">
-										<a href=""> <img class="card-img-top"
-											src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-											alt="..." />
+										<a href="">
+											<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
 										</a>
 										<div class="card-body">
 											<div class="small text-muted">January 1, 2022</div>
 											<h2 class="card-title h4">Post Title</h2>
-											<p class="card-text">Lorem ipsum dolor sit amet,
-												consectetur adipisicing elit.</p>
+											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 											<a class="btn btn-primary" href="#!">Read more →</a>
 										</div>
 									</div>
 
 
 									<div class="card mb-4">
-										<a href=""> <img class="card-img-top"
-											src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-											alt="..." />
+										<a href="">
+											<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
 										</a>
 										<div class="card-body">
 											<div class="small text-muted">January 1, 2022</div>
 											<h2 class="card-title h4">Post Title</h2>
-											<p class="card-text">Lorem ipsum dolor sit amet,
-												consectetur adipisicing elit.</p>
+											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 											<a class="btn btn-primary" href="#!">Read more →</a>
 										</div>
 									</div>
@@ -55,29 +50,25 @@
 
 
 									<div class="card mb-4">
-										<a href=""> <img class="card-img-top"
-											src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-											alt="..." />
+										<a href="">
+											<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
 										</a>
 										<div class="card-body">
 											<div class="small text-muted">January 1, 2022</div>
 											<h2 class="card-title h4">Post Title</h2>
-											<p class="card-text">Lorem ipsum dolor sit amet,
-												consectetur adipisicing elit.</p>
+											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 											<a class="btn btn-primary" href="#!">Read more →</a>
 										</div>
 									</div>
 
 									<div class="card mb-4">
-										<a href=""> <img class="card-img-top"
-											src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-											alt="..." />
+										<a href="">
+											<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
 										</a>
 										<div class="card-body">
 											<div class="small text-muted">January 1, 2022</div>
 											<h2 class="card-title h4">Post Title</h2>
-											<p class="card-text">Lorem ipsum dolor sit amet,
-												consectetur adipisicing elit.</p>
+											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 											<a class="btn btn-primary" href="#!">Read more →</a>
 										</div>
 									</div>
@@ -87,30 +78,26 @@
 								<div class="col-lg-4">
 
 									<div class="card mb-4">
-										<a href=""> <img class="card-img-top"
-											src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-											alt="..." />
+										<a href="">
+											<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
 										</a>
 										<div class="card-body">
 											<div class="small text-muted">January 1, 2022</div>
 											<h2 class="card-title h4">Post Title</h2>
-											<p class="card-text">Lorem ipsum dolor sit amet,
-												consectetur adipisicing elit.</p>
+											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 											<a class="btn btn-primary" href="#!">Read more →</a>
 										</div>
 									</div>
 
 
 									<div class="card mb-4">
-										<a href=""> <img class="card-img-top"
-											src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-											alt="..." />
+										<a href="">
+											<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
 										</a>
 										<div class="card-body">
 											<div class="small text-muted">January 1, 2022</div>
 											<h2 class="card-title h4">Post Title</h2>
-											<p class="card-text">Lorem ipsum dolor sit amet,
-												consectetur adipisicing elit.</p>
+											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 											<a class="btn btn-primary" href="#!">Read more →</a>
 										</div>
 									</div>
@@ -137,8 +124,7 @@
 							<div class="card-body mx-auto">
 								<div class="d-grid">
 									<a href="${pageContext.request.contextPath }/login">
-										<button type="button" class="btn btn-dark btn-lg">개인/기업
-											로그인</button>
+										<button type="button" class="btn btn-dark btn-lg">개인/기업 로그인</button>
 									</a>
 								</div>
 							</div>
@@ -146,12 +132,12 @@
 								<div class="d-flex justify-content-center gap-1">
 									<a href="${pageContext.request.contextPath }/join">
 										<button class="btn btn-outline-secondary btn-sm" type="button">회원가입</button>
-									</a> <a href="${pageContext.request.contextPath }/FindIdPage">
-										<button class="btn btn-outline-secondary btn-sm" type="button">아이디
-											찾기</button>
-									</a> <a href="${pageContext.request.contextPath }/FindPwPage">
-										<button class="btn btn-outline-secondary btn-sm" type="button">비밀번호
-											찾기</button>
+									</a>
+									<a href="${pageContext.request.contextPath }/FindIdPage">
+										<button class="btn btn-outline-secondary btn-sm" type="button">아이디 찾기</button>
+									</a>
+									<a href="${pageContext.request.contextPath }/FindPwPage">
+										<button class="btn btn-outline-secondary btn-sm" type="button">비밀번호 찾기</button>
 									</a>
 								</div>
 							</div>
@@ -160,7 +146,8 @@
 						<c:if test="${sessionScope.loginInfo != null }">
 							<div class="card-body mx-auto">
 								<div class="info">
-									<span>${sessionScope.loginInfo.mname}지훈님</span>&ensp;&ensp;&ensp;&ensp;
+									<span>${sessionScope.loginInfo.mname}</span>
+									&ensp;&ensp;&ensp;&ensp;
 									<a href="${pageContext.request.contextPath }/logout">
 										<button type="button" class="btn btn-dark">로그아웃</button>
 									</a>
@@ -183,7 +170,7 @@
 				</div>
 			</div>
 			<div class="section-r-bottom">
-			<div class="mt-2">
+				<div class="mt-2">
 					<div class="card-body">
 						<div class="container text-center">
 							<table class="table table-bordered">
@@ -209,8 +196,4 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
 </section>
