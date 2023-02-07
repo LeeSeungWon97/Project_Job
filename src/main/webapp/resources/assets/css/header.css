@@ -1,0 +1,70 @@
+button{
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+
+input:focus {
+	outline: none;
+	}
+
+a{
+	text-decoration: none;
+	cursor: pointer;
+}
+
+
+
+header{
+	width: 1280px;
+	display: flex;
+	justify-content: center;
+}
+
+.header-div{
+	width: 1060px;
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	margin-top: 15px;
+}
+
+.logo{
+	width: 30%;
+	height: 100px;
+	margin-top: 20px;
+}
+
+.search{
+	width: 40%;
+	height: 100px;
+	margin-top: 38px;
+}
+
+.search-box{
+	border: 3px solid #539DDB;
+	border-radius: 10px;
+	padding: 2px;
+}
+
+.search-btn{
+	width: 35px;
+	height: 35px;
+}
+
+.me-2{
+	border: none;
+}
+
+.top-menu{
+	width: 30%;
+	height: 100px;
+	margin: 0px 5px 15px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+}
+
