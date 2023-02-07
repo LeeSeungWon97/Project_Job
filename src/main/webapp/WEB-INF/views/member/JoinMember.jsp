@@ -266,11 +266,15 @@
 		// 이름 양식 확인 체크
 		function checkName() {
 			var inputName = $('#mname').val();
-			isCheckName = true;
+			isCheckName = false;
 			if (inputName.length < 2) {
 				isCheckName = false;
+				alert("이름을 입력해 주세요")
 			} else if(checkRegex(inputName,'num')||checkRegex(inputName,'sc')){
 				isCheckName = false;
+				alert("이름은 한글/영어로 입력해주세요");
+			} else{
+				isCheckName = true;
 			}
 			console.log("isCheckName: " + isCheckName);
 		}
