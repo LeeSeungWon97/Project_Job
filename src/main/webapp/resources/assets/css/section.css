@@ -1,0 +1,27 @@
+section{
+	width: 1280px;
+}
+
+.section-div{
+	width: 1060px;
+	height: 800px;
+	display: flex;
+
+}
+/* 
+.row{	
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+} */
+
+.section-div-l{
+	display: flex;
+	flex-grow: 7;
+	background: black;
+}
+
+.section-div-r{
+	flex-grow: 3;
+	background: pink;
+}
