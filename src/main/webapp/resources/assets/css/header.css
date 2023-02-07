@@ -21,6 +21,19 @@ header{
 	justify-content: center;
 }
 
+.top-menu > a:link {
+  color : #82919d;
+}
+.top-menu > a:visited {
+  color : #82919d;
+}
+.top-menu > a:hover {
+  color : #82919d;
+}
+.top-menu > a:active {
+  color : #82919d;
+}
+
 .header-div{
 	width: 1060px;
 	height: 100px;
@@ -52,6 +65,11 @@ header{
 .search-btn{
 	width: 35px;
 	height: 35px;
+}
+
+.search-btn > img{
+	width: 28px;
+	height: 28px;
 }
 
 .me-2{

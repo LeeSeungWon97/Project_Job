@@ -23,7 +23,7 @@
  					<form class="d-flex" role="search">
       				<input class="form-control me-2" type="search" placeholder="오늘도 역시, 굿잡!" aria-label="Search">
       				<button class="search-btn" type="submit">
-					<img src="${pageContext.request.contextPath }/resources/assets/img/update/search-icon.png" style="width:90%; height:auto;">
+					<img src="${pageContext.request.contextPath }/resources/assets/img/update/search-icon.png">
 					</button>
      				</form>
  			</div>
