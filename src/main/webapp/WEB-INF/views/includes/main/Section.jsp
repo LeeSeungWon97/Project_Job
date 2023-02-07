@@ -9,7 +9,7 @@
 		<div class="section-l">
 
 			<div class="section-l-top">
-			<div style="width: 690px; height: 150px; background: #f2f2f2; margin-right: 32px; text-align: center;">배너 이미지</div>
+			<div style="width: 690px; height: 150px; background: #f2f2f2; margin-right: 32px; text-align: center;">슬라이드 메뉴 > 마감 임박 공고</div>
 			</div>
 
 
