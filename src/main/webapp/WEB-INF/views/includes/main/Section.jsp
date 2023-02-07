@@ -7,7 +7,9 @@
 	<div class="section-div">
 		<div class="section-l">
 
-			<div class="section-l-top"></div>
+			<div class="section-l-top">
+			<div style="width: 690px; height: 150px; background: #f2f2f2; margin-right: 32px; text-align: center;">배너 이미지</div>
+			</div>
 
 
 			<div class="section-l-bottom">
@@ -117,7 +119,7 @@
 
 							</div>
 
-							<nav aria-label="Pagination">
+							<!-- <nav aria-label="Pagination">
 								<hr class="my-0" />
 								<ul class="pagination justify-content-center my-4">
 									<li class="page-item disabled"><a class="page-link"
@@ -131,7 +133,7 @@
 									<li class="page-item"><a class="page-link" href="#!">15</a></li>
 									<li class="page-item"><a class="page-link" href="#!">Older</a></li>
 								</ul>
-							</nav>
+							</nav> -->
 						</div>
 
 					</div>
@@ -194,7 +196,31 @@
 
 				</div>
 			</div>
-			<div class="section-r-bottom"></div>
+			<div class="section-r-bottom">
+			<div class="mt-2">
+					<div class="card-body">
+						<div class="container text-center">
+							<table class="table table-bordered">
+								<tr>
+									<th scope="col"><a href="">100대기업</a></th>
+									<th scope="col"><a href="">공채달력</a></th>
+									<th scope="col"><a href="">TOP100</a></th>
+								</tr>
+								<tr>
+									<th scope="row"><a href="">인턴채용</a></th>
+									<th scope="row"><a href="">합격자소서</a></th>
+									<th scope="row"><a href="">취업후기</a></th>
+								</tr>
+								<tr>
+									<th scope="row"><a href="">합격스펙</a></th>
+									<th scope="row"><a href="">직무인터뷰</a></th>
+									<th scope="row"><a href="">채용설명회</a></th>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
