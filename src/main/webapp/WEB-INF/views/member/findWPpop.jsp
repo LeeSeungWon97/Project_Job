@@ -27,16 +27,41 @@
          					<input type="button" onclick="findWP1_2()" value="찾기" class="btn btn-secondary">
 						</div>
 					</div>
-				</div>
-				<div class="">
-					<div id="serchedListArea">
+					
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th scope="col">회사</th>
+									<th scope="col">대표</th>
+									<th scope="col">주소</th>
+									<th scope="col" style="min-width: 65px;" >비고</th>
+								</tr>
+							</thead>
+							<tbody id="serchedListArea">
 						
-					</div>
+							</tbody>
+						</table>
+					</div>	
 				</div>
 			</div>
 		</div>
 	</div>
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 
@@ -70,13 +95,19 @@
 							//회사명, 대표이름, 주소 받아와서 목록 ouput에 저장하기
 							//output += '<button type="button" class="list-group-item" onclick="selectMovie(this,'+ "'"+mvinfo.mvcode+"'" +')">'+mvinfo.mvtitle+'</button> ';
 							/* output += '<button type="button" class="list-group-item" onclick="selectth('+ "'"+thinfo.thcode+"'" +',this)">'+thinfo.thname+'</button> '; */
-							output += '<textarea readonly="readonly"class="retext mb-2 border-0 font-weight-bold text-gray-800 w-100">'+WpList[i].CINAME+'</textarea>';
-							output += '<textarea readonly="readonly"class="retext mb-2 border-0 font-weight-bold text-gray-800 w-100">'+WpList[i].CILEADER+'</textarea>';
-							output += '<textarea readonly="readonly"class="retext mb-2 border-0 font-weight-bold text-gray-800 w-100">'+WpList[i].CIADDR+'</textarea>';
-							output += '<button type="button" onclick="inputcinfo('+ "'"+WpList[i].CINUM+"'"+",'"+WpList[i].CINAME+"'" +",'"+WpList[i].CILEADER+"'"+",'"+WpList[i].CIADDR+"'" +",'"+WpList[i].CITYPE+"'"+',this)">';
+							
+							
+							output += '<tr>';
+							output += '<td>'+WpList[i].CINAME+'</td>';
+							output += '<td>'+WpList[i].CILEADER+'</td>';
+							output += '<td>'+WpList[i].CIADDR+'</td>';
+							output += '<td>';
+							output += '<button type="button" class="btn btn-secondary btn-sm" onclick="inputcinfo('+ "'"+WpList[i].CINUM+"'"+",'"+WpList[i].CINAME+"'" +",'"+WpList[i].CILEADER+"'"+",'"+WpList[i].CIADDR+"'" +",'"+WpList[i].CITYPE+"'"+',this)">';
 							output += '선택';
 							output += '</button>';
-							output += '<br>';
+							output += '</td>';
+							output += '</tr>';
+							
 							//onclick="replyLike('+ "'"+reList[i].renum+"'" +',this)">';
 						}
 						
@@ -103,5 +134,33 @@
 			
 		}
 	</script>
+
+
+
+
+
+	
+
+
+
+
+
+
+	<!--  
+	output += '<textarea readonly="readonly"class="retext mb-2 border-0 font-weight-bold text-gray-800 w-100">'+WpList[i].CINAME+'</textarea>';
+	output += '<textarea readonly="readonly"class="retext mb-2 border-0 font-weight-bold text-gray-800 w-100">'+WpList[i].CILEADER+'</textarea>';
+	output += '<textarea readonly="readonly"class="retext mb-2 border-0 font-weight-bold text-gray-800 w-100">'+WpList[i].CIADDR+'</textarea>';
+	output += '<button type="button" onclick="inputcinfo('+ "'"+WpList[i].CINUM+"'"+",'"+WpList[i].CINAME+"'" +",'"+WpList[i].CILEADER+"'"+",'"+WpList[i].CIADDR+"'" +",'"+WpList[i].CITYPE+"'"+',this)">';
+	output += '선택';
+	output += '</button>';
+	output += '<br>';
+	-->
+
+
+
+
+
+
+
 
 </html>
