@@ -152,7 +152,7 @@
 					<div class="d-flex justify-content-center">
 						<button type="button" class="btn btn-warning btn-sm">공지사항</button>
 					</div>
-				</div>
+				</div>	
 			</div>
 		</div>
 	</div>

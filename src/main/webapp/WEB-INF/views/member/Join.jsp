@@ -42,12 +42,6 @@
 	</div>
 	
 	
-	<!--  
-	<div class="d-flex justify-content-center">
-		<img src="${pageContext.request.contextPath }/resources/assets/img/joinLogo.png" style="width:500px; height:190px;">
-	</div>
-	-->
-	
 	
 </body>
 </html>
