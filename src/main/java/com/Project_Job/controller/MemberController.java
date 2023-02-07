@@ -182,6 +182,7 @@ public class MemberController {
 		return mav;
 	}
 
+	// 아이디 찾기
 	@RequestMapping(value = "/FindMemberId")
 	public ModelAndView FindMemberId(String loginType, String mname, String memail, String ciname) {
 		System.out.println("아이디 찾기 요청");
@@ -193,29 +194,36 @@ public class MemberController {
 		if (loginType.equals("개인")) {
 			System.out.println("개인회원 아이디 찾기 요청");
 			String FindMid = msvc.FindMemberId(mname, memail);
+			System.out.println("아이디: " + FindMid);
 			if (FindMid == null) {
 				mav.addObject("msg", "존재하지 않는 회원입니다.");
-				mav.addObject("url", "login");
+				mav.addObject("url", "FindIdPage");
 				mav.setViewName("AlertScreen");
 			} else {
+				mav.addObject("msg", "등록하신 이메일로 아이디정보가 발송되었습니다");
+				mav.addObject("url", "login");
+				mav.setViewName("AlertScreen");
 				emsvc.sendId(memail, FindMid);
-				mav.setViewName("Main");
 			}
 		} else {
-			System.out.println("기업회 아이디 찾기 요청");
+			System.out.println("기업회원 아이디 찾기 요청");
 			String FindCid = msvc.FindCMemberId(mname, memail, ciname);
+			System.out.println("아이디: " + FindCid);
 			if (FindCid == null) {
 				mav.addObject("msg", "존재하지 않는 회원입니다.");
-				mav.addObject("url", "login");
+				mav.addObject("url", "FindIdPage");
 				mav.setViewName("AlertScreen");
 			} else {
+				mav.addObject("msg", "등록하신 이메일로 아이디정보가 발송되었습니다");
+				mav.addObject("url", "login");
+				mav.setViewName("AlertScreen");
 				emsvc.sendId(memail, FindCid);
-				mav.setViewName("Main");
 			}
 		}
 		return mav;
 	}
 
+	// 비밀번호 찾기
 	@RequestMapping(value = "/FindMemberPw")
 	public ModelAndView FindMemberPw(String loginType, String id) {
 		System.out.println("비밀번호 찾기 요청");
@@ -223,27 +231,32 @@ public class MemberController {
 		if (loginType.equals("개인")) {
 			System.out.println("개인회원 비밀번호 찾기");
 			String FindMpw = msvc.FindMemberPw(id);
+			System.out.println("아이디: " + FindMpw);
 			if (FindMpw == null) {
 				mav.addObject("msg", "존재하지 않는 회원입니다.");
 				mav.addObject("url", "FindIdPage");
 				mav.setViewName("AlertScreen");
 			} else {
 				emsvc.sendPw(loginType, id, FindMpw);
-				mav.setViewName("Main");
+				mav.addObject("msg", "등록하신 이메일로 비밀번호 정보가 발송되었습니다");
+				mav.addObject("url", "login");
+				mav.setViewName("AlertScreen");
 			}
 		} else {
 			System.out.println("기업회원 비밀번호 찾기");
 			String FindCMpw = msvc.FindCMemberPw(id);
+			System.out.println("아이디: " + FindCMpw);
 			if (FindCMpw == null) {
 				mav.addObject("msg", "존재하지 않는 회원입니다.");
 				mav.addObject("url", "FindIdPage");
 				mav.setViewName("AlertScreen");
 			} else {
 				emsvc.sendPw(loginType, id, FindCMpw);
-				mav.setViewName("Main");
+				mav.addObject("msg", "등록하신 이메일로 비밀번호 정보가 발송되었습니다");
+				mav.addObject("url", "login");
+				mav.setViewName("AlertScreen");
 			}
 		}
 		return mav;
 	}
-
 }

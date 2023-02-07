@@ -2,10 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <section id="section">
-	<div class="container-fluid">
-		<div class="row">
-			<!-- Post entries-->
-			<div class="col-md-8 mt-4">
+	<div class="container">
+	<div class="row">
+		<!-- Blog entries-->
+		<div class="col-lg-8 mt-4">
 				<div class="row">
 					<div class="col-lg-6">
 						<!-- Blog post-->
@@ -16,7 +16,7 @@
 							<div class="card-body">
 								<div class="small text-muted">January 1, 2022</div>
 								<h2 class="card-title h4">Post Title</h2>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+								<p class="card-text">.</p>
 								<a class="btn btn-primary" href="#!">Read more →</a>
 							</div>
 						</div>
@@ -28,7 +28,7 @@
 							<div class="card-body">
 								<div class="small text-muted">January 1, 2022</div>
 								<h2 class="card-title h4">Post Title</h2>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+								<p class="card-text">.</p>
 								<a class="btn btn-primary" href="#!">Read more →</a>
 							</div>
 						</div>
@@ -42,7 +42,7 @@
 							<div class="card-body">
 								<div class="small text-muted">January 1, 2022</div>
 								<h2 class="card-title h4">Post Title</h2>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+								<p class="card-text">.</p>
 								<a class="btn btn-primary" href="#!">Read more →</a>
 							</div>
 						</div>
@@ -54,7 +54,7 @@
 							<div class="card-body">
 								<div class="small text-muted">January 1, 2022</div>
 								<h2 class="card-title h4">Post Title</h2>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+								<p class="card-text">.</p>
 								<a class="btn btn-primary" href="#!">Read more →</a>
 							</div>
 						</div>
@@ -96,7 +96,7 @@
 								</a>
 								<a href="${pageContext.request.contextPath }/FindPwPage">
 									<button class="btn btn-outline-secondary btn-sm" type="button">비밀번호 찾기</button>
-								</a>			
+								</a>
 							</div>
 						</div>
 					</c:if>
@@ -104,7 +104,8 @@
 					<c:if test="${sessionScope.loginInfo != null }">
 						<div class="card-body mx-auto">
 							<div class="info">
-								<span>${sessionScope.loginInfo.mname}지훈님</span>&ensp;&ensp;&ensp;&ensp;
+								<span>${sessionScope.loginInfo.mname}지훈님</span>
+								&ensp;&ensp;&ensp;&ensp;
 								<a href="${pageContext.request.contextPath }/logout">
 									<button type="button" class="btn btn-dark">로그아웃</button>
 								</a>
@@ -121,7 +122,7 @@
 								</div>
 							</div>
 						</div>
-					</c:if>	
+					</c:if>
 				</div>
 				<!-- Categories widget-->
 				<div class="card mt-2">
@@ -154,5 +155,5 @@
 				</div>	
 			</div>
 		</div>
-	</div>
+		</div>
 </section>

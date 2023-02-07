@@ -76,7 +76,6 @@
 				memail.focus();
 				return false;
 			} else {
-				alert("입력 메일로 아이디 정보가 발송되었습니다!");
 				return true;
 			}
 		}

@@ -1,23 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Login</title>
-<!-- Favicon-->
- <link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png">
-<!-- Bootstrap icons-->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
-
-
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>굿잡</title>
+    <!-- Favicon-->
+   <link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png">
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
 </head>
 <body>
 
 	<div class="d-flex justify-content-center">
     	<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/company-logo.png" style="width:120px; height:100px;"></a> 
     </div>
+	
+
 
 	<div class="container">
 		<div class="row">
@@ -42,6 +46,17 @@
 
 							<div class="d-grid mb-3">
 								<button class="btn btn-dark" type="submit">로그인</button>
+							</div>
+							<div>
+								<span>
+									아이디가 기억나지 않는다면?
+									<a href="${pageContext.request.contextPath }/FindIdPage">아이디 찾기</a>
+								</span>
+								<br>
+								<span>
+									비밀번호가 기억나지 않는다면?
+									<a href="${pageContext.request.contextPath }/FindPwPage">비밀번호 찾기</a>
+								</span>
 							</div>
 						</form>
 
@@ -72,5 +87,6 @@
 			}
 		}
 	</script>
+	
 </body>
 </html>

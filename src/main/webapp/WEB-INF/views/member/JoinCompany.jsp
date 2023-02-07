@@ -32,7 +32,7 @@
 							</div>
 
 							<div class="input-group input-group-lg mb-3">
-								<input type="hidden" class="form-control" readonly="readonly" id="inputCinum" name="cmcinum" placeholder="사업자 등록번호">
+								<input type="hidden" class="form-control" readonly="readonly" id="inputCinum" name="cmcinum" placeholder="사업자 등록번호" onchange="checkCinfo()">
 								<input type="text" class="form-control" disabled="disabled" id="inputCileader" name="cmcileader" placeholder="대표자">
 								<input type="text" class="form-control" disabled="disabled" id="inputCitype" name="inputCitype" placeholder="기업형태">
 							</div>
@@ -52,10 +52,13 @@
 								<span id="idCheckResult"></span>
 							</div>
 							<div class="input-group input-group-lg mb-3">
-								<input type="text" class="form-control" name="cmpw" maxlength="16" placeholder="비밀번호">
+								<input type="text" class="form-control" id="cmpw" name="cmpw" maxlength="16" placeholder="비밀번호" onchange="checkPwForm()">
 							</div>
 							<div class="input-group input-group-lg mb-3">
-								<input type="text" class="form-control" name="cmname" placeholder="이름">
+								<input type="text" class="form-control" id="cmpwCheck" maxlength="16" placeholder="비밀번호확인" onchange="checkPwVal()">
+							</div>
+							<div class="input-group input-group-lg mb-3">
+								<input type="text" class="form-control" id="cmname" name="cmname" placeholder="이름" onchange="checkName()">
 							</div>
 
 							<div class="input-group input-group-lg mb-3">
@@ -95,79 +98,197 @@
 	<!-- Script Start -->
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+	<script type="text/javascript">
+	$(document).ready(function(){
+		checkReset();
+	});
+	</script>
+	<!-- 정규식 -->
+	<script type="text/javascript">
+		const regex_En = /[a-zA-Z]/;
+		const regex_Ko = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+		const regex_Num = /[0-9]/;
+		const regex_Sc = /[\!\@\#\$\%]/;
+		
+		function checkRegex(inputVal,type){
+			console.log("확인 요청값: " + inputVal);
+			console.log("확인 요청 유형: " + type);
+			var checkType = null;
+			var isResult = false;
+			switch(type){
+			case 'en':
+				checkType = regex_En;
+				break;
+			case 'ko':
+				checkType = regex_Ko;
+				break;
+			case 'num':
+				checkType = regex_Num;
+				break;
+			case 'sc':
+				checkType = regex_Sc;
+				break;
+			}
+			for(var i = 0; i < inputVal.length;i++){
+				var ch = inputVal.charAt(i);
+				if(checkType.test(ch)){
+					isResult = true;
+				}
+			}
+			return isResult;
+		}
+	</script>
+	
 	<!-- html -->
 	<script type="text/javascript">
-		// ID 중복확인 여부
-		var isCheckId = false;
-		var isCheckEmail = false;
+	// 회사정보 입력 확인
+	var isCheckCinfo = false;
+	
+	// 아이디 중복 및 양식 확인
+	var isCheckId = false;
+	
+	// 비밀번호 양식 확인
+	var isCheckPw = false;
+	
+	// 비밀번호 재입력 확인
+	var isCheckPwVal = false;
+	
+	// 이름 양식 확인
+	var isCheckName = false;
+	
+	// 이메일 인증 확인
+	var isCheckEmail = false;
+	
+	function checkReset(){
+		isCheckCinfo = false;
+		isCheckId = false;
+		isCheckPw = false;
+		isCheckPwVal = false;
+		isCheckName = false;
+		isCheckEmail = false;
+	}
 
-		function joinFormCheck(formObj) {
-			console.log("joinFormCheck() 호출");
-			var ciname = formObj.cmciname;
-			var cmid = formObj.cmid;
-			var cmpw = formObj.cmpw;
-			var cmname = formObj.cmname;
-			var cemailId = $('#cemailId');
-			var cdomain = $('#cdomain');
-			
-			if(ciname.value.length == 0){
-				alert("기업정보를 입력해주세요");
-				return false;
-			} else if(cmid.value.length == 0){
-				alert("아이디를 입력해주세요");
-				cmid.focus();
-				return false;
-			} else if(cmpw.value.length == 0){
-				alert("비밀번호를 입력해주세요");
-				cmpw.focus();
-				return false;
-			} else if(cmname.value.length == 0){
-				alert("이름을 입력해주세요");
-				cmname.focus();
-				return false;
-			} else if(cemailId.val().length == 0){
-				alert("이메일을 입력해주세요");
-				cemailId.focus();
-				return false;
-			} else if(cdomain.val().length == 0){
-				alert("도메인을 입력해주세요");
-				cdomain.focus();
-				return false;
-			} else if (!isCheckId) {
-				alert('아이디 중복확인을 해주세요');
-				return false;
-			} else if (!isCheckEmail) {
-				alert('이메일 인증번호를 입력해주세요');
-				return false;
-			} else {
-				return true;
-			}
+	function joinFormCheck(formObj) {
+		console.log("joinFormCheck() 호출");
+		checkCinfo();	
+		if(!isCheckId){
+			formObj.cmid.focus();
+			return false;
+		} else if(!isCheckPw){
+			formObj.cmpw.focus();
+			return false;
+		} else if(!isCheckPwVal){
+			$('#cmpwCheck').focus();
+			return false;
+		} else if(!isCheckName){
+			formObj.cmname.focus();
+			return false;
+		} else if(!isCheckCinfo){
+			$('#inputCiname').focus();
+			return false;
+		} else if(!isCheckEmail){
+			$('#cmailCheckBtn').focus();
+			return false;
+		} else{		
+			return true;
 		}
+	}
 
 		function checkSameCId() {
 			var inputId = $('#cmid').val();
-			console.log(inputId);
-			$
-					.ajax({
-						type : 'get',
-						url : '${pageContext.request.contextPath }/joinCIdCheck?cmid='
-								+ inputId,
-						success : function(result) {
-							console.log(result);
-							if (result == 'OK') {
-								isCheckId = true;
-								$('#idCheckResult').text('사용 가능한 아이디!').css(
-										'color', 'green');
-							} else {
-								isCheckId = false;
-								$('#idCheckResult').text('사용중인 아이디!').css(
-										'color', 'red');
-							}
+			console.log(inputId);			
+			isCheckId = false;
+			if (inputId.length < 4) {
+				isCheckId = false;
+				$('#idCheckResult').text('아이디는 최소 4글자 이상입니다.').css('color',
+						'red');
+			} else if(checkRegex(inputId,'ko') || checkRegex(inputId,'sc') || !checkRegex(inputId,'en')){
+				isCheckId = false;
+				$('#idCheckResult').text('아이디는 영문+숫자입니다.').css('color',
+				'red');
+			} else{
+				$.ajax({
+					type : 'get',
+					url : '${pageContext.request.contextPath }/joinCIdCheck?cmid='
+							+ inputId,
+					async : false,		
+					success : function(result) {
+						console.log(result);
+						if (result == 'OK') {
+							isCheckId = true;
+							$('#idCheckResult').text('사용 가능한 아이디!').css(
+									'color', 'green');
+						} else {
+							isCheckId = false;
+							$('#idCheckResult').text('사용중인 아이디!').css(
+									'color', 'red');
+						}
 
-						},
-					});
-			console.log(isCheckId);
+					},
+				});
+				
+			}
+			console.log("isCheckId: " + isCheckId);
+		}
+		
+		// 비밀번호 양식 체크
+		function checkPwForm() {
+			var inputPw = $('#cmpw').val();
+			var checkEn = false;
+			var checkNum = false;
+			var checkSc = false;
+			
+			isCheckPw = false;
+			if (inputPw.length >= 8 && inputPw.length <= 16) {
+				checkEn = checkRegex(inputPw,'en');
+				checkNum = checkRegex(inputPw,'num');
+				checkSc = checkRegex(inputPw,'sc');
+				console.log("checkEn: " + checkEn +", checkNum: "+checkNum+", checkSc: " + checkSc);
+				if (checkEn && checkNum && checkSc) {
+					isCheckPw = true;
+				} else {
+					ischeckPw = false;
+					alert("비밀번호는 영문+숫자+특수문자(!,@,#,$,%)가 포함되어야 합니다.");
+				}
+			} else {
+				ischeckPw = false;
+				alert("비밀번호는 8~16글자 입니다.");
+			}
+			console.log("isCheckPw: " + isCheckPw);
+		}
+		
+		// 비밀번호 확인 체크
+		function checkPwVal() {
+			var inputPw = $('#cmpw').val();
+			var ReInputPw = $('#cmpwCheck').val();
+			if (inputPw == ReInputPw) {
+				isCheckPwVal = true;
+			} else {
+				isCheckPwVal = false;
+			}
+			console.log("isCheckPwVal: " + isCheckPwVal);
+		}
+		
+		// 이름 양식 확인 체크
+		function checkName() {
+			var inputName = $('#cmname').val();
+			isCheckName = true;
+			if (inputName.length < 2) {
+				isCheckName = false;
+			} else if(checkRegex(inputName,'num')||checkRegex(inputName,'sc')){
+				isCheckName = false;
+			}
+			console.log("isCheckName: " + isCheckName);
+		}
+		
+		// 기업정보 입력 확인
+		function checkCinfo(){
+			var inputCinfo = $('#inputCinum').val();
+			if(inputCinfo.length == 0){
+				isCheckCinfo = false;
+			} else{
+				isCheckCinfo = true;
+			}
 		}
 
 		function domainSelect(obj) {
