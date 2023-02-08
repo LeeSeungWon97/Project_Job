@@ -77,6 +77,13 @@ public class MemberController {
 		mav.setViewName("member/findWPpop");
 		return mav;
 	}
+	
+	// 내 정보 페이지 이동
+	@RequestMapping(value = "/myInfo")
+	public String myInfo() {
+		System.out.println("내 정보보기 페이지 이동 요청");
+		return "member/MemberInfo";
+	}
 
 	/*** 회원가입 컨트롤러 ***/
 
@@ -87,7 +94,7 @@ public class MemberController {
 		System.out.println(joinInfo);
 		int insertResult = msvc.joinMember(joinInfo);
 		if (insertResult == 1) {
-			return "Main";
+			return "redirect:/";
 		} else {
 			return "member/Join";
 		}
@@ -102,7 +109,7 @@ public class MemberController {
 		int insertResult = msvc.joinCiMember(joinInfo, ciaddr);
 
 		if (insertResult == 1) {
-			return "Main";
+			return "redirect:/";
 		} else {
 			return "member/Join";
 		}
@@ -166,7 +173,7 @@ public class MemberController {
 			} else {
 				session.setAttribute("loginType", "P");
 				session.setAttribute("loginInfo", loginMInfo);
-				mav.setViewName("Main");
+				mav.setViewName("redirect:/");
 			}
 		} else {
 			System.out.println("기업회원 로그인 요청");
@@ -178,7 +185,7 @@ public class MemberController {
 			} else {
 				session.setAttribute("loginType", "C");
 				session.setAttribute("loginInfo", loginCInfo);
-				mav.setViewName("Main");
+				mav.setViewName("redirect:/");
 			}
 		}
 		return mav;
@@ -262,12 +269,23 @@ public class MemberController {
 		return mav;
 	}
 	
+	// 로그아웃
 	@RequestMapping(value = "/logout")
 	public ModelAndView logout() {
 		System.out.println("로그아웃 요청");
 		ModelAndView mav = new ModelAndView();
 		session.invalidate();
-		mav.setViewName("Main");
+		mav.setViewName("redirect:/");
 		return mav;
+	}
+	
+	// 회원정보 업데이트
+	@RequestMapping(value = "/updateInfo")
+	public @ResponseBody String updateInfo(String mType, String id, String pw, String name, String addr, String email) {
+		System.out.println("mType: " + mType);
+		System.out.println("id: " + id);
+		String result = msvc.updateInfo(mType, id, pw, name, addr, email);
+		session.invalidate();
+		return result;
 	}
 }

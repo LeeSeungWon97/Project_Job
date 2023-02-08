@@ -14,6 +14,7 @@ public class EmploymentController {
 	private EmploymentService epsvc;
 	
 	
+	// 회사 검색 요청
 	@RequestMapping(value = "/getWPList")
 	public @ResponseBody String getWPList(String ciname) {
 		System.out.println("회사 검색 요청");
@@ -21,6 +22,15 @@ public class EmploymentController {
 		String ciList = epsvc.getWPList(ciname);
 		System.out.println(ciList);
 		return ciList;
+	}
+	
+	// 회사 이름 요청
+	@RequestMapping(value = "/sendCname" , produces = "application/text;charset=UTF-8")
+	public @ResponseBody String sendCname(String cmcinum) {
+		System.out.println("기업명 조회 요청");
+		String result = epsvc.getCompanyName(cmcinum);
+		System.out.println("result: " + result);
+		return result;
 	}
 
 }

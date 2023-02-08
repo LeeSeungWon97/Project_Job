@@ -347,6 +347,13 @@ public class EmploymentService {
 			System.out.println("등록된 회사 수 : " + insertResult);
 			return 0;
 		}
+
+
+		public String getCompanyName(String cmcinum) {
+			System.out.println("Employment getCompanyName() 호출");
+			String ciname = epdao.selectCiName(cmcinum);
+			return ciname;
+		}
 		
 	
 }
