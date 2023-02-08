@@ -146,7 +146,16 @@
 						<c:if test="${sessionScope.loginInfo != null }">
 							<div class="card-body mx-auto">
 								<div class="info">
-									<span>${sessionScope.loginInfo.mname}</span>
+
+									<c:choose>
+										<c:when test="${sessionScope.loginType == 'P' }">
+											<span>${sessionScope.loginInfo.mname}</span>
+										</c:when>
+										<c:otherwise>
+											<span>${sessionScope.loginInfo.cmname}</span>
+										</c:otherwise>
+									</c:choose>
+
 									&ensp;&ensp;&ensp;&ensp;
 									<a href="${pageContext.request.contextPath }/logout">
 										<button type="button" class="btn btn-dark">로그아웃</button>
@@ -156,7 +165,9 @@
 							<div class="card-footer">
 								<div class="d-flex justify-content-center">
 									<div class="btn-group btn-group-sm gap-1">
-										<button type="button" class="btn btn-outline-secondary">내정보</button>
+										<a href="${pageContext.request.contextPath }/myInfo">
+											<button type="button" class="btn btn-outline-secondary">내정보</button>
+										</a>
 										<button type="button" class="btn btn-outline-secondary">이력서</button>
 										<button type="button" class="btn btn-outline-secondary">지원현황</button>
 										<button type="button" class="btn btn-outline-secondary">스크랩</button>

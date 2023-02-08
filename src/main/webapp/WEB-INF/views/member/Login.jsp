@@ -89,7 +89,6 @@
 				inputPw.focus();
 				return false;
 			} else {
-				alert("로그인 성공!");
 				return true;
 			}
 		}
