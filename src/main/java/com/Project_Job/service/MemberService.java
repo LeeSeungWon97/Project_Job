@@ -102,4 +102,28 @@ public class MemberService {
 		return FindCMpw;
 	}
 
+	// 회원 정보 수정
+	public String updateInfo(String mType, String id, String pw, String name, String addr, String email) {
+		System.out.println("MemberService updateInfo() 호출");
+		String result = "";
+		if(mType.equals("P")) {
+			System.out.println("개인회원 정보 수정");
+			int updateResult = mdao.updateMinfo(id,pw,name,addr,email);
+			if(updateResult == 1 ) {
+				result = "OK";
+			} else {
+				result = "NO";
+			}
+		} else {
+			System.out.println("기업회원 정보 수정");
+			int updateResult = mdao.updateCMinfo(id,pw,name,email);
+			if(updateResult == 1 ) {
+				result = "OK";
+			} else {
+				result = "NO";
+			}
+		}
+		return result;
+	}
+
 }
