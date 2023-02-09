@@ -23,14 +23,5 @@ public class EmploymentController {
 		System.out.println(ciList);
 		return ciList;
 	}
-	
-	// 회사 이름 요청
-	@RequestMapping(value = "/sendCname" , produces = "application/text;charset=UTF-8")
-	public @ResponseBody String sendCname(String cmcinum) {
-		System.out.println("기업명 조회 요청");
-		String result = epsvc.getCompanyName(cmcinum);
-		System.out.println("result: " + result);
-		return result;
-	}
 
 }

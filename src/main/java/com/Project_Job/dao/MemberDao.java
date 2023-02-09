@@ -67,12 +67,11 @@ public interface MemberDao {
 	/*** Update ***/
 
 	// 회원(개인) 정보 업데이트
-	@Update("UPDATE MEMBERS SET MPW=#{pw}, MNAME=#{name}, MADDR=#{addr}, MEMAIL=#{email} WHERE MID = #{id}")
+	@Update("UPDATE MEMBERS SET MPW=#{pw}, MNAME=#{name}, MADDR=#{addr} WHERE MID = #{id}")
 	int updateMinfo(@Param("id") String id, @Param("pw") String pw, @Param("name") String name,
-			@Param("addr") String addr, @Param("email") String email);
+			@Param("addr") String addr);
 
-	@Update("UPDATE CMEMBERS SET CMPW = #{pw}, CMNAME = #{name},CMEMAIL = #{email} WHERE CMID = #{id}")
-	int updateCMinfo(@Param("id") String id, @Param("pw") String pw, @Param("name") String name,
-			@Param("email") String email);
+	@Update("UPDATE CMEMBERS SET CMPW = #{pw}, CMNAME = #{name} WHERE CMID = #{id}")
+	int updateCMinfo(@Param("id") String id, @Param("pw") String pw, @Param("name") String name);
 
 }
