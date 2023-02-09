@@ -168,7 +168,9 @@
 										<a href="${pageContext.request.contextPath }/myInfo">
 											<button type="button" class="btn btn-outline-secondary">내정보</button>
 										</a>
+										<a href="${pageContext.request.contextPath }/WriteResumePage">
 										<button type="button" class="btn btn-outline-secondary">이력서</button>
+										</a>
 										<button type="button" class="btn btn-outline-secondary">지원현황</button>
 										<button type="button" class="btn btn-outline-secondary">스크랩</button>
 										<button type="button" class="btn btn-outline-secondary">열람기업</button>
