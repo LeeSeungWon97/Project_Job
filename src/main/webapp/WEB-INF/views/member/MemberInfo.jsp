@@ -3,73 +3,156 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>info</title>
+<!-- Favicon-->
+ <link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png">
+<!-- Bootstrap icons-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
 </head>
 <body>
-	<div>
-		<c:choose>
-			<c:when test="${sessionScope.loginType == 'P'}">
-
-				<div>
-					<label>아이디</label><br>
-					<input type="text" class="id" value="${sessionScope.loginInfo.mid }" readonly="readonly">
+	<div class="container">
+		<div class="d-flex justify-content-center">
+    		<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 200px; height:100px;"></a> 
+    	</div>
+	    	<div class="row">
+	    		<div class="col-2">
+	    		<!-- SideBar -->	
+	 			<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 100%; display: flex; ">
+			      	<a href="" class="d-flex align-items-center link-dark text-decoration-none">
+			        	<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+			        	<strong>mdo</strong>
+			      	</a>
+			   		<hr>
+			    <ul class="nav nav-pills flex-column mb-auto">
+			    	<li class="nav-item">
+			        	<a href="${pageContext.request.contextPath }" class="nav-link link-dark">
+			          	내정보
+			       		</a>
+			      </li>
+			      <li>
+			        <a href="${pageContext.request.contextPath }" class="nav-link link-dark">
+			          이력서
+			        </a>
+			      </li>
+			      <li>
+			        <a href="${pageContext.request.contextPath }" class="nav-link link-dark">
+			        지원현황
+			        </a>
+			      </li>
+			      <li>
+			        <a href="${pageContext.request.contextPath }" class="nav-link link-dark">
+			        	스크랩
+			        </a>
+			      </li>
+			      <li>
+			        <a href="${pageContext.request.contextPath }" class="nav-link link-dark">
+			       열람기업
+			        </a>
+			      </li>
+			    </ul>
+ 				 </div>
+				</div>      	
+				    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    		<div class="col-lg-10 col-xl-8 mx-auto">
+	    			<div class="card flex-row  border-0 shadow rounded-3">
+	    				<div class="card-body p-4 p-sm-5 mb-3">
+						<c:choose>
+							<c:when test="${sessionScope.loginType == 'P'}">
+								<div class="input-group input-group-lg mb-3">
+									<span class="input-group-text" style="width: 18%; justify-content: center;">아이디</span>
+									<input type="text" class="id form-control" value="${sessionScope.loginInfo.mid }" readonly="readonly" style="background-color: white;">
+								</div>
+								<div class="input-group input-group-lg mb-3">
+									<span class="input-group-text" style="width: 18%; justify-content: center;">비밀번호</span>
+									<input type="password" class="pw form-control" value="${sessionScope.loginInfo.mpw }" readonly="readonly" style="background-color: white;">
+									<input type="hidden" class="pwBtn btn btn-secondary" onclick="changePw()" value="변경">
+								</div>
+								<div class="input-group input-group-lg mb-3">
+									<span class="input-group-text" style="width: 18%; justify-content: center;">이름</span>
+									<input type="text" class="name form-control" value="${sessionScope.loginInfo.mname }" readonly="readonly" style="background-color: white;">
+								</div>
+								<div class="input-group input-group-lg mb-3">
+									<span class="input-group-text" style="width: 18%; justify-content: center;">주소</span>
+									<input type="text" class="addr form-control" value="${sessionScope.loginInfo.maddr }" readonly="readonly" style="background-color: white;">
+								</div>
+								<div class="input-group input-group-lg mb-3">
+									<span class="input-group-text" style="width: 18%; justify-content: center;">생년월일</span>
+									<input type="text" class="form-control" value="${sessionScope.loginInfo.mbirth }" readonly="readonly" style="background-color: white;">
+								</div>
+								<div class="input-group input-group-lg mb-3">
+									<span class="input-group-text" style="width: 18%; justify-content: center;">이메일</span>
+									<input type="text" class="email form-control" value="${sessionScope.loginInfo.memail }" readonly="readonly" style="background-color: white;">
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div>
+									<input type="hidden" class="cmcinum" value="${sessionScope.loginInfo.cmcinum }" readonly="readonly">
+								</div>
+								<div class="input-group input-group-lg mb-3">
+									<span class="input-group-text" style="width: 18%; justify-content: center;">회사명</span>
+									<input type="text" class="cmciname form-control" readonly="readonly" style="background-color: white;" >
+								</div>
+								<div class="input-group input-group-lg mb-3">
+									<span class="input-group-text" style="width: 18%; justify-content: center;">아이디</span>
+									<input type="text" class="id form-control" value="${sessionScope.loginInfo.cmid }" readonly="readonly" style="background-color: white;">
+								</div>
+								<div class="input-group input-group-lg mb-3">
+									<span class="input-group-text" style="width: 18%; justify-content: center;">비밀번호</span>
+									<input type="password" class="pw form-control" value="${sessionScope.loginInfo.cmpw }" readonly="readonly" style="background-color: white;">
+									<input type="hidden" class="pwBtn btn btn-secondary" onclick="changePw()" value="변경">
+								</div>
+								<div class="input-group input-group-lg mb-3">
+									<span class="input-group-text" style="width: 18%; justify-content: center;">이름</span>
+									<input type="text" class="name form-control" value="${sessionScope.loginInfo.cmname }" readonly="readonly" style="background-color: white;">
+								</div>
+								<div class="input-group input-group-lg mb-3">
+									<span class="input-group-text" style="width: 18%; justify-content: center;">이메일</span>
+									<input type="text" class="email form-control" value="${sessionScope.loginInfo.cmemail }" readonly="readonly" style="background-color: white;">
+								</div>
+							</c:otherwise>
+						</c:choose>
+						<input type="button" class="changeBtn btn btn-info btn-lg" onclick="changeInfo()" value="수정">
+						<input type="hidden" class="saveBtn btn btn-info btn-lg" onclick="saveInfo()" value="저장">
+						<input type="button" class="deleteBtn btn btn-info btn-lg" onclick="deleteInfo()" value="탈퇴">
+						<input type="hidden" class="cancleBtn btn btn-info btn-lg" onclick="changeCancle()" value="취소">
+					</div>
 				</div>
-				<div>
-					<label>비밀번호</label><br>
-					<input type="password" class="pw" value="${sessionScope.loginInfo.mpw }" readonly="readonly">
-					<input type="hidden" class="pwBtn" onclick="changePw()" value="변경">
-				</div>
-				<div>
-					<label>이름</label><br>
-					<input type="text" class="name" value="${sessionScope.loginInfo.mname }" readonly="readonly">
-				</div>
-				<div>
-					<label>주소</label><br>
-					<input type="text" class="addr" value="${sessionScope.loginInfo.maddr }" readonly="readonly">
-				</div>
-				<div>
-					<label>생년월일</label><br>
-					<input type="text" value="${sessionScope.loginInfo.mbirth }" readonly="readonly">
-				</div>
-				<div>
-					<label>이메일</label><br>
-					<input type="text" class="email" value="${sessionScope.loginInfo.memail }" readonly="readonly">
-				</div>
-
-			</c:when>
-			<c:otherwise>
-				<div>
-					<input type="hidden" class="cmcinum" value="${sessionScope.loginInfo.cmcinum }" readonly="readonly">
-				</div>
-				<div>
-					<label>회사명</label><br>
-					<input type="text" class="cmciname" readonly="readonly">
-				</div>
-				<div>
-					<label>아이디</label><br>
-					<input type="text" class="id" value="${sessionScope.loginInfo.cmid }" readonly="readonly">
-				</div>
-				<div>
-					<label>비밀번호</label><br>
-					<input type="password" class="pw" value="${sessionScope.loginInfo.cmpw }" readonly="readonly">
-					<input type="hidden" class="pwBtn" onclick="changePw()" value="변경">
-				</div>
-				<div>
-					<label>이름</label><br>
-					<input type="text" class="name" value="${sessionScope.loginInfo.cmname }" readonly="readonly">
-				</div>
-				<div>
-					<label>이메일</label><br>
-					<input type="text" class="email" value="${sessionScope.loginInfo.cmemail }" readonly="readonly">
-				</div>
-			</c:otherwise>
-		</c:choose>
-		<input type="button" class="changeBtn" onclick="changeInfo()" value="수정">
-		<input type="hidden" class="saveBtn" onclick="saveInfo()" value="저장">
-		<input type="button" class="deleteBtn" onclick="deleteInfo()" value="탈퇴">
-		<input type="hidden" class="cancleBtn" onclick="changeCancle()" value="취소">
+			</div>
+		</div>
 	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
