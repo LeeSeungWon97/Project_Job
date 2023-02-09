@@ -1,13 +1,15 @@
 nav{
+	width: 1280px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	
 }
 
 .navigator{
 	width: 100%;
 	text-align: center;
-	border-bottom: solid #539DDB;
+	border-bottom: solid #539DDB; 
 	
 }
 

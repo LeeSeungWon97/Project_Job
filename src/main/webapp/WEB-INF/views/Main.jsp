@@ -19,6 +19,7 @@
     <link href="${pageContext.request.contextPath }/resources/assets/css/header.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath }/resources/assets/css/section.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath }/resources/assets/css/footer.css" rel="stylesheet" />
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +28,7 @@
 
 
 </head>
-<body>
+<body style="position: absolute; left: 50%; transform: translateX(-50%);">
 	<!-- Header -->
 	<%@ include file="/WEB-INF/views/includes/main/Header.jsp" %> 
     

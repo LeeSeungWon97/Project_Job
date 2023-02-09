@@ -1,0 +1,12 @@
+footer{
+	width: 1280px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+}
+
+.foot{
+	width: 100%;
+	text-align: center;	
+}
