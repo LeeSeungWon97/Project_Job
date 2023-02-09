@@ -415,6 +415,12 @@ public class EmploymentService {
 		}
 
 
+		public String SelectEpname(String epnum) {
+			String epname = epdao.SelectEpname(epnum);
+			return epname;
+		}
+
+
 		
 		
 	

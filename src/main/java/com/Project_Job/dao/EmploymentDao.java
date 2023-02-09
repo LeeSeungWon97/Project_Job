@@ -72,6 +72,9 @@ public interface EmploymentDao {
 	@Select("SELECT * FROM RESUME WHERE REMID =#{remid}")
 	ResumeDto SelectResume(String remid);
 	
+	@Select("SELECT EPNAME FROM EMPLOYMENT WHERE EPNUM = #{epnum} ")
+	String SelectEpname(String epnum);
+	
 	
 	
 

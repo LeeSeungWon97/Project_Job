@@ -107,16 +107,16 @@ public class EmploymentController {
 	}
 	
 	//자소서 작성 페이지 요청
-	@RequestMapping(value = "/WriteEssayPage")
-	public ModelAndView WriteEssayPage(String epnum, String epciname, String epname) {
+	@RequestMapping(value = "/WriteEssayPage", produces="application/text;charset=UTF-8")
+	public ModelAndView WriteEssayPage(String epnum, String epciname) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("Epcontroller WriteEssayPage요청");
 		if(session.getAttribute("loginInfo")==null) {
 			mav.setViewName("member/Login");
 		}else {
-
 		System.out.println("epnum"+epnum);
 		System.out.println("epciname"+epciname);
+		String epname = epsvc.SelectEpname(epnum);
 		System.out.println("epname"+epname);
 		mav.addObject("epciname", epciname);
 		mav.addObject("epname", epname);

@@ -93,8 +93,8 @@
 		
 	<script type="text/javascript">
 	function WriteResume(epnum, epciname,epname) {
-		console.log(epnum + epciname);
-		location.href ="${pageContext.request.contextPath }/WriteEssayPage?epnum="+epnum+"&epciname="+epciname+"&epname="+epname;
+		console.log(epnum + epciname+ epname);
+		location.href ="${pageContext.request.contextPath }/WriteEssayPage?epnum="+epnum+"&epciname="+epciname;
 		
 	}
 	
