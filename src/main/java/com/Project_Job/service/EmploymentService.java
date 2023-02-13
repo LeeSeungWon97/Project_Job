@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import com.Project_Job.dao.EmploymentDao;
 import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.EmploymentDto;
+import com.Project_Job.dto.EssayDto;
+import com.Project_Job.dto.ResumeDto;
 import com.google.gson.Gson;
 
 
@@ -348,12 +350,78 @@ public class EmploymentService {
 			return 0;
 		}
 
-
+		
 		public String getCompanyName(String cmcinum) {
 			System.out.println("Employment getCompanyName() 호출");
 			String ciname = epdao.selectCiName(cmcinum);
 			return ciname;
 		}
+		
+			public ArrayList<EmploymentDto> getEpList(String pageType) {
+			System.out.println("epsvc getEpList 호출");
+			if(pageType == "employ") {
+				ArrayList<EmploymentDto> epList = epdao.getEpList();
+				return epList;
+			}else {
+				ArrayList<EmploymentDto> epList = epdao.getRcList();
+				return epList;
+			}
+			
+		}
+
+		//이력서 작성
+		public int WriteResume(ResumeDto resumeInfo) {
+			System.out.println("epsvc WriteResume 요청");
+			System.out.println("epsvc resumeInfo" + resumeInfo);
+			String remid = resumeInfo.getRemid();
+			System.out.println("remid : "+remid);
+			String selectResult = epdao.selectResumeInfo(remid);
+			System.out.println("selectResult :" +selectResult);
+			int insertResult;
+			if(selectResult==null) {
+				System.out.println("기존 이력서 정보 x" + resumeInfo);
+				insertResult = epdao.WriteResume(resumeInfo);
+			}else {
+				System.out.println("기존 이력서 정보 o"+ resumeInfo);
+				insertResult = epdao.UpdateResume(resumeInfo);
+			}
+			return insertResult;
+		}
+
+		//자소서 작성
+		public int insertEssay(EssayDto essayInfo) {
+			System.out.println("epsvc insertEssay요청");
+			String maxEicode = epdao.selectMaxEsnum();
+			System.out.println("자소서코드 최대값 : " + maxEicode);
+			String escode = "ES";
+			if(maxEicode == null) {
+				escode = escode + String.format("%03d", 1);
+				System.out.println("처음 자소서코드 : "+escode);
+			}else {
+				int escodeNum = Integer.parseInt(maxEicode.replace("ES", "")) +1;
+				escode =  escode + String.format("%03d", escodeNum);
+			}
+			System.out.println("자소서코드 : "+escode);
+			essayInfo.setEsnum(escode);
+			int insertResult = epdao.insertEssay(essayInfo);
+			return insertResult;
+		}
+
+
+		public ResumeDto SelectResume(String remid) {
+			System.out.println("epsvc SelectResume 요청");
+			ResumeDto ResumeInfo = epdao.SelectResume(remid);
+			return ResumeInfo;
+		}
+
+
+		public String SelectEpname(String epnum) {
+			String epname = epdao.SelectEpname(epnum);
+			return epname;
+		}
+
+
+		
 		
 	
 }

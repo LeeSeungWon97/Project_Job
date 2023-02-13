@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.Project_Job.dto.CmemberDto;
 import com.Project_Job.dto.MemberDto;
+import com.Project_Job.service.EmploymentService;
 import com.Project_Job.service.MailService;
 import com.Project_Job.service.MemberService;
 
@@ -22,6 +23,8 @@ public class MemberController {
 	private MemberService msvc;
 	@Autowired
 	private MailService emsvc;
+	@Autowired
+	private EmploymentService epsvc;
 	@Autowired
 	private HttpSession session;
 
@@ -77,12 +80,32 @@ public class MemberController {
 		mav.setViewName("member/findWPpop");
 		return mav;
 	}
-	
+
 	// 내 정보 페이지 이동
-	@RequestMapping(value = "/myInfo")
-	public String myInfo() {
+	@RequestMapping(value = "/myInfo", produces = "application/text;charset=UTF-8")
+	public ModelAndView myInfo() {
 		System.out.println("내 정보보기 페이지 이동 요청");
-		return "member/MemberInfo";
+		ModelAndView mav = new ModelAndView();
+		String loginType = (String) session.getAttribute("loginType");
+		System.out.println("loginType: " + loginType);
+		if (loginType.equals("P")) {
+			mav.setViewName("member/MemberInfo");
+		} else {
+			CmemberDto cmdto = (CmemberDto) session.getAttribute("loginInfo");
+			String cmciname = epsvc.getCompanyName(cmdto.getCmcinum());
+			System.out.println(cmciname);
+			mav.addObject("cmciname", cmciname);
+			mav.setViewName("member/MemberInfo");
+		}
+
+		return mav;
+	}
+	
+	// 비밀번호 변경 팝업창 요청
+	@RequestMapping(value = "/changePw")
+	public String changePw() {
+		System.out.println("비밀번호 팝업창 요청");
+		return "member/ChangePw";
 	}
 
 	/*** 회원가입 컨트롤러 ***/
@@ -268,7 +291,7 @@ public class MemberController {
 		}
 		return mav;
 	}
-	
+
 	// 로그아웃
 	@RequestMapping(value = "/logout")
 	public ModelAndView logout() {
@@ -278,14 +301,31 @@ public class MemberController {
 		mav.setViewName("redirect:/");
 		return mav;
 	}
-	
+
 	// 회원정보 업데이트
 	@RequestMapping(value = "/updateInfo")
-	public @ResponseBody String updateInfo(String mType, String id, String pw, String name, String addr, String email) {
+	public @ResponseBody String updateInfo(String mType, String id, String pw, String name, String addr) {
 		System.out.println("mType: " + mType);
 		System.out.println("id: " + id);
-		String result = msvc.updateInfo(mType, id, pw, name, addr, email);
+		String result = msvc.updateInfo(mType, id, pw, name, addr);
 		session.invalidate();
+		return result;
+	}
+	
+	// 로그인 회원 비밀번호 확인
+	@RequestMapping(value = "/checkPassword")
+	public @ResponseBody String checkPassword(String currentPw) {
+		System.out.println("currentPw: "+ currentPw);
+		String loginType = (String)session.getAttribute("loginType");
+		String loginId = "";
+		if(loginType.equals("P")) {
+			MemberDto mdto = (MemberDto)session.getAttribute("loginInfo");
+			loginId = mdto.getMid();
+		}else {
+			CmemberDto cmdto = (CmemberDto)session.getAttribute("loginInfo");
+			loginId = cmdto.getCmid();
+		}
+		String result = msvc.checkPw(loginType, loginId, currentPw);
 		return result;
 	}
 }

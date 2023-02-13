@@ -136,51 +136,21 @@
 
 
 
+	
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<!-- jQuery -->
 
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 
-	<script type="text/javascript">
-		var mType = '<%=(String) session.getAttribute("loginType")%>';
-		
-		$(document).ready(function() {
-			console.log(mType);
-			if (mType == "C") {
-				var cmcinum = $('.cmcinum').val();
-				$.ajax({
-					type : "post",
-					url : "${pageContext.request.contextPath}/sendCname",
-					data : {
-						"cmcinum" : cmcinum
-					},
-					success : function(result) {
-						console.log(result);
-						$('.cmciname').prop("value",result);
-					}
-				});
-			}
-		});
-
+	<!-- 정규식  -->
+	<script src="${pageContext.request.contextPath }/resources/js/regex.js"></script>
+	
+	<script type="text/javascript">	
 		function changePw() {
 			console.log("changePw() 호출");
+			window.open("${pageContext.request.contextPath }/changePw",
+					"비밀번호 변경", "width=400,height=400,top=10,left=100");
+			
 		}
 
 		function changeInfo() {
@@ -198,6 +168,7 @@
 
 		function saveInfo() {
 			console.log("saveInfo() 호출");
+			var mType = $('#mType').val();
 			var id = $('.id').val();
 			var pw = $('.pw').val();
 			var name = $('.name').val();
@@ -217,8 +188,7 @@
 					"id" : id,
 					"pw" : pw,
 					"name" : name,
-					"addr" : addr,
-					"email" : email
+					"addr" : addr
 				},
 				success : function(result) {
 					console.log(result);
@@ -235,7 +205,6 @@
 			$('.pw').prop("readonly", true);
 			$('.name').prop("readonly", true);
 			$('.addr').prop("readonly", true);
-			$('.email').prop("readonly", true);
 			$('.pwBtn').prop("type", "hidden");
 			$('.changeBtn').prop("type", "button");
 			$('.saveBtn').prop("type", "hidden");
