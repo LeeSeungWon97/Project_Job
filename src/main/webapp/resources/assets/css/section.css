@@ -9,21 +9,14 @@ section{
 
 .section-div{
 	width: 1280px;
-	/* height: 1200px; */
 	display: flex;
 
 }
-/* 
-.row{	
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-} */
 
 .section-l{
 	display: flex;
 	flex-direction: column;
-	max-width: 70%;
+	width: 70%;
 	height: 100%;
 }
 
@@ -55,7 +48,6 @@ section{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top: 30px;
 }
 
 .section-r-bottom{

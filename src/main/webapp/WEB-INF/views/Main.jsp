@@ -22,13 +22,13 @@
     <link href="${pageContext.request.contextPath }/resources/assets/css/footer.css" rel="stylesheet" />
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 
 
 
 </head>
-<body style="position: absolute; left: 50%; transform: translateX(-50%);">
+<body>
 	<!-- Header -->
 	<%@ include file="/WEB-INF/views/includes/main/Header.jsp" %> 
     
