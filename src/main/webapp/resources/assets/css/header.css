@@ -16,13 +16,15 @@ a{
 
 
 header{
-	width: 1280px;
+	width: 100%;
+	min-width: 1280px;
 	display: flex;
 	justify-content: center;
+	
 }
 
 .header-div{
-	width: 1060px;
+	width: 1280px;
 	height: 100px;
 	display: flex;
 	justify-content: center;

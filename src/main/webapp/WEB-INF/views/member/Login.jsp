@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>로그인 | 굿잡</title>
@@ -20,10 +21,10 @@
 <body>
 
 	<div class="d-flex justify-content-center">
-		<a class="navbar-brand" href="${pageContext.request.contextPath }/">
-			<img src="${pageContext.request.contextPath }/resources/assets/img/logo.png" style="width: 120px; height: 100px;">
-		</a>
-	</div>
+    		<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 200px; height:100px;"></a> 
+    	</div>
+	
+
 
 	<div class="container">
 		<div class="row">
@@ -47,7 +48,7 @@
 							</div>
 
 							<div class="d-grid mb-3">
-								<button class="btn btn-dark" type="submit">로그인</button>
+								<button type="submit" class="btn-lg" style="background-color: #539DDB;"><span style="color: white;">로그인</span></button>
 							</div>
 							<div>
 								<span>
@@ -93,5 +94,6 @@
 			}
 		}
 	</script>
+	
 </body>
 </html>

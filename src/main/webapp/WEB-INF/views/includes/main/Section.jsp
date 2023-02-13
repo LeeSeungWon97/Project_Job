@@ -2,129 +2,98 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <section id="section">
-
-
 	<div class="section-div">
 		<div class="section-l">
-
-			<div class="section-l-top">
-				<div style="width: 690px; height: 150px; background: #f2f2f2; margin-right: 32px; text-align: center;">슬라이드 메뉴 > 마감 임박 공고</div>
-			</div>
-
-
 			<div class="section-l-bottom">
-				<div class="container-fluid section-div">
-
-					<div class="row">
-
-						<div class="col-md-8 mt-4">
-							<div class="row">
-								<div class="col-lg-4">
-
-									<div class="card mb-4">
-										<a href="">
-											<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
-										</a>
-										<div class="card-body">
-											<div class="small text-muted">January 1, 2022</div>
-											<h2 class="card-title h4">Post Title</h2>
-											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-											<a class="btn btn-primary" href="#!">Read more →</a>
-										</div>
-									</div>
-
-
-									<div class="card mb-4">
-										<a href="">
-											<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
-										</a>
-										<div class="card-body">
-											<div class="small text-muted">January 1, 2022</div>
-											<h2 class="card-title h4">Post Title</h2>
-											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-											<a class="btn btn-primary" href="#!">Read more →</a>
-										</div>
-									</div>
+				<div class="row">
+					<div class="col-lg-4 mt-4">
+						<div class="card mb-4">
+							<a href="">
+								<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
+							</a>
+							<div class="card-body">
+								<div class="small text-muted">January 1, 2022</div>
+									<h2 class="card-title h4">Post Title</h2>
+									<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									<a class="btn btn-primary" href="#!">Read more →</a>
 								</div>
-								<div class="col-lg-4">
-
-
-									<div class="card mb-4">
-										<a href="">
-											<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
-										</a>
-										<div class="card-body">
-											<div class="small text-muted">January 1, 2022</div>
-											<h2 class="card-title h4">Post Title</h2>
-											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-											<a class="btn btn-primary" href="#!">Read more →</a>
-										</div>
-									</div>
-
-									<div class="card mb-4">
-										<a href="">
-											<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
-										</a>
-										<div class="card-body">
-											<div class="small text-muted">January 1, 2022</div>
-											<h2 class="card-title h4">Post Title</h2>
-											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-											<a class="btn btn-primary" href="#!">Read more →</a>
-										</div>
-									</div>
-								</div>
-
-
-								<div class="col-lg-4">
-
-									<div class="card mb-4">
-										<a href="">
-											<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
-										</a>
-										<div class="card-body">
-											<div class="small text-muted">January 1, 2022</div>
-											<h2 class="card-title h4">Post Title</h2>
-											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-											<a class="btn btn-primary" href="#!">Read more →</a>
-										</div>
-									</div>
-
-
-									<div class="card mb-4">
-										<a href="">
-											<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
-										</a>
-										<div class="card-body">
-											<div class="small text-muted">January 1, 2022</div>
-											<h2 class="card-title h4">Post Title</h2>
-											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-											<a class="btn btn-primary" href="#!">Read more →</a>
-										</div>
-									</div>
-
-								</div>
-
-
 							</div>
-
+							<div class="card mb-4">
+								<a href="">
+									<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
+								</a>
+								<div class="card-body">
+									<div class="small text-muted">January 1, 2022</div>
+									<h2 class="card-title h4">Post Title</h2>
+									<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									<a class="btn btn-primary" href="#!">Read more →</a>
+								</div>
+							</div>
 						</div>
-
-					</div>
+						<div class="col-lg-4 mt-4">
+							<div class="card mb-4">
+								<a href="">
+									<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
+								</a>
+								<div class="card-body">
+									<div class="small text-muted">January 1, 2022</div>
+									<h2 class="card-title h4">Post Title</h2>
+									<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									<a class="btn btn-primary" href="#!">Read more →</a>
+								</div>
+							</div>
+							<div class="card mb-4">
+								<a href="">
+									<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
+								</a>
+								<div class="card-body">
+									<div class="small text-muted">January 1, 2022</div>
+									<h2 class="card-title h4">Post Title</h2>
+									<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									<a class="btn btn-primary" href="#!">Read more →</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 mt-4">
+							<div class="card mb-4">
+								<a href="">
+									<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
+								</a>
+								<div class="card-body">
+									<div class="small text-muted">January 1, 2022</div>
+									<h2 class="card-title h4">Post Title</h2>
+									<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									<a class="btn btn-primary" href="#!">Read more →</a>
+								</div>
+							</div>
+							<div class="card mb-4">
+								<a href="">
+									<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
+								</a>
+								<div class="card-body">
+									<div class="small text-muted">January 1, 2022</div>
+									<h2 class="card-title h4">Post Title</h2>
+									<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									<a class="btn btn-primary" href="#!">Read more →</a>
+								</div>
+							</div>
+						</div>
+					</div>		
 				</div>
 			</div>
-		</div>
-		<div class="section-r">
-			<div class="section-r-top">
-
-				<div class=profil-box>
-
+		
+		
+		
+			<div class="section-r">
+				<div class="section-r-top">
+				<div class=profile-box>
 					<div class="card mb-8">
 						<%-- 비로그인--%>
 						<c:if test="${sessionScope.loginInfo == null }">
 							<div class="card-body mx-auto">
 								<div class="d-grid">
 									<a href="${pageContext.request.contextPath }/login">
-										<button type="button" class="btn btn-dark btn-lg">개인/기업 로그인</button>
+										<button type="button" class="btn-lg" style="background-color: #539DDB; border: solid: #539DDB;"><span style="color: white;">개인/기업 로그인</span></button>
 									</a>
 								</div>
 							</div>
@@ -158,28 +127,31 @@
 
 									&ensp;&ensp;&ensp;&ensp;
 									<a href="${pageContext.request.contextPath }/logout">
-										<button type="button" class="btn btn-dark">로그아웃</button>
+										<button type="button" style="background-color: #539DDB; border: solid: #539DDB;"><span style="color: white;">로그아웃</span></button>
 									</a>
 								</div>
 							</div>
 							<div class="card-footer">
-								<div class="d-flex justify-content-center">
-									<div class="btn-group btn-group-sm gap-1">
+								<div class="d-flex justify-content-center gap-1">
 										<a href="${pageContext.request.contextPath }/myInfo">
-											<button type="button" class="btn btn-outline-secondary">내정보</button>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 20%;">내정보</button>
 										</a>
-										<a href="${pageContext.request.contextPath }/WriteResumePage">
-										<button type="button" class="btn btn-outline-secondary">이력서</button>
+										<a>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 20%;">이력서</button>
 										</a>
-										<button type="button" class="btn btn-outline-secondary">지원현황</button>
-										<button type="button" class="btn btn-outline-secondary">스크랩</button>
-										<button type="button" class="btn btn-outline-secondary">열람기업</button>
-									</div>
+										<a>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 20%;">지원현황</button>
+										</a>
+										<a>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 20%;">스크랩</button>
+										</a>
+										<a>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 20%;">열람기업</button>
+										</a>
 								</div>
 							</div>
 						</c:if>
 					</div>
-
 				</div>
 			</div>
 			<div class="section-r-bottom">
@@ -208,5 +180,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
+		</div>
 </section>
