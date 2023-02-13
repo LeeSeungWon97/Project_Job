@@ -34,7 +34,7 @@ public class EmploymentController {
 		System.out.println(ciList);
 		return ciList;
 	}
-	
+  
 	// 회사 이름 요청
 	@RequestMapping(value = "/sendCname" , produces = "application/text;charset=UTF-8")
 	public @ResponseBody String sendCname(String cmcinum) {
@@ -141,5 +141,5 @@ public class EmploymentController {
 		
 		return null;
 	}
-	
+
 }

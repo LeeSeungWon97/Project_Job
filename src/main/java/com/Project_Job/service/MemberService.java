@@ -74,8 +74,8 @@ public class MemberService {
 		}
 		return loginCInfo;
 	}
-	
-	//개인 회원 아이디 찾기
+
+	// 개인 회원 아이디 찾기
 	public String FindMemberId(String mname, String memail) {
 		System.out.println("MemberService FindMemberId() 호출");
 		String FindMid = mdao.FindMemberId(mname, memail);
@@ -103,24 +103,41 @@ public class MemberService {
 	}
 
 	// 회원 정보 수정
-	public String updateInfo(String mType, String id, String pw, String name, String addr, String email) {
+	public String updateInfo(String mType, String id, String pw, String name, String addr) {
 		System.out.println("MemberService updateInfo() 호출");
 		String result = "";
-		if(mType.equals("P")) {
+		if (mType.equals("P")) {
 			System.out.println("개인회원 정보 수정");
-			int updateResult = mdao.updateMinfo(id,pw,name,addr,email);
-			if(updateResult == 1 ) {
+			int updateResult = mdao.updateMinfo(id, pw, name, addr);
+			if (updateResult == 1) {
 				result = "OK";
 			} else {
 				result = "NO";
 			}
 		} else {
 			System.out.println("기업회원 정보 수정");
-			int updateResult = mdao.updateCMinfo(id,pw,name,email);
-			if(updateResult == 1 ) {
+			int updateResult = mdao.updateCMinfo(id, pw, name);
+			if (updateResult == 1) {
 				result = "OK";
 			} else {
 				result = "NO";
+			}
+		}
+		return result;
+	}
+
+	public String checkPw(String loginType, String loginId, String currentPw) {
+		System.out.println("MemberService checkPw() 호출");
+		String result = "NO";
+		if(loginType.equals("P")) {
+			String loginPw = mdao.selectMemberPw(loginId);
+			if(loginPw.equals(currentPw)) {
+				result = "OK";
+			}
+		} else {
+			String loginPw = mdao.selectCMemberPw(loginId);
+			if(loginPw.equals(currentPw)) {
+				result = "OK";
 			}
 		}
 		return result;
