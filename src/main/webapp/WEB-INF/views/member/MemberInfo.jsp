@@ -34,7 +34,7 @@
 			        	<a href="${pageContext.request.contextPath }" class="nav-link link-dark">
 			          	내정보
 			       		</a>
-			      </li>
+			     	 </li>
 			      <li>
 			        <a href="${pageContext.request.contextPath }" class="nav-link link-dark">
 			          이력서

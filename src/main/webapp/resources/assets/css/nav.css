@@ -1,16 +1,16 @@
 nav{
-	width: 1280px;
+	width: 100%;
+	min-width: 2560px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	
+	border-bottom: solid #539DDB; 
 }
 
 .navigator{
-	width: 100%;
+	width: 50%;
 	text-align: center;
-	border-bottom: solid #539DDB; 
-	
+	display: flex;
 }
 
 .nav-div{
@@ -18,5 +18,4 @@ nav{
 	height: 50px;
 	margin-top: 30px;
 	float: left;
-	
 }

@@ -5,112 +5,88 @@
 	<div class="section-div">
 		<div class="section-l">
 			<div class="section-l-bottom">
-				<div class="container-fluid section-div">
-
-					<div class="row">
-
-						<div class="col-md-8 mt-4">
-							<div class="row">
-								<div class="col-lg-4">
-
-									<div class="card mb-4">
-										<a href="">
-											<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
-										</a>
-										<div class="card-body">
-											<div class="small text-muted">January 1, 2022</div>
-											<h2 class="card-title h4">Post Title</h2>
-											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-											<a class="btn btn-primary" href="#!">Read more →</a>
-										</div>
-									</div>
-
-
-									<div class="card mb-4">
-										<a href="">
-											<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
-										</a>
-										<div class="card-body">
-											<div class="small text-muted">January 1, 2022</div>
-											<h2 class="card-title h4">Post Title</h2>
-											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-											<a class="btn btn-primary" href="#!">Read more →</a>
-										</div>
-									</div>
+				<div class="row">
+					<div class="col-lg-4 mt-4">
+						<div class="card mb-4">
+							<a href="">
+								<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
+							</a>
+							<div class="card-body">
+								<div class="small text-muted">January 1, 2022</div>
+									<h2 class="card-title h4">Post Title</h2>
+									<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									<a class="btn btn-primary" href="#!">Read more →</a>
 								</div>
-								<div class="col-lg-4">
-
-
-									<div class="card mb-4">
-										<a href="">
-											<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
-										</a>
-										<div class="card-body">
-											<div class="small text-muted">January 1, 2022</div>
-											<h2 class="card-title h4">Post Title</h2>
-											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-											<a class="btn btn-primary" href="#!">Read more →</a>
-										</div>
-									</div>
-
-									<div class="card mb-4">
-										<a href="">
-											<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
-										</a>
-										<div class="card-body">
-											<div class="small text-muted">January 1, 2022</div>
-											<h2 class="card-title h4">Post Title</h2>
-											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-											<a class="btn btn-primary" href="#!">Read more →</a>
-										</div>
-									</div>
-								</div>
-
-
-								<div class="col-lg-4">
-
-									<div class="card mb-4">
-										<a href="">
-											<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
-										</a>
-										<div class="card-body">
-											<div class="small text-muted">January 1, 2022</div>
-											<h2 class="card-title h4">Post Title</h2>
-											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-											<a class="btn btn-primary" href="#!">Read more →</a>
-										</div>
-									</div>
-
-
-									<div class="card mb-4">
-										<a href="">
-											<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
-										</a>
-										<div class="card-body">
-											<div class="small text-muted">January 1, 2022</div>
-											<h2 class="card-title h4">Post Title</h2>
-											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-											<a class="btn btn-primary" href="#!">Read more →</a>
-										</div>
-									</div>
-
-								</div>
-
-
-
 							</div>
-
+							<div class="card mb-4">
+								<a href="">
+									<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
+								</a>
+								<div class="card-body">
+									<div class="small text-muted">January 1, 2022</div>
+									<h2 class="card-title h4">Post Title</h2>
+									<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									<a class="btn btn-primary" href="#!">Read more →</a>
+								</div>
+							</div>
 						</div>
-
-					</div>
+						<div class="col-lg-4 mt-4">
+							<div class="card mb-4">
+								<a href="">
+									<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
+								</a>
+								<div class="card-body">
+									<div class="small text-muted">January 1, 2022</div>
+									<h2 class="card-title h4">Post Title</h2>
+									<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									<a class="btn btn-primary" href="#!">Read more →</a>
+								</div>
+							</div>
+							<div class="card mb-4">
+								<a href="">
+									<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
+								</a>
+								<div class="card-body">
+									<div class="small text-muted">January 1, 2022</div>
+									<h2 class="card-title h4">Post Title</h2>
+									<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									<a class="btn btn-primary" href="#!">Read more →</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 mt-4">
+							<div class="card mb-4">
+								<a href="">
+									<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
+								</a>
+								<div class="card-body">
+									<div class="small text-muted">January 1, 2022</div>
+									<h2 class="card-title h4">Post Title</h2>
+									<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									<a class="btn btn-primary" href="#!">Read more →</a>
+								</div>
+							</div>
+							<div class="card mb-4">
+								<a href="">
+									<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
+								</a>
+								<div class="card-body">
+									<div class="small text-muted">January 1, 2022</div>
+									<h2 class="card-title h4">Post Title</h2>
+									<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									<a class="btn btn-primary" href="#!">Read more →</a>
+								</div>
+							</div>
+						</div>
+					</div>		
 				</div>
 			</div>
-		</div>
-		<div class="section-r">
-			<div class="section-r-top">
-
-				<div class=profil-box>
-
+		
+		
+		
+			<div class="section-r">
+				<div class="section-r-top">
+				<div class=profile-box>
 					<div class="card mb-8">
 						<%-- 비로그인--%>
 						<c:if test="${sessionScope.loginInfo == null }">
@@ -156,21 +132,26 @@
 								</div>
 							</div>
 							<div class="card-footer">
-								<div class="d-flex justify-content-center">
-									<div class="btn-group btn-group-sm gap-1">
+								<div class="d-flex justify-content-center gap-1">
 										<a href="${pageContext.request.contextPath }/myInfo">
-											<button type="button" class="btn btn-outline-secondary">내정보</button>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 20%;">내정보</button>
 										</a>
-										<button type="button" class="btn btn-outline-secondary">이력서</button>
-										<button type="button" class="btn btn-outline-secondary">지원현황</button>
-										<button type="button" class="btn btn-outline-secondary">스크랩</button>
-										<button type="button" class="btn btn-outline-secondary">열람기업</button>
-									</div>
+										<a>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 20%;">이력서</button>
+										</a>
+										<a>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 20%;">지원현황</button>
+										</a>
+										<a>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 20%;">스크랩</button>
+										</a>
+										<a>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 20%;">열람기업</button>
+										</a>
 								</div>
 							</div>
 						</c:if>
 					</div>
-
 				</div>
 			</div>
 			<div class="section-r-bottom">
