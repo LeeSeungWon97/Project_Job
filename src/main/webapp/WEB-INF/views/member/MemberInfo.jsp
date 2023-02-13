@@ -117,10 +117,12 @@
 								</div>
 							</c:otherwise>
 						</c:choose>
-						<input type="button" class="changeBtn btn btn-info btn-lg" onclick="changeInfo()" value="수정">
-						<input type="hidden" class="saveBtn btn btn-info btn-lg" onclick="saveInfo()" value="저장">
-						<input type="button" class="deleteBtn btn btn-info btn-lg" onclick="deleteInfo()" value="탈퇴">
-						<input type="hidden" class="cancleBtn btn btn-info btn-lg" onclick="changeCancle()" value="취소">
+
+						<input type="button" class="changeBtn btn-lg" onclick="changeInfo()" value="수정" style="color: white; background-color: #539DDB; border: solid #539DDB;">
+						<input type="hidden" class="saveBtn btn-lg" onclick="saveInfo()" value="저장" style="color: white; background-color: #539DDB; border: solid #539DDB;">
+						<input type="button" class="deleteBtn btn-lg" onclick="deleteInfo()" value="탈퇴" style="color: white; background-color: #539DDB; border: solid #539DDB;">
+						<input type="hidden" class="cancleBtn btn-lg" onclick="changeCancle()" value="취소" style="color: white; background-color: #539DDB; border: solid #539DDB;">
+
 					</div>
 				</div>
 			</div>

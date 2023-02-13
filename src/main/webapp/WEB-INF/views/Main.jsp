@@ -29,7 +29,7 @@
 
 
 </head>
-<body style="position: absolute; left: 50%; transform: translateX(-50%);">
+<body>
 	<!-- Header -->
 	<%@ include file="/WEB-INF/views/includes/main/Header.jsp" %> 
     

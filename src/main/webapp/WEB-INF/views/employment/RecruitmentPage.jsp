@@ -28,48 +28,58 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
+		
 	<!-- Header -->
-	<%@ include file="/WEB-INF/views/includes/main/Header.jsp"%>
-	<!-- Nav -->
-	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
-
-
-
-
-	<div class="table-responsive">
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th scope="col">회사</th>
-					<th scope="col">공고명</th>
-					<th scope="col">경력</th>
-					<th scope="col">마감일</th>
-
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${epList }" var="employ">
-					<tr>
-						<td>${employ.epciname }</td>
-						<td>${employ.epname }</td>
-						<td>${employ.epedu }</td>
-						<td>
-							<button class="btn btn-secondary btn-sm" onclick="WriteResume('${employ.epnum }','${employ.epciname }','${employ.epname }')">자소서작성</button>
-							<span> ${employ.epdeadline }</span>
-						</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
-
-
-
-
-
-
-
+	<%@ include file="/WEB-INF/views/includes/main/Header.jsp" %> 
+     <!-- Nav -->
+    <%@ include file="/WEB-INF/views/includes/main/Nav.jsp" %>
+    	
+	<section id="section">
+		<div class="section-div">
+			<div class="row">
+				<div class="card mt-4 mb-4 shadow rounded-3">
+				<div class="table-responsive">
+					<table class="table table-striped" style="border-radius: 50px;">
+						<thead>
+							<tr>
+								<th scope="col" style="font-size: 20px;">회사</th>
+								<th scope="col" style="font-size: 20px;">공고명</th>
+								<th scope="col"  style="font-size: 20px;">경력</th>
+								<th scope="col"  style="font-size: 20px;">마감일</th>
+								<th scope="col"  style="font-size: 20px;"></th>	
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${epList }" var="employ">
+								<tr>
+                                	<td>${employ.epciname }</td>
+                                    <td>${employ.epname }</td>
+                                    <td>${employ.epedu }</td>
+                               	    <td><span>${employ.epdeadline }</span></td>
+                               		<td>	
+                               			<button class="btn btn-secondary mt-1" onclick="WriteResume('${employ.epnum }','${employ.epciname }','${employ.epname }')" style="min-width: 80px;  font-size: 20%;">자소서작성</button>      
+                              		</td>
+                                </tr>
+                  			</c:forEach>
+						</tbody>
+					</table>
+				</div>	
+				
+			</div>	
+			</div>		
+		</div>
+	</section>
+							
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<!-- Footer-->
 	<%@ include file="/WEB-INF/views/includes/main/Footer.jsp"%>
 
