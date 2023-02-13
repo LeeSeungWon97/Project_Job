@@ -14,8 +14,19 @@ public class EmploymentDto {
 	private String eppost;
 	private String epdeadline;
 	private String epstate;
+	private String epesstate;
 	
 	
+	public String getEpesstate() {
+		return epesstate;
+	}
+
+
+	public void setEpesstate(String epesstate) {
+		this.epesstate = epesstate;
+	}
+
+
 	public String getEpnum() {
 		return epnum;
 	}
@@ -148,11 +159,14 @@ public class EmploymentDto {
 
 	@Override
 	public String toString() {
-		return "EmploymentsDto [epnum=" + epnum + ", epname=" + epname + ", epciname=" + epciname + ", epedu=" + epedu
+		return "EmploymentDto [epnum=" + epnum + ", epname=" + epname + ", epciname=" + epciname + ", epedu=" + epedu
 				+ ", epcareer=" + epcareer + ", eptreat=" + eptreat + ", eptype=" + eptype + ", epmoney=" + epmoney
 				+ ", eparea=" + eparea + ", eptime=" + eptime + ", eppost=" + eppost + ", epdeadline=" + epdeadline
-				+ ", epstate=" + epstate + "]";
+				+ ", epstate=" + epstate + ", epesstate=" + epesstate + "]";
 	}
+
+
+	
 	
 
 	
