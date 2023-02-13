@@ -21,7 +21,7 @@ public interface MemberDao {
 	String selectCCheckId(String cmid);
 
 	// 로그인(개인)
-	@Select("SELECT * FROM MEMBERS WHERE MID = #{id} AND MPW = #{pw} AND MSTATE = '0'")
+	@Select("SELECT MID,MPW,MNAME,MADDR,TO_CHAR(MBIRTH,'YYYY-MM-DD') AS MBIRTH,MEMAIL FROM MEMBERS WHERE MID = #{id} AND MPW = #{pw} AND MSTATE = '0'")
 	MemberDto selectMemberLogin(@Param("id") String id, @Param("pw") String pw);
 
 	// 로그인(기업)
@@ -57,7 +57,7 @@ public interface MemberDao {
 	/*** Insert ***/
 
 	// 회원가입(개인) SQL
-	@Insert("INSERT INTO MEMBERS(MID,MPW,MNAME,MADDR,MBIRTH,MEMAIL,MSTATE) VALUES(#{mid},#{mpw},#{mname},#{maddr},#{mbirth},#{memail},'0')")
+	@Insert("INSERT INTO MEMBERS(MID,MPW,MNAME,MADDR,MBIRTH,MEMAIL,MSTATE) VALUES(#{mid},#{mpw},#{mname},#{maddr},to_date(#{mbirth},'yyyy-mm-dd'),#{memail},'0')")
 	int insertJoinMember(MemberDto joinInfo);
 
 	// 회원가입(기업) SQL

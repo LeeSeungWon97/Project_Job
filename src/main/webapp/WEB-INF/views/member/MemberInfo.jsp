@@ -58,14 +58,7 @@
 			    </ul>
  				 </div>
 				</div>      	
-				    	
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
+				    		
 	    		<div class="col-lg-10 col-xl-8 mx-auto">
 	    			<div class="card flex-row  border-0 shadow rounded-3">
 	    				<div class="card-body p-4 p-sm-5 mb-3">
@@ -120,7 +113,7 @@
 								</div>
 								<div class="input-group input-group-lg mb-3">
 									<span class="input-group-text" style="width: 18%; justify-content: center;">이메일</span>
-									<input type="text" class="email form-control" value="${sessionScope.loginInfo.cmemail }" readonly="readonly" style="background-color: white;">
+									<input type="text" class="form-control" value="${sessionScope.loginInfo.cmemail }" readonly="readonly" style="background-color: white;">
 								</div>
 							</c:otherwise>
 						</c:choose>
@@ -145,6 +138,14 @@
 	<!-- 정규식  -->
 	<script src="${pageContext.request.contextPath }/resources/js/regex.js"></script>
 	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			console.log(sessionStorage.getItem("loginInfo"));
+		});
+		
+	</script>
+	
+	
 	<script type="text/javascript">	
 	
 		function changePw() {
@@ -159,7 +160,6 @@
 			$('.pw').prop("readonly", false);
 			$('.name').prop("readonly", false);
 			$('.addr').prop("readonly", false);
-			$('.email').prop("readonly", false);
 			$('.pwBtn').prop("type", "button");
 			$('.changeBtn').prop("type", "hidden");
 			$('.saveBtn').prop("type", "button");
