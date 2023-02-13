@@ -125,12 +125,10 @@
 							</c:otherwise>
 						</c:choose>
 
-							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-						<input type="button" class="changeBtn btn btn-outline-primary btn-lg mx-1" onclick="changeInfo()" value="수정">
-						<input type="hidden" class="saveBtn btn btn-outline-primary btn-lg mx-1" onclick="saveInfo()" value="저장">
-						<input type="button" class="deleteBtn btn btn-outline-danger btn-lg" onclick="deleteInfo()" value="탈퇴">
-						<input type="hidden" class="cancleBtn btn btn-outline-secondary btn-lg" onclick="changeCancle()" value="취소">
-					</div>
+						<input type="button" class="changeBtn btn-lg" onclick="changeInfo()" value="수정" style="color: white; background-color: #539DDB; border: solid #539DDB;">
+						<input type="hidden" class="saveBtn btn-lg" onclick="saveInfo()" value="저장" style="color: white; background-color: #539DDB; border: solid #539DDB;">
+						<input type="button" class="deleteBtn btn-lg" onclick="deleteInfo()" value="탈퇴" style="color: white; background-color: #539DDB; border: solid #539DDB;">
+						<input type="hidden" class="cancleBtn btn-lg" onclick="changeCancle()" value="취소" style="color: white; background-color: #539DDB; border: solid #539DDB;">
 
 					</div>
 				</div>

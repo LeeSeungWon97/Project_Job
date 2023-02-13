@@ -24,8 +24,11 @@
     <link href="${pageContext.request.contextPath }/resources/assets/css/header.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath }/resources/assets/css/section.css" rel="stylesheet" />
-
+	<link href="${pageContext.request.contextPath }/resources/assets/css/footer.css" rel="stylesheet" />
+	
+	
 	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -35,34 +38,41 @@
      <!-- Nav -->
     <%@ include file="/WEB-INF/views/includes/main/Nav.jsp" %>
     
-
+	<section id="section">
+		<div class="section-div">
+			<div class="row">
+				<div class="card mt-4 mb-4 shadow rounded-3">
+				<div class="table-responsive">
+					<table class="table table-striped" style="border-radius: 50px;">
+						<thead>
+							<tr>
+								<th scope="col" style="font-size: 20px;">회사</th>
+								<th scope="col" style="font-size: 20px;">공고명</th>
+								<th scope="col" style="font-size: 20px;">마감일</th>
+								<th scope="col"></th>
+									
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${epList }" var="employ">
+								<tr>
+                                	<td>${employ.epciname }</td>
+                                    <td>${employ.epname }</td>
+                                    <td>${employ.epdeadline }</td>
+                               	    <td><button class="btn btn-secondary mt-1" onclick="WriteResume()" style="min-width: 75px;  font-size: 20%;">즉시지원</button></td>  
+                                </tr>
+                  			</c:forEach>
+						</tbody>
+					</table>
+				</div>	
+				
+			</div>	
+			</div>		
+		</div>
+	</section>
 							
 	
-					 <div class="table-responsive">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th scope="col">회사</th>
-									<th scope="col">공고명</th>
-									<th scope="col"></th>
-									<th scope="col"></th>
-									
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${epList }" var="employ">
-								<tr>
-                                          <td>${employ.epciname }</td>
-                                          <td>${employ.epname }</td>
-                                          <td>${employ.epdeadline }</td>
-                               <td><button class="btn btn-secondary btn-sm" onclick="WriteResume()">즉시지원</button></td>
-                               
-                                </tr>
-                  			  </c:forEach>
-							</tbody>
-						</table>
-					</div>	
-				 
+					 
 	
 	
 	
