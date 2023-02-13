@@ -9,7 +9,7 @@
 <meta name="author" content="" />
 <title>JoinForm</title>
 <!-- Favicon-->
-<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath }/resources/assets/favicon.ico" />
+ <link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png">
 <!-- Bootstrap icons-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
@@ -18,7 +18,7 @@
 <body>
 	<div class="container">
 		<div class="d-flex justify-content-center">
-    		<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/logo.png" style="width:120px; height:100px;"></a> 
+    		<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 200px; height:100px;"></a> 
     	</div>
 		<div class="row">
 			<div class="col-lg-10 col-xl-8 mx-auto">
@@ -76,7 +76,7 @@
 								<span id="mailCheckResult"></span>
 							</div>
 							<div class="d-grid mb-4">
-								<button class="btn btn-dark btn-lg" type="submit">회원가입</button>
+								<button class="btn-lg" type="submit" style="background-color: #539DDB; border: solid #539DDB;"><span style="color: white;">회원가입</span></button>
 							</div>
 							<hr class="my-4">
 						</form>

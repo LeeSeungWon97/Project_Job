@@ -1,0 +1,13 @@
+footer{
+	width: 100%;
+	min-width: 2560px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+}
+
+.foot{
+	width: 100%;
+	text-align: center;	
+}

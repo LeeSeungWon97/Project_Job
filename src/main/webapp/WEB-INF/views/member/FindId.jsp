@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <title>Login</title>
 <!-- Favicon-->
-<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath }/resources/assets/favicon.ico" />
+ <link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png">
 <!-- Bootstrap icons-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
@@ -18,7 +18,7 @@
 
 	<div class="container">
 		<div class="d-flex justify-content-center">
-    		<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/logo.png" style="width:120px; height:100px;"></a> 
+    		<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 200px; height:100px;"></a> 
     	</div>
 		<div class="row">
 			<div class="col-lg-10 col-xl-5 mx-auto">
@@ -47,7 +47,7 @@
 							
 
 							<div class="d-grid mb-3">
-								<button class="btn btn-dark" type="submit">아이디 찾기</button>
+								<button type="submit" class="btn-lg" style="background-color: #539DDB; border: solid #539DDB;"><span style="color: white;">아이디 찾기</span></button>
 							</div>
 						</form>
 						<div>
