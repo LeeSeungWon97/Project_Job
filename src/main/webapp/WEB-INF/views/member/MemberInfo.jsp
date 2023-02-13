@@ -18,7 +18,7 @@
 				</div>
 				<div>
 					<label>비밀번호</label><br>
-					<input type="password" class="pw" value="${sessionScope.loginInfo.mpw }" readonly="readonly">
+					<input type="password" id="pw" class="pw" value="${sessionScope.loginInfo.mpw }" readonly="readonly">
 					<input type="hidden" class="pwBtn" onclick="changePw()" value="변경">
 				</div>
 				<div>
@@ -84,6 +84,7 @@
 			console.log("changePw() 호출");
 			window.open("${pageContext.request.contextPath }/changePw",
 					"비밀번호 변경", "width=400,height=400,top=10,left=100");
+			
 		}
 
 		function changeInfo() {

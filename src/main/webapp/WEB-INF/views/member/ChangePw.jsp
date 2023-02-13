@@ -105,10 +105,13 @@
 				if (ischeckNewPwForm) {
 					checkPw();
 					if (isCheckNewPw) {
-						alert("변경확인");
-						window.opener.$('.pw').val()= $('#newPw');
-						window.opener.location.reload();
-						window.close();
+						if($('#newPw').val() == $('#currentPw').val()){
+							alert("새 비밀번호는 현재 비밀번호와 달라야합니다.");
+						} else{
+							alert("변경확인");
+							window.opener.document.getElementById('pw').value = document.getElementById('newPw').value;
+							window.close();														
+						}
 					}
 				}
 			}
