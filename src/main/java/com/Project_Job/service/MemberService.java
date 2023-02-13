@@ -143,4 +143,19 @@ public class MemberService {
 		return result;
 	}
 
+	public boolean deleteUserInfo(String loginType, String loginId) {
+		System.out.println("MemberService deleteUserInfo() 호출");
+		boolean result = false;
+		int updateResult = 0;
+		if(loginType.equals("P")) {
+			updateResult = mdao.updateMState(loginId);	
+		} else {
+			updateResult = mdao.updateCMState(loginId);
+		}
+		if(updateResult == 1) {
+			result = true;
+		}
+		return result;
+	}
+
 }
