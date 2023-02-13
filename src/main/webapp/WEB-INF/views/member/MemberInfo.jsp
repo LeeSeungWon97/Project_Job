@@ -124,10 +124,12 @@
 								</div>
 							</c:otherwise>
 						</c:choose>
+
 						<input type="button" class="changeBtn btn-lg" onclick="changeInfo()" value="수정" style="color: white; background-color: #539DDB; border: solid #539DDB;">
 						<input type="hidden" class="saveBtn btn-lg" onclick="saveInfo()" value="저장" style="color: white; background-color: #539DDB; border: solid #539DDB;">
 						<input type="button" class="deleteBtn btn-lg" onclick="deleteInfo()" value="탈퇴" style="color: white; background-color: #539DDB; border: solid #539DDB;">
 						<input type="hidden" class="cancleBtn btn-lg" onclick="changeCancle()" value="취소" style="color: white; background-color: #539DDB; border: solid #539DDB;">
+
 					</div>
 				</div>
 			</div>
@@ -146,6 +148,7 @@
 	<script src="${pageContext.request.contextPath }/resources/js/regex.js"></script>
 	
 	<script type="text/javascript">	
+	
 		function changePw() {
 			console.log("changePw() 호출");
 			window.open("${pageContext.request.contextPath }/changePw",
@@ -214,12 +217,21 @@
 
 		function deleteInfo() {
 			console.log("deleteInfo() 호출");
-			alert("회원탈퇴를 하시겠습니까?");
+			window.open("${pageContext.request.contextPath }/deleteUser",
+						"회원 탈퇴", "width=400,height=400,top=10,left=100");
 		}
 
 		function changeCancle() {
 			console.log("changeCancle() 호출");
 			location.reload();
+		}
+		
+		function deleteCheck(result){
+			if(result){
+				location.href="${pageContext.request.contextPath}/logout"	
+			} else{
+				location.reload();
+			}
 		}
 	</script>
 </body>

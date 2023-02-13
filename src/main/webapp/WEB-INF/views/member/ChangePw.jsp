@@ -4,23 +4,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- Bootstrap icons-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
+
 </head>
 <body>
+   		<div class="col-lg-10 col-xl-8 mx-auto" style="text-align: center;">
+
+	    				<div class="card-body p-4 p-sm-5 mb-3">
 	<label>현재 비밀번호</label>
 	<br>
-	<input type="password" id="currentPw">
+	<input type="password" id="currentPw" class="form-control">
 	<br>
 	<label>새 비밀번호</label>
 	<br>
-	<input type="password" id="newPw">
+	<input type="password" id="newPw" class="form-control">
 	<br>
 	<label>새 비밀번호 확인</label>
 	<br>
-	<input type="password" id="newPwCheck">
+	<input type="password" id="newPwCheck" class="form-control">
 	<br>
-	<br>
-	<input type="button" id="changeBtn" value="변경" onclick="changePw()">
 
+	<input type="button" id="changeBtn" class="btn btn-outline-primary btn-lg" value="변경" onclick="changePw()">
+</div>
+</div>
 
 	<!-- jQuery -->
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>

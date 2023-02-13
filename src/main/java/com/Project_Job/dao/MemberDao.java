@@ -21,37 +21,37 @@ public interface MemberDao {
 	String selectCCheckId(String cmid);
 
 	// 로그인(개인)
-	@Select("SELECT * FROM MEMBERS WHERE MID = #{id} AND MPW = #{pw}")
+	@Select("SELECT * FROM MEMBERS WHERE MID = #{id} AND MPW = #{pw} AND MSTATE = '0'")
 	MemberDto selectMemberLogin(@Param("id") String id, @Param("pw") String pw);
 
 	// 로그인(기업)
-	@Select("SELECT * FROM CMEMBERS WHERE CMID = #{id} AND CMPW = #{pw}")
+	@Select("SELECT * FROM CMEMBERS WHERE CMID = #{id} AND CMPW = #{pw} AND CMSTATE = '0'")
 	CmemberDto selectCompanyLogin(@Param("id") String id, @Param("pw") String pw);
 
 	// 아이디찾기(개인)
-	@Select("SELECT MID FROM MEMBERS WHERE MNAME = #{mname} AND MEMAIL = #{memail}")
+	@Select("SELECT MID FROM MEMBERS WHERE MNAME = #{mname} AND MEMAIL = #{memail} AND MSTATE = '0'")
 	String FindMemberId(@Param("mname") String mname, @Param("memail") String memail);
 
 	// 아이디찾기(기업)
 	@Select("SELECT CMID " + "FROM CMEMBERS, CINFO " + "WHERE CMEMBERS.CMCINUM = CINFO.CINUM "
 			+ "AND CINFO.CINAME LIKE '%${ciname}%' AND CMEMBERS.CMNAME = #{mname} "
-			+ "AND CMEMBERS.CMEMAIL = #{memail} ")
+			+ "AND CMEMBERS.CMEMAIL = #{memail} AND CMEMBERS.CMSTATE = '0'")
 	String FindCMemberId(@Param("mname") String mname, @Param("memail") String memail, @Param("ciname") String ciname);
 
 	// 비밀번호 찾기(개인)
-	@Select("SELECT MPW FROM MEMBERS WHERE MID = #{id}")
+	@Select("SELECT MPW FROM MEMBERS WHERE MID = #{id} AND MSTATE = '0'")
 	String selectMemberPw(String id);
 
 	// 비밀번호 찾기(기업)
-	@Select("SELECT CMPW FROM CMEMBERS WHERE CMID = #{id}")
+	@Select("SELECT CMPW FROM CMEMBERS WHERE CMID = #{id} AND CMSTATE = '0'")
 	String selectCMemberPw(String id);
 
 	// 이메일 찾기(개인)
-	@Select("SELECT MEMAIL FROM MEMBERS WHERE MID = #{id}")
+	@Select("SELECT MEMAIL FROM MEMBERS WHERE MID = #{id} AND MSTATE = '0'")
 	String selectMemberEmail(String id);
 
 	// 이메일 찾기(기업)
-	@Select("SELECT CMEMAIL FROM CMEMBERS WHERE CMID = #{id}")
+	@Select("SELECT CMEMAIL FROM CMEMBERS WHERE CMID = #{id} AND CMSTATE = '0'")
 	String selectCMemberEmail(String id);
 
 	/*** Insert ***/
@@ -73,5 +73,11 @@ public interface MemberDao {
 
 	@Update("UPDATE CMEMBERS SET CMPW = #{pw}, CMNAME = #{name} WHERE CMID = #{id}")
 	int updateCMinfo(@Param("id") String id, @Param("pw") String pw, @Param("name") String name);
+
+	@Update("UPDATE MEMBERS SET MSTATE='1' WHERE MID = #{loginId}")
+	int updateMState(String loginId);
+	
+	@Update("UPDATE CMEMBERS SET CMSTATE='1' WHERE CMID = #{loginId}")
+	int updateCMState(String loginId);
 
 }

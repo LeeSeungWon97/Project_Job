@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 
 <header id="header"> 
     <div class="header-div">
@@ -17,15 +17,33 @@
       				<button class="search-btn" type="submit">
 					<img src="${pageContext.request.contextPath }/resources/assets/img/update/search-icon.png" style="width:90%; height:auto;">
 					</button>
-     				</form>
- 			</div>
+				</form>
+			</div>
 		</div>
-		
+
 		<div class="top-menu">
-			<a class="tmenu-text" href="${pageContext.request.contextPath }/login ">로그인</a>
-			<a class="tmenu-text" href="${pageContext.request.contextPath }/join">회원가입</a>
+			<c:choose>
+				<c:when test="${sessionScope.loginInfo.mid == null }">
+					<a class="tmenu-text" href="${pageContext.request.contextPath }/login ">로그인</a>
+					<a class="tmenu-text" href="${pageContext.request.contextPath }/join">회원가입</a>
+				</c:when>
+				<c:otherwise>
+				<a href="${pageContext.request.contextPath }/myInfo">
+					<c:choose>
+						<c:when test="${sessionScope.loginType == 'P' }">
+							${sessionScope.loginInfo.mname } 님	
+						</c:when>
+						<c:otherwise>
+							${sessionScope.loginInfo.cmname } 님	
+						</c:otherwise>
+					</c:choose>
+					</a>
+				</c:otherwise>
+				
+			</c:choose>
 			<a class="tmenu-text" href="${pageContext.request.contextPath }/">기업회원 홈</a>
 		</div>
+
 		
     </div>
 </header>
