@@ -80,6 +80,7 @@
 	<script src="${pageContext.request.contextPath }/resources/js/regex.js"></script>
 	
 	<script type="text/javascript">	
+	
 		function changePw() {
 			console.log("changePw() 호출");
 			window.open("${pageContext.request.contextPath }/changePw",
@@ -148,12 +149,21 @@
 
 		function deleteInfo() {
 			console.log("deleteInfo() 호출");
-			alert("회원탈퇴를 하시겠습니까?");
+			window.open("${pageContext.request.contextPath }/deleteUser",
+						"회원 탈퇴", "width=400,height=400,top=10,left=100");
 		}
 
 		function changeCancle() {
 			console.log("changeCancle() 호출");
 			location.reload();
+		}
+		
+		function deleteCheck(result){
+			if(result){
+				location.href="${pageContext.request.contextPath}/logout"	
+			} else{
+				location.reload();
+			}
 		}
 	</script>
 </body>

@@ -107,6 +107,13 @@ public class MemberController {
 		System.out.println("비밀번호 팝업창 요청");
 		return "member/ChangePw";
 	}
+	
+	// 비밀번호 변경 팝업창 요청
+		@RequestMapping(value = "/deleteUser")
+		public String deleteUser() {
+			System.out.println("비밀번호 확인 팝업창 요청");
+			return "member/DeleteUser";
+		}
 
 	/*** 회원가입 컨트롤러 ***/
 
@@ -317,6 +324,7 @@ public class MemberController {
 	public @ResponseBody String checkPassword(String currentPw) {
 		System.out.println("currentPw: "+ currentPw);
 		String loginType = (String)session.getAttribute("loginType");
+		System.out.println("callLoginType 호출");
 		String loginId = "";
 		if(loginType.equals("P")) {
 			MemberDto mdto = (MemberDto)session.getAttribute("loginInfo");
@@ -326,6 +334,24 @@ public class MemberController {
 			loginId = cmdto.getCmid();
 		}
 		String result = msvc.checkPw(loginType, loginId, currentPw);
+		return result;
+	}
+	
+	// 회원 탈퇴
+	@RequestMapping(value = "/deleteUserInfo")
+	public @ResponseBody boolean deleteUserInfo() {
+		System.out.println("deleteUserInfo 호출");
+		boolean result = false;
+		String loginType = (String)session.getAttribute("loginType");
+		String loginId = "";
+		if(loginType.equals("P")) {
+			MemberDto mdto = (MemberDto)session.getAttribute("loginInfo");
+			loginId = mdto.getMid();
+		} else {
+			CmemberDto cmdto = (CmemberDto)session.getAttribute("loginInfo");
+			loginId = cmdto.getCmid();
+		}
+		result = msvc.deleteUserInfo(loginType, loginId);
 		return result;
 	}
 }

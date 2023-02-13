@@ -20,7 +20,7 @@
 
     <link href="${pageContext.request.contextPath }/resources/assets/css/header.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
-    <link href="${pageContext.request.contextPath }/resources/assets/css/section.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath }/resources/assets/css/section.css" rel="stylesheet" />    
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
