@@ -22,11 +22,28 @@
 <link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath }/resources/assets/css/section.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath }/resources/assets/css/footer.css" rel="stylesheet" />
-
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style type="text/css">
+.scrap {
+    color: transparent; /* 기존 이모지 컬러 제거 */
+    text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
+     border:none;
+     background-color:transparent;
+}
+.scrap:hover{
+    text-shadow: 0 0 0 #fdf002; /* 마우스 호버 */
+    text-shadow: 0 0 0 #fdf002; /* 마우스 호버 뒤에오는 이모지들 */
+    text-shadow: 0 0 0 #fdf002; /* 마우스 클릭 체크 */
+}
+.scrap_click{
+ text-shadow: 0 0 0 #fdf002; 
+}
+
+</style>
+
 </head>
 <body>
 
@@ -53,13 +70,15 @@
 								<c:forEach items="${epList }" var="employ">
 									<tr>
 										<td>${employ.epciname }</td>
-										<td>${employ.epname }</td>
-										<td>${employ.epdeadline }</td>
+										<td>${employ.epname }
+										 <input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"> </td>
+										<td>${employ.epdeadline }  </td>
 										<td>
 											<button class="btn btn-secondary mt-1" onclick="WriteResume()" style="min-width: 75px; font-size: 20%;">즉시지원</button>
 										</td>
 									</tr>
 								</c:forEach>
+
 							</tbody>
 						</table>
 					</div>
@@ -81,12 +100,70 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-<script type="text/javascript">
-	function WriteResume() {
+
+
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
+		
+	<script type="text/javascript">
+	$(document).ready(function(){
+		selectScrapInfo();
+	});
+	
+	function WriteResume(){
+
 		console.log("WriteResume 호출")
 		window.open("${pageContext.request.contextPath }/WriteResumePage",
 				"WPPopUp", "width=600,height=800,top=10,left=100");
 	}
-</script>
+	</script>
+
+
+	<script type="text/javascript">	
+		function checkVal(checkedName, selBtn){
+		console.log(checkedName);
+		if ($(selBtn).hasClass("scrap_click")) {
+			$(selBtn).removeClass("scrap_click");
+			$.ajax({
+				type: "get",
+				url: "${pageContext.request.contextPath }/removeScrap",
+				data : {"checkedName" : checkedName},
+				dataType : "json",
+				success:function(result){
+				}
+			});
+			
+		}else{
+		$(selBtn).addClass("scrap_click");
+		$.ajax({
+			type: "get",
+			url: "${pageContext.request.contextPath }/scrapEpname",
+			data : {"checkedName" : checkedName},
+			dataType : "json",
+			success:function(result){
+			}
+		});
+		}
+		
+		}
+		
+		function selectScrapInfo(){
+			$.ajax( { 
+				type : "get",
+				url : "${pageContext.request.contextPath }/selectScrapInfo",
+				async:false,
+				dataType:"json",
+				success : function(scrapList){
+						 for(var scrapinfo of scrapList){
+						 $("#"+scrapinfo.spepnum).addClass("scrap_click");
+						 }
+					
+				}
+			} );			
+		}
+		
+		
+		
+	</script>
 
 </html>

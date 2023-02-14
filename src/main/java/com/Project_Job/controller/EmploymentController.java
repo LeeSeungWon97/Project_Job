@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +14,7 @@ import com.Project_Job.dto.EmploymentDto;
 import com.Project_Job.dto.EssayDto;
 import com.Project_Job.dto.MemberDto;
 import com.Project_Job.dto.ResumeDto;
+import com.Project_Job.dto.ScrapDto;
 import com.Project_Job.service.EmploymentService;
 
 
@@ -142,4 +142,47 @@ public class EmploymentController {
 		return null;
 	}
 
+	
+	//스크랩 요청
+		@RequestMapping(value = "/scrapEpname")
+		public @ResponseBody String scrapCiname(String checkedName) {
+			System.out.println("Epcontroller scrapCiname요청");
+			System.out.println(checkedName);
+			MemberDto loginMInfo =  (MemberDto) session.getAttribute("loginInfo");
+			//String loginType = (String) session.getAttribute("loginType");
+			//String loginId = mcontroller.loginLid(loginType);
+			String smid = loginMInfo.getMid();
+			ScrapDto scrapInfo = new ScrapDto();
+			scrapInfo.setSpmid(smid);
+			scrapInfo.setSpepnum(checkedName);
+			epsvc.insertScrap(scrapInfo);
+			
+			return null;
+		}
+
+		@RequestMapping(value = "/removeScrap")
+		public @ResponseBody String removeScrap(String checkedName) {
+			System.out.println("Epcontroller removeScrap요청");
+			System.out.println(checkedName);
+			MemberDto loginMInfo =  (MemberDto) session.getAttribute("loginInfo");
+			String smid = loginMInfo.getMid();
+			ScrapDto scrapInfo = new ScrapDto();
+			scrapInfo.setSpmid(smid);
+			scrapInfo.setSpepnum(checkedName);
+			epsvc.deleteScrap(smid,checkedName);
+			
+			return null;
+		}
+		
+		@RequestMapping(value = "/selectScrapInfo")
+		public @ResponseBody String selectScrapInfo() {
+			MemberDto loginMInfo =  (MemberDto) session.getAttribute("loginInfo");
+			String smid = loginMInfo.getMid();
+			String scrapInfo = epsvc.selectScrapInfo(smid);
+			
+			return scrapInfo;
+		}	
+		
+		
+		
 }
