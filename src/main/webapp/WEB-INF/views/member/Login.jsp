@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,9 +21,11 @@
 <body>
 
 	<div class="d-flex justify-content-center">
-    		<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 200px; height:100px;"></a> 
-    	</div>
-	
+		<a class="navbar-brand" href="${pageContext.request.contextPath }/">
+			<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 200px; height: 100px;">
+		</a>
+	</div>
+
 
 
 	<div class="container">
@@ -48,7 +50,9 @@
 							</div>
 
 							<div class="d-grid mb-3">
-								<button type="submit" class="btn-lg" style="background-color: #539DDB;"><span style="color: white;">로그인</span></button>
+								<button type="submit" class="btn-lg" style="background-color: #539DDB;">
+									<span style="color: white;">로그인</span>
+								</button>
 							</div>
 							<div>
 								<span>
@@ -74,8 +78,6 @@
 		</div>
 	</div>
 
-
-
 	<script type="text/javascript">
 		function checkInputVal(formObj) {
 			var selectType = formObj.loginType;
@@ -94,6 +96,6 @@
 			}
 		}
 	</script>
-	
+
 </body>
 </html>

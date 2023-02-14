@@ -9,7 +9,7 @@
 <meta name="author" content="" />
 <title>info</title>
 <!-- Favicon-->
- <link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png">
+<link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png">
 <!-- Bootstrap icons-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
@@ -18,57 +18,32 @@
 <body>
 	<div class="container">
 		<div class="d-flex justify-content-center">
-    		<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 200px; height:100px;"></a> 
-    	</div>
-	    	<div class="row">
-	    		<div class="col-2">
-	    		<!-- SideBar -->	
-	 			<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 100%; display: flex; ">
-			      	<a href="" class="d-flex align-items-center link-dark text-decoration-none">
-			        	<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-			        	<strong>mdo</strong>
-			      	</a>
-			   		<hr>
-			    <ul class="nav nav-pills flex-column mb-auto">
-			    	<li class="nav-item">
-			        	<a href="${pageContext.request.contextPath }" class="nav-link link-dark">
-			          	내정보
-			       		</a>
-			     	 </li>
-			      <li>
-			        <a href="${pageContext.request.contextPath }" class="nav-link link-dark">
-			          이력서
-			        </a>
-			      </li>
-			      <li>
-			        <a href="${pageContext.request.contextPath }" class="nav-link link-dark">
-			        지원현황
-			        </a>
-			      </li>
-			      <li>
-			        <a href="${pageContext.request.contextPath }" class="nav-link link-dark">
-			        	스크랩
-			        </a>
-			      </li>
-			      <li>
-			        <a href="${pageContext.request.contextPath }" class="nav-link link-dark">
-			       열람기업
-			        </a>
-			      </li>
-			    </ul>
- 				 </div>
-				</div>      	
-				    	
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
-	    		<div class="col-lg-10 col-xl-8 mx-auto">
-	    			<div class="card flex-row  border-0 shadow rounded-3">
-	    				<div class="card-body p-4 p-sm-5 mb-3">
+			<a class="navbar-brand" href="${pageContext.request.contextPath }/">
+				<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 200px; height: 100px;">
+			</a>
+		</div>
+		<div class="row">
+			<div class="col-2">
+				<!-- SideBar -->
+				<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 100%; display: flex;">
+					<a href="" class="d-flex align-items-center link-dark text-decoration-none">
+						<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+						<strong>mdo</strong>
+					</a>
+					<hr>
+					<ul class="nav nav-pills flex-column mb-auto">
+						<li class="nav-item"><a href="${pageContext.request.contextPath }" class="nav-link link-dark"> 내정보 </a></li>
+						<li><a href="${pageContext.request.contextPath }" class="nav-link link-dark"> 이력서 </a></li>
+						<li><a href="${pageContext.request.contextPath }" class="nav-link link-dark"> 지원현황 </a></li>
+						<li><a href="${pageContext.request.contextPath }" class="nav-link link-dark"> 스크랩 </a></li>
+						<li><a href="${pageContext.request.contextPath }" class="nav-link link-dark"> 열람기업 </a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-lg-10 col-xl-8 mx-auto">
+				<div class="card flex-row  border-0 shadow rounded-3">
+					<div class="card-body p-4 p-sm-5 mb-3">
 						<c:choose>
 							<c:when test="${sessionScope.loginType == 'P'}">
 								<div class="input-group input-group-lg mb-3">
@@ -103,7 +78,7 @@
 								</div>
 								<div class="input-group input-group-lg mb-3">
 									<span class="input-group-text" style="width: 18%; justify-content: center;">회사명</span>
-									<input type="text" class="cmciname form-control" readonly="readonly" style="background-color: white;" >
+									<input type="text" class="cmciname form-control" readonly="readonly" style="background-color: white;">
 								</div>
 								<div class="input-group input-group-lg mb-3">
 									<span class="input-group-text" style="width: 18%; justify-content: center;">아이디</span>
@@ -120,15 +95,17 @@
 								</div>
 								<div class="input-group input-group-lg mb-3">
 									<span class="input-group-text" style="width: 18%; justify-content: center;">이메일</span>
-									<input type="text" class="email form-control" value="${sessionScope.loginInfo.cmemail }" readonly="readonly" style="background-color: white;">
+									<input type="text" class="form-control" value="${sessionScope.loginInfo.cmemail }" readonly="readonly" style="background-color: white;">
 								</div>
 							</c:otherwise>
 						</c:choose>
 
-						<input type="button" class="changeBtn btn-lg" onclick="changeInfo()" value="수정" style="color: white; background-color: #539DDB; border: solid #539DDB;">
-						<input type="hidden" class="saveBtn btn-lg" onclick="saveInfo()" value="저장" style="color: white; background-color: #539DDB; border: solid #539DDB;">
-						<input type="button" class="deleteBtn btn-lg" onclick="deleteInfo()" value="탈퇴" style="color: white; background-color: #539DDB; border: solid #539DDB;">
-						<input type="hidden" class="cancleBtn btn-lg" onclick="changeCancle()" value="취소" style="color: white; background-color: #539DDB; border: solid #539DDB;">
+						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+							<input type="button" class="changeBtn btn btn-outline-primary btn-lg mx-1" onclick="changeInfo()" value="수정">
+							<input type="hidden" class="saveBtn btn btn-outline-primary btn-lg mx-1" onclick="saveInfo()" value="저장">
+							<input type="button" class="deleteBtn btn btn-outline-danger btn-lg" onclick="deleteInfo()" value="탈퇴">
+							<input type="hidden" class="cancleBtn btn btn-outline-secondary btn-lg" onclick="changeCancle()" value="취소">
+						</div>
 
 					</div>
 				</div>
@@ -138,7 +115,7 @@
 
 
 
-	
+
 
 	<!-- jQuery -->
 
@@ -146,14 +123,20 @@
 
 	<!-- 정규식  -->
 	<script src="${pageContext.request.contextPath }/resources/js/regex.js"></script>
-	
-	<script type="text/javascript">	
-	
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			console.log(sessionStorage.getItem("loginInfo"));
+		});
+	</script>
+
+
+	<script type="text/javascript">
 		function changePw() {
 			console.log("changePw() 호출");
 			window.open("${pageContext.request.contextPath }/changePw",
 					"비밀번호 변경", "width=400,height=400,top=10,left=100");
-			
+
 		}
 
 		function changeInfo() {
@@ -161,7 +144,6 @@
 			$('.pw').prop("readonly", false);
 			$('.name').prop("readonly", false);
 			$('.addr').prop("readonly", false);
-			$('.email').prop("readonly", false);
 			$('.pwBtn').prop("type", "button");
 			$('.changeBtn').prop("type", "hidden");
 			$('.saveBtn').prop("type", "button");
@@ -218,18 +200,18 @@
 		function deleteInfo() {
 			console.log("deleteInfo() 호출");
 			window.open("${pageContext.request.contextPath }/deleteUser",
-						"회원 탈퇴", "width=400,height=400,top=10,left=100");
+					"회원 탈퇴", "width=400,height=400,top=10,left=100");
 		}
 
 		function changeCancle() {
 			console.log("changeCancle() 호출");
 			location.reload();
 		}
-		
-		function deleteCheck(result){
-			if(result){
-				location.href="${pageContext.request.contextPath}/logout"	
-			} else{
+
+		function deleteCheck(result) {
+			if (result) {
+				location.href = "${pageContext.request.contextPath}/logout"
+			} else {
 				location.reload();
 			}
 		}
