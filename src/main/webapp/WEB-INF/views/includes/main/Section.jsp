@@ -80,11 +80,9 @@
 					</div>
 				</div>
 			</div>
-		
-		
-		
-			<div class="section-r">
-				<div class="section-r-top">
+		</div>
+		<div class="section-r">
+			<div class="section-r-top">
 				<div class="profile-box mt-4">
 					<div class="card mb-8">
 						<%-- 비로그인--%>
@@ -122,30 +120,32 @@
 											<span style="font-size: 20px;">${sessionScope.loginInfo.mname}</span>
 										</c:when>
 										<c:otherwise>
-											<span >${sessionScope.loginInfo.cmname}</span>
+											<span>${sessionScope.loginInfo.cmname}</span>
 										</c:otherwise>
 									</c:choose>
 
 									&ensp;&ensp;&ensp;&ensp;
 									<a href="${pageContext.request.contextPath }/logout">
-										<button type="button" class="btn-lg" style="background-color: #539DDB; border: solid #539DDB;"><span style="color: white;">로그아웃</span></button>
+										<button type="button" class="btn-lg" style="background-color: #539DDB; border: solid #539DDB;">
+											<span style="color: white;">로그아웃</span>
+										</button>
 									</a>
 								</div>
 							</div>
 							<div class="card-footer">
 								<div class="d-flex justify-content-center gap-1">
-										<a href="${pageContext.request.contextPath }/myInfo">
-											<button type="button" class="btn btn-outline-secondary btn-sm" >내정보</button>
-										</a>
-										<a>
-											<button type="button" class="btn btn-outline-secondary btn-sm" >이력서</button>
-										</a>
-										<a>
-											<button type="button" class="btn btn-outline-secondary btn-sm" >지원현황</button>
-										</a>
-										<a>
-											<button type="button" class="btn btn-outline-secondary btn-sm" >스크랩</button>
-										</a>
+									<a href="${pageContext.request.contextPath }/myInfo">
+										<button type="button" class="btn btn-outline-secondary btn-sm">내정보</button>
+									</a>
+									<a>
+										<button type="button" class="btn btn-outline-secondary btn-sm">이력서</button>
+									</a>
+									<a>
+										<button type="button" class="btn btn-outline-secondary btn-sm">지원현황</button>
+									</a>
+									<a>
+										<button type="button" class="btn btn-outline-secondary btn-sm">스크랩</button>
+									</a>
 								</div>
 							</div>
 						</c:if>
