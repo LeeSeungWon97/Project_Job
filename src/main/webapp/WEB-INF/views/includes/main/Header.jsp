@@ -23,7 +23,7 @@
 
 		<div class="top-menu">
 			<c:choose>
-				<c:when test="${sessionScope.loginInfo.mid == null }">
+				<c:when test="${sessionScope.loginInfo == null }">
 					<a class="tmenu-text" href="${pageContext.request.contextPath }/login ">로그인</a>
 					<a class="tmenu-text" href="${pageContext.request.contextPath }/join">회원가입</a>
 				</c:when>
