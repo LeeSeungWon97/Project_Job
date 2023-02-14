@@ -2,6 +2,7 @@ package com.Project_Job.controller;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -27,6 +28,10 @@ public class MemberController {
 	private EmploymentService epsvc;
 	@Autowired
 	private HttpSession session;
+	@Autowired
+	private HttpServletRequest request;
+
+	private String requestUrl = "http://localhost:8080/controller/";
 
 	/*** 페이지 이동 ***/
 
@@ -53,9 +58,16 @@ public class MemberController {
 
 	// 로그인 페이지 이동
 	@RequestMapping(value = "/login")
-	public String loginPage() {
+	public ModelAndView loginPage() {
 		System.out.println("로그인 페이지 이동 요청");
-		return "member/Login";
+		ModelAndView mav = new ModelAndView();
+		String afterUrl = (String) request.getHeader("referer");
+		if (!afterUrl.equals("http://localhost:8080/controller/loginMember")) {
+			requestUrl = afterUrl;
+		}
+		mav.addObject("requestUrl", requestUrl);
+		mav.setViewName("member/Login");
+		return mav;
 	}
 
 	// 아이디 찾기 페이지 이동
@@ -96,7 +108,7 @@ public class MemberController {
 			System.out.println(cmciname);
 			mav.addObject("cmciname", cmciname);
 			mav.setViewName("member/MemberInfo");
-		} 
+		}
 
 		return mav;
 	}
@@ -186,9 +198,10 @@ public class MemberController {
 
 	// 로그인 요청
 	@RequestMapping(value = "/loginMember")
-	public ModelAndView loginMember(String loginType, String id, String pw) {
+	public ModelAndView loginMember(String loginType, String requestUrl, String id, String pw) {
 		System.out.println("로그인 요청");
 		System.out.println("로그인 타입: " + loginType);
+		System.out.println("요청 Url: " + requestUrl);
 		System.out.println("로그인 아이디: " + id);
 		System.out.println("로그인 비밀번호: " + pw);
 
@@ -203,7 +216,7 @@ public class MemberController {
 			} else {
 				session.setAttribute("loginType", "P");
 				session.setAttribute("loginInfo", loginMInfo);
-				mav.setViewName("redirect:/");
+				mav.setViewName("redirect:" + requestUrl);
 			}
 		} else {
 			System.out.println("기업회원 로그인 요청");
@@ -215,7 +228,7 @@ public class MemberController {
 			} else {
 				session.setAttribute("loginType", "C");
 				session.setAttribute("loginInfo", loginCInfo);
-				mav.setViewName("redirect:/");
+				mav.setViewName("redirect:" + requestUrl);
 			}
 		}
 		return mav;
@@ -325,14 +338,7 @@ public class MemberController {
 		System.out.println("currentPw: " + currentPw);
 		String loginType = (String) session.getAttribute("loginType");
 		System.out.println("callLoginType 호출");
-		String loginId = "";
-		if (loginType.equals("P")) {
-			MemberDto mdto = (MemberDto) session.getAttribute("loginInfo");
-			loginId = mdto.getMid();
-		} else {
-			CmemberDto cmdto = (CmemberDto) session.getAttribute("loginInfo");
-			loginId = cmdto.getCmid();
-		}
+		String loginId = callLoginId(loginType);
 		String result = msvc.checkPw(loginType, loginId, currentPw);
 		return result;
 	}
@@ -343,6 +349,13 @@ public class MemberController {
 		System.out.println("deleteUserInfo 호출");
 		boolean result = false;
 		String loginType = (String) session.getAttribute("loginType");
+		String loginId = callLoginId(loginType);
+		result = msvc.deleteUserInfo(loginType, loginId);
+		return result;
+	}
+
+	// 로그인 아이디 찾기
+	public String callLoginId(String loginType) {
 		String loginId = "";
 		if (loginType.equals("P")) {
 			MemberDto mdto = (MemberDto) session.getAttribute("loginInfo");
@@ -351,7 +364,6 @@ public class MemberController {
 			CmemberDto cmdto = (CmemberDto) session.getAttribute("loginInfo");
 			loginId = cmdto.getCmid();
 		}
-		result = msvc.deleteUserInfo(loginType, loginId);
-		return result;
+		return loginId;
 	}
 }

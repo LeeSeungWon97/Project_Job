@@ -51,7 +51,6 @@
 	<%@ include file="/WEB-INF/views/includes/main/Header.jsp"%>
 	<!-- Nav -->
 	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
-
 	<section id="section">
 		<div class="section-div">
 			<div class="row">
@@ -86,7 +85,15 @@
 			</div>
 		</div>
 	</section>
-
+		<input type="hidden" id="loginType" value="${sessionScope.loginType }">
+	<c:choose>
+		<c:when test="${sessionScope.loginType == 'P'}">
+			<input type="hidden" id="loginId" value="${sessionScope.loginInfo.mid }">
+		</c:when>
+		<c:otherwise>
+			<input type="hidden" id="loginId" value="${sessionScope.loginInfo.cmid }">
+		</c:otherwise>
+	</c:choose>
 	<!-- Footer-->
 	<%@ include file="/WEB-INF/views/includes/main/Footer.jsp"%>
 
@@ -98,23 +105,28 @@
 
 </body>
 
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
-
-
-	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>	
-		
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function(){
 		selectScrapInfo();
 	});
-	
-	function WriteResume(){
+</script>
+<script type="text/javascript">
+	function WriteResume() {
+		var loginType = $('#loginType').val();
+		var loginId = $('#loginId').val();	
+		if (loginId == "") {
+			alert("로그인이 필요한 서비스입니다.");
+			location.href = "${pageContext.request.contextPath}/login";
+		} else if (loginType == "C") {
+			alert("일반회원을 위한 서비스입니다.");
+			location.reload();
+		} else {
+			window.open("${pageContext.request.contextPath}/WriteResumePage",
+					"이력서 선택", "width=400,height=400,top=10,left=100");
+		}
 
-		console.log("WriteResume 호출")
-		window.open("${pageContext.request.contextPath }/WriteResumePage",
-				"WPPopUp", "width=600,height=800,top=10,left=100");
 	}
 	</script>
 

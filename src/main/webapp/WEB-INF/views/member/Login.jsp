@@ -40,7 +40,7 @@
 								<input type="radio" id="company" name="loginType" value="기업">
 								<label for="company">기업</label>
 							</div>
-
+							<input type="hidden" name="requestUrl" value="${requestUrl }">
 							<div class="input-group input-group-xs mt-1 mb-2">
 								<input type="text" class="form-control" id="loginId" name="id" maxlength="15" placeholder="아이디">
 							</div>
@@ -77,6 +77,9 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- jQuery -->
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 
 	<script type="text/javascript">
 		function checkInputVal(formObj) {
