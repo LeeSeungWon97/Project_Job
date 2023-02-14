@@ -84,8 +84,7 @@
 <script type="text/javascript">
 	function WriteResume() {
 		console.log("WriteResume 호출")
-		window.open("${pageContext.request.contextPath }/WriteResumePage",
-				"WPPopUp", "width=600,height=800,top=10,left=100");
+		location.href = "${pageContext.request.contextPath }/WriteResumePage";
 	}
 </script>
 
