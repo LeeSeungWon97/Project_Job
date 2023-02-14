@@ -3,6 +3,7 @@ package com.Project_Job.dao;
 import java.util.ArrayList;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -12,6 +13,7 @@ import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.EmploymentDto;
 import com.Project_Job.dto.EssayDto;
 import com.Project_Job.dto.ResumeDto;
+import com.Project_Job.dto.ScrapDto;
 
 public interface EmploymentDao {
 
@@ -74,6 +76,18 @@ public interface EmploymentDao {
 	
 	@Select("SELECT EPNAME FROM EMPLOYMENT WHERE EPNUM = #{epnum} ")
 	String SelectEpname(String epnum);
+	
+	@Select("SELECT MAX(SPNUM) FROM SCRAPINFO ")
+	String selectMaxSpnum();
+	
+	@Insert("INSERT INTO SCRAPINFO VALUES(#{spnum},#{spmid},#{spepnum},'Y') ")
+	int insertScrap(ScrapDto scrapInfo);
+	
+	@Delete("DELETE SCRAPINFO WHERE SPMID = #{spmid} AND SPEPNUM = #{spepnum}")
+	int deleteScrap(@Param("spmid")String smid,@Param("spepnum") String spepnum);
+	
+	@Select("SELECT * FROM SCRAPINFO WHERE SPMID = #{spmid} ")
+	ArrayList<ScrapDto> selectScrapInfo(String spmid);
 	
 	
 	
