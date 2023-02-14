@@ -26,6 +26,23 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style type="text/css">
+.scrap {
+    color: transparent; /* 기존 이모지 컬러 제거 */
+    text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
+     border:none;
+     background-color:transparent;
+}
+.scrap:hover{
+    text-shadow: 0 0 0 #fdf002; /* 마우스 호버 */
+    text-shadow: 0 0 0 #fdf002; /* 마우스 호버 뒤에오는 이모지들 */
+    text-shadow: 0 0 0 #fdf002; /* 마우스 클릭 체크 */
+}
+.scrap_click{
+ text-shadow: 0 0 0 #fdf002; 
+}
+
+</style>
 </head>
 <body>
 		
@@ -53,7 +70,9 @@
 							<c:forEach items="${epList }" var="employ">
 								<tr>
                                 	<td>${employ.epciname }</td>
-                                    <td>${employ.epname }</td>
+                                    <td>${employ.epname }
+                                     <input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐">
+                                    </td>
                                     <td>${employ.epedu }</td>
                                	    <td><span>${employ.epdeadline }</span></td>
                                		<td>	
@@ -100,6 +119,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <script type="text/javascript">
+$(document).ready(function(){
+	selectScrapInfo();
+});
+
 	function WriteResume(epnum, epciname, epname) {
 		console.log(epnum + epciname + epname);
 		location.href = "${pageContext.request.contextPath }/WriteEssayPage?epnum="
@@ -108,6 +131,58 @@
 	}
 </script>
 
+<script type="text/javascript">	
+		function checkVal(checkedName, selBtn){
+		console.log(checkedName);
+		if ($(selBtn).hasClass("scrap_click")) {
+			$(selBtn).removeClass("scrap_click");
+			$.ajax({
+				type: "get",
+				url: "${pageContext.request.contextPath }/removeScrap",
+				data : {"checkedName" : checkedName},
+				dataType : "json",
+				success:function(result){
+					console.log("성공 :" + result );
+				}
+			});
+			
+		}else{
+		$(selBtn).addClass("scrap_click");
+		$.ajax({
+			type: "get",
+			url: "${pageContext.request.contextPath }/scrapEpname",
+			data : {"checkedName" : checkedName},
+			dataType : "json",
+			success:function(result){
+				console.log("성공 :" + result );
+				
+			}
+		});
+		}
+		
+		}
+		
+		function selectScrapInfo(){
+			$.ajax( { 
+				type : "get",
+				url : "${pageContext.request.contextPath }/selectScrapInfo",
+				async:false,
+				dataType:"json",
+				success : function(scrapList){
+					console.log(scrapList);
+						 for(var scrapinfo of scrapList){
+						
+						console.log(scrapinfo.spepnum);
+						 $("#"+scrapinfo.spepnum).addClass("scrap_click");
+						 }
+					
+				}
+			} );			
+		}
+		
+		
+		
+	</script>
 
 
 
@@ -117,17 +192,6 @@
 
 
 
-
-
-<!--  
-	output += '<textarea readonly="readonly"class="retext mb-2 border-0 font-weight-bold text-gray-800 w-100">'+WpList[i].CINAME+'</textarea>';
-	output += '<textarea readonly="readonly"class="retext mb-2 border-0 font-weight-bold text-gray-800 w-100">'+WpList[i].CILEADER+'</textarea>';
-	output += '<textarea readonly="readonly"class="retext mb-2 border-0 font-weight-bold text-gray-800 w-100">'+WpList[i].CIADDR+'</textarea>';
-	output += '<button type="button" onclick="inputcinfo('+ "'"+WpList[i].CINUM+"'"+",'"+WpList[i].CINAME+"'" +",'"+WpList[i].CILEADER+"'"+",'"+WpList[i].CIADDR+"'" +",'"+WpList[i].CITYPE+"'"+',this)">';
-	output += '선택';
-	output += '</button>';
-	output += '<br>';
-	-->
 
 
 

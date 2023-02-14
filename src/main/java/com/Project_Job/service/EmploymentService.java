@@ -17,6 +17,7 @@ import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.EmploymentDto;
 import com.Project_Job.dto.EssayDto;
 import com.Project_Job.dto.ResumeDto;
+import com.Project_Job.dto.ScrapDto;
 import com.google.gson.Gson;
 
 
@@ -27,7 +28,7 @@ public class EmploymentService {
 	private EmploymentDao epdao;
 	
 
-	public int jobInsert1() throws IOException {
+	public int jobInsert1() throws Exception {
 		//1. 잡코리아 채용정보 페이지 URL
 		String jobUrl = "https://www.jobkorea.co.kr/recruit/joblist?menucode=local&localorder=1";
 		
@@ -418,6 +419,39 @@ public class EmploymentService {
 		public String SelectEpname(String epnum) {
 			String epname = epdao.SelectEpname(epnum);
 			return epname;
+		}
+
+
+		public int insertScrap(ScrapDto scrapInfo) {
+			System.out.println("epsvc insertScrap요청");
+			String maxSpcode = epdao.selectMaxSpnum();
+			System.out.println("스크랩 번호 최대값 : " + maxSpcode);
+			String spcode = "SP";
+			if(maxSpcode == null) {
+				spcode = spcode + String.format("%03d", 1);
+				System.out.println("처음 스크랩코드 : "+spcode);
+			}else {
+				int spcodeNum = Integer.parseInt(maxSpcode.replace("SP", "")) +1;
+				spcode =  spcode + String.format("%03d", spcodeNum);
+			}
+			System.out.println("스크랩코드 : "+spcode);
+			scrapInfo.setSpnum(spcode);
+			
+			int insertResult = epdao.insertScrap(scrapInfo);
+			return insertResult;
+		}
+
+
+		public int deleteScrap(String smid, String checkedName) {
+			System.out.println("epsvc insertScrap요청");
+			int deleteResult = epdao.deleteScrap(smid,checkedName);
+			return deleteResult;
+		}
+
+
+		public String selectScrapInfo(String smid) {
+			ArrayList<ScrapDto> spList = epdao.selectScrapInfo(smid);
+			return new Gson().toJson(spList);
 		}
 
 
