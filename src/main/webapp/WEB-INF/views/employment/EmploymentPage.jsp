@@ -51,29 +51,31 @@
 	<%@ include file="/WEB-INF/views/includes/main/Header.jsp"%>
 	<!-- Nav -->
 	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
+	
+	<!-- Section -->
 	<section id="section">
 		<div class="section-div">
-			<div class="row">
 				<div class="card mt-4 mb-4 shadow rounded-3">
-					<div class="table-responsive">
-						<table class="table table-striped" style="border-radius: 50px;">
-							<thead>
-								<tr>
-									<th scope="col" style="font-size: 20px;">회사</th>
-									<th scope="col" style="font-size: 20px;">공고명</th>
-									<th scope="col" style="font-size: 20px;">마감일</th>
+					<div class="table-responsive" style="margin: 40px 40px 40px 40px;">
+						<table class="table">
+							<thead style="background-color: #f2f9fe; border-top: 1px solid #eaeaea;">
+								<tr style="color: #888;">
+									<th scope="col"></th>
+									<th scope="col">기업명</th>
+									<th scope="col">제목</th>
+									<th scope="col">마감일</th>
 									<th scope="col"></th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${epList }" var="employ">
-									<tr>
-										<td>${employ.epciname }</td>
-										<td>${employ.epname }
-										 <input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"> </td>
-										<td>${employ.epdeadline }  </td>
-										<td>
-											<button class="btn btn-secondary mt-1" onclick="WriteResume()" style="min-width: 75px; font-size: 20%;">즉시지원</button>
+									<tr >
+									 	<td style="width: 1%;"><input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"></td>
+										<td style="width: 16%;"><span>${employ.epciname }</span></td>
+										<td style="width: 30%; padding-right: 60px;"><a href=""><span style="color: #333; font-weight: bold;">${employ.epname }</span></a></td>
+										<td style="width: 7%;"><span>${employ.epdeadline }</span></td>
+										<td style="width: 7%; text-align: center;">
+											<button class="mt-1" onclick="WriteResume()" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;"><span style="color: white;">즉시지원</span></button>
 										</td>
 									</tr>
 								</c:forEach>
@@ -82,7 +84,6 @@
 						</table>
 					</div>
 				</div>
-			</div>
 		</div>
 	</section>
 		<input type="hidden" id="loginType" value="${sessionScope.loginType }">
@@ -94,6 +95,7 @@
 			<input type="hidden" id="loginId" value="${sessionScope.loginInfo.cmid }">
 		</c:otherwise>
 	</c:choose>
+	
 	<!-- Footer-->
 	<%@ include file="/WEB-INF/views/includes/main/Footer.jsp"%>
 
