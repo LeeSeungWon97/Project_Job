@@ -88,23 +88,70 @@ h2 {
 			$('.modifyBtn').removeClass("d-none");
 			$('.resumeContent').attr("readonly", false);
 		}
-		
+
 		function saveResume() {
 			console.log("이력서 저장");
+			var reedu = document.getElementsByClassName("reedu");
+			var recarrer = document.getElementsByClassName("recarrer");
+			var react = document.getElementsByClassName("react");
+			var relicense = document.getElementsByClassName("relicense");
+
+			var phoneNum = $('#phoneNum').val();
+			var reeduData = "";
+			var recarrerData = "";
+			var reactData = "";
+			var relicenseData = "";
+
+			for (var i = 0; i < reedu.length; i++) {
+				reeduData += reedu[i].value;
+				reeduData += "!@#";
+			}
+
+			for (var i = 0; i < recarrer.length; i++) {
+				recarrerData += recarrer[i].value;
+				recarrerData += "!@#";
+			}
+
+			for (var i = 0; i < react.length; i++) {
+				reactData += react[i].value;
+				reactData += "!@#";
+			}
+
+			for (var i = 0; i < react.length; i++) {
+				relicenseData += react[i].value;
+				relicenseData += "!@#";
+			}
+
+			$.ajax({
+				type : "post",
+				url : "${pageContext.request.contextPath}/updateResume",
+				data : {
+					"phoneNum" : phoneNum,
+					"reedu" : reeduData,
+					"recarrer" : recarrerData,
+					"react" : reactData,
+					"relicense" : relicenseData
+				},
+				async: false,
+				success: function(result){
+					console.log(result);					
+				}
+			});
 			$('#modifyBtn').removeClass("d-none");
 			$('#saveBtn').addClass("d-none");
 			$('.modifyBtn').addClass("d-none");
 			$('.resumeContent').attr("readonly", true);
 		}
-		function modifyCancle(){
+		
+		function modifyCancle() {
 			console.log("수정 취소");
 			location.reload();
 		}
 
 		function addSearchKeyA() {
-			var rowItem = "<div class=input-group reedu>";
-			rowItem += "<input type='text' class='form-control resumeContent' style='height: 60px;'>";
-			rowItem += "<input type='text' class='form-control resumeContent' name='reedu' style='width: 300px; height: 60px;'>";
+			var rowItem = "<div class=input-group>";
+			rowItem += "<input type='text' class='form-control resumeContent reedu' style='height: 60px;'>";
+			rowItem += "<input type='text' class='form-control resumeContent reedu' name='reedu' style='width: 300px; height: 60px;'>";
 			rowItem += "</div>";
 
 			$('#reeduData').append(rowItem);
@@ -119,8 +166,8 @@ h2 {
 
 		function addSearchKeyB() {
 			var rowItem = "<div class=input-group>";
-			rowItem += "<input type='text' class='form-control resumeContent' style='height: 60px;'>";
-			rowItem += "<input type='text' class='form-control resumeContent' name='recarrer' style='width: 300px; height: 60px;'>";
+			rowItem += "<input type='text' class='form-control resumeContent recarrer' style='height: 60px;'>";
+			rowItem += "<input type='text' class='form-control resumeContent recarrer' name='recarrer' style='width: 300px; height: 60px;'>";
 			rowItem += "</div>";
 
 			$('#recarrerData').append(rowItem);
@@ -135,8 +182,8 @@ h2 {
 
 		function addSearchKeyC() {
 			var rowItem = "<div class=input-group>";
-			rowItem += "<input type='text' class='form-control resumeContent' style='height: 60px;'>";
-			rowItem += "<input type='text' class='form-control resumeContent' name='react' style='width: 300px; height: 60px;'>";
+			rowItem += "<input type='text' class='form-control resumeContent react' style='height: 60px;'>";
+			rowItem += "<input type='text' class='form-control resumeContent react' name='react' style='width: 300px; height: 60px;'>";
 			rowItem += "</div>";
 
 			$('#reactData').append(rowItem);
@@ -151,8 +198,8 @@ h2 {
 
 		function addSearchKeyD() {
 			var rowItem = "<div class=input-group>";
-			rowItem += "<input type='text' class='form-control resumeContent' style='height: 60px;'>";
-			rowItem += "<input type='text' class='form-control resumeContent' name='relicense' style='width: 300px; height: 60px;'>";
+			rowItem += "<input type='text' class='form-control resumeContent relicense' style='height: 60px;'>";
+			rowItem += "<input type='text' class='form-control resumeContent relicense' name='relicense' style='width: 300px; height: 60px;'>";
 			rowItem += "</div>";
 
 			$('#relicenseData').append(rowItem);

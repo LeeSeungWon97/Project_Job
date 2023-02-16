@@ -26,7 +26,7 @@
 				<input type="text" class="form-control" value="${sessionScope.loginInfo.memail}" style="height: 30px; font-size: small;" readonly="readonly">
 			</div>
 			<div class="col-3 mt-3 mb-2 ">
-				<input type="text" class="form-control resumeContent" name="retell" placeholder="전화번호" style="height: 30px; font-size: small;" readonly="readonly">
+				<input type="text" id="phoneNum" class="form-control resumeContent" name="retell" placeholder="전화번호" style="height: 30px; font-size: small;" readonly="readonly">
 			</div>
 			<div class="col-6 mb-2 mt-3 ">
 				<input type="text" class="form-control" value="${sessionScope.loginInfo.maddr}" style="height: 30px; font-size: small;" readonly="readonly">
@@ -40,9 +40,9 @@
 			</a>
 			학력
 		</h2>
-		<div class="input-group reedu" id="reeduData">
-			<input type="text" class="form-control resumeContent" style="height: 60px;" readonly="readonly">
-			<input type="text" class="form-control resumeContent" name="reedu" value="${Resume.reedu}" style="width: 300px; height: 60px;" readonly="readonly">
+		<div class="input-group" id="reeduData">
+			<input type="text" class="form-control resumeContent reedu" style="height: 60px;" readonly="readonly">
+			<input type="text" class="form-control resumeContent reedu" name="reedu" value="${Resume.reedu}" style="width: 300px; height: 60px;" readonly="readonly">
 		</div>
 		<div style="text-align: center;" class="mt-2">
 			<button type="button" class="btn btn-secondary d-none modifyBtn" onclick="addSearchKeyA()">
@@ -61,8 +61,8 @@
 			경력
 		</h2>
 		<div class="input-group" id="recarrerData">
-			<input type="text" class="form-control resumeContent" style="height: 60px;" readonly="readonly">
-			<input type="text" class="form-control resumeContent" name="recarrer" value="${Resume.recarrer }" style="width: 300px; height: 60px;" readonly="readonly">
+			<input type="text" class="form-control resumeContent recarrer" style="height: 60px;" readonly="readonly">
+			<input type="text" class="form-control resumeContent recarrer" name="recarrer" value="${Resume.recarrer }" style="width: 300px; height: 60px;" readonly="readonly">
 		</div>
 		<div style="text-align: center;" class="mt-2">
 			<button type="button" class="btn btn-secondary d-none modifyBtn" onclick="addSearchKeyB()">
@@ -81,8 +81,8 @@
 			인턴/대외활동
 		</h2>
 		<div class="input-group" id="reactData">
-			<input type="text" class="form-control resumeContent" style="height: 60px;" readonly="readonly">
-			<input type="text" class="form-control resumeContent" name="react" value="${Resume.react }" style="width: 300px; height: 60px;" readonly="readonly">
+			<input type="text" class="form-control resumeContent react" style="height: 60px;" readonly="readonly">
+			<input type="text" class="form-control resumeContent react" name="react" value="${Resume.react }" style="width: 300px; height: 60px;" readonly="readonly">
 		</div>
 		<div style="text-align: center;" class="mt-2">
 			<button type="button" class="btn btn-secondary d-none modifyBtn" onclick="addSearchKeyC()">
@@ -101,8 +101,8 @@
 			자격증
 		</h2>
 		<div class="input-group" id="relicenseData">
-			<input type="text" class="form-control resumeContent" style="height: 60px;" readonly="readonly">
-			<input type="text" class="form-control resumeContent" name="relicense" value="${Resume.relicense }" style="width: 300px; height: 60px;" readonly="readonly">
+			<input type="text" class="form-control resumeContent relicense" style="height: 60px;" readonly="readonly">
+			<input type="text" class="form-control resumeContent relicense" name="relicense" value="${Resume.relicense }" style="width: 300px; height: 60px;" readonly="readonly">
 		</div>
 		<div style="text-align: center;" class="mt-2">
 			<button type="button" class="btn btn-secondary d-none modifyBtn" onclick="addSearchKeyD()">

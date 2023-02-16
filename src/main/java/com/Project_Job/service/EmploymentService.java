@@ -452,10 +452,7 @@ public class EmploymentService {
 		public String selectScrapInfo(String smid) {
 			ArrayList<ScrapDto> spList = epdao.selectScrapInfo(smid);
 			return new Gson().toJson(spList);
-		}
-
-
-		
+		}	
 		
 	
 }
