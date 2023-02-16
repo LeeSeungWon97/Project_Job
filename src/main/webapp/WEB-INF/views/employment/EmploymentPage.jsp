@@ -39,11 +39,24 @@
     text-shadow: 0 0 0 #fdf002; /* 마우스 클릭 체크 */
 }
 .scrap_click{
- text-shadow: 0 0 0 #fdf002; 
+ 	text-shadow: 0 0 0 #fdf002; 
 }
-
+.emci{
+	width: 17%; 	/* 기업명 */
+}
+.emnu{
+	width: 1%;		/* 스크랩 */
+}
+.emna{
+	width: 30%; 	/* 제목 */
+}
+.emde{
+	width: 7%; text-align: center;		/* 마감일 */
+}
+.embu{
+	width: 7%; text-align: right;		/* 즉시지원 */
+}
 </style>
-
 </head>
 <body>
 
@@ -56,12 +69,13 @@
 	<section id="section">
 		<div class="section-div">
 				<div class="card mt-4 mb-4 shadow rounded-3">
+					<a href="${pageContext.request.contextPath }/epcinamePage">테스트이동</a>
 					<div class="table-responsive" style="margin: 40px 40px 40px 40px;">
 						<table class="table">
 							<thead style="background-color: #f2f9fe; border-top: 1px solid #eaeaea;">
-								<tr style="color: #888;">
-									<th scope="col"></th>
+								<tr style="color: #888; text-align: center;">
 									<th scope="col">기업명</th>
+									<th scope="col"></th>
 									<th scope="col">제목</th>
 									<th scope="col">마감일</th>
 									<th scope="col"></th>
@@ -69,12 +83,12 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${epList }" var="employ">
-									<tr >
-									 	<td style="width: 1%;"><input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"></td>
-										<td style="width: 16%;"><span>${employ.epciname }</span></td>
-										<td style="width: 30%; padding-right: 60px;"><a href=""><span style="color: #333; font-weight: bold;">${employ.epname }</span></a></td>
-										<td style="width: 7%;"><span>${employ.epdeadline }</span></td>
-										<td style="width: 7%; text-align: center;">
+									<tr>	 	
+										<td class="emci"><a href=""><span>${employ.epciname }</span></a></td>
+										<td class="emnu"><input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"></td>
+										<td class="emna"><a href=""><span style="color: #333; font-weight: bold;">${employ.epname }</span></a></td>
+										<td class="emde"><span>${employ.epdeadline }</span></td>
+										<td class="embu">
 											<button class="mt-1" onclick="WriteResume()" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;"><span style="color: white;">즉시지원</span></button>
 										</td>
 									</tr>

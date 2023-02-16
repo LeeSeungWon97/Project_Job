@@ -41,6 +41,9 @@ public class HomeController {
 		return mav;
 	}
 	
-	
+	@RequestMapping(value = "/epcinamePage")
+	public String epcinamePage() {
+		return "employment/EpcinamePage";
+	}
 	
 }
