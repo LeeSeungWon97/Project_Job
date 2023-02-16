@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +12,12 @@
 		console.log(msg);
 		console.log(url);
 		alert(msg);
-		location.href='${pageContext.request.contextPath}/'+url;
+		if (opener) {
+			window.opener.location.href = '${pageContext.request.contextPath}/'
+					+ url;
+		} else {
+			location.href = '${pageContext.request.contextPath}/' + url;
+		}
 	</script>
 </body>
 </html>
