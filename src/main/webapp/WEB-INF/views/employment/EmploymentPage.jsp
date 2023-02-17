@@ -28,20 +28,21 @@
 
 <style type="text/css">
 .scrap {
-    color: transparent; /* 기존 이모지 컬러 제거 */
-    text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
-     border:none;
-     background-color:transparent;
-}
-.scrap:hover{
-    text-shadow: 0 0 0 #fdf002; /* 마우스 호버 */
-    text-shadow: 0 0 0 #fdf002; /* 마우스 호버 뒤에오는 이모지들 */
-    text-shadow: 0 0 0 #fdf002; /* 마우스 클릭 체크 */
-}
-.scrap_click{
- text-shadow: 0 0 0 #fdf002; 
+	color: transparent; /* 기존 이모지 컬러 제거 */
+	text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
+	border: none;
+	background-color: transparent;
 }
 
+.scrap:hover {
+	text-shadow: 0 0 0 #fdf002; /* 마우스 호버 */
+	text-shadow: 0 0 0 #fdf002; /* 마우스 호버 뒤에오는 이모지들 */
+	text-shadow: 0 0 0 #fdf002; /* 마우스 클릭 체크 */
+}
+
+.scrap_click {
+	text-shadow: 0 0 0 #fdf002;
+}
 </style>
 
 </head>
@@ -85,7 +86,7 @@
 			</div>
 		</div>
 	</section>
-		<input type="hidden" id="loginType" value="${sessionScope.loginType }">
+	<input type="hidden" id="loginType" value="${sessionScope.loginType }">
 	<c:choose>
 		<c:when test="${sessionScope.loginType == 'P'}">
 			<input type="hidden" id="loginId" value="${sessionScope.loginInfo.mid }">
@@ -123,7 +124,7 @@
 			alert("일반회원을 위한 서비스입니다.");
 			location.reload();
 		} else {
-			window.open("${pageContext.request.contextPath}/WriteResumePage",
+			window.open("${pageContext.request.contextPath}/myResume",
 					"이력서 선택", "width=400,height=400,top=10,left=100");
 		}
 
@@ -131,8 +132,8 @@
 	</script>
 
 
-	<script type="text/javascript">	
-		function checkVal(checkedName, selBtn){
+<script type="text/javascript">	
+	function checkVal(checkedName, selBtn){
 		console.log(checkedName);
 		
 		if (loginId == "") {
@@ -175,13 +176,9 @@
 						 for(var scrapinfo of scrapList){
 						 $("#"+scrapinfo.spepnum).addClass("scrap_click");
 						 }
-					
 				}
 			} );			
 		}
-		
-		
-		
 	</script>
 
 </html>

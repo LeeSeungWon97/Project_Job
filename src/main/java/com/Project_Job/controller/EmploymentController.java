@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
 
+
+import com.Project_Job.dto.ArrResumeDto;
 import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.CmemberDto;
 import com.Project_Job.dto.EmploymentDto;
@@ -77,16 +79,7 @@ public class EmploymentController {
 	@RequestMapping(value = "/WriteResumePage")
 	public ModelAndView WriteResumePage(String epnum) {
 		ModelAndView mav = new ModelAndView();
-		String remid = mctrl.callLoginId("P");
-		ResumeDto ResumeInfo = epsvc.SelectResume(remid);
-		System.out.println(epnum);
-		if (ResumeInfo != null) {
-			mav.addObject("epnum", epnum);
-			mav.addObject("Resume", ResumeInfo);
-			mav.setViewName("employment/MyResumePage");
-		} else {
-			mav.setViewName("employment/WriteResumePage");
-		}
+		mav.setViewName("employment/WriteResumePage");
 		return mav;
 	}
 
@@ -95,6 +88,8 @@ public class EmploymentController {
 	public ModelAndView WriteResume(ResumeDto ResumeInfo) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("Epcontroller WriteResume요청");
+		String loginId = mctrl.callLoginId("P");
+		ResumeInfo.setRemid(loginId);
 		System.out.println("입력받은 이력서 작성 정보 : " + ResumeInfo);
 		
 		int insertResult = epsvc.WriteResume(ResumeInfo);
@@ -103,8 +98,9 @@ public class EmploymentController {
 			mav.addObject("url", "WriteResume");
 			mav.setViewName("AlertScreen");
 		} else {
-			mav.setViewName("Main");
+			mav.setViewName("redirect:/myResume");
 		}
+
 		return mav;
 	}
 	
@@ -164,23 +160,36 @@ public class EmploymentController {
 		return null;
 	}
 
-	
-	//스크랩 요청
-		@RequestMapping(value = "/scrapEpname")
-		public @ResponseBody String scrapCiname(String checkedName) {
-			System.out.println("Epcontroller scrapCiname요청");
-			System.out.println(checkedName);
-			MemberDto loginMInfo =  (MemberDto) session.getAttribute("loginInfo");
-			//String loginType = (String) session.getAttribute("loginType");
-			//String loginId = mcontroller.loginLid(loginType);
-			String smid = loginMInfo.getMid();
-			ScrapDto scrapInfo = new ScrapDto();
-			scrapInfo.setSpmid(smid);
-			scrapInfo.setSpepnum(checkedName);
-			epsvc.insertScrap(scrapInfo);
-			
-			return null;
-		}
+	// 스크랩 요청
+	@RequestMapping(value = "/scrapEpname")
+	public @ResponseBody String scrapCiname(String checkedName) {
+		System.out.println("Epcontroller scrapCiname요청");
+		System.out.println(checkedName);
+		MemberDto loginMInfo = (MemberDto) session.getAttribute("loginInfo");
+		// String loginType = (String) session.getAttribute("loginType");
+		// String loginId = mcontroller.loginLid(loginType);
+		String smid = loginMInfo.getMid();
+		ScrapDto scrapInfo = new ScrapDto();
+		scrapInfo.setSpmid(smid);
+		scrapInfo.setSpepnum(checkedName);
+		epsvc.insertScrap(scrapInfo);
+		return null;
+	}
+
+	@RequestMapping(value = "/myResume")
+	public ModelAndView myResume() {
+		ModelAndView mav = new ModelAndView();
+		String loginType = (String) session.getAttribute("loginType");
+		System.out.println("loginType: " + loginType);
+		if (loginType.equals("P")) {
+			String loginId = mctrl.callLoginId(loginType);
+			System.out.println("loginId: " + loginId);
+			ArrResumeDto myresume = epsvc.SelectResume(loginId);
+			System.out.println(myresume);
+			if (myresume == null) {
+				mav.addObject("msg", "저장된 이력서가 없습니다. 작성하시겠습니까?");
+				mav.addObject("url", "WriteResumePage");
+				mav.setViewName("ConfirmScreen");
 
 		@RequestMapping(value = "/removeScrap")
 		public @ResponseBody String removeScrap(String checkedName) {
@@ -311,12 +320,20 @@ public class EmploymentController {
 				mav.addObject("url","");
 				mav.setViewName("AlertScreen");
 			} else {
-				mav.addObject("msg", "로그인(개인) 이후 이용가능합니다");
-				mav.addObject("url","login");
-				mav.setViewName("AlertScreen");
+				mav.addObject("Resume", myresume);
+				mav.setViewName("employment/MyResumePage");
 			}
-			
-			return mav;
+		} else if (loginType.equals("C")) {
+			mav.addObject("msg", "개인회원 전용 페이지 입니다.");
+			mav.addObject("url", "");
+			mav.setViewName("AlertScreen");
+		} else {
+			mav.addObject("msg", "로그인(개인) 이후 이용가능합니다");
+			mav.addObject("url", "login");
+			mav.setViewName("AlertScreen");
 		}
-		
+
+		return mav;
+	}
+
 }

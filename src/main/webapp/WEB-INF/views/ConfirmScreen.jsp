@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,10 +12,16 @@
 		console.log(msg);
 		console.log(url);
 		var select = confirm(msg);
-		if(select){
-			location.href='${pageContext.request.contextPath}/'+url;			
-		} else{
-			history.back();			
+		if (select) {
+			if (opener) {
+				window.opener.location.href = '${pageContext.request.contextPath}/'
+						+ url;
+				window.close();
+			} else {
+				location.href = '${pageContext.request.contextPath}/' + url;
+			}
+		} else {
+			history.back();
 		}
 	</script>
 </body>

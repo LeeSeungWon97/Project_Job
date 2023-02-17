@@ -25,20 +25,7 @@
 		<div class="row">
 			<div class="col-2">
 				<!-- SideBar -->
-				<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 100%; display: flex;">
-					<a href="" class="d-flex align-items-center link-dark text-decoration-none">
-						<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-						<strong>mdo</strong>
-					</a>
-					<hr>
-					<ul class="nav nav-pills flex-column mb-auto">
-						<li class="nav-item"><a href="${pageContext.request.contextPath }" class="nav-link link-dark"> 내정보 </a></li>
-						<li><a href="${pageContext.request.contextPath }" class="nav-link link-dark"> 이력서 </a></li>
-						<li><a href="${pageContext.request.contextPath }" class="nav-link link-dark"> 지원현황 </a></li>
-						<li><a href="${pageContext.request.contextPath }" class="nav-link link-dark"> 스크랩 </a></li>
-						<li><a href="${pageContext.request.contextPath }" class="nav-link link-dark"> 열람기업 </a></li>
-					</ul>
-				</div>
+				<%@ include file="/WEB-INF/views/includes/infoSidebar.jsp" %>
 			</div>
 
 			<div class="col-lg-10 col-xl-8 mx-auto">
@@ -216,5 +203,6 @@
 			}
 		}
 	</script>
+
 </body>
 </html>
