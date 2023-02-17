@@ -45,9 +45,11 @@
 			<input type="text" class="form-control" name="rehope" placeholder="희망직무태그">
 		</div>
 		<div class="d-grid mb-4">
+			
 			<button class="btn btn-dark btn-lg" type="submit">이력서 저장</button>
 		</div>
 	</form>
+	
 
 </body>
 </html>

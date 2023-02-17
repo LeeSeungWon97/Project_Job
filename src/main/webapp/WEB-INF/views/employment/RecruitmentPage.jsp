@@ -70,7 +70,7 @@
 							<c:forEach items="${epList }" var="employ">
 								<tr>
                                 	<td>${employ.epciname }</td>
-                                    <td>${employ.epname }
+                                    <td> <a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }"> ${employ.epname }</a>
                                      <input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐">
                                     </td>
                                     <td>${employ.epedu }</td>

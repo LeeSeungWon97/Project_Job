@@ -78,7 +78,7 @@
 								</div>
 								<div class="input-group input-group-lg mb-3">
 									<span class="input-group-text" style="width: 18%; justify-content: center;">회사명</span>
-									<input type="text" class="cmciname form-control" readonly="readonly" style="background-color: white;">
+									<input type="text" class="cmciname form-control" value="${sessionScope.cinfo.ciname }" readonly="readonly" style="background-color: white;">
 								</div>
 								<div class="input-group input-group-lg mb-3">
 									<span class="input-group-text" style="width: 18%; justify-content: center;">아이디</span>

@@ -363,8 +363,11 @@ public class EmploymentService {
 			if(pageType == "employ") {
 				ArrayList<EmploymentDto> epList = epdao.getEpList();
 				return epList;
-			}else {
+			}else if(pageType == "recruitment"){
 				ArrayList<EmploymentDto> epList = epdao.getRcList();
+				return epList;
+			}else {
+				ArrayList<EmploymentDto> epList = epdao.getSearchList(pageType);
 				return epList;
 			}
 			
@@ -408,20 +411,20 @@ public class EmploymentService {
 			return insertResult;
 		}
 
-
+		//이력서정보
 		public ResumeDto SelectResume(String remid) {
 			System.out.println("epsvc SelectResume 요청");
 			ResumeDto ResumeInfo = epdao.SelectResume(remid);
 			return ResumeInfo;
 		}
 
-
+		//공고이름
 		public String SelectEpname(String epnum) {
 			String epname = epdao.SelectEpname(epnum);
 			return epname;
 		}
 
-
+		//스크랩등록
 		public int insertScrap(ScrapDto scrapInfo) {
 			System.out.println("epsvc insertScrap요청");
 			String maxSpcode = epdao.selectMaxSpnum();
@@ -436,23 +439,115 @@ public class EmploymentService {
 			}
 			System.out.println("스크랩코드 : "+spcode);
 			scrapInfo.setSpnum(spcode);
-			
 			int insertResult = epdao.insertScrap(scrapInfo);
 			return insertResult;
 		}
 
-
+		//스크랩삭제
 		public int deleteScrap(String smid, String checkedName) {
 			System.out.println("epsvc insertScrap요청");
 			int deleteResult = epdao.deleteScrap(smid,checkedName);
 			return deleteResult;
 		}
 
-
+		//스크랩정보
 		public String selectScrapInfo(String smid) {
 			ArrayList<ScrapDto> spList = epdao.selectScrapInfo(smid);
 			return new Gson().toJson(spList);
 		}
+
+		//기업정보리스트
+		public ArrayList<CinfoDto> getCiList(String searchValue) {
+			if(searchValue.length() > 0) {
+				ArrayList<CinfoDto> ciList = epdao.getCiList(searchValue);
+				return ciList;
+			}else {
+				ArrayList<CinfoDto> ciList = epdao.CinfoList();
+				return ciList;
+			}
+		}
+
+		//고용정보
+		public EmploymentDto viewEpInfo(String epnum) {
+			System.out.println("epsvc viewEpInfo요청");
+			EmploymentDto epinfo = epdao.viewEpInfo(epnum);
+			return epinfo;
+		}
+
+		//이력서지원
+		public int applyResume(String remid, String epnum) {
+			int insertResult = epdao.applyResume(epnum, remid);
+			return insertResult;
+		}
+
+		//기업상세정보
+		public CinfoDto viewCinfo(String cinum) {
+			CinfoDto cinfo = epdao.viewCinfo(cinum);
+			return cinfo;
+		}
+
+
+		public int WriteEmployment(EmploymentDto epinfo) {
+			DateFormat DFormat = DateFormat.getDateInstance();
+			Date rvdate = new Date();
+			String nowDay = DFormat.format(rvdate);
+			String dbDay =nowDay.replace(". ", "-");
+			System.out.println("현재시간 :"+dbDay);
+			String eppost = dbDay.replace(".", "");
+			
+					
+			String epname = epinfo.getEpname(); String epciname =epinfo.getEpciname();
+			String maxEpcode = epdao.selectMaxEpnum();
+			System.out.println("공고코드 최대값 : " + maxEpcode);
+			String epcode = "EP";
+			if(maxEpcode == null) {
+				epcode = epcode + String.format("%03d", 1);
+				System.out.println("처음 공고 : "+epcode);
+			}else {
+				int cicodeNum = Integer.parseInt(maxEpcode.replace("EP", "")) +1;
+				epcode =  epcode + String.format("%03d", cicodeNum);
+			}
+			System.out.println("공고코드 : "+epcode);
+			
+			
+//			String epCheck = epdao.checkEp(epname, epciname);
+//			if(epCheck != null) {
+//				return 0;
+//			}
+//			if(epinfo.getEpname().equals("")) {
+//				epinfo.setEpname("-");
+//			}if(epinfo.getEpciname().equals("")) {
+//				epinfo.setEpciname("-");
+//			}if(epinfo.getEpcareer().equals("")) {
+//				epinfo.setEpcareer("-");
+//			}if(epinfo.getEpedu().equals("")) {
+//				epinfo.setEpedu("-");
+//			}if(epinfo.getEptype().equals("")) {
+//				epinfo.setEptype("-");
+//			}if(epinfo.getEpmoney().equals("")) {
+//				epinfo.setEpmoney("-");
+//			}if(epinfo.getEptime().equals("")) {
+//				epinfo.setEptime("-");
+//			}if(epinfo.getEparea().equals("")) {
+//				epinfo.setEparea("-");
+//			}if(epinfo.getEptreat().equals("")) {
+//				epinfo.setEptreat("-");
+//			}if(epinfo.getEppost().equals(null)) {
+//				epinfo.setEppost(eppost);
+//			}
+			
+			epinfo.setEpnum(epcode);
+			epinfo.setEppost(eppost);
+			
+			System.out.println("설정끝");
+			System.out.println(epinfo);
+			int insertResult = epdao.insertEmployments(epinfo);
+			return insertResult;
+		}
+
+
+		
+		
 
 
 		

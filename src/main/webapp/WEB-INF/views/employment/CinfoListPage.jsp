@@ -52,35 +52,24 @@
 	<!-- Nav -->
 	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
 	<section id="section">
-		<div class="section-div">
+		<div>
 			<div class="row">
 				<div class="card mt-4 mb-4 shadow rounded-3">
-					<div class="table-responsive">
-						<table class="table table-striped" style="border-radius: 50px;">
-							<thead>
-								<tr>
-									<th scope="col" style="font-size: 20px;">회사</th>
-									<th scope="col" style="font-size: 20px;">공고명</th>
-									<th scope="col" style="font-size: 20px;">마감일</th>
-									<th scope="col"></th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${epList }" var="employ">
-									<tr>
-										<td>${employ.epciname }</td>
-										<td> <a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }"> ${employ.epname }</a>
-										 <input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"> </td>
-										<td>${employ.epdeadline }  </td>
-										<td>
-											<button class="btn btn-secondary mt-1" onclick="WriteResume()" style="min-width: 75px; font-size: 20%;">즉시지원</button>
-										</td>
-									</tr>
+								<ul>
+								<c:forEach items="${cinfoList }" var="cinfo">
+								<li style="list-style: none;">
+								<div style="margin-bottom: 10px">
+									<a href="${pageContext.request.contextPath }/viewCiInfo?cinum=${cinfo.cinum }">
+										<h4>${cinfo.ciname }</h4></a>
+										${cinfo.ciind }
+										<br>
+								</div>
+										
+								</li>
 								</c:forEach>
+								
+								</ul>
 
-							</tbody>
-						</table>
-					</div>
 				</div>
 			</div>
 		</div>

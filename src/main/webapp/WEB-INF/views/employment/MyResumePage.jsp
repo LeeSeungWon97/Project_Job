@@ -7,7 +7,7 @@
 </head>
 <body>
 	<h1>이력서 작성 양식</h1>
-	<form action="${pageContext.request.contextPath }/WriteResume" method="post" onsubmit="">
+	<form action="${pageContext.request.contextPath }/applyResume" method="post" onsubmit="">
 		<div class="input-group input-group-lg mb-3">
 			<input type="hidden" class="form-control" placeholder="아이디" name="remid" value="${sessionScope.loginInfo.mid}">
 			<input type="text" class="form-control" placeholder="이름" value="${sessionScope.loginInfo.mname}">
@@ -39,11 +39,14 @@
 		</div>
 		<div class="input-group input-group-lg mb-3">
 			<input type="text" class="form-control" name="rehope" placeholder="희망직무태그" value="${Resume.rehope }">
+			<input type="text" class="form-control" name="epnum" placeholder="공고번호" value="${epnum }">
 		</div>
 		<div class="d-grid mb-4">
-			<button class="btn btn-dark btn-lg" type="submit">이력서 저장</button>
+			<button class="btn btn-dark btn-lg" type="submit">지원하기</button>
 		</div>
 	</form>
+
+
 
 </body>
 </html>

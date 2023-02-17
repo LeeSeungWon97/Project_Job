@@ -14,6 +14,9 @@
 		console.log(url);
 		alert(msg);
 		location.href=url;
+		if(url == "close"){
+			window.close();
+		}
 	</script>
 </body>
 </html>
