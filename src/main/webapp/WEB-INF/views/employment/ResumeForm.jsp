@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
 <div id="resumeForm">
 	<div class="d-flex mb-4">
 		<div class="flex-shrink-0">
@@ -16,7 +15,7 @@
 				<input type="text" class="form-control" value="${sessionScope.loginInfo.mbirth}" style="width: 200px; height: 30px;" readonly="readonly">
 			</div>
 			<div class="top mt-1">
-				<input type="text" class="form-control resumeContent" name="rehope" placeholder="#희망직무태그" value="${Resume.rehope }" style="width: 200px; height: 30px;" readonly="readonly">
+				<input type="text" class="form-control resumeContent rehope" name="rehope" placeholder="#희망직무태그" value="${Resume.rehope }" style="width: 200px; height: 30px;" readonly="readonly">
 			</div>
 		</div>
 	</div>
@@ -41,8 +40,12 @@
 			학력
 		</h2>
 		<div class="input-group" id="reeduData">
-			<input type="text" class="form-control resumeContent reedu" style="height: 60px;" readonly="readonly">
-			<input type="text" class="form-control resumeContent reedu" name="reedu" value="${Resume.reedu}" style="width: 300px; height: 60px;" readonly="readonly">
+			<c:forEach items="${Resume.reedu }" varStatus="i" step="2">
+				<div class="input-group">
+					<input type="text" class="form-control resumeContent reedu" value="${Resume.reedu[i.index]}" style="height: 60px;" readonly="readonly">
+					<input type="text" class="form-control resumeContent reedu" value="${Resume.reedu[i.index + 1]}" style="width: 300px; height: 60px;" readonly="readonly">
+				</div>
+			</c:forEach>
 		</div>
 		<div style="text-align: center;" class="mt-2">
 			<button type="button" class="btn btn-secondary d-none modifyBtn" onclick="addSearchKeyA()">
@@ -61,8 +64,12 @@
 			경력
 		</h2>
 		<div class="input-group" id="recarrerData">
-			<input type="text" class="form-control resumeContent recarrer" style="height: 60px;" readonly="readonly">
-			<input type="text" class="form-control resumeContent recarrer" name="recarrer" value="${Resume.recarrer }" style="width: 300px; height: 60px;" readonly="readonly">
+			<c:forEach items="${Resume.recarrer }" varStatus="i" step="2">
+				<div class="input-group">
+					<input type="text" class="form-control resumeContent recarrer" value="${Resume.recarrer[i.index]}" style="height: 60px;" readonly="readonly">
+					<input type="text" class="form-control resumeContent recarrer" value="${Resume.recarrer[i.index + 1]}" style="width: 300px; height: 60px;" readonly="readonly">
+				</div>
+			</c:forEach>
 		</div>
 		<div style="text-align: center;" class="mt-2">
 			<button type="button" class="btn btn-secondary d-none modifyBtn" onclick="addSearchKeyB()">
@@ -81,8 +88,12 @@
 			인턴/대외활동
 		</h2>
 		<div class="input-group" id="reactData">
-			<input type="text" class="form-control resumeContent react" style="height: 60px;" readonly="readonly">
-			<input type="text" class="form-control resumeContent react" name="react" value="${Resume.react }" style="width: 300px; height: 60px;" readonly="readonly">
+			<c:forEach items="${Resume.react }" varStatus="i" step="2">
+				<div class="input-group">
+					<input type="text" class="form-control resumeContent react" value="${Resume.react[i.index]}" style="height: 60px;" readonly="readonly">
+					<input type="text" class="form-control resumeContent react" value="${Resume.react[i.index + 1]}" style="width: 300px; height: 60px;" readonly="readonly">
+				</div>
+			</c:forEach>
 		</div>
 		<div style="text-align: center;" class="mt-2">
 			<button type="button" class="btn btn-secondary d-none modifyBtn" onclick="addSearchKeyC()">
@@ -101,8 +112,12 @@
 			자격증
 		</h2>
 		<div class="input-group" id="relicenseData">
-			<input type="text" class="form-control resumeContent relicense" style="height: 60px;" readonly="readonly">
-			<input type="text" class="form-control resumeContent relicense" name="relicense" value="${Resume.relicense }" style="width: 300px; height: 60px;" readonly="readonly">
+			<c:forEach items="${Resume.relicense }" varStatus="i" step="2">
+				<div class="input-group">
+					<input type="text" class="form-control resumeContent react" value="${Resume.relicense[i.index]}" style="height: 60px;" readonly="readonly">
+					<input type="text" class="form-control resumeContent react" value="${Resume.relicense[i.index + 1]}" style="width: 300px; height: 60px;" readonly="readonly">
+				</div>
+			</c:forEach>
 		</div>
 		<div style="text-align: center;" class="mt-2">
 			<button type="button" class="btn btn-secondary d-none modifyBtn" onclick="addSearchKeyD()">
@@ -114,3 +129,4 @@
 		</div>
 	</section>
 </div>
+

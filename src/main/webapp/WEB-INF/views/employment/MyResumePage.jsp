@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>이력서작성페이지</title>
+<title>내 이력서</title>
 <!-- Bootstrap icons-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
@@ -80,6 +80,10 @@ h2 {
 
 
 	<script type="text/javascript">
+
+	</script>
+
+	<script type="text/javascript">
 		function modifyResume() {
 			console.log("이력서 수정");
 			$('#modifyBtn').addClass("d-none");
@@ -91,11 +95,13 @@ h2 {
 
 		function saveResume() {
 			console.log("이력서 저장");
+			var rehope = document.getElementsByClassName("rehope");
 			var reedu = document.getElementsByClassName("reedu");
 			var recarrer = document.getElementsByClassName("recarrer");
 			var react = document.getElementsByClassName("react");
 			var relicense = document.getElementsByClassName("relicense");
 
+			var rehopeData = $('.rehope').val();
 			var phoneNum = $('#phoneNum').val();
 			var reeduData = "";
 			var recarrerData = "";
@@ -104,37 +110,49 @@ h2 {
 
 			for (var i = 0; i < reedu.length; i++) {
 				reeduData += reedu[i].value;
+				if (i == reedu.length - 1) {
+					continue;
+				}
 				reeduData += "!@#";
 			}
 
 			for (var i = 0; i < recarrer.length; i++) {
 				recarrerData += recarrer[i].value;
+				if (i == recarrer.length - 1) {
+					continue;
+				}
 				recarrerData += "!@#";
 			}
 
 			for (var i = 0; i < react.length; i++) {
 				reactData += react[i].value;
+				if (i == react.length - 1) {
+					continue;
+				}
 				reactData += "!@#";
 			}
 
-			for (var i = 0; i < react.length; i++) {
-				relicenseData += react[i].value;
+			for (var i = 0; i < relicense.length; i++) {
+				relicenseData += relicense[i].value;
+				if (i == relicense.length - 1) {
+					continue;
+				}
 				relicenseData += "!@#";
 			}
 
 			$.ajax({
 				type : "post",
-				url : "${pageContext.request.contextPath}/updateResume",
+				url : "${pageContext.request.contextPath}/WriteResume",
 				data : {
-					"phoneNum" : phoneNum,
+					"rehope" : rehopeData,
+					"retell" : phoneNum,
 					"reedu" : reeduData,
 					"recarrer" : recarrerData,
 					"react" : reactData,
 					"relicense" : relicenseData
 				},
-				async: false,
-				success: function(result){
-					console.log(result);					
+				async : false,
+				success : function(result) {
 				}
 			});
 			$('#modifyBtn').removeClass("d-none");
@@ -142,7 +160,7 @@ h2 {
 			$('.modifyBtn').addClass("d-none");
 			$('.resumeContent').attr("readonly", true);
 		}
-		
+
 		function modifyCancle() {
 			console.log("수정 취소");
 			location.reload();
