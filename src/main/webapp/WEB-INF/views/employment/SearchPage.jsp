@@ -41,6 +41,9 @@
 .scrap_click{
  text-shadow: 0 0 0 #fdf002; 
 }
+.d_none{
+ display: none; 
+}
 
 </style>
 
@@ -49,27 +52,21 @@
 
 	<!-- Header -->
 	<%@ include file="/WEB-INF/views/includes/main/Header.jsp"%>
-	<!-- Nav -->
-	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
+	
 	<section id="section">
 		<div class="section-div">
 			<div class="row">
 				<div class="card mt-4 mb-4 shadow rounded-3">
 					<div class="table-responsive">
-						<table class="table table-striped" style="border-radius: 50px;">
-							<thead>
-								<tr>
-									<th scope="col" style="font-size: 20px;">회사</th>
-									<th scope="col" style="font-size: 20px;">공고명</th>
-									<th scope="col" style="font-size: 20px;">마감일</th>
-									<th scope="col"></th>
-								</tr>
-							</thead>
+					<button onclick="changeVal1()">채용정보</button> 
+					<button onclick="changeVal2()">기업정보</button> 
+						<table class="table table-striped"id="section1" style="border-radius: 50px;">
+							
 							<tbody>
 								<c:forEach items="${epList }" var="employ">
 									<tr>
-										<td>${employ.epciname }</td>
-										<td> <a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }"> ${employ.epname }</a>
+										<td> <a href="${pageContext.request.contextPath }/viewEpInfo?epnum=${employ.epnum }"> ${employ.epciname }</a></td>
+										<td>${employ.epname }
 										 <input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"> </td>
 										<td>${employ.epdeadline }  </td>
 										<td>
@@ -80,11 +77,28 @@
 
 							</tbody>
 						</table>
+						<table class="table table-striped d_none" id="section2" style="border-radius: 50px;">
+							
+							<tbody>
+								<c:forEach items="${ciList }" var="employ">
+									<tr>
+										<td>${employ.ciname }</td>
+										<td>${employ.citype }
+										<td>${employ.cileader }  </td>
+										
+									</tr>
+								</c:forEach>
+
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	
+	
+	
 		<input type="hidden" id="loginType" value="${sessionScope.loginType }">
 	<c:choose>
 		<c:when test="${sessionScope.loginType == 'P'}">
@@ -114,7 +128,7 @@
 		selectScrapInfo();
 	});
 </script>
-<script type="text/javascript">
+	<script type="text/javascript">
 	function WriteResume() {
 		if (loginId == "") {
 			alert("로그인이 필요한 서비스입니다.");
@@ -180,7 +194,20 @@
 			} );			
 		}
 		
+		function changeVal1() {
+			if ($('#section1').hasClass("d_none")) {
+				$('#section1').removeClass("d_none");
+				$('#section2').addClass("d_none");
+			}
 		
+		}
+		function changeVal2() {
+			 if($('#section2').hasClass("d_none")){
+					$('#section2').removeClass("d_none");
+					$('#section1').addClass("d_none");
+			}
+		
+		}
 		
 	</script>
 

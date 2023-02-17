@@ -13,7 +13,14 @@
 		console.log(msg);
 		console.log(url);
 		alert(msg);
+
+		
+		if(url == "close"){
+			window.close();
+		}
+
 		location.href='${pageContext.request.contextPath}/'+url;
+
 	</script>
 </body>
 </html>

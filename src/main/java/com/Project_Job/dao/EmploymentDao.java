@@ -89,6 +89,26 @@ public interface EmploymentDao {
 	@Select("SELECT * FROM SCRAPINFO WHERE SPMID = #{spmid} ")
 	ArrayList<ScrapDto> selectScrapInfo(String spmid);
 	
+	@Select("SELECT * FROM EMPLOYMENT WHERE EPNAME LIKE '%${pageType}%'  ")
+	ArrayList<EmploymentDto> getSearchList(String pageType);
+	
+	@Select("SELECT * FROM CINFO WHERE CINAME LIKE '%${searchValue}%'  ")
+	ArrayList<CinfoDto> getCiList(String searchValue);
+	
+	@Select("SELECT * FROM CINFO  ")
+	ArrayList<CinfoDto> CinfoList();
+	
+	@Select("SELECT * FROM EMPLOYMENT WHERE EPNUM = #{epnum}  ")
+	EmploymentDto viewEpInfo(String epnum);
+	
+	@Insert("INSERT INTO APPLYSTATE(APEPNUM, APREMID, APSTATE) VALUES(#{apepnum},#{apremid},'N' )")
+	int applyResume(@Param("apepnum") String epnum, @Param("apremid") String remid);
+	
+	@Select("SELECT * FROM CINFO WHERE CINUM = #{cinum}")
+	CinfoDto viewCinfo(String cinum);
+
+	
+	
 	
 	
 
