@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Alert</title>
+<title>Confirm</title>
 </head>
 <body>
 	<script type="text/javascript">
@@ -12,15 +12,12 @@
 		var url = '${url}';
 		console.log(msg);
 		console.log(url);
-		alert(msg);
-
-		
-		if(url == "close"){
-			window.close();
+		var select = confirm(msg);
+		if(select){
+			location.href='${pageContext.request.contextPath}/'+url;			
+		} else{
+			history.back();			
 		}
-
-		location.href='${pageContext.request.contextPath}/'+url;
-
 	</script>
 </body>
 </html>

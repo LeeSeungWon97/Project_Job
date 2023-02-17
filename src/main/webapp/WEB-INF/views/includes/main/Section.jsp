@@ -137,7 +137,7 @@
 									<a href="${pageContext.request.contextPath }/myInfo">
 										<button type="button" class="btn btn-outline-secondary btn-sm">내정보</button>
 									</a>
-									<a href="${pageContext.request.contextPath }/WriteResumePage">
+									<a href="${pageContext.request.contextPath }/myResume">
 										<button type="button" class="btn btn-outline-secondary btn-sm">이력서</button>
 									</a>
 									<a>

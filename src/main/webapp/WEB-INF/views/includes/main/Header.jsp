@@ -40,6 +40,7 @@
 						</c:otherwise>
 						</c:choose>
 					</a>
+					<a class="tmenu-text" href="${pageContext.request.contextPath }/logout ">로그아웃</a>
 				</c:otherwise>
 			</c:choose>
 			<a class="tmenu-text" href="${pageContext.request.contextPath }/">기업회원 홈</a>

@@ -288,5 +288,35 @@ public class EmploymentController {
 			}
 			return mav;
 		}	
+		@RequestMapping(value="/myResume")
+		public ModelAndView myResume() {
+			ModelAndView mav = new ModelAndView();
+			String loginType = (String)session.getAttribute("loginType");
+			System.out.println("loginType: " + loginType);
+			if(loginType.equals("P")) {
+				String loginId = mctrl.callLoginId(loginType);
+				System.out.println("loginId: " + loginId);
+				ResumeDto myresume = epsvc.SelectResume(loginId);
+				System.out.println(myresume);
+				if(myresume == null) {
+					mav.addObject("msg","저장된 이력서가 없습니다. 작성하시겠습니까?");
+					mav.addObject("url","WriteResumePage");
+					mav.setViewName("ConfirmScreen");
+				}else {
+					mav.addObject("Resume",myresume);
+					mav.setViewName("employment/MyResumePage");
+				}
+			} else if(loginType.equals("C")) {
+				mav.addObject("msg", "개인회원 전용 페이지 입니다.");
+				mav.addObject("url","");
+				mav.setViewName("AlertScreen");
+			} else {
+				mav.addObject("msg", "로그인(개인) 이후 이용가능합니다");
+				mav.addObject("url","login");
+				mav.setViewName("AlertScreen");
+			}
+			
+			return mav;
+		}
 		
 }
