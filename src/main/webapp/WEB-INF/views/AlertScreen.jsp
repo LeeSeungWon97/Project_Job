@@ -12,12 +12,21 @@
 		console.log(msg);
 		console.log(url);
 		alert(msg);
+
 		if (opener) {
 			window.opener.location.href = '${pageContext.request.contextPath}/'
 					+ url;
 		} else {
 			location.href = '${pageContext.request.contextPath}/' + url;
 		}
+
+
+		
+//		if(url == "close"){
+			 window.close();
+//		}
+
+//		location.href='${pageContext.request.contextPath}/'+url;
 	</script>
 </body>
 </html>

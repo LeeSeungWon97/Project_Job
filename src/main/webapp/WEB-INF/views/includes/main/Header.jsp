@@ -12,9 +12,11 @@
 
 		<div class="search">
 			<div class="search-box">
-				<form class="d-flex" role="search">
-					<input class="form-control me-2" type="search" placeholder="오늘도 역시, 굿잡!" aria-label="Search">
-					<button class="search-btn" type="submit">
+				<form class="d-flex" role="search" action="${pageContext.request.contextPath }/searchValue" onsubmit="return searchForm(this)">
+					<input class="form-control me-2" type="search" placeholder="오늘도 역시, 굿잡!" aria-label="Search" name="searchValue" id="headerInput" >
+					<input type="hidden" id="currentURL"  name="currentURL">
+					
+					<button class="search-btn">
 						<img src="${pageContext.request.contextPath }/resources/assets/img/update/search-icon.png" style="width: 90%; height: auto;">
 					</button>
 				</form>
@@ -43,7 +45,14 @@
 			</c:choose>
 			<a class="tmenu-text" href="${pageContext.request.contextPath }/">기업회원 홈</a>
 		</div>
-
-
 	</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script type="text/javascript">
+            var currentUrl = window.location.href;
+            function searchForm(formObj){
+            	formObj.currentURL.value = currentUrl;
+            }
+            </script>
+	
 </header>

@@ -56,6 +56,7 @@ h2 {
 				<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 200px; height: 100px;">
 			</a>
 		</div>
+
 		<div class="row">
 			<div class="col-2">
 				<!-- SideBar -->

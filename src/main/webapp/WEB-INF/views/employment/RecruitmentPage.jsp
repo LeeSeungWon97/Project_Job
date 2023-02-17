@@ -70,25 +70,24 @@
 							<tbody>
 								<c:forEach items="${epList }" var="employ">
 									<tr>
-										<td>${employ.epciname }</td>
-										<td>${employ.epname }
-											<input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐">
-										</td>
-										<td>${employ.epedu }</td>
-										<td>
-											<span>${employ.epdeadline }</span>
-										</td>
-										<td>
-											<button class="btn btn-secondary mt-1" onclick="WriteResume('${employ.epnum }','${employ.epciname }','${employ.epname }')" style="min-width: 80px; font-size: 20%;">자소서작성</button>
-										</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</div>
+                          <td>${employ.epciname }</td>
+                            <td> <a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }"> ${employ.epname }</a>
+                             <input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐">
+                            </td>
+                            <td>${employ.epedu }</td>
+                            <td><span>${employ.epdeadline }</span></td>
+                          <td>	
+                            <button class="btn btn-secondary mt-1" onclick="WriteResume('${employ.epnum }','${employ.epciname }','${employ.epname }')" style="min-width: 80px;  font-size: 20%;">자소서작성</button>      
+                          </td>
+                        </tr>
+                </c:forEach>
+						</tbody>
+					</table>
+				</div>	
+				
+			</div>	
+			</div>		
 
-				</div>
-			</div>
 		</div>
 	</section>
 
