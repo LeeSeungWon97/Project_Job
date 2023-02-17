@@ -8,13 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
-
 
 import com.Project_Job.dto.ArrResumeDto;
 import com.Project_Job.dto.CinfoDto;
-import com.Project_Job.dto.CmemberDto;
 import com.Project_Job.dto.EmploymentDto;
 import com.Project_Job.dto.EssayDto;
 import com.Project_Job.dto.MemberDto;
@@ -30,7 +27,7 @@ public class EmploymentController {
 	private HttpSession session;
 	@Autowired
 	private MemberController mctrl;
-	
+
 	private String requestUrl = "http://localhost:8080/controller/";
 
 	// 회사 검색 요청
@@ -91,7 +88,7 @@ public class EmploymentController {
 		String loginId = mctrl.callLoginId("P");
 		ResumeInfo.setRemid(loginId);
 		System.out.println("입력받은 이력서 작성 정보 : " + ResumeInfo);
-		
+
 		int insertResult = epsvc.WriteResume(ResumeInfo);
 		if (insertResult < 0) {
 			mav.addObject("msg", "작성 실패 ");
@@ -103,26 +100,25 @@ public class EmploymentController {
 
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/applyResume")
 	public ModelAndView applyResume(ResumeDto ResumeInfo, String epnum) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("applyResume 호출");
 		String remid = ResumeInfo.getRemid();
 		int insertResult = epsvc.applyResume(remid, epnum);
-		if(insertResult <= 0 ) {
+		if (insertResult <= 0) {
 			mav.addObject("msg", "지원 실패 ");
 			mav.addObject("url", "close");
 			mav.setViewName("AlertScreen");
-		}else {
+		} else {
 			mav.addObject("msg", "지원 성공 ");
 			mav.addObject("url", "close");
 			mav.setViewName("AlertScreen");
 		}
-		
+
 		return mav;
-	}	
-	
+	}
 
 	// 자소서 작성 페이지 요청
 	@RequestMapping(value = "/WriteEssayPage", produces = "application/text;charset=UTF-8")
@@ -176,6 +172,112 @@ public class EmploymentController {
 		return null;
 	}
 
+	@RequestMapping(value = "/removeScrap")
+	public @ResponseBody String removeScrap(String checkedName) {
+		System.out.println("Epcontroller removeScrap요청");
+		System.out.println(checkedName);
+		MemberDto loginMInfo = (MemberDto) session.getAttribute("loginInfo");
+		String smid = loginMInfo.getMid();
+		ScrapDto scrapInfo = new ScrapDto();
+		scrapInfo.setSpmid(smid);
+		scrapInfo.setSpepnum(checkedName);
+		epsvc.deleteScrap(smid, checkedName);
+
+		return null;
+	}
+
+	@RequestMapping(value = "/selectScrapInfo")
+	public @ResponseBody String selectScrapInfo() {
+		if (session.getAttribute("loginInfo") != null) {
+			MemberDto loginMInfo = (MemberDto) session.getAttribute("loginInfo");
+			String smid = loginMInfo.getMid();
+			String scrapInfo = epsvc.selectScrapInfo(smid);
+			return scrapInfo;
+		} else {
+			return null;
+		}
+	}
+
+	@RequestMapping(value = "/searchValue")
+	public ModelAndView searchValue(String searchValue, String currentURL) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println(searchValue);
+		System.out.println(currentURL);
+		if (searchValue.length() <= 0) {
+			mav.addObject("msg", "검색어를 입력해주세요!");
+			mav.addObject("url", currentURL);
+			mav.setViewName("AlertScreen");
+		} else {
+			ArrayList<EmploymentDto> epList = epsvc.getEpList(searchValue);
+			ArrayList<CinfoDto> ciList = epsvc.getCiList(searchValue);
+			mav.addObject("epList", epList);
+			mav.addObject("ciList", ciList);
+			mav.setViewName("employment/SearchPage");
+		}
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/ViewEpInfo")
+	public ModelAndView viewEpInfo(String epnum) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("viewEpInfo 호출");
+		System.out.println(epnum);
+		EmploymentDto epInfo = epsvc.viewEpInfo(epnum);
+		mav.addObject("epInfo", epInfo);
+		mav.setViewName("employment/ViewEpInfo2");
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/CinfoListPage")
+	public ModelAndView CinfoListPage() {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("CinfoListPage 호출");
+		ArrayList<CinfoDto> cinfoList = epsvc.getCiList("");
+		mav.addObject("cinfoList", cinfoList);
+		mav.setViewName("employment/CinfoListPage");
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/viewCiInfo")
+	public ModelAndView viewCiInfo(String cinum) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("viewCiInfo 호출");
+		System.out.println("요청받은 기업코드 : " + cinum);
+		CinfoDto cinfo = epsvc.viewCinfo(cinum);
+		mav.addObject("cinfo", cinfo);
+		mav.setViewName("employment/ViewCiInfo");
+		return mav;
+	}
+
+	@RequestMapping(value = "/WriteEmploymentPage")
+	public ModelAndView WriteEmploymentPage() {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("WriteEmploymentPage 요청");
+		mav.setViewName("employment/Cmember/WriteEmploymentPage");
+		return mav;
+	}
+
+	@RequestMapping(value = "/WriteEmployment")
+	public ModelAndView WriteEmployment(EmploymentDto epinfo) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("WriteEmployment 요청");
+		System.out.println("요청받은 epinfo :" + epinfo);
+		int insertResult = epsvc.WriteEmployment(epinfo);
+		if (insertResult > 0) {
+			mav.addObject("msg", "공고등록완료!");
+			mav.addObject("url", requestUrl);
+			mav.setViewName("AlertScreen");
+		} else {
+			mav.addObject("msg", "입력 정보를 다시 확인해주세요!");
+			mav.addObject("url", "WriteEmploymentPage");
+			mav.setViewName("AlertScreen");
+		}
+		return mav;
+	}
+
 	@RequestMapping(value = "/myResume")
 	public ModelAndView myResume() {
 		ModelAndView mav = new ModelAndView();
@@ -190,135 +292,6 @@ public class EmploymentController {
 				mav.addObject("msg", "저장된 이력서가 없습니다. 작성하시겠습니까?");
 				mav.addObject("url", "WriteResumePage");
 				mav.setViewName("ConfirmScreen");
-
-		@RequestMapping(value = "/removeScrap")
-		public @ResponseBody String removeScrap(String checkedName) {
-			System.out.println("Epcontroller removeScrap요청");
-			System.out.println(checkedName);
-			MemberDto loginMInfo =  (MemberDto) session.getAttribute("loginInfo");
-			String smid = loginMInfo.getMid();
-			ScrapDto scrapInfo = new ScrapDto();
-			scrapInfo.setSpmid(smid);
-			scrapInfo.setSpepnum(checkedName);
-			epsvc.deleteScrap(smid,checkedName);
-			
-			return null;
-		}
-		
-		@RequestMapping(value = "/selectScrapInfo")
-		public @ResponseBody String selectScrapInfo() {
-			if(session.getAttribute("loginInfo") != null) {
-			MemberDto loginMInfo =  (MemberDto) session.getAttribute("loginInfo");
-			String smid = loginMInfo.getMid();
-			String scrapInfo = epsvc.selectScrapInfo(smid);
-			return scrapInfo;
-			}else {
-				return null;
-			}
-		}	
-		
-		@RequestMapping(value = "/searchValue")
-		public ModelAndView searchValue(String searchValue, String currentURL) {
-			ModelAndView mav = new ModelAndView();
-			System.out.println(searchValue);
-			System.out.println(currentURL);
-			if(searchValue.length()<=0) {
-				mav.addObject("msg", "검색어를 입력해주세요!");
-				mav.addObject("url", currentURL);
-				mav.setViewName("AlertScreen");
-			}else {
-			ArrayList<EmploymentDto> epList = epsvc.getEpList(searchValue);
-			ArrayList<CinfoDto> ciList = epsvc.getCiList(searchValue);
-			mav.addObject("epList", epList);
-			mav.addObject("ciList", ciList);
-			mav.setViewName("employment/SearchPage");
-			}
-			
-			return mav;
-		}	
-		
-		@RequestMapping(value = "/ViewEpInfo")
-		public ModelAndView viewEpInfo(String epnum) {
-			ModelAndView mav = new ModelAndView();
-			System.out.println("viewEpInfo 호출");
-			System.out.println(epnum);
-			EmploymentDto epInfo = epsvc.viewEpInfo(epnum);
-			mav.addObject("epInfo", epInfo);
-			mav.setViewName("employment/ViewEpInfo2");
-			
-			return mav;
-		}	
-		
-		@RequestMapping(value = "/CinfoListPage")
-		public ModelAndView CinfoListPage() {
-			ModelAndView mav = new ModelAndView();
-			System.out.println("CinfoListPage 호출");
-			ArrayList<CinfoDto> cinfoList = epsvc.getCiList("");
-			mav.addObject("cinfoList", cinfoList);
-			mav.setViewName("employment/CinfoListPage");
-			
-			return mav;
-		}	
-		
-		
-		@RequestMapping(value = "/viewCiInfo")
-		public ModelAndView viewCiInfo(String cinum) {
-			ModelAndView mav = new ModelAndView();
-			System.out.println("viewCiInfo 호출");
-			System.out.println("요청받은 기업코드 : " + cinum);
-			CinfoDto cinfo = epsvc.viewCinfo(cinum);
-			mav.addObject("cinfo", cinfo);
-			mav.setViewName("employment/ViewCiInfo");
-			return mav;
-		}	
-	
-		@RequestMapping(value = "/WriteEmploymentPage")
-		public ModelAndView WriteEmploymentPage() {
-			ModelAndView mav = new ModelAndView();
-			System.out.println("WriteEmploymentPage 요청");
-			mav.setViewName("employment/Cmember/WriteEmploymentPage");
-			return mav;
-		}	
-		
-		@RequestMapping(value = "/WriteEmployment")
-		public ModelAndView WriteEmployment(EmploymentDto epinfo) {
-			ModelAndView mav = new ModelAndView();
-			System.out.println("WriteEmployment 요청");
-			System.out.println("요청받은 epinfo :" + epinfo);
-			int insertResult = epsvc.WriteEmployment(epinfo);
-			if(insertResult>0) {
-				mav.addObject("msg", "공고등록완료!");
-				mav.addObject("url", requestUrl);
-				mav.setViewName("AlertScreen");
-			}else {
-				mav.addObject("msg", "입력 정보를 다시 확인해주세요!");
-				mav.addObject("url", "WriteEmploymentPage");
-				mav.setViewName("AlertScreen");
-			}
-			return mav;
-		}	
-		@RequestMapping(value="/myResume")
-		public ModelAndView myResume() {
-			ModelAndView mav = new ModelAndView();
-			String loginType = (String)session.getAttribute("loginType");
-			System.out.println("loginType: " + loginType);
-			if(loginType.equals("P")) {
-				String loginId = mctrl.callLoginId(loginType);
-				System.out.println("loginId: " + loginId);
-				ResumeDto myresume = epsvc.SelectResume(loginId);
-				System.out.println(myresume);
-				if(myresume == null) {
-					mav.addObject("msg","저장된 이력서가 없습니다. 작성하시겠습니까?");
-					mav.addObject("url","WriteResumePage");
-					mav.setViewName("ConfirmScreen");
-				}else {
-					mav.addObject("Resume",myresume);
-					mav.setViewName("employment/MyResumePage");
-				}
-			} else if(loginType.equals("C")) {
-				mav.addObject("msg", "개인회원 전용 페이지 입니다.");
-				mav.addObject("url","");
-				mav.setViewName("AlertScreen");
 			} else {
 				mav.addObject("Resume", myresume);
 				mav.setViewName("employment/MyResumePage");
@@ -332,8 +305,6 @@ public class EmploymentController {
 			mav.addObject("url", "login");
 			mav.setViewName("AlertScreen");
 		}
-
 		return mav;
 	}
-
 }
