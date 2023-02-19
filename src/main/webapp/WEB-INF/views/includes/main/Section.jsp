@@ -137,7 +137,8 @@
 									<a href="${pageContext.request.contextPath }/myInfo">
 										<button type="button" class="btn btn-outline-secondary btn-sm">내정보</button>
 									</a>
-									<a href="${pageContext.request.contextPath }/WriteResumePage">
+									<a href="${pageContext.request.contextPath }/myResume">
+
 										<button type="button" class="btn btn-outline-secondary btn-sm">이력서</button>
 									</a>
 									<a>
@@ -146,6 +147,11 @@
 									<a>
 										<button type="button" class="btn btn-outline-secondary btn-sm">스크랩</button>
 									</a>
+									<c:if test="${sessionScope.loginType == 'C' }">
+									<a href="${pageContext.request.contextPath }/WriteEmploymentPage">
+										<button type="button" class="btn btn-outline-secondary btn-sm">공고등록하기</button>
+									</a>
+									</c:if>
 								</div>
 							</div>
 						</c:if>

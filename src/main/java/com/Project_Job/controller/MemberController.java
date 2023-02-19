@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.CmemberDto;
 import com.Project_Job.dto.MemberDto;
 import com.Project_Job.service.EmploymentService;
@@ -226,6 +227,9 @@ public class MemberController {
 				mav.addObject("url", "login");
 				mav.setViewName("AlertScreen");
 			} else {
+				String cinum = loginCInfo.getCmcinum();
+				CinfoDto cinfo = epsvc.viewCinfo(cinum);
+				session.setAttribute("cinfo", cinfo);
 				session.setAttribute("loginType", "C");
 				session.setAttribute("loginInfo", loginCInfo);
 				mav.setViewName("redirect:" + requestUrl);

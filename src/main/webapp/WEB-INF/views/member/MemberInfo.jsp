@@ -25,20 +25,7 @@
 		<div class="row">
 			<div class="col-2">
 				<!-- SideBar -->
-				<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 100%; display: flex;">
-					<a href="" class="d-flex align-items-center link-dark text-decoration-none">
-						<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-						<strong>mdo</strong>
-					</a>
-					<hr>
-					<ul class="nav nav-pills flex-column mb-auto">
-						<li><a href="${pageContext.request.contextPath }" class="nav-link link-dark"> 내정보 </a></li>
-						<li><a href="${pageContext.request.contextPath }" class="nav-link link-dark"> 이력서 </a></li>
-						<li><a href="${pageContext.request.contextPath }" class="nav-link link-dark"> 지원현황 </a></li>
-						<li><a href="${pageContext.request.contextPath }" class="nav-link link-dark"> 스크랩 </a></li>
-						<li><a href="${pageContext.request.contextPath }" class="nav-link link-dark"> 열람기업 </a></li>
-					</ul>
-				</div>
+				<%@ include file="/WEB-INF/views/includes/infoSidebar.jsp" %>
 			</div>
 
 			<div class="col-lg-10 col-xl-8 mx-auto">
@@ -78,7 +65,7 @@
 								</div>
 								<div class="input-group input-group-lg mb-3">
 									<span class="input-group-text" style="width: 18%; justify-content: center;">회사명</span>
-									<input type="text" class="cmciname form-control" readonly="readonly" style="background-color: white;">
+									<input type="text" class="cmciname form-control" value="${sessionScope.cinfo.ciname }" readonly="readonly" style="background-color: white;">
 								</div>
 								<div class="input-group input-group-lg mb-3">
 									<span class="input-group-text" style="width: 18%; justify-content: center;">아이디</span>
@@ -216,5 +203,6 @@
 			}
 		}
 	</script>
+
 </body>
 </html>

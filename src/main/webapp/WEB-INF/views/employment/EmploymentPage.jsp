@@ -100,7 +100,7 @@
 				</div>
 		</div>
 	</section>
-		<input type="hidden" id="loginType" value="${sessionScope.loginType }">
+	<input type="hidden" id="loginType" value="${sessionScope.loginType }">
 	<c:choose>
 		<c:when test="${sessionScope.loginType == 'P'}">
 			<input type="hidden" id="loginId" value="${sessionScope.loginInfo.mid }">
@@ -124,14 +124,14 @@
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script type="text/javascript">
+	var loginType = $('#loginType').val();
+	var loginId = $('#loginId').val();	
 	$(document).ready(function(){
 		selectScrapInfo();
 	});
 </script>
 <script type="text/javascript">
 	function WriteResume() {
-		var loginType = $('#loginType').val();
-		var loginId = $('#loginId').val();	
 		if (loginId == "") {
 			alert("로그인이 필요한 서비스입니다.");
 			location.href = "${pageContext.request.contextPath}/login";
@@ -139,7 +139,7 @@
 			alert("일반회원을 위한 서비스입니다.");
 			location.reload();
 		} else {
-			window.open("${pageContext.request.contextPath}/WriteResumePage",
+			window.open("${pageContext.request.contextPath}/myResume",
 					"이력서 선택", "width=400,height=400,top=10,left=100");
 		}
 
@@ -147,9 +147,15 @@
 	</script>
 
 
-	<script type="text/javascript">	
-		function checkVal(checkedName, selBtn){
+<script type="text/javascript">	
+	function checkVal(checkedName, selBtn){
 		console.log(checkedName);
+		
+		if (loginId == "") {
+			alert("로그인이 필요한 서비스입니다.");
+			location.href = "${pageContext.request.contextPath}/login";
+			return null;
+		} 
 		if ($(selBtn).hasClass("scrap_click")) {
 			$(selBtn).removeClass("scrap_click");
 			$.ajax({
@@ -185,13 +191,9 @@
 						 for(var scrapinfo of scrapList){
 						 $("#"+scrapinfo.spepnum).addClass("scrap_click");
 						 }
-					
 				}
 			} );			
 		}
-		
-		
-		
 	</script>
 
 </html>

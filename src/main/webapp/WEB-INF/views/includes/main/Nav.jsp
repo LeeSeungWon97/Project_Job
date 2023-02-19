@@ -6,7 +6,7 @@
 	<div class="navigator">
 		<div class="nav-div"><a href="${pageContext.request.contextPath }/EmploymentPage">채용정보</a></div>
 		<div class="nav-div"><a href="${pageContext.request.contextPath }/RecruitmentPage">공채</a></div>
-		<div class="nav-div"><a href="${pageContext.request.contextPath }">자료실</a></div>
+		<div class="nav-div"><a href="${pageContext.request.contextPath }/CinfoListPage">자료실</a></div>
 		<div class="nav-div"><a href="${pageContext.request.contextPath }">커뮤니티</a></div>
 	</div> 
 </nav>
