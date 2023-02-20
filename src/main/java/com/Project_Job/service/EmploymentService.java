@@ -16,6 +16,7 @@ import com.Project_Job.dto.ArrResumeDto;
 import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.EmploymentDto;
 import com.Project_Job.dto.EssayDto;
+import com.Project_Job.dto.MemberDto;
 import com.Project_Job.dto.ResumeDto;
 import com.Project_Job.dto.ScrapDto;
 import com.google.gson.Gson;
@@ -484,8 +485,13 @@ public class EmploymentService {
 	}
 
 	// 이력서지원
-	public int applyResume(String remid, String epnum) {
-		int insertResult = epdao.applyResume(epnum, remid);
+	public int applyResume(String epnum, String remid) {
+		int insertResult =0;
+		try {
+			insertResult = epdao.applyResume(epnum, remid);
+		} catch (Exception e) {
+			insertResult = 9;
+		}
 		return insertResult;
 	}
 
@@ -552,4 +558,58 @@ public class EmploymentService {
 		return insertResult;
 	}
 
+	public ArrayList<Map<String, String>> viewApplyCmember(String loginId) {
+		System.out.println("viewApplyCmember호출");
+		System.out.println(loginId);
+		ArrayList<Map<String, String>> ApplyList = epdao.viewApplyCmember(loginId);
+		System.out.println(ApplyList);
+		return ApplyList;
+	}
+
+	public ArrayList<Map<String, String>> viewApplyMember(String loginId) {
+		ArrayList<Map<String, String>> ApplyList = epdao.viewApplyMember(loginId);
+		return ApplyList;
+	}
+
+	public MemberDto selectViewInfo(String viewId) {
+		MemberDto member = epdao.selectViewInfo(viewId);
+		return member;
+	}
+
+	public ArrayList<ArrResumeDto> viewResumeInfo() {
+		ArrayList<ArrResumeDto> resumeList = epdao.viewResumeInfo();		
+		//
+		System.out.println("epsvc viewResumeInfo 요청");
+		System.out.println(resumeList);
+		ArrayList<ResumeDto> ResumeInfo = epdao.SelectResumeInfo();
+		for(int i=0; i < resumeList.size(); i++) {
+			resumeList.get(i).setRemid(ResumeInfo.get(i).getRemid());
+			resumeList.get(i).setRetell(ResumeInfo.get(i).getRetell());
+			resumeList.get(i).setRecount(ResumeInfo.get(i).getRecount());
+			resumeList.get(i).setRehope(ResumeInfo.get(i).getRehope());
+			
+			if (ResumeInfo.get(i).getReedu() != null) {
+				String[] reedu = ResumeInfo.get(i).getReedu().split("!@#");
+				resumeList.get(i).setReedu(reedu);
+			}
+			if (ResumeInfo.get(i).getRecarrer() != null) {
+				String[] recarrer = ResumeInfo.get(i).getRecarrer().split("!@#");
+				resumeList.get(i).setRecarrer(recarrer);
+			}
+			if (ResumeInfo.get(i).getReact() != null) {
+				String[] react = ResumeInfo.get(i).getReact().split("!@#");
+				resumeList.get(i).setReact(react);
+			}
+			if (ResumeInfo.get(i).getRelicense() != null) {
+				String[] relicense = ResumeInfo.get(i).getRelicense().split("!@#");
+				resumeList.get(i).setRelicense(relicense);
+			}
+			if (ResumeInfo.get(i).getReciname() != null) {
+				String[] reciname = ResumeInfo.get(i).getReciname().split(",");
+				resumeList.get(i).setReciname(reciname);
+			}
+		}
+		//
+		return resumeList;
+	}
 }
