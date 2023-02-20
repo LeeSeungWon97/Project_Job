@@ -1,6 +1,7 @@
 package com.Project_Job.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.CmemberDto;
+import com.Project_Job.dto.EmploymentDto;
 import com.Project_Job.dto.MemberDto;
 import com.Project_Job.service.EmploymentService;
 import com.Project_Job.service.MailService;
@@ -121,10 +123,10 @@ public class MemberController {
 		return "member/ChangePw";
 	}
 
-	// 비밀번호 변경 팝업창 요청
+	// 회원탈퇴 유저
 	@RequestMapping(value = "/deleteUser")
 	public String deleteUser() {
-		System.out.println("비밀번호 확인 팝업창 요청");
+		System.out.println("회원탈퇴 페이지 요청");
 		return "member/DeleteUser";
 	}
 
@@ -369,5 +371,31 @@ public class MemberController {
 			loginId = cmdto.getCmid();
 		}
 		return loginId;
+	}
+
+	// 내 스크랩 페이지 요청
+	@RequestMapping(value = "/myScrap")
+	public ModelAndView myScrap() {
+		ModelAndView mav = new ModelAndView();
+		String loginType = (String) session.getAttribute("loginType");
+		String id = callLoginId(loginType);
+		if (id != null) {
+			ArrayList<EmploymentDto> myScrap = msvc.callMyScrap(id);
+			mav.addObject("myScrap", myScrap);
+			mav.setViewName("member/myScrap");
+		}
+		return mav;
+	}
+	// 내 지원목록
+	@RequestMapping(value = "/myApplyList")
+	public ModelAndView myApplyList() {
+		ModelAndView mav = new ModelAndView();
+		String id = callLoginId("P");
+		if(id != null) {
+			ArrayList<EmploymentDto> myApply = msvc.callMyApply(id);
+			mav.addObject("myApply",myApply);
+			mav.setViewName("member/myApply");
+		}
+		return mav;
 	}
 }

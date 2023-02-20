@@ -1,5 +1,7 @@
 package com.Project_Job.dao;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -7,6 +9,7 @@ import org.apache.ibatis.annotations.Update;
 
 import com.Project_Job.dto.CmemberDto;
 import com.Project_Job.dto.MemberDto;
+import com.Project_Job.dto.ScrapDto;
 
 public interface MemberDao {
 
@@ -76,8 +79,14 @@ public interface MemberDao {
 
 	@Update("UPDATE MEMBERS SET MSTATE='1' WHERE MID = #{loginId}")
 	int updateMState(String loginId);
-	
+
 	@Update("UPDATE CMEMBERS SET CMSTATE='1' WHERE CMID = #{loginId}")
 	int updateCMState(String loginId);
+
+	@Select("SELECT * FROM SCRAPINFO WHERE SPMID = #{id}")
+	ArrayList<ScrapDto> selectScrap(String id);
+
+	@Select("SELECT APEPNUM FROM APPLYSTATE WHERE APREMID = #{id}")
+	ArrayList<String> selectMyApply(String id);
 
 }
