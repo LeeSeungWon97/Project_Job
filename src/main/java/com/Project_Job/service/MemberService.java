@@ -1,12 +1,16 @@
 package com.Project_Job.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Project_Job.dao.EmploymentDao;
 import com.Project_Job.dao.MemberDao;
 import com.Project_Job.dto.CmemberDto;
+import com.Project_Job.dto.EmploymentDto;
 import com.Project_Job.dto.MemberDto;
+import com.Project_Job.dto.ScrapDto;
 
 @Service
 public class MemberService {
@@ -129,14 +133,14 @@ public class MemberService {
 	public String checkPw(String loginType, String loginId, String currentPw) {
 		System.out.println("MemberService checkPw() 호출");
 		String result = "NO";
-		if(loginType.equals("P")) {
+		if (loginType.equals("P")) {
 			String loginPw = mdao.selectMemberPw(loginId);
-			if(loginPw.equals(currentPw)) {
+			if (loginPw.equals(currentPw)) {
 				result = "OK";
 			}
 		} else {
 			String loginPw = mdao.selectCMemberPw(loginId);
-			if(loginPw.equals(currentPw)) {
+			if (loginPw.equals(currentPw)) {
 				result = "OK";
 			}
 		}
@@ -147,15 +151,40 @@ public class MemberService {
 		System.out.println("MemberService deleteUserInfo() 호출");
 		boolean result = false;
 		int updateResult = 0;
-		if(loginType.equals("P")) {
-			updateResult = mdao.updateMState(loginId);	
+		if (loginType.equals("P")) {
+			updateResult = mdao.updateMState(loginId);
 		} else {
 			updateResult = mdao.updateCMState(loginId);
 		}
-		if(updateResult == 1) {
+		if (updateResult == 1) {
 			result = true;
 		}
 		return result;
+	}
+
+	// 내 스크랩 가져오기
+	public ArrayList<EmploymentDto> callMyScrap(String id) {
+		System.out.println("MemberService callMyScrap 호출");
+		ArrayList<ScrapDto> myScrap = mdao.selectScrap(id);
+		ArrayList<EmploymentDto> epInfo = new ArrayList<EmploymentDto>();
+		for (int i = 0; i < myScrap.size(); i++) {
+			String epnum = myScrap.get(i).getSpepnum();
+			EmploymentDto employ = epdao.viewEpInfo(epnum);
+			epInfo.add(employ);
+		}
+		return epInfo;
+	}
+
+	// 내 지원현황
+	public ArrayList<EmploymentDto> callMyApply(String id) {
+		System.out.println("MeberService callMyApply() 호출");
+		ArrayList<String> applyNum = mdao.selectMyApply(id);
+		ArrayList<EmploymentDto> epInfo = new ArrayList<EmploymentDto>();
+		for (int i = 0; i < applyNum.size(); i++) {
+			EmploymentDto employ = epdao.viewEpInfo(applyNum.get(i));
+			epInfo.add(employ);
+		}
+		return epInfo;
 	}
 
 }

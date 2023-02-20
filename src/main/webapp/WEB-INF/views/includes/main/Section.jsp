@@ -140,10 +140,10 @@
 									<a href="${pageContext.request.contextPath }/myResume">
 										<button type="button" class="btn btn-outline-secondary btn-sm">이력서</button>
 									</a>
-									<a>
+									<a href="${pageContext.request.contextPath }/myApplyList">
 										<button type="button" class="btn btn-outline-secondary btn-sm">지원현황</button>
 									</a>
-									<a>
+									<a href="${pageContext.request.contextPath }/myScrap">
 										<button type="button" class="btn btn-outline-secondary btn-sm">스크랩</button>
 									</a>
 									<c:if test="${sessionScope.loginType == 'C' }">
