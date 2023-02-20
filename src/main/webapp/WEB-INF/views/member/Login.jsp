@@ -19,19 +19,23 @@
 
 </head>
 <body>
-
-	<div class="d-flex justify-content-center">
-		<a class="navbar-brand" href="${pageContext.request.contextPath }/">
-			<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 200px; height: 100px;">
-		</a>
+	<!-- Header -->
+	<header id="header">
+	<div class="header-div">
+		<div class="logo">
+			<a class="navbar-brand" href="${pageContext.request.contextPath }/">
+				<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 80%; height: auto;">
+			</a>
+		</div>
 	</div>
+	</header>
 
-
-
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-10 col-xl-5 mx-auto">
-				<div class="card flex-row my-4 border-0 shadow rounded-3">
+	
+	<!-- Section -->
+	<section id="section">
+		<div class="section-div" style="justify-content: center;">
+			<div class="col-lg-10 col-xl-5" style="width: 50%;">
+				<div class="card mt-4 mb-4 shadow rounded-3">
 					<div class="card-body p-4 p-sm-4 mb-3">
 						<form action="${pageContext.request.contextPath }/loginMember" method="post" onsubmit="return checkInputVal(this)">
 							<div class="mb-2">
@@ -76,7 +80,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 
 	<!-- jQuery -->
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>

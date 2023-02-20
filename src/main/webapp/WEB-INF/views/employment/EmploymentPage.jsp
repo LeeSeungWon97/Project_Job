@@ -69,8 +69,7 @@
 	<section id="section">
 		<div class="section-div">
 				<div class="card mt-4 mb-4 shadow rounded-3">
-					<a href="${pageContext.request.contextPath }/epcinamePage">테스트이동</a>
-					<div class="table-responsive" style="margin: 40px 40px 40px 40px;">
+					<div class="table-responsive">
 						<table class="table">
 							<thead style="background-color: #f2f9fe; border-top: 1px solid #eaeaea;">
 								<tr style="color: #888; text-align: center;">
@@ -100,6 +99,7 @@
 				</div>
 		</div>
 	</section>
+	
 	<input type="hidden" id="loginType" value="${sessionScope.loginType }">
 	<c:choose>
 		<c:when test="${sessionScope.loginType == 'P'}">

@@ -9,20 +9,31 @@
 <meta name="author" content="" />
 <title>JoinForm</title>
 <!-- Favicon-->
- <link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png">
-<!-- Bootstrap icons-->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+<link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png">
+<link href="${pageContext.request.contextPath }/resources/assets/css/header.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/section.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/footer.css" rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
 </head>
 <body>
-	<div class="container">
-		<div class="d-flex justify-content-center">
-    		<a class="navbar-brand" href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 200px; height:100px;"></a> 
-    	</div>
-		<div class="row">
+	<!-- Header -->
+	<header id="header">
+	<div class="header-div">
+		<div class="logo">
+			<a class="navbar-brand" href="${pageContext.request.contextPath }/">
+				<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 80%; height: auto;">
+			</a>
+		</div>
+	</div>
+	</header>
+	
+	<!-- Section -->
+	<section id="section">
+		<div class="section-div">
 			<div class="col-lg-10 col-xl-8 mx-auto">
-				<div class="card flex-row my-4 border-0 shadow rounded-3">
+				<div class="card mt-4 mb-4 shadow rounded-3">
 					<div class="card-body p-4 p-sm-5 mb-3">
 						<form action="${pageContext.request.contextPath }/joinCiMember" method="post" onsubmit="return joinFormCheck(this)">
 
@@ -92,7 +103,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 
 
 	<!-- Script Start -->
