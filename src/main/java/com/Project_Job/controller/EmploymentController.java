@@ -307,4 +307,28 @@ public class EmploymentController {
 		}
 		return mav;
 	}
+
+	// 공채달력 페이지 이동
+	@RequestMapping(value = "/calendar")
+	public String calendar() {
+		System.out.println("공채달력 페이지 이동 요청");
+		return "employment/calendar";
+	}
+
+	// 공채 날짜 요청
+	@RequestMapping(value = "/epCalendarPost")
+	public @ResponseBody ArrayList<EmploymentDto> epCalendarPost() {
+		System.out.println("공채 시작일 요청");
+		ArrayList<EmploymentDto> epPost = epsvc.callEpPost();
+		return epPost;
+	}
+
+	// 공채 날짜 요청
+	@RequestMapping(value = "/epCalendarDeadLine")
+	public @ResponseBody ArrayList<EmploymentDto> epCalendarDeadLine() {
+		System.out.println("공채 시작일 요청");
+		ArrayList<EmploymentDto> epDead = epsvc.callEpDead();
+		return epDead;
+	}
+
 }

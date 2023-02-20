@@ -552,4 +552,22 @@ public class EmploymentService {
 		return insertResult;
 	}
 
+	public ArrayList<EmploymentDto> callEpPost() {
+		System.out.println("EmploymentService callEpStart() 호출");
+		ArrayList<EmploymentDto> epPost = epdao.selectEpPost();
+		for(int i=0; i<epPost.size();i++) {
+			System.out.println(epPost.get(i));
+		}
+		return epPost;
+	}
+
+	public ArrayList<EmploymentDto> callEpDead() {
+		System.out.println("EmploymentService callEpEnd() 호출");
+		ArrayList<EmploymentDto> epDead = epdao.selectEpDead();
+		for(int i=0; i<epDead.size();i++) {
+			System.out.println(epDead.get(i));
+		}
+		return epDead;
+	}
+
 }

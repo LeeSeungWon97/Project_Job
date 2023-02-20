@@ -163,19 +163,9 @@
 						<div class="container text-center">
 							<table class="table table-bordered">
 								<tr>
-									<th scope="col"><a href="">100대기업</a></th>
-									<th scope="col"><a href="">공채달력</a></th>
-									<th scope="col"><a href="">TOP100</a></th>
-								</tr>
-								<tr>
-									<th scope="row"><a href="">인턴채용</a></th>
-									<th scope="row"><a href="">합격자소서</a></th>
-									<th scope="row"><a href="">취업후기</a></th>
-								</tr>
-								<tr>
-									<th scope="row"><a href="">합격스펙</a></th>
-									<th scope="row"><a href="">직무인터뷰</a></th>
-									<th scope="row"><a href="">채용설명회</a></th>
+									<th scope="col"><a href="${pageContext.request.contextPath }/calendar">공채달력</a></th>
+									<th scope="col"><a href="">합격자소서</a></th>
+									<th scope="col"><a href="">취업후기</a></th>
 								</tr>
 							</table>
 						</div>
