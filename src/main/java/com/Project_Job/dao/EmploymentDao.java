@@ -9,9 +9,11 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.Project_Job.dto.ArrResumeDto;
 import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.EmploymentDto;
 import com.Project_Job.dto.EssayDto;
+import com.Project_Job.dto.MemberDto;
 import com.Project_Job.dto.ResumeDto;
 import com.Project_Job.dto.ScrapDto;
 
@@ -106,6 +108,34 @@ public interface EmploymentDao {
 	
 	@Select("SELECT * FROM CINFO WHERE CINUM = #{cinum}")
 	CinfoDto viewCinfo(String cinum);
+	
+	@Select(" SELECT AP.APEPNUM, AP.APREMID,M.MNAME, EP.EPNAME,EP.EPNUM,TO_CHAR(EPDEADLINE,'YY-MM-DD') AS EPDEADLINE ,CI.CINAME,CI.CINUM , CM.CMID  "
+			+ " FROM "
+			+ " APPLYSTATE AP, EMPLOYMENT EP, CINFO CI, CMEMBERS CM, MEMBERS M"
+			+ " WHERE AP.APEPNUM = EP.EPNUM "
+			+ " AND AP.APREMID = M.MID "
+			+ " AND EP.EPCINAME = CI.CINAME "
+			+ " AND CI.CINUM = CM.CMCINUM "
+			+ " AND CMID = #{loginId} ")
+	ArrayList<Map<String, String>> viewApplyCmember(String loginId);
+	
+	@Select(" SELECT AP.APEPNUM,AP.APSTATE, AP.APREMID,M.MNAME, EP.EPNAME,EP.EPNUM,TO_CHAR(EPDEADLINE,'YY-MM-DD') AS EPDEADLINE ,CI.CINAME,CI.CINUM , M.MID  "
+			+ " FROM "
+			+ " APPLYSTATE AP, EMPLOYMENT EP, CINFO CI,  MEMBERS M "
+			+ " WHERE AP.APEPNUM = EP.EPNUM "
+			+ " AND AP.APREMID = M.MID "
+			+ " AND EP.EPCINAME = CI.CINAME "
+			+ " AND MID = #{loginId}")
+	ArrayList<Map<String, String>> viewApplyMember(String loginId);
+	
+	@Select("SELECT * FROM MEMBERS WHERE MID = #{viewId} ")
+	MemberDto selectViewInfo(String viewId);
+	
+	@Select("SELECT * FROM RESUME ")
+	ArrayList<ArrResumeDto> viewResumeInfo();
+	
+	@Select("SELECT * FROM RESUME ")
+	ArrayList<ResumeDto> SelectResumeInfo();
 
 	
 	
