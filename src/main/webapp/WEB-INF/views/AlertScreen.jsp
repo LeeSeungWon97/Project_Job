@@ -16,6 +16,7 @@
 		if (opener) {
 			window.opener.location.href = '${pageContext.request.contextPath}/'
 					+ url;
+			window.close();
 		} else {
 			location.href = '${pageContext.request.contextPath}/' + url;
 		}

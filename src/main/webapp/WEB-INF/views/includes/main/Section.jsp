@@ -141,16 +141,17 @@
 
 										<button type="button" class="btn btn-outline-secondary btn-sm">이력서</button>
 									</a>
-									<a>
+									<a href="${pageContext.request.contextPath }/viewApply">
 										<button type="button" class="btn btn-outline-secondary btn-sm">지원현황</button>
 									</a>
-									<a>
+									<a href="${pageContext.request.contextPath }/myScrap">
 										<button type="button" class="btn btn-outline-secondary btn-sm">스크랩</button>
 									</a>
 									<c:if test="${sessionScope.loginType == 'C' }">
 									<a href="${pageContext.request.contextPath }/WriteEmploymentPage">
 										<button type="button" class="btn btn-outline-secondary btn-sm">공고등록하기</button>
 									</a>
+									
 									</c:if>
 								</div>
 							</div>

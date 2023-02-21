@@ -4,50 +4,112 @@
 <head>
 <meta charset="UTF-8">
 <title>자소서 작성페이지</title>
+<!-- Bootstrap icons-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
+
+<style type="text/css">
+.mainbox {
+    width: 710px;
+    padding: 30px;
+    margin: 10px;
+    margin-right: auto;
+    margin-left: auto;      
+    border: 1px solid #ebebeb;  
+    box-shadow: 0 1px 20px 0 rgba(75, 0, 206, 0.15);  
+}
+
+h1 {font-size:20px; margin-bottom: 20px; text-align: center;}
+
+.top{border-bottom: 2px solid #79BAEC; border-top: 2px solid #79BAEC; margin-bottom: 40px;}
+
+.form-floating, .form-control-plaintext{margin-bottom: 10px; margin-top: 8px;}
+
+.box{margin-bottom: 25px;}
+
+.esciname{height: 30px; font-size: medium; text-align: center;}
+
+.epname{font-size:x-large; text-align: center;}
+
+.Clickbtn{text-align: center;}
+
+.myInfo {border-bottom: 2px solid #ebebeb; border-top: 2px solid #ebebeb; margin-bottom: 20px;}
+
+
+</style>
 </head>
 <body>
-	<h1>자소서 작성 양식</h1>
-	<form action="${pageContext.request.contextPath }/WriteEssay" method="post" onsubmit="EssayClose()">
-		<div class="input-group input-group-lg mb-3">
-			<input type="hidden" class="form-control" placeholder="자소서 작성 아이디" name="esmid" value="${sessionScope.loginInfo.mid}">
-			<input type="hidden" class="form-control" placeholder="공고코드" name="esepnum" value="${epnum}">
-			<input type="hidden" class="form-control" name="escontents" id="escontents">
-			<input type="text" class="form-control" placeholder="기업명" name="esciname" value="${epciname}">
-			<input type="text" class="form-control" placeholder="공고명" value="${epname}">
-		</div>
 
 
-		<input type="text" class="form-control" name="retell" placeholder="1번질문" value="1번질문">
-		<div class="input-group input-group-lg mb-3">
-			<textarea rows="" cols="" onchange="writeContents()" id="area1"></textarea>
+<div class="container">
+		<div class="d-flex justify-content-center">
+			<a class="navbar-brand" href="${pageContext.request.contextPath }/">
+				<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 200px; height: 100px;">
+			</a>
 		</div>
-		<input type="text" class="form-control" placeholder="2번질문" value="2번질문">
-		<div class="input-group input-group-lg mb-3">
-			<textarea rows="" cols="" onchange="writeContents()" id="area2"></textarea>
-		</div>
-		<input type="text" class="form-control" placeholder="3번질문" value="3번질문">
-		<div class="input-group input-group-lg mb-3">
-			<textarea rows="" cols="" onchange="writeContents()" id="area3"></textarea>
-		</div>
-		<div class="d-grid mb-4">
-			<button class="btn btn-dark btn-lg" type="submit">자소서 저장</button>
-		</div>
-	</form>
-	<button onclick="contentsCheck()">escontentCheck</button>
 
+<div class="mainbox">
+	
+	<!--본문 -->
+	<%@ include file="/WEB-INF/views/employment/EssayForm.jsp"%>
+
+				<div class="Clickbtn">
+					<button id="modifyBtn" class="btn btn-dark btn-lg" type="button" onclick="modifyEssay()">수정</button>
+					<button id="saveBtn" class="btn btn-dark btn-lg mx-2 d-none" type="button" onclick="saveEssay()">저장</button>
+					<button id="cancleBtn" class="btn btn-dark btn-lg d-none" type="button" onclick="modifyCancle()">취소</button>
+				</div>
+</div>
+	</div>
+	
+
+	
+	
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript">
-		function writeContents() {
-			var escontents = '!@#' + $('#area1').val() + '!@#'
-					+ $('#area2').val() + '!@#' + $('#area3').val();
-			$('#escontents').attr('value', escontents);
+		function modifyEssay() {
+			console.log("자소서 수정");
+			$('#modifyBtn').addClass("d-none");
+			$('#saveBtn').removeClass("d-none");
+			$('#cancleBtn').removeClass("d-none");
+			$('.modifyBtn').removeClass("d-none");
+			$('.EssayContent').attr("readonly", false);
 		}
-
-		function contentsCheck() {
-			var escontents = document.getElementById('escontents').value;
-			console.log(escontents);
+		
+		function saveEssay() {
+			var DataArea1 = $('.area1').val();
+			var DataArea2 = $('.area2').val();	
+			var DataArea3 = $('.area3').val();
+			
+			$.ajax({
+				type : "post",
+				url : "${pageContext.request.contextPath}/WriteEssay",
+				data : {
+					"area1" : DataArea1,
+					"area2" : DataArea2,
+					"area3" : DataArea3
+				},
+				async : false,
+				success : function(result) {
+				}
+			});
+			
+			
+			$('#modifyBtn').removeClass("d-none");
+			$('#saveBtn').addClass("d-none");
+			$('.modifyBtn').addClass("d-none");
+			$('.EssayContent').attr("readonly", true);
+		}
+		
+		
+	
+		
+	function modifyCancle() {
+			console.log("수정 취소");
+			location.reload();
 		}
 	</script>
+	
 
 </body>
 </html>
