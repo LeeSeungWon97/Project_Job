@@ -12,8 +12,6 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
 <style type="text/css">
-
-
 h1 {
 	font-size: 26px;
 	margin-bottom: 35px;
@@ -46,30 +44,30 @@ h2 {
 <body>
 	<!-- Header -->
 	<header id="header">
-	<div class="header-div">
-		<div class="logo">
-			<a class="navbar-brand" href="${pageContext.request.contextPath }/">
-				<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 80%; height: auto;">
-			</a>
+		<div class="header-div">
+			<div class="logo">
+				<a class="navbar-brand" href="${pageContext.request.contextPath }/">
+					<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 80%; height: auto;">
+				</a>
+			</div>
 		</div>
-	</div>
 	</header>
-	
+
 	<!-- Section -->
 	<section id="section">
 		<div class="section-div" style="justify-content: center;">
 			<div class="row  my-4" style="width: 100%;">
-			
-				<div class="col-2 mx-4" style="width:15%;">
+
+				<div class="col-2 mx-4" style="width: 15%;">
 					<!-- SideBar -->
 					<div id="sideBar">
-					<%@ include file="/WEB-INF/views/includes/infoSidebar.jsp"%>
+						<%@ include file="/WEB-INF/views/includes/infoSidebar.jsp"%>
 					</div>
 				</div>
-			
+
 				<div class="col-lg-10 col-xl-8" style="width: 70%;">
 					<div class="card border-0 shadow rounded-3">
-						<div class="card-body p-4 p-sm-5 mb-3">	
+						<div class="card-body p-4 p-sm-5 mb-3">
 							<%@ include file="/WEB-INF/views/employment/ResumeForm.jsp"%>
 						</div>
 					</div>
@@ -82,20 +80,18 @@ h2 {
 
 
 	<script type="text/javascript">
-
+		
 	</script>
 
 	<script type="text/javascript">
-	$(document).ready(function(){
-		var checkSide = '${sideX}';
-		if(checkSide.length > 0){
-			$('#sideBar').addClass("d-none");
-		}
-		
+		$(document).ready(function() {
+			var checkSide = '${sideX}';
+			if (checkSide.length > 0) {
+				$('#sideBar').addClass("d-none");
+			}
+
 		});
-	
-	
-	
+
 		function modifyResume() {
 			console.log("이력서 수정");
 			$('#modifyBtn').addClass("d-none");
@@ -172,7 +168,7 @@ h2 {
 			$('.modifyBtn').addClass("d-none");
 			$('.resumeContent').attr("readonly", true);
 		}
-		
+
 		function applyResume(epnum) {
 			console.log("이력서 저장");
 			var rehope = document.getElementsByClassName("rehope");
@@ -230,7 +226,7 @@ h2 {
 					"recarrer" : recarrerData,
 					"react" : reactData,
 					"relicense" : relicenseData,
-					"epnum"		: epnum
+					"epnum" : epnum
 				},
 				async : false,
 				success : function(result) {
