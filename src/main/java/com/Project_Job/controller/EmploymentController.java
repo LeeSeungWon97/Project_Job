@@ -1,6 +1,7 @@
 package com.Project_Job.controller;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -105,13 +106,22 @@ public class EmploymentController {
 	public ModelAndView applyResume(ResumeDto ResumeInfo, String epnum) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("applyResume 호출");
-		String remid = ResumeInfo.getRemid();
-		int insertResult = epsvc.applyResume(remid, epnum);
+		MemberDto loginMInfo = (MemberDto) session.getAttribute("loginInfo");
+		String remid = loginMInfo.getMid();
+		System.out.println(ResumeInfo);
+		System.out.println(epnum);
+		int insertResult = epsvc.applyResume(epnum, remid);
+		System.out.println(insertResult);
 		if (insertResult <= 0) {
 			mav.addObject("msg", "지원 실패 ");
 			mav.addObject("url", "close");
 			mav.setViewName("AlertScreen");
-		} else {
+		}else if (insertResult == 9) {
+			mav.addObject("msg", "이미 지원하신 공고 입니다. ");
+			mav.addObject("url", "close");
+			mav.setViewName("AlertScreen");
+		}
+		else {
 			mav.addObject("msg", "지원 성공 ");
 			mav.addObject("url", "close");
 			mav.setViewName("AlertScreen");
@@ -162,8 +172,6 @@ public class EmploymentController {
 		System.out.println("Epcontroller scrapCiname요청");
 		System.out.println(checkedName);
 		MemberDto loginMInfo = (MemberDto) session.getAttribute("loginInfo");
-		// String loginType = (String) session.getAttribute("loginType");
-		// String loginId = mcontroller.loginLid(loginType);
 		String smid = loginMInfo.getMid();
 		ScrapDto scrapInfo = new ScrapDto();
 		scrapInfo.setSpmid(smid);
@@ -259,7 +267,7 @@ public class EmploymentController {
 		mav.setViewName("employment/Cmember/WriteEmploymentPage");
 		return mav;
 	}
-
+	
 	@RequestMapping(value = "/WriteEmployment")
 	public ModelAndView WriteEmployment(EmploymentDto epinfo) {
 		ModelAndView mav = new ModelAndView();
@@ -279,10 +287,12 @@ public class EmploymentController {
 	}
 
 	@RequestMapping(value = "/myResume")
-	public ModelAndView myResume() {
+	public ModelAndView myResume(String sideX, String epnum) {
 		ModelAndView mav = new ModelAndView();
 		String loginType = (String) session.getAttribute("loginType");
 		System.out.println("loginType: " + loginType);
+		System.out.println("sideX 테스트 "+ sideX);
+		System.out.println(epnum);
 		if (loginType.equals("P")) {
 			String loginId = mctrl.callLoginId(loginType);
 			System.out.println("loginId: " + loginId);
@@ -294,6 +304,8 @@ public class EmploymentController {
 				mav.setViewName("ConfirmScreen");
 			} else {
 				mav.addObject("Resume", myresume);
+				mav.addObject("sideX", sideX);
+				mav.addObject("epnum", epnum);
 				mav.setViewName("employment/MyResumePage");
 			}
 		} else if (loginType.equals("C")) {
@@ -331,4 +343,48 @@ public class EmploymentController {
 		return epDead;
 	}
 
+	
+	
+	@RequestMapping(value = "/viewApply")
+	public ModelAndView viewApply() {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("viewApply 요청");
+		String loginType = (String) session.getAttribute("loginType");
+		if (loginType.equals("P")) {
+			String loginId = mctrl.callLoginId(loginType);
+			ArrayList<Map<String, String>> ApplyList = epsvc.viewApplyMember(loginId);
+			System.out.println(ApplyList);
+			mav.addObject("ApplyList", ApplyList);
+		}else if (loginType.equals("C")) {
+			String loginId = mctrl.callLoginId(loginType);
+			ArrayList<Map<String, String>> ApplyList = epsvc.viewApplyCmember(loginId);
+			mav.addObject("ApplyList", ApplyList);
+			System.out.println(ApplyList);
+		}
+		mav.setViewName("employment/ViewApplyStatePage");
+		return mav;
+	}
+	@RequestMapping(value = "/viewApplyInfo")
+	public ModelAndView viewApplyInfo(String viewId) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("viewApplyInfo호출");
+		ArrResumeDto myresume = epsvc.SelectResume(viewId);
+		MemberDto member = epsvc.selectViewInfo(viewId);
+		System.out.println(myresume);
+		mav.addObject("Resume", myresume);
+		mav.addObject("member", member);
+		mav.setViewName("employment/Cmember/viewApplyInfo");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/viewResumeInfo")
+	public ModelAndView viewResumeInfo() {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("viewResumeInfo호출");
+		ArrayList<ArrResumeDto> resumeList = epsvc.viewResumeInfo();
+		System.out.println(resumeList);
+		mav.addObject("ResumeList", resumeList);
+		mav.setViewName("employment/Cmember/viewResumeInfo");
+		return mav;
+	}
 }

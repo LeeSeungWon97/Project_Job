@@ -53,6 +53,8 @@
 	<!-- Header -->
 	<%@ include file="/WEB-INF/views/includes/main/Header.jsp"%>
 	
+	<!-- Nav -->
+	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
 	<section id="section">
 		<div class="section-div">
 			<div class="row">

@@ -74,7 +74,7 @@
 										 <input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"> </td>
 										<td>${employ.epdeadline }  </td>
 										<td>
-											<button class="btn btn-secondary mt-1" onclick="WriteResume()" style="min-width: 75px; font-size: 20%;">즉시지원</button>
+											<button class="btn btn-secondary mt-1" onclick="WriteResume('sideX','${employ.epnum }')" style="min-width: 75px; font-size: 20%;">즉시지원</button>
 										</td>
 									</tr>
 								</c:forEach>
@@ -116,7 +116,9 @@
 	});
 </script>
 <script type="text/javascript">
-	function WriteResume() {
+	function WriteResume(sideX, epnum) {
+		console.log(sideX);
+		console.log(epnum);
 		if (loginId == "") {
 			alert("로그인이 필요한 서비스입니다.");
 			location.href = "${pageContext.request.contextPath}/login";
@@ -124,7 +126,7 @@
 			alert("일반회원을 위한 서비스입니다.");
 			location.reload();
 		} else {
-			window.open("${pageContext.request.contextPath}/myResume",
+			window.open("${pageContext.request.contextPath}/myResume?sideX="+sideX+"&epnum="+epnum,
 					"이력서 선택", "width=400,height=400,top=10,left=100");
 		}
 

@@ -140,7 +140,7 @@
 									<a href="${pageContext.request.contextPath }/myResume">
 										<button type="button" class="btn btn-outline-secondary btn-sm">이력서</button>
 									</a>
-									<a href="${pageContext.request.contextPath }/myApplyList">
+									<a href="${pageContext.request.contextPath }/viewApply">
 										<button type="button" class="btn btn-outline-secondary btn-sm">지원현황</button>
 									</a>
 									<a href="${pageContext.request.contextPath }/myScrap">
@@ -150,6 +150,7 @@
 									<a href="${pageContext.request.contextPath }/WriteEmploymentPage">
 										<button type="button" class="btn btn-outline-secondary btn-sm">공고등록하기</button>
 									</a>
+									
 									</c:if>
 								</div>
 							</div>
