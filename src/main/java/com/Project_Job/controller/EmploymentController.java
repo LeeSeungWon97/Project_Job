@@ -328,21 +328,12 @@ public class EmploymentController {
 	}
 
 	// 공채 날짜 요청
-	@RequestMapping(value = "/epCalendarPost")
-	public @ResponseBody ArrayList<EmploymentDto> epCalendarPost() {
-		System.out.println("공채 시작일 요청");
-		ArrayList<EmploymentDto> epPost = epsvc.callEpPost();
-		return epPost;
+	@RequestMapping(value = "/epSchedule")
+	public @ResponseBody ArrayList<Map<String, String>> epSchedule() {
+		System.out.println("공채 스케줄 요청");
+		ArrayList<Map<String, String>> epSchedule = epsvc.epSchedule();
+		return epSchedule;
 	}
-
-	// 공채 날짜 요청
-	@RequestMapping(value = "/epCalendarDeadLine")
-	public @ResponseBody ArrayList<EmploymentDto> epCalendarDeadLine() {
-		System.out.println("공채 시작일 요청");
-		ArrayList<EmploymentDto> epDead = epsvc.callEpDead();
-		return epDead;
-	}
-
 	
 	
 	@RequestMapping(value = "/viewApply")

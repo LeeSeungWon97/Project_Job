@@ -24,86 +24,29 @@
 			headerToolbar : {
 				left : 'myCustomButton',
 				center : 'title',
-				right : 'prevYear,prev,next,nextYear today'
+				right : 'prevYear,prev,today,next,nextYear'
 			},
 			aspectRatio : 1.8,
 			expandRows : true,
 			stickyHeaderDates : true,
 			selectable : true,
-			eventDisplay: 'list-item',
+			eventDisplay : 'list-item',
 			dayMaxEvents : true,
-			events:function(info, successCallback, failureCallback){
+			events : function(info, successCallback, failureCallback) {
 				$.ajax({
-					type: "POST",
-					url: "${pageContext.request.contextPath}/epCalendarPost",
-					async: false,
-					success: function(result){
+					type : "POST",
+					url : "${pageContext.request.contextPath}/epSchedule",
+					async : false,
+					success : function(result) {
 						var list = result;
-						var events = [];
-						var postEvent = list.map(function(item){
-							return{
-								title: item.epname,
-								start: item.eppost,
-								end: item.epdeadline,
-								color: 'blue'
-							}
-						});
-						console.log(postEvent);
-						var deadEvent = list.map(function(item){
-							return{
-								title: item.epname,
-								start: item.epdeadline,
-								color: 'red'
-							}
-						});
-						console.log(deadEvent);
-						/* for(var i=0;i<postEvent.lengh;i++){
-							
-						} */
-						successCallback(events);
+						console.log(list);
+						successCallback(list);
 					}
 				});
 			}
 		});
 		calendar.render();
 	});
-
-	function callPostDate(){
-		$.ajax({
-			type: "POST",
-			url: "${pageContext.request.contextPath}/epCalendarPost",
-			async: false,
-			success: function(result){
-				var list = result;
-				var postEvent = list.map(function(item){
-					return{
-						title: item.epname,
-						start: item.eppost
-					}
-				});
-				console.log(postEvent);
-			}
-		});
-	}
-	
-	function callDeadLineDate(){
-		$.ajax({
-			type: "POST",
-			url: "${pageContext.request.contextPath}/epCalendarDeadLine",
-			async: false,
-			success: function(result){
-				
-				var list = result;
-				var deadLineEvent = list.map(function(item){
-					return{
-						title: item.epname,
-						start: item.epdeadline
-					}
-				});
-				console.log(deadLineEvent);
-			}
-		});
-	}
 </script>
 <style type="text/css">
 .fc-day-sun a {
@@ -116,6 +59,15 @@
 	text-decoration: none;
 }
 
+.fc-event-title {
+	color: black;
+	text-decoration: none;
+	font-size: 9px;
+	width:35px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
 #calendar {
 	width: 100%;
 }
@@ -125,8 +77,6 @@
 
 </head>
 <body>
-	<button onclick="callPostDate()">Post</button>
-	<button onclick="callDeadLineDate()">DeadLine</button>
 	<div id='calendar'></div>
 </body>
 

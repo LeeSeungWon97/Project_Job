@@ -3,6 +3,7 @@ package com.Project_Job.service;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.jsoup.Jsoup;
@@ -486,7 +487,7 @@ public class EmploymentService {
 
 	// 이력서지원
 	public int applyResume(String epnum, String remid) {
-		int insertResult =0;
+		int insertResult = 0;
 		try {
 			insertResult = epdao.applyResume(epnum, remid);
 		} catch (Exception e) {
@@ -558,22 +559,26 @@ public class EmploymentService {
 		return insertResult;
 	}
 
-	public ArrayList<EmploymentDto> callEpPost() {
-		System.out.println("EmploymentService callEpStart() 호출");
+	public ArrayList<Map<String, String>> epSchedule() {
+		System.out.println("EmploymentService callEpDate() 호출");
+		ArrayList<Map<String, String>> epSchedule = new ArrayList<Map<String,String>>();
 		ArrayList<EmploymentDto> epPost = epdao.selectEpPost();
-		for(int i=0; i<epPost.size();i++) {
-			System.out.println(epPost.get(i));
-		}
-		return epPost;
-	}
-
-	public ArrayList<EmploymentDto> callEpDead() {
-		System.out.println("EmploymentService callEpEnd() 호출");
 		ArrayList<EmploymentDto> epDead = epdao.selectEpDead();
-		for(int i=0; i<epDead.size();i++) {
-			System.out.println(epDead.get(i));
+		for (int i = 0; i < epPost.size(); i++) {
+			Map<String, String> postDate = new HashMap<>();
+			postDate.put("title", epPost.get(i).getEpname());
+			postDate.put("start", epPost.get(i).getEppost());
+			postDate.put("color", "blue");
+			epSchedule.add(postDate);
 		}
-		return epDead;
+		for (int i = 0; i < epDead.size(); i++) {
+			Map<String, String> deadDate = new HashMap<>();
+			deadDate.put("title", epDead.get(i).getEpname());
+			deadDate.put("start", epDead.get(i).getEpdeadline());
+			deadDate.put("color", "red");
+			epSchedule.add(deadDate);
+		}
+		return epSchedule;
 	}
 
 	public ArrayList<Map<String, String>> viewApplyCmember(String loginId) {
@@ -595,17 +600,17 @@ public class EmploymentService {
 	}
 
 	public ArrayList<ArrResumeDto> viewResumeInfo() {
-		ArrayList<ArrResumeDto> resumeList = epdao.viewResumeInfo();		
+		ArrayList<ArrResumeDto> resumeList = epdao.viewResumeInfo();
 		//
 		System.out.println("epsvc viewResumeInfo 요청");
 		System.out.println(resumeList);
 		ArrayList<ResumeDto> ResumeInfo = epdao.SelectResumeInfo();
-		for(int i=0; i < resumeList.size(); i++) {
+		for (int i = 0; i < resumeList.size(); i++) {
 			resumeList.get(i).setRemid(ResumeInfo.get(i).getRemid());
 			resumeList.get(i).setRetell(ResumeInfo.get(i).getRetell());
 			resumeList.get(i).setRecount(ResumeInfo.get(i).getRecount());
 			resumeList.get(i).setRehope(ResumeInfo.get(i).getRehope());
-			
+
 			if (ResumeInfo.get(i).getReedu() != null) {
 				String[] reedu = ResumeInfo.get(i).getReedu().split("!@#");
 				resumeList.get(i).setReedu(reedu);
