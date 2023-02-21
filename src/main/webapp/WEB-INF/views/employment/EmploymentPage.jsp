@@ -68,7 +68,7 @@
 	<!-- Section -->
 	<section id="section">
 		<div class="section-div">
-				<div class="card mt-4 mb-4 shadow rounded-3">
+				<div class="card mt-4 mb-4 border-0 shadow rounded-3">
 					<div class="table-responsive">
 						<table class="table">
 							<thead style="background-color: #f2f9fe; border-top: 1px solid #eaeaea;">

@@ -30,8 +30,8 @@
 	<!-- Section -->
 	<section id="section">
 		<div class="section-div" style="justify-content: center;">
-			<div class="col-lg-10 col-xl-5 "  style="width: 50%;">
-				<div class="card flex-row my-4 border-0 shadow rounded-3">
+			<div class="col-lg-10 col-xl-5" style="width: 45%;">
+				<div class="card border-0 my-4 shadow rounded-3">
 					<div class="card-body p-4 p-sm-5 mb-3">
 						<form action="${pageContext.request.contextPath }/FindMemberPw" method="post" onsubmit="return checkInputVal(this)">
 							<div class="mb-2">

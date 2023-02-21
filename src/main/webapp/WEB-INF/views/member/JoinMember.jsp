@@ -31,8 +31,8 @@
 	
 	<!-- Section -->
 	<section id="section">
-		<div class="section-div">
-			<div class="col-lg-10 col-xl-8 mx-auto">
+		<div class="section-div" style="justify-content: center;">
+			<div class="col-lg-10 col-xl-8 " style="width: 60%;">
 				<div class="card mt-4 mb-4 shadow rounded-3">
 					<div class="card-body p-4 p-sm-5 mb-3">
 						<form action="${pageContext.request.contextPath }/joinMember" method="post" onsubmit="return joinFormCheck(this)">

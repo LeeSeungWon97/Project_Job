@@ -31,12 +31,12 @@
 
 	<!-- Section -->
 	<section id="section">
-		<div class="section-div">
-			<div class="col-lg-10 col-xl-8" style="width: 100%;">
-				<div class="card mt-4 mb-4 shadow rounded-3">
-					<div class="card-body p-4 p-sm-5 mb-3">
+		<div class="section-div" style="justify-content: center;">
+			<div class="col-lg-10 col-xl-8" style="width: 80%;">
+			
+					<div class="mt-5 mb-5">
 						<div class="d-grid mb-3">
-							<div class="btn-group btn-group-lg">
+							<div class="btn-group">
 								<a href="${pageContext.request.contextPath }/joinMemberPage" class="btn btn-outline-info" style="border: solid #539DDB;"><span class="fs-3" style="color: black;">개인회원</span><br>
 									<img src="${pageContext.request.contextPath }/resources/assets/img/person.png" style="width:200px; height:300px;">
 								</a>
@@ -46,7 +46,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				
 			</div>
 		</div>
 	</section>

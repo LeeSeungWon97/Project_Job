@@ -4,20 +4,15 @@
 <head>
 <meta charset="UTF-8">
 <title>내 이력서</title>
-<!-- Bootstrap icons-->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+<link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png">
+<link href="${pageContext.request.contextPath }/resources/assets/css/header.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/section.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/footer.css" rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
 <style type="text/css">
-.mainbox {
-	width: 710px;
-	padding: 30px;
-	margin: 30px;
-	margin-right: auto;
-	margin-left: auto;
-	border: 1px solid #ebebeb;
-	box-shadow: 0 1px 20px 0 rgba(75, 0, 206, 0.15);
-}
+
 
 h1 {
 	font-size: 26px;
@@ -49,38 +44,39 @@ h2 {
 </style>
 </head>
 <body>
-
-	<div class="container">
-		<div class="d-flex justify-content-center">
+	<!-- Header -->
+	<header id="header">
+	<div class="header-div">
+		<div class="logo">
 			<a class="navbar-brand" href="${pageContext.request.contextPath }/">
-				<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 200px; height: 100px;">
+				<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 80%; height: auto;">
 			</a>
 		</div>
-		<div class="row">
-			<div class="col-2">
-				<!-- SideBar -->
-				<div id="sideBar">
-				<%@ include file="/WEB-INF/views/includes/infoSidebar.jsp"%>
-				</div>
-			</div>
-
-			<div class="mainbox">
-				<h1 style="text-align: center;">이력서</h1>
-				<%@ include file="/WEB-INF/views/employment/ResumeForm.jsp"%>
-				<div class="d-grid gap-2 col-6 mx-auto">
-					<button id="modifyBtn" class="btn btn-dark btn-lg" type="button" onclick="modifyResume()">수정</button>
-					<button id="saveBtn" class="btn btn-dark btn-lg d-none" type="button" onclick="saveResume()">저장</button>
-					<c:if test="${sideX != null }">
-					<button id="applyBtn" class="btn btn-dark btn-lg " type="button" onclick="applyResume('${epnum}')">지원하기</button>
-					${epnum}
-					</c:if>
-					<button id="cancleBtn" class="btn btn-dark btn-lg d-none" type="button" onclick="modifyCancle()">취소</button>
-				</div>
-
-			</div>
-
-		</div>
 	</div>
+	</header>
+	
+	<!-- Section -->
+	<section id="section">
+		<div class="section-div" style="justify-content: center;">
+			<div class="row  my-4" style="width: 100%;">
+			
+				<div class="col-2 mx-4" style="width:15%;">
+					<!-- SideBar -->
+					<div id="sideBar">
+					<%@ include file="/WEB-INF/views/includes/infoSidebar.jsp"%>
+					</div>
+				</div>
+			
+				<div class="col-lg-10 col-xl-8" style="width: 70%;">
+					<div class="card border-0 shadow rounded-3">
+						<div class="card-body p-4 p-sm-5 mb-3">	
+							<%@ include file="/WEB-INF/views/employment/ResumeForm.jsp"%>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 
