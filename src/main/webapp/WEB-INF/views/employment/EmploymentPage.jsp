@@ -28,23 +28,35 @@
 
 <style type="text/css">
 .scrap {
-	color: transparent; /* 기존 이모지 컬러 제거 */
-	text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
-	border: none;
-	background-color: transparent;
+    color: transparent; /* 기존 이모지 컬러 제거 */
+    text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
+     border:none;
+     background-color:transparent;
 }
-
-.scrap:hover {
-	text-shadow: 0 0 0 #fdf002; /* 마우스 호버 */
-	text-shadow: 0 0 0 #fdf002; /* 마우스 호버 뒤에오는 이모지들 */
-	text-shadow: 0 0 0 #fdf002; /* 마우스 클릭 체크 */
+.scrap:hover{
+    text-shadow: 0 0 0 #fdf002; /* 마우스 호버 */
+    text-shadow: 0 0 0 #fdf002; /* 마우스 호버 뒤에오는 이모지들 */
+    text-shadow: 0 0 0 #fdf002; /* 마우스 클릭 체크 */
 }
-
-.scrap_click {
-	text-shadow: 0 0 0 #fdf002;
+.scrap_click{
+ 	text-shadow: 0 0 0 #fdf002; 
+}
+.emci{
+	width: 17%; 	/* 기업명 */
+}
+.emnu{
+	width: 1%;		/* 스크랩 */
+}
+.emna{
+	width: 30%; 	/* 제목 */
+}
+.emde{
+	width: 7%; text-align: center;		/* 마감일 */
+}
+.embu{
+	width: 7%; text-align: right;		/* 즉시지원 */
 }
 </style>
-
 </head>
 <body>
 
@@ -52,29 +64,31 @@
 	<%@ include file="/WEB-INF/views/includes/main/Header.jsp"%>
 	<!-- Nav -->
 	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
+	
+	<!-- Section -->
 	<section id="section">
 		<div class="section-div">
-			<div class="row">
-				<div class="card mt-4 mb-4 shadow rounded-3">
+				<div class="card mt-4 mb-4 border-0 shadow rounded-3">
 					<div class="table-responsive">
-						<table class="table table-striped" style="border-radius: 50px;">
-							<thead>
-								<tr>
-									<th scope="col" style="font-size: 20px;">회사</th>
-									<th scope="col" style="font-size: 20px;">공고명</th>
-									<th scope="col" style="font-size: 20px;">마감일</th>
+						<table class="table">
+							<thead style="background-color: #f2f9fe; border-top: 1px solid #eaeaea;">
+								<tr style="color: #888; text-align: center;">
+									<th scope="col">기업명</th>
+									<th scope="col"></th>
+									<th scope="col">제목</th>
+									<th scope="col">마감일</th>
 									<th scope="col"></th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${epList }" var="employ">
-									<tr>
-										<td>${employ.epciname }</td>
-										<td> <a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }"> ${employ.epname }</a>
-										 <input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"> </td>
-										<td>${employ.epdeadline }  </td>
-										<td>
-											<button class="btn btn-secondary mt-1" onclick="WriteResume('sideX','${employ.epnum }')" style="min-width: 75px; font-size: 20%;">즉시지원</button>
+									<tr>	 	
+										<td class="emci"><a href=""><span>${employ.epciname }</span></a></td>
+										<td class="emnu"><input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"></td>
+										<td class="emna"><a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }"><span style="color: #333; font-weight: bold;">${employ.epname }</span></a></td>
+										<td class="emde"><span>${employ.epdeadline }</span></td>
+										<td class="embu">
+											<button class="mt-1" onclick="WriteResume('sideX','${employ.epnum }')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;"><span style="color: white;">즉시지원</span></button>
 										</td>
 									</tr>
 								</c:forEach>
@@ -83,9 +97,9 @@
 						</table>
 					</div>
 				</div>
-			</div>
 		</div>
 	</section>
+	
 	<input type="hidden" id="loginType" value="${sessionScope.loginType }">
 	<c:choose>
 		<c:when test="${sessionScope.loginType == 'P'}">
@@ -95,6 +109,7 @@
 			<input type="hidden" id="loginId" value="${sessionScope.loginInfo.cmid }">
 		</c:otherwise>
 	</c:choose>
+	
 	<!-- Footer-->
 	<%@ include file="/WEB-INF/views/includes/main/Footer.jsp"%>
 

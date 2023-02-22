@@ -17,10 +17,10 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-10 col-xl-8 mx-auto">
+			<div class="col-lg-10 col-xl-8 mx-auto" >
 				<div class="card-body p-4 p-sm-5 mb-1">
 					<div id="serchArea1">
-						<div class="input-group input-group-lg">
+						<div class="input-group input-group-lg mb-3">
 		 					<input type="text" id="ciname" name="Wval" placeholder="회사명을 입력해주세요" class="form-control">
          					<input type="button" onclick="findWP1_2()" value="찾기" class="btn btn-secondary">
 						</div>
@@ -45,7 +45,6 @@
 			</div>
 		</div>
 	</div>
-
 	
 	
 	
