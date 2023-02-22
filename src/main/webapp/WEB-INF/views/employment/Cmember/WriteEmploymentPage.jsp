@@ -3,60 +3,98 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>이력서작성페이지</title>
-<!-- Bootstrap icons-->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+<title>공고작성</title>
+<link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png">
+<link href="${pageContext.request.contextPath }/resources/assets/css/header.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/section.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/footer.css" rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
 </head>
 <body>
-	<h1>공고 작성 양식</h1>
-	<form action="${pageContext.request.contextPath }/WriteEmployment" method="post" onsubmit="">
-		<div class="input-group input-group-lg mb-3">
-			<input type="text" class="form-control" name="epciname" placeholder="기업명" value="${sessionScope.cinfo.ciname}">
+	<!-- Header -->
+	<header id="header">
+		<div class="header-div">
+			<div class="logo">
+				<a class="navbar-brand" href="${pageContext.request.contextPath }/">
+					<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 80%; height: auto;">
+				</a>
+			</div>
 		</div>
-		<div class="input-group input-group-lg mb-3">
-			<input type="text" class="form-control" name="epname" value="-" placeholder="공고명">
-		</div>
-		<div class="input-group input-group-lg mb-3">
-			<input type="text" class="form-control" name="epedu" value="-" placeholder="학력">
-		</div>
-		<div class="input-group input-group-lg mb-3">
-			<input type="text" class="form-control" name="epcareer" value="-" placeholder="경력" >
-		</div>
-		<div class="input-group input-group-lg mb-3">
-			<input type="text" class="form-control" name="eptreat" value="-" placeholder="우대">
-		</div>
-		<div class="input-group input-group-lg mb-3">
-			<input type="text" class="form-control" name="eptype" value="-" placeholder="고용형태">
-		</div>
-		<div class="input-group input-group-lg mb-3">
-			<input type="text" class="form-control" name="epmoney" value="-" placeholder="급여" >
-		</div>
-		<div class="input-group input-group-lg mb-3">
-			<input type="text" class="form-control" name="eparea" value="-" placeholder="지역" >
-		</div>
+	</header>
 
-		<div class="input-group input-group-lg mb-3">
-			<input type="text" class="form-control" name="eptime" value="-" placeholder="고용시간">
-		</div>
-		<div class="input-group input-group-lg mb-3">
-		<label for="epdeadline">마감일</label>
-			<input type="date" class="form-control" id="epdeadline" name="epdeadline" value="-" placeholder="공고마감일">
-		</div>
-		<div class="input-group input-group-lg mb-3">
-			<input type="hidden" class="form-control" name="epstate" value="Y" placeholder="공고상태">
-		</div>
-		<div class="input-group input-group-lg mb-3">
-			<input type="hidden" class="form-control" name="epesstate" value="x" placeholder="자소서여부">
-		</div>
-		
-		<div class="d-grid mb-4">
+
+
+
+	<!-- Section -->
+	<section id="section">
+		<div class="section-div" style="justify-content: center;">
+			<div class="card border-0 shadow rounded-3 mt-3 mb-3" style="width: 60%;">
+			<span class="h3 mt-2"style="text-align: center;">공고 양식</span>
 			
-			<button class="btn btn-dark btn-lg" type="submit">공고 저장</button>
+			<div class="card-body px-5 mt-1">
+			
+			<form action="${pageContext.request.contextPath }/WriteEmployment" method="post" onsubmit="">
+				<div class="input-group input-group-lg mb-3">
+					<span class="input-group-text" style="width: 15%; justify-content: center;">기업명</span>
+					<input type="text" class="form-control" name="epciname" value="${sessionScope.cinfo.ciname}" readonly="readonly" style="background-color: white;">
+				</div>
+				<div class="input-group input-group-lg mb-3">
+					<span class="input-group-text" style="width: 15%; justify-content: center;">공고명</span>
+					<input type="text" class="form-control" name="epname" value="-">
+				</div>
+				<div class="input-group input-group-lg mb-3">
+					<span class="input-group-text" style="width: 15%; justify-content: center;">학력</span>
+					<input type="text" class="form-control" name="epedu" value="-">
+				</div>
+				<div class="input-group input-group-lg mb-3">
+					<span class="input-group-text" style="width: 15%; justify-content: center;">경력</span>
+					<input type="text" class="form-control" name="epcareer" value="-">
+				</div>
+				<div class="input-group input-group-lg mb-3">
+					<span class="input-group-text" style="width: 15%; justify-content: center;">우대</span>
+					<input type="text" class="form-control" name="eptreat" value="-">
+				</div>
+				<div class="input-group input-group-lg mb-3">
+					<span class="input-group-text" style="width: 15%; justify-content: center;">고용형태</span>
+					<input type="text" class="form-control" name="eptype" value="-">
+				</div>
+				<div class="input-group input-group-lg mb-3">
+					<span class="input-group-text" style="width: 15%; justify-content: center;">급여</span>
+					<input type="text" class="form-control" name="epmoney" value="-">
+				</div>
+				<div class="input-group input-group-lg mb-3">
+					<span class="input-group-text" style="width: 15%; justify-content: center;">지역</span>
+					<input type="text" class="form-control" name="eparea" value="${sessionScope.cinfo.ciaddr}" readonly="readonly" style="background-color: white;">
+				</div>
+		
+				<div class="input-group input-group-lg mb-3">
+					<span class="input-group-text" style="width: 15%; justify-content: center;">고용시간</span>
+					<input type="text" class="form-control" name="eptime" value="-">
+				</div>
+				<div class="input-group input-group-lg mb-3">
+					<span class="input-group-text" style="width: 15%; justify-content: center;">마감일</span>
+					<input type="date" class="form-control" id="epdeadline" name="epdeadline" value="-">
+				</div>
+				<div class="input-group input-group-lg mb-3">
+					<input type="hidden" class="form-control" name="epstate" value="Y" placeholder="공고상태">
+				</div>
+				<div class="input-group input-group-lg mb-3">
+					<input type="hidden" class="form-control" name="epesstate" value="x" placeholder="자소서여부">
+				</div>
+				
+				<div class="d-grid mb-4">
+					
+					<button class="btn btn-dark btn-lg" type="submit">공고 저장</button>
+				</div>
+			</form>
+			
+			
+			</div>
+			</div>
 		</div>
-	</form>
+	</section>
 	
-
 </body>
 </html>
