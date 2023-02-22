@@ -72,11 +72,11 @@
 	
 	<!-- Section -->
 	<section id="section">
-	<div class="section-div">
-			<div class="col-lg-10 col-xl-8 mx-auto">
-				<div class="card flex-row  mt-4 mb-4 border-0 shadow rounded-3">
-					<div class="card-body p-4 p-sm-5 mb-3">
-						<div class="row-5 mx-auto">
+	<div class="section-div" style="justify-content: center;">
+			<div class="col-lg-10 col-xl-8"  style="width: 60%;">
+				<div class="card  mt-4 mb-4 border-0 shadow rounded-3">
+					<div class="card-body p-4 p-sm-5 mb-3" >
+						<div class="row-5">
 							<h5>${cinfo.ciind }</h5>
 							<h1>${cinfo.ciname }</h1>
 						</div>
@@ -97,7 +97,7 @@
 						</div>
 						<div style="text-align: center; margin: 30px">
 							<input type="button" class="btn btn-warning btn-lg mx-1" onclick="WriteResume('${cinfo.cinum }')" value="즉시지원"> 
-							<input type="button" class="btn  btn-lg" onclick="deleteInfo()" value="스크랩하기">
+							<input type="button" class="btn btn-secondary btn-lg" onclick="deleteInfo()" value="스크랩하기">
 						</div>
 						
 						

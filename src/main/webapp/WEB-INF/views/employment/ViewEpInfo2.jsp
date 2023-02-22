@@ -69,12 +69,12 @@
 	<%@ include file="/WEB-INF/views/includes/main/Header.jsp"%>
 	<!-- Nav -->
 	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
-	<div class="container">
-
-			<div class="col-lg-10 col-xl-8 mx-auto">
-				<div class="card flex-row  border-0 shadow rounded-3">
+	<section id="section">
+		<div class="section-div" style="justify-content: center;">	
+			<div class="col-lg-10 col-xl-8" style="width: 66%;">
+				<div class="card mt-4 mb-4 border-0 shadow rounded-3">
 					<div class="card-body p-4 p-sm-5 mb-3">
-						<div class="row-5 mx-auto">
+						<div class="row-5">
 							<h5>${epInfo.epciname }</h5>
 							<h1>${epInfo.epname }</h1>
 						</div>
@@ -95,14 +95,15 @@
 						</div>
 						<div style="text-align: center; margin: 30px">
 							<input type="button" class="btn btn-warning btn-lg mx-1" onclick="WriteResume('${epInfo.epnum }')" value="즉시지원"> 
-							<input type="button" class="btn  btn-lg" onclick="deleteInfo()" value="스크랩하기">
-						</div>
-						
-						
+							<input type="button" class="btn btn-secondary btn-lg" onclick="deleteInfo()" value="스크랩하기">
+						</div>		
 					</div>
 				</div>
 			</div>
-	</div>
+		</div>
+	</section>
+	
+	
 	<input type="hidden" id="loginType" value="${sessionScope.loginType }">
 	<c:choose>
 		<c:when test="${sessionScope.loginType == 'P'}">

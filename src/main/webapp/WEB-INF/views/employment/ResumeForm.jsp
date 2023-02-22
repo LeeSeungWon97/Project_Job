@@ -10,13 +10,13 @@
 			<div class="flex-grow-1 ms-3">
 				<div class="top">
 					<input type="hidden" class="form-control" name="remid" value="${sessionScope.loginInfo.mid}" readonly="readonly">
-					<input type="text" class="form-control" value="${sessionScope.loginInfo.mname}" style="width: 150px; font-size: large;" readonly="readonly">
+					<input type="text" class="form-control" value="${sessionScope.loginInfo.mname}" style="width: 180px; font-size: large;" readonly="readonly">
 				</div>
 				<div class="top mt-1">
-					<input type="text" class="form-control" value="${sessionScope.loginInfo.mbirth}" style="width: 200px; height: 30px;" readonly="readonly">
+					<input type="text" class="form-control" value="${sessionScope.loginInfo.mbirth}" style="width: 180px; height: 30px;" readonly="readonly">
 				</div>
 				<div class="top mt-1">
-					<input type="text" class="form-control resumeContent rehope" name="rehope" placeholder="#희망직무태그" value="${Resume.rehope }" style="width: 200px; height: 30px;" readonly="readonly">
+					<input type="text" class="form-control resumeContent rehope" name="rehope" placeholder="#희망직무태그" value="${Resume.rehope }" style="width: 180px; height: 30px;" readonly="readonly">
 				</div>
 			</div>
 		</div>
