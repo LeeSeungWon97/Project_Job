@@ -36,7 +36,7 @@ header{
 .logo{
 	width: 30%;
 	height: 100px;
-	margin-top: 20px;
+	margin-top: auto;
 }
 
 .search{
@@ -68,5 +68,6 @@ header{
     align-items: center;
     justify-content: space-around;
     text-align: center;
+    padding-bottom: 5px;
 }
 

@@ -52,28 +52,24 @@
 	<!-- Nav -->
 	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
 	<section id="section">
-		<div>
-			<div class="row">
-				<div class="card mt-4 mb-4 shadow rounded-3">
-								<ul>
-								<c:forEach items="${cinfoList }" var="cinfo">
-								<li style="list-style: none;">
-								<div style="margin-bottom: 10px">
-									<a href="${pageContext.request.contextPath }/viewCiInfo?cinum=${cinfo.cinum }">
-										<h4>${cinfo.ciname }</h4></a>
-										${cinfo.ciind }
-										<br>
-								</div>
-										
-								</li>
-								</c:forEach>
-								
-								</ul>
-
-				</div>
+		<div class="section-div">
+			<div class="card mt-4 mb-4 shadow rounded-3 mx-auto" style="width: 50%;">
+				<ul class="list">
+				<c:forEach items="${cinfoList }" var="cinfo">
+					<li style="list-style: none;">
+						<div style="margin-bottom: 10px">
+							<a href="${pageContext.request.contextPath }/viewCiInfo?cinum=${cinfo.cinum }">
+								<span class="h3">${cinfo.ciname }</span>
+							</a>
+							<span>${cinfo.ciind }</span>
+						</div>				
+					</li>
+				</c:forEach>		
+				</ul>
 			</div>
 		</div>
 	</section>
+	
 		<input type="hidden" id="loginType" value="${sessionScope.loginType }">
 	<c:choose>
 		<c:when test="${sessionScope.loginType == 'P'}">

@@ -1,55 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>내 이력서</title>
-<!-- Bootstrap icons-->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
-<style type="text/css">
-.mainbox {
-	width: 710px;
-	padding: 30px;
-	margin: 30px;
-	margin-right: auto;
-	margin-left: auto;
-	border: 1px solid #ebebeb;
-	box-shadow: 0 1px 20px 0 rgba(75, 0, 206, 0.15);
-}
-
-h1 {
-	font-size: 26px;
-	margin-bottom: 35px;
-}
-
-.first {
-	border-bottom: 2px solid #ebebeb;
-	border-top: 2px solid #ebebeb;
-	margin-bottom: 20px;
-}
-
-h3 {
-	font-size: 13px;
-	color: #282828;
-	font-weight: lighter;
-	margin-bottom: 16px;
-	padding-bottom: 5px;
-}
-
-h2 {
-	font-size: 20px;
-	color: #282828;
-	font-weight: lighter;
-	margin-bottom: 16px;
-	border-bottom: 2px solid black;
-	padding-bottom: 5px;
-}
-</style>
-</head>
-<body>
+	
+	<h1 style="text-align: center;">이력서</h1>
 	<div id="resumeForm">
 		<div class="d-flex mb-4">
 			<div class="flex-shrink-0">
@@ -68,7 +20,7 @@ h2 {
 				</div>
 			</div>
 		</div>
-		<section class="first">
+		<div class="first">
 			<div class="row g-2">
 				<div class="col-3 mt-3 mb-2 ">
 					<input type="text" class="form-control" value="${sessionScope.loginInfo.memail}" style="height: 30px; font-size: small;" readonly="readonly">
@@ -80,13 +32,11 @@ h2 {
 					<input type="text" class="form-control" value="${sessionScope.loginInfo.maddr}" style="height: 30px; font-size: small;" readonly="readonly">
 				</div>
 			</div>
-		</section>
-		<section class="mb-3">
+		</div>
+		<div class="mb-3">
 			<h2>
-				<a>
-					<img src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png" style="width: 30px; height: 20px;">
-				</a>
-				학력
+				<img src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png" style="width: 30px; height: 20px;">
+			학력
 			</h2>
 			<div class="input-group" id="reeduData">
 				<c:forEach items="${Resume.reedu }" varStatus="i" step="2">
@@ -104,13 +54,11 @@ h2 {
 					<span class="die">-</span>
 				</button>
 			</div>
-		</section>
-		<section>
+		</div>
+		<div>
 			<h2>
-				<a>
-					<img alt="" src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png" style="width: 30px; height: 20px;">
-				</a>
-				경력
+				<img alt="" src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png" style="width: 30px; height: 20px;">
+			경력
 			</h2>
 			<div class="input-group" id="recarrerData">
 				<c:forEach items="${Resume.recarrer }" varStatus="i" step="2">
@@ -128,12 +76,10 @@ h2 {
 					<span class="die">-</span>
 				</button>
 			</div>
-		</section>
-		<section class="mb-3">
+		</div>
+		<div class="mb-3">
 			<h2>
-				<a>
-					<img alt="" src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png" style="width: 30px; height: 20px;">
-				</a>
+				<img alt="" src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png" style="width: 30px; height: 20px;">
 				인턴/대외활동
 			</h2>
 			<div class="input-group" id="reactData">
@@ -152,13 +98,11 @@ h2 {
 					<span class="die">-</span>
 				</button>
 			</div>
-		</section>
-		<section class="mb-5">
+		</div>
+		<div class="mb-5">
 			<h2>
-				<a>
-					<img alt="" src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png" style="width: 30px; height: 20px;">
-				</a>
-				자격증
+				<img alt="" src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png" style="width: 30px; height: 20px;">
+			자격증
 			</h2>
 			<div class="input-group" id="relicenseData">
 				<c:forEach items="${Resume.relicense }" varStatus="i" step="2">
@@ -176,7 +120,18 @@ h2 {
 					<span class="die">-</span>
 				</button>
 			</div>
-		</section>
+		</div>
 	</div>
-</body>
-</html>
+	
+	
+	<div class="d-grid gap-2 col-6 mx-auto">
+		<button id="modifyBtn" class="btn btn-dark btn-lg" type="button" onclick="modifyResume()">수정</button>
+		<button id="saveBtn" class="btn btn-dark btn-lg d-none" type="button" onclick="saveResume()">저장</button>
+			<c:if test="${sideX != null }">
+				<button id="applyBtn" class="btn btn-dark btn-lg " type="button" onclick="applyResume('${epnum}')">지원하기</button>
+					${epnum}
+			</c:if>
+		<button id="cancleBtn" class="btn btn-dark btn-lg d-none" type="button" onclick="modifyCancle()">취소</button>
+	</div>
+	
+	

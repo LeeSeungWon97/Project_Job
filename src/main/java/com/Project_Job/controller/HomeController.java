@@ -1,10 +1,13 @@
 package com.Project_Job.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.service.EmploymentService;
 
 /**
@@ -40,7 +43,6 @@ public class HomeController {
 		mav.setViewName("home");
 		return mav;
 	}
-	
 	
 	
 }
