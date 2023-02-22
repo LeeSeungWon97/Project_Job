@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>좋은 직장을 위한 취업플랫폼, 굿잡</title>
+    <title>인재정보</title>
 	<link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/update/main-icon.png" />
 	
     <!-- Bootstrap icons-->
@@ -19,7 +19,7 @@
     <link href="${pageContext.request.contextPath }/resources/assets/css/header.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
 
-    <link href="${pageContext.request.contextPath }/resources/assets/css/section.css" rel="stylesheet" />
+
     <link href="${pageContext.request.contextPath }/resources/assets/css/footer.css" rel="stylesheet" />
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +31,7 @@
 <!-- Bootstrap icons-->
 <style type="text/css">
 .mainbox {
-	width: 710px;
+	width: 750px;
 	padding: 30px;
 	margin: 30px;
 	margin-right: auto;
@@ -60,12 +60,30 @@ h3 {
 }
 
 h2 {
-	font-size: 20px;
+	font-size: 18px;
 	color: #282828;
 	font-weight: lighter;
+	text-align: center;
 	margin-bottom: 16px;
-	border-bottom: 2px solid black;
+	border-bottom: 2px solid gray;
 	padding-bottom: 5px;
+}
+
+.resumbox{
+border: 1px solid #ebebeb;
+margin: 3px;
+height: 280px;
+
+
+}
+.resumbox:hover {
+border: 2px solid #79BAEC;	
+}
+.lookBtn{
+width: 32%;
+height: 5px;
+}
+
 }
 </style>
 </head>
@@ -81,56 +99,59 @@ h2 {
        
 	
 	<div class="container">
-		<div class="d-flex justify-content-center">
-			<a class="navbar-brand" href="${pageContext.request.contextPath }/">
-				<img
-				src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png"
-				style="width: 200px; height: 100px;">
-			</a>
-		</div>
+	
 		<div class="row">
 
 
 			<div class="mainbox">
-				<h1 style="text-align: center;">이력서</h1>
+				<h1 style="text-align: center;"><i class="bi bi-trophy-fill"></i> 우수 이력서</h1>
 
 				<!--  -->
 				<div class="section-l">
 			<div class="section-l-bottom">
 				<div class="row">
 				<c:forEach items="${ResumeList}" var="Resume">
-					<div class="col-4" style="padding: 15px">
+					<div class="col-4 resumbox" style="padding: 15px; width: 32.3%; " >
+							
 								<a href="${pageContext.request.contextPath}/viewApplyInfo?viewId=${Resume.remid}" target="_blank">
 									<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
 								
-									<h2 class="card-title h4">${Resume.remid}</h2>
-								</a>	
-									<c:forEach items="${Resume.reedu }" varStatus="i" step="2">
-									<p class="card-text">${Resume.reedu[i.index]}</p>
-									<p class="card-text">${Resume.reedu[i.index + 1]}</p>
-									</c:forEach>
+									<h2 class="card-title h4 mt-1">${Resume.remid}</h2>
+								</a>
 								
-					</div>
+									<c:forEach items="${Resume.reedu }" varStatus="i" step="2">
+									<p class="card-text">: ${Resume.reedu[i.index]}</p>
+									<p class="card-text">: ${Resume.reedu[i.index + 1]}</p>
+									</c:forEach>
+						<div style="text-align: center;">
+						<button type="button" class="btn btn-primary btn-sm" onclick="('${apply.APREMID}')">상세보기</button>			
+						</div>						
+						
+								</div>
+				
+					
+				
 				</c:forEach>
 				</div>
 			</div>
 		</div>
-	<button type="button" class="btn btn-danger btn-lg" onclick="'${apply.APREMID}')">상세보기</button>			
-				<!--  -->
+			
 
-				<div class="d-grid gap-2 col-6 mx-auto">
-					<button id="modifyBtn" class="btn btn-dark btn-lg" type="button"
+				<div class="d-grid gap-2 col-6 mt-5 mx-auto">
+					<button id="modifyBtn" class="btn btn-dark btn-lg " type="button"
 						onclick="modifyResume()">수정</button>
 					<button id="saveBtn" class="btn btn-dark btn-lg d-none"
-						type="button" onclick="saveResume()">저장</button>
+						type="button" onclick="saveResume()"><i class="bi bi-check"></i> 저장</button>
 					<c:if test="${sideX != null }">
 						<button id="applyBtn" class="btn btn-dark btn-lg " type="button"
 							onclick="applyResume('${epnum}')">지원하기</button>
 					${epnum}
 					</c:if>
 					<button id="cancleBtn" class="btn btn-dark btn-lg d-none"
-						type="button" onclick="modifyCancle()">취소</button>
+						type="button" onclick="modifyCancle()"><i class="bi bi-x"></i> 취소</button>
 				</div>
+
+			</div>
 
 			</div>
 

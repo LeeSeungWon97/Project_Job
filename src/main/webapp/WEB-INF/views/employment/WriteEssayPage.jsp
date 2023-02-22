@@ -56,8 +56,8 @@ h1 {font-size:20px; margin-bottom: 20px; text-align: center;}
 
 				<div class="Clickbtn">
 					<button id="modifyBtn" class="btn btn-dark btn-lg" type="button" onclick="modifyEssay()">수정</button>
-					<button id="saveBtn" class="btn btn-dark btn-lg mx-2 d-none" type="button" onclick="saveEssay()">저장</button>
-					<button id="cancleBtn" class="btn btn-dark btn-lg d-none" type="button" onclick="modifyCancle()">취소</button>
+					<button id="saveBtn" class="btn btn-dark btn-lg mx-2 d-none" type="button" onclick="saveEssay()"><i class="bi bi-check"></i> 저장</button>
+					<button id="cancleBtn" class="btn btn-dark btn-lg d-none" type="button" onclick="modifyCancle()"><i class="bi bi-x"></i> 취소</button>
 				</div>
 </div>
 	</div>

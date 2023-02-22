@@ -60,6 +60,14 @@
 .scrap_click {
 	text-shadow: 0 0 0 #fdf002;
 }
+.content{
+border-bottom: 1px solid #ebebeb; border-top: 1px solid #ebebeb;
+padding: 30px; 
+}
+
+p{margin: 1px;}
+
+.nowRs{margin-bottom: 80px;}
 </style>
 
 </head>
@@ -74,30 +82,56 @@
 			<div class="col-lg-10 col-xl-8 mx-auto">
 				<div class="card flex-row  border-0 shadow rounded-3">
 					<div class="card-body p-4 p-sm-5 mb-3">
-						<div class="row-5 mx-auto">
-							<h5>${cinfo.ciind }</h5>
+						<div class="row-5 mx-auto mb-5">
 							<h1>${cinfo.ciname }</h1>
-						</div>
-						<div class="row">
-						<div class="col-6">
-							<h4>지원자격</h4>
-							경력: ${cinfo.citype }<br>
-							학력: ${cinfo.cimoney }<br>
-							우대: ${cinfo.cimajor }
-						</div>
-						<div class="col-6">
-							<h4>근무조건</h4>
-							급여 : ${cinfo.cileader }<br>
-							시간 : ${cinfo.cipeople }<br>
-							고용형태 : ${cinfo.cisales }<br>
-							지역 : ${cinfo.ciinsurance }
-						</div>
-						</div>
-						<div style="text-align: center; margin: 30px">
-							<input type="button" class="btn btn-warning btn-lg mx-1" onclick="WriteResume('${cinfo.cinum }')" value="즉시지원"> 
-							<input type="button" class="btn  btn-lg" onclick="deleteInfo()" value="스크랩하기">
+							<h5>${cinfo.ciind }</h5>
+						<div class="d-md-flex justify-content-md-end">
+			
+					<button type="button" class="btn btn-outline-secondary btn-lg" onclick="deleteInfo()" >
+								<i class="bi bi-bookmark-check"></i> 스크랩</button>
+							</div>
 						</div>
 						
+						
+				
+						
+						
+						<div class="mb-5">
+							<h4>기업정보</h4>
+						<div class="row content">
+						<div class="col-6">
+						<p> <strong>기업형태:</strong>	${cinfo.citype }</p><br>
+						<p> <strong>자본금:</strong>	 ${cinfo.cimoney }</p><br>
+						<strong>업종:</strong>${cinfo.cimajor }
+						</div>
+						<div class="col-6">	
+						<p> <strong>대표자 :</strong> ${cinfo.cileader }</p> <br>
+						<p><strong>사원수 :</strong> ${cinfo.cipeople }</p><br>
+						<p><strong>매출액 :</strong> : ${cinfo.cisales }</p><br>
+						<strong>4대보험 :</strong> ${cinfo.ciinsurance }
+						</div>
+						</div>
+						</div>
+						
+						<div class="nowRs">
+						<h4>지금 채용중인 공고</h4>
+						<div class="content">
+						<p>내용</p>
+						<div style="text-align: right; margin: 10px">
+							<input type="button" class="btn btn-warning btn-sm mx-1"  onclick="WriteResume('${cinfo.cinum }')" value="즉시지원"> 
+							
+						</div>
+						</div>
+						</div>
+						
+						
+						<div style="text-align: center; margin: 5px">
+						<a href="${pageContext.request.contextPath }/CinfoListPage">
+							<button type="button" class="btn btn-outline-danger btn-lg" >
+											<i class="bi bi-file-excel"></i> 닫기
+										</button>
+							</a>
+						</div>
 						
 					</div>
 				</div>
