@@ -319,6 +319,21 @@ public class EmploymentController {
 		}
 		return mav;
 	}
+
+	// 공채달력 페이지 이동
+	@RequestMapping(value = "/calendar")
+	public String calendar() {
+		System.out.println("공채달력 페이지 이동 요청");
+		return "employment/calendar";
+	}
+
+	// 공채 날짜 요청
+	@RequestMapping(value = "/epSchedule")
+	public @ResponseBody ArrayList<Map<String, String>> epSchedule() {
+		System.out.println("공채 스케줄 요청");
+		ArrayList<Map<String, String>> epSchedule = epsvc.epSchedule();
+		return epSchedule;
+	}
 	
 	
 	@RequestMapping(value = "/viewApply")

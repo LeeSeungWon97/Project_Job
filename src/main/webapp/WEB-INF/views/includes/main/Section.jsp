@@ -5,79 +5,27 @@
 	<div class="section-div">
 		<div class="section-l">
 			<div class="section-l-bottom">
-				<div class="row">
-					<div class="col-lg-4 mt-4">
-						<div class="card mb-4">
-							<a href="">
-								<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
-							</a>
-							<div class="card-body">
-								<div class="small text-muted">January 1, 2022</div>
-								<h2 class="card-title h4">Post Title</h2>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-								<a class="btn btn-primary" href="#!">Read more →</a>
+				<!-- Slider main container -->
+				<div>
+					<h2>얼마 남지 않았어요!</h2>
+				</div>
+				<div class="swiper">
+					<!-- Additional required wrapper -->
+					<div class="swiper-wrapper">
+						<!-- Slides -->
+						<c:forEach items="${closeDeadLine}" var="closeDead">
+							<div class="swiper-slide">
+								<h3>
+									<a href="">${closeDead.epciname }</a>
+								</h3>
+								<hr>
+								<span>${closeDead.epname }</span>
 							</div>
-						</div>
-						<div class="card mb-4">
-							<a href="">
-								<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
-							</a>
-							<div class="card-body">
-								<div class="small text-muted">January 1, 2022</div>
-								<h2 class="card-title h4">Post Title</h2>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-								<a class="btn btn-primary" href="#!">Read more →</a>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
-					<div class="col-lg-4 mt-4">
-						<div class="card mb-4">
-							<a href="">
-								<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
-							</a>
-							<div class="card-body">
-								<div class="small text-muted">January 1, 2022</div>
-								<h2 class="card-title h4">Post Title</h2>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-								<a class="btn btn-primary" href="#!">Read more →</a>
-							</div>
-						</div>
-						<div class="card mb-4">
-							<a href="">
-								<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
-							</a>
-							<div class="card-body">
-								<div class="small text-muted">January 1, 2022</div>
-								<h2 class="card-title h4">Post Title</h2>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-								<a class="btn btn-primary" href="#!">Read more →</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 mt-4">
-						<div class="card mb-4">
-							<a href="">
-								<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
-							</a>
-							<div class="card-body">
-								<div class="small text-muted">January 1, 2022</div>
-								<h2 class="card-title h4">Post Title</h2>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-								<a class="btn btn-primary" href="#!">Read more →</a>
-							</div>
-						</div>
-						<div class="card mb-4">
-							<a href="">
-								<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
-							</a>
-							<div class="card-body">
-								<div class="small text-muted">January 1, 2022</div>
-								<h2 class="card-title h4">Post Title</h2>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-								<a class="btn btn-primary" href="#!">Read more →</a>
-							</div>
-						</div>
-					</div>
+					<!-- If we need pagination -->
+					<div class="swiper-pagination"></div>
+
 				</div>
 			</div>
 		</div>
@@ -149,10 +97,10 @@
 										<button type="button" class="btn btn-outline-secondary btn-sm">스크랩</button>
 									</a>
 									<c:if test="${sessionScope.loginType == 'C' }">
+
 									<a href="${pageContext.request.contextPath }/WriteEmploymentPage">
 										<button type="button" class="btn btn-outline-secondary btn-sm">공고등록</button>
 									</a>
-									
 									</c:if>
 								</div>
 							</div>
@@ -166,19 +114,9 @@
 						<div class="container text-center">
 							<table class="table table-bordered">
 								<tr>
-									<th scope="col"><a href="">100대기업</a></th>
-									<th scope="col"><a href="">공채달력</a></th>
-									<th scope="col"><a href="">TOP100</a></th>
-								</tr>
-								<tr>
-									<th scope="row"><a href="">인턴채용</a></th>
-									<th scope="row"><a href="">합격자소서</a></th>
-									<th scope="row"><a href="">취업후기</a></th>
-								</tr>
-								<tr>
-									<th scope="row"><a href="">합격스펙</a></th>
-									<th scope="row"><a href="">직무인터뷰</a></th>
-									<th scope="row"><a href="">채용설명회</a></th>
+									<th scope="col"><a href="${pageContext.request.contextPath }/calendar">공채달력</a></th>
+									<th scope="col"><a href="">합격자소서</a></th>
+									<th scope="col"><a href="">취업후기</a></th>
 								</tr>
 							</table>
 						</div>
