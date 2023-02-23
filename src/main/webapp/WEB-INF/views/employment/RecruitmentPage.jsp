@@ -28,66 +28,81 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <style type="text/css">
 .scrap {
-	color: transparent; /* 기존 이모지 컬러 제거 */
-	text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
-	border: none;
-	background-color: transparent;
+     color: transparent; /* 기존 이모지 컬러 제거 */
+     text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
+     border:none;
+     background-color:transparent;
 }
-
-.scrap:hover {
-	text-shadow: 0 0 0 #fdf002; /* 마우스 호버 */
-	text-shadow: 0 0 0 #fdf002; /* 마우스 호버 뒤에오는 이모지들 */
-	text-shadow: 0 0 0 #fdf002; /* 마우스 클릭 체크 */
+.scrap:hover{
+    text-shadow: 0 0 0 #fdf002; /* 마우스 호버 */
+    text-shadow: 0 0 0 #fdf002; /* 마우스 호버 뒤에오는 이모지들 */
+    text-shadow: 0 0 0 #fdf002; /* 마우스 클릭 체크 */
 }
-
-.scrap_click {
-	text-shadow: 0 0 0 #fdf002;
+.scrap_click{
+ 	text-shadow: 0 0 0 #fdf002;  
+}
+.reci{
+	width: 22%;		/* 기업명 */
+}
+.renu{
+	width: 1%;	 	/* 스크랩 */
+}
+.rena{
+	width: 31%; 	/* 제목 */
+}
+.reed{
+	width: 12%; text-align: center; 	/* 경력 */
+}
+.rede{
+	width: 10%; text-align: center;	 /* 기업명 */
+}
+.rebu{
+	width: 7%; text-align: right;  /* 자소서지원 */
 }
 </style>
 </head>
 <body>
 
 	<!-- Header -->
-	<%@ include file="/WEB-INF/views/includes/main/Header.jsp"%>
-	<!-- Nav -->
-	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
-
+	<%@ include file="/WEB-INF/views/includes/main/Header.jsp" %> 
+     <!-- Nav -->
+    <%@ include file="/WEB-INF/views/includes/main/Nav.jsp" %>
+    	
+    <!-- Section -->	
 	<section id="section">
 		<div class="section-div">
-			<div class="row">
-				<div class="card mt-4 mb-4 shadow rounded-3">
-					<div class="table-responsive">
-						<table class="table table-striped" style="border-radius: 50px;">
-							<thead>
-								<tr>
-									<th scope="col" style="font-size: 20px;">회사</th>
-									<th scope="col" style="font-size: 20px;">공고명</th>
-									<th scope="col" style="font-size: 20px;">경력</th>
-									<th scope="col" style="font-size: 20px;">마감일</th>
-									<th scope="col" style="font-size: 20px;"></th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${epList }" var="employ">
-									<tr>
-                          <td>${employ.epciname }</td>
-                            <td> <a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }"> ${employ.epname }</a>
-                             <input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐">
-                            </td>
-                            <td>${employ.epedu }</td>
-                            <td><span>${employ.epdeadline }</span></td>
-                          <td>	
-                            <button class="btn btn-secondary mt-1" onclick="WriteResume('${employ.epnum }','${employ.epciname }','${employ.epname }')" style="min-width: 80px;  font-size: 20%;">자소서작성</button>      
-                          </td>
-                        </tr>
-                </c:forEach>
+				<div class="card mt-4 mb-4 border-0 shadow rounded-3">
+				<div class="table-responsive">
+					<table class="table">
+						<thead style="background-color: #f2f9fe; border-top: 1px solid #eaeaea;">
+							<tr style="color: #888;  text-align: center;">	
+								<th scope="col">기업명</th>
+								<th scope="col"></th>
+								<th scope="col">제목</th>
+								<th scope="col">경력</th>
+								<th scope="col">마감일</th>
+								<th scope="col"></th>	
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${epList }" var="employ">
+								<tr>	
+                                	<td class="reci"><a href=""><span>${employ.epciname }</span></a></td>
+                                	<td class="renu"><input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"></td>
+                                    <td class="rena"><a href=""><span style="color: #333; font-weight: bold;">${employ.epname }</span></a></td>
+                                    <td class="reed"><span>${employ.epedu }</span></td>
+                               	    <td class="rede"><span>${employ.epdeadline }</span></td>
+                               		<td class="rebu">	
+                               			<button class="mt-1" onclick="WriteResume('${employ.epnum }','${employ.epciname }','${employ.epname }')" style="min-width: 85px; font-size: 14px; background-color: #19ce60; border: solid #19ce60;"><span style="color: white;">자소서작성</span></button>      
+                              		</td>
+                                </tr>
+                  			</c:forEach>
 						</tbody>
 					</table>
 				</div>	
 				
 			</div>	
-			</div>		
-
+				
 		</div>
 	</section>
 

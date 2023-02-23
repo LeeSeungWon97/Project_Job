@@ -68,7 +68,7 @@
 											<span style="font-size: 20px;">${sessionScope.loginInfo.mname}</span>
 										</c:when>
 										<c:otherwise>
-											<span>${sessionScope.loginInfo.cmname}</span>
+											<span style="font-size: 20px;">${sessionScope.loginInfo.cmname}</span>
 										</c:otherwise>
 									</c:choose>
 
@@ -85,9 +85,11 @@
 									<a href="${pageContext.request.contextPath }/myInfo">
 										<button type="button" class="btn btn-outline-secondary btn-sm">내정보</button>
 									</a>
+									<c:if test="${sessionScope.loginType == 'P' }">
 									<a href="${pageContext.request.contextPath }/myResume">
 										<button type="button" class="btn btn-outline-secondary btn-sm">이력서</button>
 									</a>
+									</c:if>
 									<a href="${pageContext.request.contextPath }/viewApply">
 										<button type="button" class="btn btn-outline-secondary btn-sm">지원현황</button>
 									</a>
@@ -95,10 +97,10 @@
 										<button type="button" class="btn btn-outline-secondary btn-sm">스크랩</button>
 									</a>
 									<c:if test="${sessionScope.loginType == 'C' }">
-										<a href="${pageContext.request.contextPath }/WriteEmploymentPage">
-											<button type="button" class="btn btn-outline-secondary btn-sm">공고등록하기</button>
-										</a>
 
+									<a href="${pageContext.request.contextPath }/WriteEmploymentPage">
+										<button type="button" class="btn btn-outline-secondary btn-sm">공고등록</button>
+									</a>
 									</c:if>
 								</div>
 							</div>

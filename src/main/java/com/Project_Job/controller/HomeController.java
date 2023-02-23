@@ -7,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.Project_Job.dto.EmploymentDto;
+import com.Project_Job.dto.CinfoDto;
+
 import com.Project_Job.service.EmploymentService;
 
 /**
@@ -47,7 +50,6 @@ public class HomeController {
 		mav.setViewName("home");
 		return mav;
 	}
-	
 	
 	
 }

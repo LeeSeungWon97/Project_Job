@@ -1,37 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>좋은 직장을 위한 취업플랫폼, 굿잡</title>
-	<link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/update/main-icon.png" />
-	
-    <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>인재정보</title>
+<link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/update/main-icon.png" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
 
-    <link href="${pageContext.request.contextPath }/resources/assets/css/header.css" rel="stylesheet" />
-    <link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
-
-    <link href="${pageContext.request.contextPath }/resources/assets/css/section.css" rel="stylesheet" />
-    <link href="${pageContext.request.contextPath }/resources/assets/css/footer.css" rel="stylesheet" />
-
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/assets/css/header.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
 
 
-<title>내 이력서</title>
+<link href="${pageContext.request.contextPath }/resources/assets/css/footer.css" rel="stylesheet" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <!-- Bootstrap icons-->
 <style type="text/css">
 .mainbox {
-	width: 710px;
+	width: 750px;
 	padding: 30px;
 	margin: 30px;
 	margin-right: auto;
@@ -67,79 +60,74 @@ h2 {
 	border-bottom: 2px solid black;
 	padding-bottom: 5px;
 }
+
+.resumbox{
+border: 1px solid #ebebeb;
+margin: 3px;
+height: 280px;
+
+
+}
+.resumbox:hover {
+border: 2px solid #79BAEC;	
+}
 </style>
 </head>
 <body>
-	
+
 	<!-- Header -->
-	<%@ include file="/WEB-INF/views/includes/main/Header.jsp" %> 
-    
-    <!-- Nav -->
-    <%@ include file="/WEB-INF/views/includes/main/Nav.jsp" %>
+	<%@ include file="/WEB-INF/views/includes/main/Header.jsp"%>
 
-	
-       
-	
-	<div class="container">
-		<div class="d-flex justify-content-center">
-			<a class="navbar-brand" href="${pageContext.request.contextPath }/">
-				<img
-				src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png"
-				style="width: 200px; height: 100px;">
-			</a>
-		</div>
-		<div class="row">
+	<!-- Nav -->
+	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
 
 
+
+	<!-- Section -->
+	<section id="section">
+		<div class="section-div" style="justify-content: center;">
 			<div class="mainbox">
-				<h1 style="text-align: center;">이력서</h1>
-
-				<!--  -->
+				<h1 style="text-align: center;"><i class="bi bi-trophy-fill"></i> 우수 이력서</h1>
 				<div class="section-l">
-			<div class="section-l-bottom">
-				<div class="row">
-				<c:forEach items="${ResumeList}" var="Resume">
-					<div class="col-4" style="padding: 15px">
-								<a href="${pageContext.request.contextPath}/viewApplyInfo?viewId=${Resume.remid}" target="_blank">
-									<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
-								
-									<h2 class="card-title h4">${Resume.remid}</h2>
-								</a>	
+					<div class="section-l-bottom ">
+						<div class="row">
+							<c:forEach items="${ResumeList}" var="Resume">
+								<div class="col-4 resumbox" style="padding: 15px;  width: 32.3%;">
+									<a href="${pageContext.request.contextPath}/viewApplyInfo?viewId=${Resume.remid}" target="_blank">
+										<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
+
+										<span class="h2" style="color: black;">${Resume.remid}</span>
+									</a>
 									<c:forEach items="${Resume.reedu }" varStatus="i" step="2">
-									<p class="card-text">${Resume.reedu[i.index]}</p>
-									<p class="card-text">${Resume.reedu[i.index + 1]}</p>
+										<p class="card-text">${Resume.reedu[i.index]}</p>
+										<p class="card-text">${Resume.reedu[i.index + 1]}</p>
 									</c:forEach>
-								
+
+								</div>
+							</c:forEach>
+						</div>
 					</div>
-				</c:forEach>
 				</div>
-			</div>
-		</div>
-	<button type="button" class="btn btn-danger btn-lg" onclick="'${apply.APREMID}')">상세보기</button>			
+				<button type="button" class="btn btn-danger btn-lg" onclick="'${apply.APREMID}')">상세보기</button>
 				<!--  -->
 
 				<div class="d-grid gap-2 col-6 mx-auto">
-					<button id="modifyBtn" class="btn btn-dark btn-lg" type="button"
-						onclick="modifyResume()">수정</button>
-					<button id="saveBtn" class="btn btn-dark btn-lg d-none"
-						type="button" onclick="saveResume()">저장</button>
+					<button id="modifyBtn" class="btn btn-dark btn-lg" type="button" onclick="modifyResume()">수정</button>
+					<button id="saveBtn" class="btn btn-dark btn-lg d-none" type="button" onclick="saveResume()">저장</button>
 					<c:if test="${sideX != null }">
-						<button id="applyBtn" class="btn btn-dark btn-lg " type="button"
-							onclick="applyResume('${epnum}')">지원하기</button>
+						<button id="applyBtn" class="btn btn-dark btn-lg " type="button" onclick="applyResume('${epnum}')">지원하기</button>
 					${epnum}
 					</c:if>
-					<button id="cancleBtn" class="btn btn-dark btn-lg d-none"
-						type="button" onclick="modifyCancle()">취소</button>
+					<button id="cancleBtn" class="btn btn-dark btn-lg d-none" type="button" onclick="modifyCancle()">취소</button>
 				</div>
 
 			</div>
 
 		</div>
-	</div>
-
+	</section>
 	<!-- Footer-->
-    <%@ include file="/WEB-INF/views/includes/main/Footer.jsp" %>
-    
+	<%@ include file="/WEB-INF/views/includes/main/Footer.jsp"%>
+
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 
 
