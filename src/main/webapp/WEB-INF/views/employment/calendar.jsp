@@ -63,9 +63,9 @@
 	color: black;
 	text-decoration: none;
 	font-size: 9px;
-	width:35px;
-	overflow:hidden;
-	text-overflow:ellipsis;
+	width: 35px;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 #calendar {
@@ -77,7 +77,9 @@
 
 </head>
 <body>
-	<div id='calendar'></div>
+	<div>
+		<div id='calendar'></div>
+	</div>
 </body>
 
 </html>

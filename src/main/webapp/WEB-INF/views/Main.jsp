@@ -48,4 +48,30 @@
 	<!-- Core theme JS-->
 	<script src="${pageContext.request.contextPath }/resources/assets/js/scripts.js"></script>
 </body>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	const swiper = new Swiper('.swiper', {
+		// Optional parameters
+		direction : 'horizontal',
+		loop : true,
+
+		// If we need pagination
+		pagination : {
+			el : '.swiper-pagination',
+			clickable : true,
+			type : 'bullets'
+		},
+
+		// Navigation arrows
+		navigation : {
+			nextEl : '.swiper-button-next',
+			prevEl : '.swiper-button-prev',
+		},
+
+		// 자동 이동
+		autoplay : {
+			delay : 3000,
+		}
+	});
+</script>
 </html>

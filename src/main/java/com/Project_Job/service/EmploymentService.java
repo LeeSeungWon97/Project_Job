@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.jsoup.Jsoup;
@@ -634,5 +635,12 @@ public class EmploymentService {
 		}
 		//
 		return resumeList;
+	}
+
+	// 마감 임박 공고 리스트
+	public ArrayList<EmploymentDto> closeDeadLine() {
+		System.out.println("EmploymentService closeDeadLine() 호출");
+		ArrayList<EmploymentDto> closeDeadLine = epdao.selectCloseDeadLine();
+		return closeDeadLine;
 	}
 }

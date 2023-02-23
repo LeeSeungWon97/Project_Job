@@ -1,10 +1,13 @@
 package com.Project_Job.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Project_Job.dto.EmploymentDto;
 import com.Project_Job.service.EmploymentService;
 
 /**
@@ -17,9 +20,13 @@ public class HomeController {
 	private EmploymentService epsvc;
 	
 	@RequestMapping(value = "/")
-	public String home() {
+	public ModelAndView home() {
 		System.out.println("메인페이지 이동 요청");
-		return "Main";
+		ModelAndView mav = new ModelAndView();
+		ArrayList<EmploymentDto> closeDeadLine = epsvc.closeDeadLine();
+		mav.addObject("closeDeadLine", closeDeadLine);
+		mav.setViewName("Main");
+		return mav;
 	}
 
 	@RequestMapping(value = "/jobInsert1")
