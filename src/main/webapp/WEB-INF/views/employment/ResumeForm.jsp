@@ -129,7 +129,6 @@
 		<button id="saveBtn" class="btn btn-dark btn-lg d-none" type="button" onclick="saveResume()">저장</button>
 			<c:if test="${sideX != null }">
 				<button id="applyBtn" class="btn btn-dark btn-lg " type="button" onclick="applyResume('${epnum}')">지원하기</button>
-					${epnum}
 			</c:if>
 		<button id="cancleBtn" class="btn btn-dark btn-lg d-none" type="button" onclick="modifyCancle()">취소</button>
 	</div>

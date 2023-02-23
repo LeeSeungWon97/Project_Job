@@ -403,31 +403,36 @@ public class EmploymentService {
 		System.out.println("epsvc SelectResume 요청");
 		ArrResumeDto ArrResumeInfo = new ArrResumeDto();
 		ResumeDto ResumeInfo = epdao.SelectResume(remid);
-		ArrResumeInfo.setRemid(remid);
-		ArrResumeInfo.setRetell(ResumeInfo.getRetell());
-		ArrResumeInfo.setRecount(ResumeInfo.getRecount());
-		ArrResumeInfo.setRehope(ResumeInfo.getRehope());
-		if (ResumeInfo.getReedu() != null) {
-			String[] reedu = ResumeInfo.getReedu().split("!@#");
-			ArrResumeInfo.setReedu(reedu);
+		if (ResumeInfo == null) {
+			return null;
+		} else {
+			ArrResumeInfo.setRemid(remid);
+			ArrResumeInfo.setRetell(ResumeInfo.getRetell());
+			ArrResumeInfo.setRecount(ResumeInfo.getRecount());
+			ArrResumeInfo.setRehope(ResumeInfo.getRehope());
+			if (ResumeInfo.getReedu() != null) {
+				String[] reedu = ResumeInfo.getReedu().split("!@#");
+				ArrResumeInfo.setReedu(reedu);
+			}
+			if (ResumeInfo.getRecarrer() != null) {
+				String[] recarrer = ResumeInfo.getRecarrer().split("!@#");
+				ArrResumeInfo.setRecarrer(recarrer);
+			}
+			if (ResumeInfo.getReact() != null) {
+				String[] react = ResumeInfo.getReact().split("!@#");
+				ArrResumeInfo.setReact(react);
+			}
+			if (ResumeInfo.getRelicense() != null) {
+				String[] relicense = ResumeInfo.getRelicense().split("!@#");
+				ArrResumeInfo.setRelicense(relicense);
+			}
+			if (ResumeInfo.getReciname() != null) {
+				String[] reciname = ResumeInfo.getReciname().split(",");
+				ArrResumeInfo.setReciname(reciname);
+			}
+			return ArrResumeInfo;
 		}
-		if (ResumeInfo.getRecarrer() != null) {
-			String[] recarrer = ResumeInfo.getRecarrer().split("!@#");
-			ArrResumeInfo.setRecarrer(recarrer);
-		}
-		if (ResumeInfo.getReact() != null) {
-			String[] react = ResumeInfo.getReact().split("!@#");
-			ArrResumeInfo.setReact(react);
-		}
-		if (ResumeInfo.getRelicense() != null) {
-			String[] relicense = ResumeInfo.getRelicense().split("!@#");
-			ArrResumeInfo.setRelicense(relicense);
-		}
-		if (ResumeInfo.getReciname() != null) {
-			String[] reciname = ResumeInfo.getReciname().split(",");
-			ArrResumeInfo.setReciname(reciname);
-		}
-		return ArrResumeInfo;
+
 	}
 
 	// 공고이름
@@ -562,7 +567,7 @@ public class EmploymentService {
 
 	public ArrayList<Map<String, String>> epSchedule() {
 		System.out.println("EmploymentService callEpDate() 호출");
-		ArrayList<Map<String, String>> epSchedule = new ArrayList<Map<String,String>>();
+		ArrayList<Map<String, String>> epSchedule = new ArrayList<Map<String, String>>();
 		ArrayList<EmploymentDto> epPost = epdao.selectEpPost();
 		ArrayList<EmploymentDto> epDead = epdao.selectEpDead();
 		for (int i = 0; i < epPost.size(); i++) {
