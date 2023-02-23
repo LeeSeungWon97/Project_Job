@@ -89,8 +89,8 @@ public class ArrResumeDto {
 	public String toString() {
 		return "ArrResumeDto [remid=" + remid + ", retell=" + retell + ", reedu=" + Arrays.toString(reedu)
 				+ ", recarrer=" + Arrays.toString(recarrer) + ", react=" + Arrays.toString(react) + ", relicense="
-				+ Arrays.toString(relicense) + ", rehope=" + rehope + ", recount=" + recount + ", reciname=" + Arrays.toString(reciname)
-				+ "]";
+				+ Arrays.toString(relicense) + ", rehope=" + rehope + ", recount=" + recount + ", reciname="
+				+ Arrays.toString(reciname) + "]";
 	}
 
 }
