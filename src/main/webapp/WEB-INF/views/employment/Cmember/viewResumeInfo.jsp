@@ -15,7 +15,7 @@
 <link href="${pageContext.request.contextPath }/resources/assets/css/header.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
 
-<link href="${pageContext.request.contextPath }/resources/assets/css/section.css" rel="stylesheet" />
+
 <link href="${pageContext.request.contextPath }/resources/assets/css/footer.css" rel="stylesheet" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +24,7 @@
 <!-- Bootstrap icons-->
 <style type="text/css">
 .mainbox {
-	width: 710px;
+	width: 750px;
 	padding: 30px;
 	margin: 30px;
 	margin-right: auto;
@@ -60,6 +60,17 @@ h2 {
 	border-bottom: 2px solid black;
 	padding-bottom: 5px;
 }
+
+.resumbox{
+border: 1px solid #ebebeb;
+margin: 3px;
+height: 280px;
+
+
+}
+.resumbox:hover {
+border: 2px solid #79BAEC;	
+}
 </style>
 </head>
 <body>
@@ -76,12 +87,12 @@ h2 {
 	<section id="section">
 		<div class="section-div" style="justify-content: center;">
 			<div class="mainbox">
-				<h1 style="text-align: center;">이력서</h1>
+				<h1 style="text-align: center;"><i class="bi bi-trophy-fill"></i> 우수 이력서</h1>
 				<div class="section-l">
-					<div class="section-l-bottom">
+					<div class="section-l-bottom ">
 						<div class="row">
 							<c:forEach items="${ResumeList}" var="Resume">
-								<div class="col-4" style="padding: 15px">
+								<div class="col-4 resumbox" style="padding: 15px;  width: 32.3%;">
 									<a href="${pageContext.request.contextPath}/viewApplyInfo?viewId=${Resume.remid}" target="_blank">
 										<img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
 
