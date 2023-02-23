@@ -28,33 +28,42 @@
 
 <style type="text/css">
 .scrap {
-    color: transparent; /* 기존 이모지 컬러 제거 */
-    text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
-     border:none;
-     background-color:transparent;
+	color: transparent; /* 기존 이모지 컬러 제거 */
+	text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
+	border: none;
+	background-color: transparent;
 }
-.scrap:hover{
-    text-shadow: 0 0 0 #fdf002; /* 마우스 호버 */
-    text-shadow: 0 0 0 #fdf002; /* 마우스 호버 뒤에오는 이모지들 */
-    text-shadow: 0 0 0 #fdf002; /* 마우스 클릭 체크 */
+
+.scrap:hover {
+	text-shadow: 0 0 0 #fdf002; /* 마우스 호버 */
+	text-shadow: 0 0 0 #fdf002; /* 마우스 호버 뒤에오는 이모지들 */
+	text-shadow: 0 0 0 #fdf002; /* 마우스 클릭 체크 */
 }
-.scrap_click{
- 	text-shadow: 0 0 0 #fdf002; 
+
+.scrap_click {
+	text-shadow: 0 0 0 #fdf002;
 }
-.emci{
-	width: 17%; 	/* 기업명 */
+
+.emci {
+	width: 17%; /* 기업명 */
 }
-.emnu{
-	width: 1%;		/* 스크랩 */
+
+.emnu {
+	width: 1%; /* 스크랩 */
 }
-.emna{
-	width: 30%; 	/* 제목 */
+
+.emna {
+	width: 30%; /* 제목 */
 }
-.emde{
-	width: 7%; text-align: center;		/* 마감일 */
+
+.emde {
+	width: 7%;
+	text-align: center; /* 마감일 */
 }
-.embu{
-	width: 7%; text-align: right;		/* 즉시지원 */
+
+.embu {
+	width: 7%;
+	text-align: right; /* 즉시지원 */
 }
 </style>
 </head>
@@ -64,42 +73,56 @@
 	<%@ include file="/WEB-INF/views/includes/main/Header.jsp"%>
 	<!-- Nav -->
 	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
-	
+
 	<!-- Section -->
 	<section id="section">
 		<div class="section-div">
-				<div class="card mt-4 mb-4 border-0 shadow rounded-3">
-					<div class="table-responsive">
-						<table class="table">
-							<thead style="background-color: #f2f9fe; border-top: 1px solid #eaeaea;">
-								<tr style="color: #888; text-align: center;">
-									<th scope="col">기업명</th>
-									<th scope="col"></th>
-									<th scope="col">제목</th>
-									<th scope="col">마감일</th>
-									<th scope="col"></th>
+			<div class="card mt-4 mb-4 border-0 shadow rounded-3">
+				<div class="table-responsive">
+					<table class="table">
+						<thead style="background-color: #f2f9fe; border-top: 1px solid #eaeaea;">
+							<tr style="color: #888; text-align: center;">
+								<th scope="col">기업명</th>
+								<th scope="col"></th>
+								<th scope="col">제목</th>
+								<th scope="col">마감일</th>
+								<th scope="col"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${epList }" var="employ">
+								<tr>
+									<td class="emci">
+										<a href="">
+											<span>${employ.epciname }</span>
+										</a>
+									</td>
+									<td class="emnu">
+										<input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐">
+									</td>
+									<td class="emna">
+										<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }">
+											<span style="color: #333; font-weight: bold;">${employ.epname }</span>
+										</a>
+									</td>
+									<td class="emde">
+										<span>${employ.epdeadline }</span>
+									</td>
+									<td class="embu">
+										<button class="mt-1" onclick="WriteResume('sideX','${employ.epnum }')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">
+											<span style="color: white;">즉시지원</span>
+										</button>
+									</td>
 								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${epList }" var="employ">
-									<tr>	 	
-										<td class="emci"><a href=""><span>${employ.epciname }</span></a></td>
-										<td class="emnu"><input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"></td>
-										<td class="emna"><a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }"><span style="color: #333; font-weight: bold;">${employ.epname }</span></a></td>
-										<td class="emde"><span>${employ.epdeadline }</span></td>
-										<td class="embu">
-											<button class="mt-1" onclick="WriteResume('sideX','${employ.epnum }')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;"><span style="color: white;">즉시지원</span></button>
-										</td>
-									</tr>
-								</c:forEach>
+							</c:forEach>
 
-							</tbody>
-						</table>
-					</div>
+						</tbody>
+					</table>
 				</div>
+			</div>
 		</div>
 	</section>
-	
+
 	<input type="hidden" id="loginType" value="${sessionScope.loginType }">
 	<c:choose>
 		<c:when test="${sessionScope.loginType == 'P'}">
@@ -109,7 +132,7 @@
 			<input type="hidden" id="loginId" value="${sessionScope.loginInfo.cmid }">
 		</c:otherwise>
 	</c:choose>
-	
+
 	<!-- Footer-->
 	<%@ include file="/WEB-INF/views/includes/main/Footer.jsp"%>
 
@@ -132,19 +155,14 @@
 </script>
 <script type="text/javascript">
 	function WriteResume(sideX, epnum) {
+		var popupWidth = 900;
+		var popupHeight = 950;
+		var popupX = (window.screen.width/2)-(popupWidth/2);
+		var popupY = (window.screen.height/2)-(popupHeight/2);
 		console.log(sideX);
 		console.log(epnum);
-		if (loginId == "") {
-			alert("로그인이 필요한 서비스입니다.");
-			location.href = "${pageContext.request.contextPath}/login";
-		} else if (loginType == "C") {
-			alert("일반회원을 위한 서비스입니다.");
-			location.reload();
-		} else {
-			window.open("${pageContext.request.contextPath}/myResume?sideX="+sideX+"&epnum="+epnum,
-					"이력서 선택", "width=400,height=400,top=10,left=100");
-		}
-
+		window.open("${pageContext.request.contextPath}/myResume?sideX="+sideX+"&epnum="+epnum,
+				"이력서 선택", "width="+popupWidth+",height="+popupHeight+",top="+popupY+",left="+popupX);
 	}
 	</script>
 

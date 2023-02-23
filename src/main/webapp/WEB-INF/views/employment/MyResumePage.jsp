@@ -170,73 +170,10 @@ h2 {
 		}
 
 		function applyResume(epnum) {
-			console.log("이력서 저장");
-			var rehope = document.getElementsByClassName("rehope");
-			var reedu = document.getElementsByClassName("reedu");
-			var recarrer = document.getElementsByClassName("recarrer");
-			var react = document.getElementsByClassName("react");
-			var relicense = document.getElementsByClassName("relicense");
+			console.log("이력서 지원");
+			location.href = "${pageContext.request.contextPath}/applyResume?epnum="
+					+ epnum;
 
-			var rehopeData = $('.rehope').val();
-			var phoneNum = $('#phoneNum').val();
-			var reeduData = "";
-			var recarrerData = "";
-			var reactData = "";
-			var relicenseData = "";
-
-			for (var i = 0; i < reedu.length; i++) {
-				reeduData += reedu[i].value;
-				if (i == reedu.length - 1) {
-					continue;
-				}
-				reeduData += "!@#";
-			}
-
-			for (var i = 0; i < recarrer.length; i++) {
-				recarrerData += recarrer[i].value;
-				if (i == recarrer.length - 1) {
-					continue;
-				}
-				recarrerData += "!@#";
-			}
-
-			for (var i = 0; i < react.length; i++) {
-				reactData += react[i].value;
-				if (i == react.length - 1) {
-					continue;
-				}
-				reactData += "!@#";
-			}
-
-			for (var i = 0; i < relicense.length; i++) {
-				relicenseData += relicense[i].value;
-				if (i == relicense.length - 1) {
-					continue;
-				}
-				relicenseData += "!@#";
-			}
-
-			$.ajax({
-				type : "post",
-				url : "${pageContext.request.contextPath}/applyResume",
-				data : {
-					"rehope" : rehopeData,
-					"retell" : phoneNum,
-					"reedu" : reeduData,
-					"recarrer" : recarrerData,
-					"react" : reactData,
-					"relicense" : relicenseData,
-					"epnum" : epnum
-				},
-				async : false,
-				success : function(result) {
-				}
-			});
-			$('#modifyBtn').removeClass("d-none");
-			$('#saveBtn').addClass("d-none");
-			$('.modifyBtn').addClass("d-none");
-			$('.resumeContent').attr("readonly", true);
-			window.close();
 		}
 
 		function modifyCancle() {
