@@ -351,26 +351,21 @@
 	<!-- email -->
 	<script type="text/javascript">
 		// 인증코드 전송
-		$('#mailCheckBtn')
-				.click(
-						function() {
-							var email = $('#memail').val();
-							console.log(email);
-							$
-									.ajax({
-										type : 'get',
-										url : '${pageContext.request.contextPath }/mailCheck?email='
-												+ email,
-										success : function(data) {
-											console.log(data);
-											alert('인증번호가 발송되었습니다.');
-											$('#emailCode').attr('value', data);
-											$('#inputCode').attr('disabled',
-													false);
-											$('#inputCode').focus();
-										}
-									});
-						});
+		$('#mailCheckBtn').click(function() {
+			var email = $('#memail').val();
+			console.log(email);
+			$.ajax({
+				type : 'get',
+				url : '${pageContext.request.contextPath }/mailCheck?email='+ email,
+				success : function(data) {
+					console.log(data);
+					alert('인증번호가 발송되었습니다.');
+					$('#emailCode').attr('value', data);
+					$('#inputCode').attr('disabled',false);
+					$('#inputCode').focus();
+				}
+			});
+		});
 
 		// 이메일 인증 번호 확인
 		$('#inputCode').change(function() {
