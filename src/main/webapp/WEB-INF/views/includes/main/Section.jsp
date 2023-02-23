@@ -4,13 +4,12 @@
 <section id="section">
 	<div class="section-div">
 		<div class="section-l">
-			<div class="section-l-bottom">
+			<div class="section-l-top">
 				<!-- Slider main container -->
-				<div>
-					<h2>얼마 남지 않았어요!</h2>
-				</div>
-				<div class="swiper">
+				
+				<div class="swiper mt-4">
 					<!-- Additional required wrapper -->
+					<h2>얼마 남지 않았어요!</h2>
 					<div class="swiper-wrapper">
 						<!-- Slides -->
 						<c:forEach items="${closeDeadLine}" var="closeDead">
@@ -24,11 +23,17 @@
 						</c:forEach>
 					</div>
 					<!-- If we need pagination -->
-					<div class="swiper-pagination"></div>
+				<div class="swiper-pagination"></div>
 
 				</div>
 			</div>
+			
+			
+			<div class="section-l-bottom">
+				<h5>공채목록</h5>
+			</div>
 		</div>
+		
 		<div class="section-r">
 			<div class="section-r-top">
 				<div class="profile-box mt-4">
@@ -85,23 +90,26 @@
 									<a href="${pageContext.request.contextPath }/myInfo">
 										<button type="button" class="btn btn-outline-secondary btn-sm">내정보</button>
 									</a>
+									
 									<c:if test="${sessionScope.loginType == 'P' }">
-									<a href="${pageContext.request.contextPath }/myResume">
-										<button type="button" class="btn btn-outline-secondary btn-sm">이력서</button>
-									</a>
+										<a href="${pageContext.request.contextPath }/myResume">
+											<button type="button" class="btn btn-outline-secondary btn-sm">이력서</button>
+										</a>
 									</c:if>
+									
 									<a href="${pageContext.request.contextPath }/viewApply">
 										<button type="button" class="btn btn-outline-secondary btn-sm">지원현황</button>
 									</a>
 									<a href="${pageContext.request.contextPath }/myScrap">
 										<button type="button" class="btn btn-outline-secondary btn-sm">스크랩</button>
 									</a>
+								
 									<c:if test="${sessionScope.loginType == 'C' }">
-
-									<a href="${pageContext.request.contextPath }/WriteEmploymentPage">
-										<button type="button" class="btn btn-outline-secondary btn-sm">공고등록</button>
-									</a>
+										<a href="${pageContext.request.contextPath }/WriteEmploymentPage">
+											<button type="button" class="btn btn-outline-secondary btn-sm">공고등록</button>
+										</a>
 									</c:if>
+									
 								</div>
 							</div>
 						</c:if>
