@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>채용공고</title>
+<title>기업정보</title>
 <link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/update/main-icon.png" />
 
 <!-- Bootstrap icons-->
@@ -51,26 +51,64 @@
 	<%@ include file="/WEB-INF/views/includes/main/Header.jsp"%>
 	<!-- Nav -->
 	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
+	<!-- Section -->
 	<section id="section">
-		<div class="section-div">
-			<div class="card mt-4 mb-4 shadow rounded-3 mx-auto" style="width: 50%;">
-				<ul class="list">
+		<div class="section-div" style="justify-content: center;">
+			<div class="card mt-4 mb-4 shadow rounded-3 " style="width: 65%;">
+				
+				<ul style="width: 100%; padding-right: 2rem; margin-top: 1rem">
 				<c:forEach items="${cinfoList }" var="cinfo">
-					<li style="list-style: none;">
-						<div style="margin-bottom: 10px">
-							<a href="${pageContext.request.contextPath }/viewCiInfo?cinum=${cinfo.cinum }">
-								<span class="h3">${cinfo.ciname }</span>
-							</a>
-							<span>${cinfo.ciind }</span>
-						</div>				
+					<li style="list-style: none; border-bottom: 1px solid #ebebeb; width: 100%;">
+						<div class="" style="width: 100%; padding: 1rem; align-items: center; display: flex;">
+							<div class="cLogo col-3">
+								<img class="card-img-top" src="${pageContext.request.contextPath }/resources/assets/img/building.png" style="width: 80%; height: auto;">
+							</div>
+							<div class="cName col-9">
+								<a href="${pageContext.request.contextPath }/viewCiInfo?cinum=${cinfo.cinum }">
+									<span class="h3">${cinfo.ciname }</span>
+								</a>
+								<div class="cDetail">
+									<br><span>${cinfo.ciind }</span>
+								</div>	
+							</div>
+						</div>			
 					</li>
 				</c:forEach>		
 				</ul>
+				<div class="mx-auto my-auto">
+					<ul class="pagination">
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" href="#">4</a></li>
+						<li class="page-item"><a class="page-link" href="#">5</a></li>
+						<li class="page-item active"><a class="page-link" href="#">다음></a></li>
+					</ul>
+				</div>	
 			</div>
 		</div>
 	</section>
-	
-		<input type="hidden" id="loginType" value="${sessionScope.loginType }">
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+	<input type="hidden" id="loginType" value="${sessionScope.loginType }">
 	<c:choose>
 		<c:when test="${sessionScope.loginType == 'P'}">
 			<input type="hidden" id="loginId" value="${sessionScope.loginInfo.mid }">

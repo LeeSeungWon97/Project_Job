@@ -56,6 +56,7 @@
 .embu{
 	width: 7%; text-align: right;		/* 즉시지원 */
 }
+
 </style>
 </head>
 <body>
@@ -71,7 +72,7 @@
 				<div class="card mt-4 mb-4 border-0 shadow rounded-3">
 					<div class="table-responsive">
 						<table class="table">
-							<thead style="background-color: #f2f9fe; border-top: 1px solid #eaeaea;">
+							<thead style="background-color: #f2f9fe;">
 								<tr style="color: #888; text-align: center;">
 									<th scope="col">기업명</th>
 									<th scope="col"></th>
@@ -80,7 +81,7 @@
 									<th scope="col"></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody style="border-top: none;">
 								<c:forEach items="${epList }" var="employ">
 									<tr>	 	
 										<td class="emci"><a href=""><span>${employ.epciname }</span></a></td>
@@ -91,12 +92,21 @@
 											<button class="mt-1" onclick="WriteResume('sideX','${employ.epnum }')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;"><span style="color: white;">즉시지원</span></button>
 										</td>
 									</tr>
-								</c:forEach>
-
+								</c:forEach>				
 							</tbody>
-						</table>
-					</div>
+					</table>
 				</div>
+				<div class="mx-auto my-auto">
+					<ul class="pagination">
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" href="#">4</a></li>
+						<li class="page-item"><a class="page-link" href="#">5</a></li>
+						<li class="page-item active"><a class="page-link" href="#">다음></a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</section>
 	

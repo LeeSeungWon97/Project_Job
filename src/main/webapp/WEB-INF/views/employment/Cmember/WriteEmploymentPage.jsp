@@ -42,27 +42,27 @@
 				</div>
 				<div class="input-group input-group-lg mb-3">
 					<span class="input-group-text" style="width: 15%; justify-content: center;">공고명</span>
-					<input type="text" class="form-control" name="epname" value="-">
+					<input type="text" class="form-control" name="epname" value="">
 				</div>
 				<div class="input-group input-group-lg mb-3">
 					<span class="input-group-text" style="width: 15%; justify-content: center;">학력</span>
-					<input type="text" class="form-control" name="epedu" value="-">
+					<input type="text" class="form-control" name="epedu" value="">
 				</div>
 				<div class="input-group input-group-lg mb-3">
 					<span class="input-group-text" style="width: 15%; justify-content: center;">경력</span>
-					<input type="text" class="form-control" name="epcareer" value="-">
+					<input type="text" class="form-control" name="epcareer" value="">
 				</div>
 				<div class="input-group input-group-lg mb-3">
 					<span class="input-group-text" style="width: 15%; justify-content: center;">우대</span>
-					<input type="text" class="form-control" name="eptreat" value="-">
+					<input type="text" class="form-control" name="eptreat" value="">
 				</div>
 				<div class="input-group input-group-lg mb-3">
 					<span class="input-group-text" style="width: 15%; justify-content: center;">고용형태</span>
-					<input type="text" class="form-control" name="eptype" value="-">
+					<input type="text" class="form-control" name="eptype" value="">
 				</div>
 				<div class="input-group input-group-lg mb-3">
 					<span class="input-group-text" style="width: 15%; justify-content: center;">급여</span>
-					<input type="text" class="form-control" name="epmoney" value="-">
+					<input type="text" class="form-control" name="epmoney" value="">
 				</div>
 				<div class="input-group input-group-lg mb-3">
 					<span class="input-group-text" style="width: 15%; justify-content: center;">지역</span>
@@ -71,11 +71,11 @@
 		
 				<div class="input-group input-group-lg mb-3">
 					<span class="input-group-text" style="width: 15%; justify-content: center;">고용시간</span>
-					<input type="text" class="form-control" name="eptime" value="-">
+					<input type="text" class="form-control" name="eptime" value="">
 				</div>
 				<div class="input-group input-group-lg mb-3">
 					<span class="input-group-text" style="width: 15%; justify-content: center;">마감일</span>
-					<input type="date" class="form-control" id="epdeadline" name="epdeadline" value="-">
+					<input type="date" class="form-control" id="epdeadline" name="epdeadline" value="">
 				</div>
 				<div class="input-group input-group-lg mb-3">
 					<input type="hidden" class="form-control" name="epstate" value="Y" placeholder="공고상태">
