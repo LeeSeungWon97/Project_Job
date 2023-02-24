@@ -72,7 +72,8 @@ h1 {
 	<header id="header">
 		<div class="header-div">
 			<div class="logo">
-				<a class="navbar-brand" href="${pageContext.request.contextPath }/"> <img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 80%; height: auto;">
+				<a class="navbar-brand" href="${pageContext.request.contextPath }/">
+					<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 80%; height: auto;">
 				</a>
 			</div>
 		</div>
@@ -90,8 +91,15 @@ h1 {
 
 				<div class="Clickbtn">
 					<button id="modifyBtn" class="btn btn-dark btn-lg" type="button" onclick="modifyEssay()">수정</button>
-					<button id="saveBtn" class="btn btn-dark btn-lg mx-2 d-none" type="button" onclick="saveEssay()"><i class="bi bi-check"></i> 저장</button>
-					<button id="cancleBtn" class="btn btn-dark btn-lg d-none" type="button" onclick="modifyCancle()"><i class="bi bi-x"></i> 취소</button>
+					<button id="saveBtn" class="btn btn-dark btn-lg mx-2 d-none" type="button" onclick="saveEssay()">
+						<i class="bi bi-check"></i> 저장
+					</button>
+					<button id="cancleBtn" class="btn btn-dark btn-lg d-none" type="button" onclick="modifyCancle()">
+						<i class="bi bi-x"></i> 취소
+					</button>
+					<button id="applyBtn" class="btn btn-dark btn-lg" type="button" onclick="apply()">
+						<i class="bi bi-x"></i> 지원
+					</button>
 				</div>
 			</div>
 
@@ -101,28 +109,59 @@ h1 {
 
 
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var content = '${content}';
+			if (content == 'x') {
+				$('#modifyBtn').addClass("d-none");
+				$('#saveBtn').removeClass("d-none");
+				$('#cancleBtn').removeClass("d-none");
+				$('.EssayContent').attr("readonly", false);
+			} else {
+				alert("이미 작성한 자소서가 있습니다.");
+				var ans1 = '${myEssay.escontents[0]}';
+				var ans2 = '${myEssay.escontents[1]}';
+				var ans3 = '${myEssay.escontents[2]}';
+				$('#area1').html(ans1);
+				$('#area2').html(ans2);
+				$('#area3').html(ans3);
+			}
+		});
+	</script>
+
 	<script type="text/javascript">
 		function modifyEssay() {
 			console.log("자소서 수정");
 			$('#modifyBtn').addClass("d-none");
+			$('#applyBtn').addClass("d-none");
 			$('#saveBtn').removeClass("d-none");
 			$('#cancleBtn').removeClass("d-none");
-			$('.modifyBtn').removeClass("d-none");
 			$('.EssayContent').attr("readonly", false);
 		}
 
 		function saveEssay() {
+			var content = '${content}';
+			var esciname = '${epciname}';
+			var esepnum = '${epnum}';
+			var esmid = '${sessionScope.loginInfo.mid}';
 			var DataArea1 = $('.area1').val();
 			var DataArea2 = $('.area2').val();
 			var DataArea3 = $('.area3').val();
-
+			console.log("content:" + content);
+			console.log("esciname: " + esciname);
+			console.log("")
 			$.ajax({
 				type : "post",
 				url : "${pageContext.request.contextPath}/WriteEssay",
 				data : {
-					"area1" : DataArea1,
-					"area2" : DataArea2,
-					"area3" : DataArea3
+					"esciname" : esciname,
+					"esepnum" : esepnum,
+					"esmid" : esmid,
+					"DataArea1" : DataArea1,
+					"DataArea2" : DataArea2,
+					"DataArea3" : DataArea3,
+					"content" : content
 				},
 				async : false,
 				success : function(result) {
@@ -130,14 +169,22 @@ h1 {
 			});
 
 			$('#modifyBtn').removeClass("d-none");
+			$('#applyBtn').addClass("d-none");
 			$('#saveBtn').addClass("d-none");
-			$('.modifyBtn').addClass("d-none");
+			$('#cancleBtn').addClass("d-none");
 			$('.EssayContent').attr("readonly", true);
 		}
 
 		function modifyCancle() {
 			console.log("수정 취소");
 			location.reload();
+		}
+
+		function apply() {
+			console.log("지원 버튼 클릭");
+			var epnum = '${epnum}';
+			location.href = "${pageContext.request.contextPath}/applyResume?epnum="
+					+ epnum;
 		}
 	</script>
 

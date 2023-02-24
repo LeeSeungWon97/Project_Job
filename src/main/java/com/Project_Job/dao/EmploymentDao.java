@@ -144,4 +144,10 @@ public interface EmploymentDao {
 	@Select("SELECT EPCINAME, EPNAME, EPDEADLINE FROM EMPLOYMENT WHERE TO_CHAR(SYSDATE,'YYYYMMDD') <= TO_CHAR(EPDEADLINE,'YYYYMMDD') AND TO_CHAR(SYSDATE+7,'YYYYMMDD') >= TO_CHAR(EPDEADLINE,'YYYYMMDD') ORDER BY EPDEADLINE ASC")
 	ArrayList<EmploymentDto> selectCloseDeadLine();
 
+	@Select("SELECT * FROM ESSAY WHERE ESEPNUM = #{epnum} AND ESMID = #{loginId}")
+	EssayDto selectEssay(@Param("epnum") String epnum, @Param("loginId") String loginId);
+
+	@Update("UPDATE ESSAY SET ESCONTENTS = #{escontents} WHERE ESEPNUM = #{esepnum} AND ESMID = #{esmid}")
+	int updateEssay(EssayDto essayInfo);
+
 }
