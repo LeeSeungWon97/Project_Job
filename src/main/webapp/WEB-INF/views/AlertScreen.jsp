@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,22 +13,22 @@
 		console.log(msg);
 		console.log(url);
 		alert(msg);
+		if (url == "close") {
+			alert(msg);
+			window.close();
+		} 
+		location.href =  url;
 
-		if (opener) {
+		/* if (opener) {
 			window.opener.location.href = '${pageContext.request.contextPath}/'
 					+ url;
 			window.close();
 		} else {
 			location.href = '${pageContext.request.contextPath}/' + url;
-		}
-
-
+		} */
 		
-//		if(url == "close"){
-			 window.close();
-//		}
 
-//		location.href='${pageContext.request.contextPath}/'+url;
+		//
 	</script>
 </body>
 </html>

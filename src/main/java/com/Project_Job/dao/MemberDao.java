@@ -88,5 +88,11 @@ public interface MemberDao {
 
 	@Select("SELECT APEPNUM FROM APPLYSTATE WHERE APREMID = #{id}")
 	ArrayList<String> selectMyApply(String id);
+	
+	@Select(" SELECT CINAME "
+			+ " FROM CINFO, CMEMBERS "
+			+ " WHERE CINFO.CINUM = CMEMBERS.CMCINUM "
+			+ " AND CMEMBERS.CMID = #{loginId} ")
+	String selectCmciname(String loginId);
 
 }

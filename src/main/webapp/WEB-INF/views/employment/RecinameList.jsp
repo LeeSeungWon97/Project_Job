@@ -1,17 +1,61 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>내 이력서</title>
-<link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png">
-<link href="${pageContext.request.contextPath }/resources/assets/css/header.css" rel="stylesheet" />
-<link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
-<link href="${pageContext.request.contextPath }/resources/assets/css/section.css" rel="stylesheet" />
-<link href="${pageContext.request.contextPath }/resources/assets/css/footer.css" rel="stylesheet" />
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>좋은 직장을 위한 취업플랫폼, 굿잡</title>
+<link rel="icon"
+	href="${pageContext.request.contextPath }/resources/assets/img/update/main-icon.png" />
+
+<!-- Bootstrap icons-->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+	rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath }/resources/assets/css/styles.css"
+	rel="stylesheet" />
+
+<link
+	href="${pageContext.request.contextPath }/resources/assets/css/header.css"
+	rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath }/resources/assets/css/nav.css"
+	rel="stylesheet" />
+
+<link
+	href="${pageContext.request.contextPath }/resources/assets/css/section.css"
+	rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath }/resources/assets/css/footer.css"
+	rel="stylesheet" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
+	rel="stylesheet">
+
+
+<title>내 이력서</title>
+<!-- Bootstrap icons-->
 <style type="text/css">
+.mainbox {
+	width: 710px;
+	padding: 30px;
+	margin: 30px;
+	margin-right: auto;
+	margin-left: auto;
+	border: 1px solid #ebebeb;
+	box-shadow: 0 1px 20px 0 rgba(75, 0, 206, 0.15);
+}
+
 h1 {
 	font-size: 26px;
 	margin-bottom: 35px;
@@ -42,39 +86,66 @@ h2 {
 </style>
 </head>
 <body>
+
 	<!-- Header -->
-	<header id="header">
-		<div class="header-div">
-			<div class="logo">
-				<a class="navbar-brand" href="${pageContext.request.contextPath }/">
-					<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 80%; height: auto;">
-				</a>
-			</div>
+	<%@ include file="/WEB-INF/views/includes/main/Header.jsp"%>
+
+	<!-- Nav -->
+	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
+
+
+
+	<div class="container">
+		<div class="d-flex justify-content-center">
+			<a class="navbar-brand" href="${pageContext.request.contextPath }/">
+				<img
+				src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png"
+				style="width: 200px; height: 100px;">
+			</a>
 		</div>
-	</header>
-
-	<!-- Section -->
-	<section id="section">
-		<div class="section-div" style="justify-content: center;">
-			<div class="row  my-4" style="width: 100%;">
-
-				<div class="col-2 mx-4" style="width: 15%;">
-					<!-- SideBar -->
-					<div id="sideBar">
-						<%@ include file="/WEB-INF/views/includes/infoSidebar.jsp"%>
-					</div>
+		<div class="row">
+			<div class="col-2">
+				<!-- SideBar -->
+				<div id="sideBar">
+					<%@ include file="/WEB-INF/views/includes/infoSidebar.jsp"%>
 				</div>
+			</div>
 
-				<div class="col-lg-10 col-xl-8" style="width: 70%;">
-					<div class="card border-0 shadow rounded-3">
-						<div class="card-body p-4 p-sm-5 mb-3">
-							<%@ include file="/WEB-INF/views/employment/ResumeForm.jsp"%>
+
+			<div class="mainbox">
+				<h1 style="text-align: center;">열람기업</h1>
+
+				<!--  -->
+				<div class="section-l">
+					<div class="section-l-bottom">
+						<div class="row">
+							<c:forEach items="${Resume.reciname }" varStatus="i" step="1">
+								<div style="padding: 10px;" class="list-group reserveArea">
+									<div class="row"
+										style="padding: 10px; border-bottom-style: dotted;">
+										<a
+											href="${pageContext.request.contextPath}/viewReciname?viewReciname=${Resume.reciname[i.index]}"
+											target="_blank">${Resume.reciname[i.index]}</a>
+										<%-- <p class="card-text">${Resume.reciname[i.index + 1]}</p> --%>
+									</div>
+								</div>
+							</c:forEach>
+
 						</div>
 					</div>
 				</div>
+				<!--  -->
+
+
+
+
 			</div>
+
 		</div>
-	</section>
+	</div>
+
+	<!-- Footer-->
+	<%@ include file="/WEB-INF/views/includes/main/Footer.jsp"%>
 
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 
@@ -170,7 +241,7 @@ h2 {
 		}
 
 		function applyResume(epnum) {
-			console.log("이력서 제출");
+			console.log("이력서 저장");
 			var rehope = document.getElementsByClassName("rehope");
 			var reedu = document.getElementsByClassName("reedu");
 			var recarrer = document.getElementsByClassName("recarrer");
@@ -232,8 +303,10 @@ h2 {
 				success : function(result) {
 				}
 			});
-			
-			
+			$('#modifyBtn').removeClass("d-none");
+			$('#saveBtn').addClass("d-none");
+			$('.modifyBtn').addClass("d-none");
+			$('.resumeContent').attr("readonly", true);
 		}
 
 		function modifyCancle() {

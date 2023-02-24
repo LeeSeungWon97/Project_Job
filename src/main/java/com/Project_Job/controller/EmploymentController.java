@@ -56,7 +56,7 @@ public class EmploymentController {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("EmploymentPage요청");
 		ArrayList<EmploymentDto> epList = epsvc.getEpList("employ");
-		System.out.println(epList);
+		//System.out.println(epList);
 		mav.addObject("epList", epList);
 		mav.setViewName("employment/EmploymentPage");
 		return mav;
@@ -88,7 +88,7 @@ public class EmploymentController {
 		System.out.println("Epcontroller WriteResume요청");
 		String loginId = mctrl.callLoginId("P");
 		ResumeInfo.setRemid(loginId);
-		System.out.println("입력받은 이력서 작성 정보 : " + ResumeInfo);
+		//System.out.println("입력받은 이력서 작성 정보 : " + ResumeInfo);
 
 		int insertResult = epsvc.WriteResume(ResumeInfo);
 		if (insertResult < 0) {
@@ -108,25 +108,24 @@ public class EmploymentController {
 		System.out.println("applyResume 호출");
 		MemberDto loginMInfo = (MemberDto) session.getAttribute("loginInfo");
 		String remid = loginMInfo.getMid();
-		System.out.println(ResumeInfo);
-		System.out.println(epnum);
+		//System.out.println(ResumeInfo);
+		//System.out.println(epnum);
 		int insertResult = epsvc.applyResume(epnum, remid);
 		System.out.println(insertResult);
-		if (insertResult <= 0) {
+		if (insertResult == 0) {
 			mav.addObject("msg", "지원 실패 ");
 			mav.addObject("url", "close");
 			mav.setViewName("AlertScreen");
-		}else if (insertResult == 9) {
+		} else if (insertResult == 9) {
 			mav.addObject("msg", "이미 지원하신 공고 입니다. ");
-			mav.addObject("url", "close");
+			mav.addObject("url", "");
 			mav.setViewName("AlertScreen");
-		}
-		else {
+		} else {
 			mav.addObject("msg", "지원 성공 ");
-			mav.addObject("url", "close");
+			mav.addObject("url", "");
 			mav.setViewName("AlertScreen");
 		}
-
+		
 		return mav;
 	}
 
@@ -155,7 +154,7 @@ public class EmploymentController {
 	public ModelAndView WriteEssay(EssayDto EssayInfo) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("Epcontroller WriteEssay요청");
-		System.out.println(EssayInfo);
+		//System.out.println(EssayInfo);
 		int insertResult = epsvc.insertEssay(EssayInfo);
 		if (insertResult > 0) {
 			mav.setViewName("Main");
@@ -255,7 +254,10 @@ public class EmploymentController {
 		System.out.println("viewCiInfo 호출");
 		System.out.println("요청받은 기업코드 : " + cinum);
 		CinfoDto cinfo = epsvc.viewCinfo(cinum);
+		ArrayList<EmploymentDto> epList = epsvc.cinfoEpList(cinum);
+		System.out.println(epList);
 		mav.addObject("cinfo", cinfo);
+		mav.addObject("epList", epList);
 		mav.setViewName("employment/ViewCiInfo");
 		return mav;
 	}
@@ -267,7 +269,7 @@ public class EmploymentController {
 		mav.setViewName("employment/Cmember/WriteEmploymentPage");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/WriteEmployment")
 	public ModelAndView WriteEmployment(EmploymentDto epinfo) {
 		ModelAndView mav = new ModelAndView();
@@ -291,7 +293,7 @@ public class EmploymentController {
 		ModelAndView mav = new ModelAndView();
 		String loginType = (String) session.getAttribute("loginType");
 		System.out.println("loginType: " + loginType);
-		System.out.println("sideX 테스트 "+ sideX);
+		System.out.println("sideX 테스트 " + sideX);
 		System.out.println(epnum);
 		if (loginType.equals("P")) {
 			String loginId = mctrl.callLoginId(loginType);
@@ -346,7 +348,7 @@ public class EmploymentController {
 			ArrayList<Map<String, String>> ApplyList = epsvc.viewApplyMember(loginId);
 			System.out.println(ApplyList);
 			mav.addObject("ApplyList", ApplyList);
-		}else if (loginType.equals("C")) {
+		} else if (loginType.equals("C")) {
 			String loginId = mctrl.callLoginId(loginType);
 			ArrayList<Map<String, String>> ApplyList = epsvc.viewApplyCmember(loginId);
 			mav.addObject("ApplyList", ApplyList);
@@ -355,10 +357,17 @@ public class EmploymentController {
 		mav.setViewName("employment/ViewApplyStatePage");
 		return mav;
 	}
+
 	@RequestMapping(value = "/viewApplyInfo")
 	public ModelAndView viewApplyInfo(String viewId) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("viewApplyInfo호출");
+		String loginType = (String) session.getAttribute("loginType");
+		if (loginType.equals("C")) {
+			String loginId = mctrl.callLoginId(loginType);
+			String cmciname = mctrl.selectCmciname(loginId);
+			epsvc.updateReciname(cmciname, viewId);
+		}
 		ArrResumeDto myresume = epsvc.SelectResume(viewId);
 		MemberDto member = epsvc.selectViewInfo(viewId);
 		System.out.println(myresume);
@@ -367,7 +376,7 @@ public class EmploymentController {
 		mav.setViewName("employment/Cmember/viewApplyInfo");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/viewResumeInfo")
 	public ModelAndView viewResumeInfo() {
 		ModelAndView mav = new ModelAndView();
@@ -378,4 +387,53 @@ public class EmploymentController {
 		mav.setViewName("employment/Cmember/viewResumeInfo");
 		return mav;
 	}
+
+	@RequestMapping(value = "/RecinameList")
+	public ModelAndView RecinameList() {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("RecinameList호출");
+		String loginType = (String) session.getAttribute("loginType");
+		String loginId = mctrl.callLoginId(loginType);
+		ArrResumeDto resume = epsvc.SelectResume(loginId);
+		System.out.println(resume);
+		mav.addObject("Resume", resume);
+		mav.setViewName("employment/RecinameList");
+		return mav;
+	}
+
+	@RequestMapping(value = "/viewReciname")
+	public ModelAndView viewReciname(String viewReciname) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("viewReciname호출");
+		String cinum = epsvc.selectCinum(viewReciname);
+		mav.setViewName("redirect:/viewCiInfo?cinum=" + cinum);
+		return mav;
+	}
+
+	
+	@RequestMapping(value = "/searchValueJson")
+	public @ResponseBody String searchValueJson(String searchValue,String selectType) {
+		System.out.println(searchValue);
+		System.out.println(selectType);
+		String epList ="";
+		String ciList ="";
+		if(searchValue.length() >= 2) {
+			if(selectType.equals("공고")) {
+				epList = epsvc.getEpListGson(searchValue);
+				System.out.println("공고 : " + epList);
+				return epList;
+			}else if(selectType.equals("기업")) {
+				ciList =epsvc.getCiListGson(searchValue);
+				System.out.println("기업 : " + ciList);
+				return ciList;
+			}else {
+				
+				return "";
+			}
+		}else {
+			return null;
+		}
+	}
+	
+	
 }

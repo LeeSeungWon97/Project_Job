@@ -52,6 +52,11 @@
             var currentUrl = window.location.href;
             function searchForm(formObj){
             	formObj.currentURL.value = currentUrl;
+            	var searchVal = $('#headerInput').val();	
+            	if(searchVal.length < 2){
+        			alert('검색어는 2글자 이상 입력해주세요');
+        			return false;
+        		}
             }
             </script>
 	

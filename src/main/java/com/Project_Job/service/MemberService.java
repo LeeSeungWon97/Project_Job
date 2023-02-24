@@ -187,4 +187,9 @@ public class MemberService {
 		return epInfo;
 	}
 
+	public String selectCmciname(String loginId) {
+		String cmciname = mdao.selectCmciname(loginId);
+		return cmciname;
+	}
+
 }

@@ -134,6 +134,23 @@ public interface EmploymentDao {
 	
 	@Select("SELECT * FROM RESUME ")
 	ArrayList<ResumeDto> SelectResumeInfo();
+	
+	@Select("SELECT RECINAME FROM RESUME WHERE RECINAME LIKE '%${cmciname}%'  ")
+	String checkCmciname(String cmciname);
+	
+	@Update("UPDATE RESUME SET RECINAME = CONCAT(RECINAME, #{cmciname}) "
+			+ " WHERE REMID = #{viewId} ")
+	void updateReciname(@Param("cmciname")String cmciname,@Param("viewId")String viewId);
+	
+	@Select("SELECT RECINAME FROM RESUME WHERE REMID = #{viewId} ")
+	String checkCmcinameViewId(String viewId);
+	
+	@Update("UPDATE RESUME SET RECINAME = #{cmciname} "
+			+ " WHERE REMID = #{viewId} ")
+	void removeReciname(@Param("cmciname")String cmciname,@Param("viewId")String viewId);
+	
+	@Select("SELECT CINUM FROM CINFO WHERE CINAME = #{viewReciname} ")
+	String selectCinum(String viewReciname);
 
 	@Select("SELECT EPNAME, TO_CHAR(EPPOST,'YYYY-MM-DD') AS EPPOST FROM EMPLOYMENT ORDER BY EPPOST ASC")
 	ArrayList<EmploymentDto> selectEpPost();
@@ -143,5 +160,8 @@ public interface EmploymentDao {
 
 	@Select("SELECT EPCINAME, EPNAME, EPDEADLINE FROM EMPLOYMENT WHERE TO_CHAR(SYSDATE,'YYYYMMDD') <= TO_CHAR(EPDEADLINE,'YYYYMMDD') AND TO_CHAR(SYSDATE+7,'YYYYMMDD') >= TO_CHAR(EPDEADLINE,'YYYYMMDD') ORDER BY EPDEADLINE ASC")
 	ArrayList<EmploymentDto> selectCloseDeadLine();
+	
+	@Select("SELECT EPNUM, EPNAME, EPCINAME, EPEDU, EPCAREER, EPTREAT, EPTYPE, EPMONEY, EPAREA, EPTIME, TO_CHAR(EPPOST,'YY-MM-DD') AS EPPOST, TO_CHAR(EPDEADLINE,'YY-MM-DD') AS EPDEADLINE, EPSTATE, EPESSTATE  FROM EMPLOYMENT EP, CINFO CI WHERE EP.EPCINAME = CI.CINAME AND CI.CINUM = #{cinum}")
+	ArrayList<EmploymentDto> cinfoEpList(String cinum);
 
 }

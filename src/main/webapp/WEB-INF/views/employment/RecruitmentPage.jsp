@@ -87,7 +87,7 @@
 						<tbody>
 							<c:forEach items="${epList }" var="employ">
 								<tr>	
-                                	<td class="reci"><a href=""><span>${employ.epciname }</span></a></td>
+                                	<td class="reci"><a href="${pageContext.request.contextPath }/viewReciname?viewReciname=${employ.epciname }"><span>${employ.epciname }</span></a></td>
                                 	<td class="renu"><input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"></td>
                                     <td class="rena"><a href=""><span style="color: #333; font-weight: bold;">${employ.epname }</span></a></td>
                                     <td class="reed"><span>${employ.epedu }</span></td>

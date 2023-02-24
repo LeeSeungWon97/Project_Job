@@ -94,7 +94,12 @@
 						</div>
 						</div>
 						<div style="text-align: center; margin: 30px">
-							<input type="button" class="btn btn-warning btn-lg mx-1" onclick="WriteResume('${epInfo.epnum }')" value="즉시지원"> 
+							<c:if test="${epInfo.epesstate =='x' }">
+							<input type="button" class="btn btn-warning btn-lg mx-1" onclick="WriteResume('${epInfo.epnum }')" value="즉시지원">
+							</c:if> 
+							<c:if test="${epInfo.epesstate =='Y' }">
+							<input type="button" class="btn btn-warning btn-lg mx-1" onclick="WriteResume('${epInfo.epnum }','${epInfo.epciname }','${epInfo.epname }')" value="자소서작성">
+							</c:if> 
 							<input type="button" class="btn  btn-lg" onclick="deleteInfo()" value="스크랩하기">
 						</div>
 						
@@ -138,8 +143,10 @@
 	});
 </script>
 <script type="text/javascript">
-	function WriteResume(epnum) {
-		console.log(epnum)
+	function WriteResume(epnum, epciname, epname) {
+		console.log(epnum);
+		console.log(epciname);
+		console.log(epname);
 		if (loginId == "") {
 			alert("로그인이 필요한 서비스입니다.");
 			location.href = "${pageContext.request.contextPath}/login";
@@ -147,8 +154,13 @@
 			alert("일반회원을 위한 서비스입니다.");
 			location.reload();
 		} else {
-			window.open("${pageContext.request.contextPath}/WriteResumePage?epnum="+epnum,
-					"이력서 선택", "width=400,height=400,top=10,left=100");
+			if(typeof epciname == "undefined"){
+				window.open("${pageContext.request.contextPath}/myResume?sideX=sideX&epnum="+epnum,
+						"이력서 선택", "width=400,height=400,top=10,left=100");
+			}else{
+				location.href = "${pageContext.request.contextPath }/WriteEssayPage?epnum="
+					+ epnum + "&epciname=" + epciname;
+			}
 		}
 
 	}
