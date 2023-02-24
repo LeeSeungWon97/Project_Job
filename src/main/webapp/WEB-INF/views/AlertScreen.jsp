@@ -10,25 +10,28 @@
 	<script type="text/javascript">
 		var msg = '${msg}';
 		var url = '${url}';
+		var pop = '${pop}';
 		console.log(msg);
 		console.log(url);
+		console.log(pop);
 		alert(msg);
-		if (url == "close") {
-			alert(msg);
-			window.close();
-		} 
-		location.href =  url;
+		if (opener) {
+			if (url == "close") {
+				window.opener.location.reload();
+				window.close();
+			} else {
+				if (pop == "pop") {
+					location.href = '${pageContext.request.contextPath}/' + url;
+				} else {
+					window.opener.location.href = '${pageContext.request.contextPath}/'
+							+ url;
+					window.close();
+				}
 
-		/* if (opener) {
-			window.opener.location.href = '${pageContext.request.contextPath}/'
-					+ url;
-			window.close();
+			}
 		} else {
 			location.href = '${pageContext.request.contextPath}/' + url;
-		} */
-		
-
-		//
+		}
 	</script>
 </body>
 </html>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Project_Job.dto.ArrEssayDto;
 import com.Project_Job.dto.ArrResumeDto;
 import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.EmploymentDto;
@@ -103,29 +104,30 @@ public class EmploymentController {
 	}
 
 	@RequestMapping(value = "/applyResume")
-	public ModelAndView applyResume(ResumeDto ResumeInfo, String epnum) {
+	public ModelAndView applyResume(String epnum) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("applyResume 호출");
 		MemberDto loginMInfo = (MemberDto) session.getAttribute("loginInfo");
 		String remid = loginMInfo.getMid();
-		//System.out.println(ResumeInfo);
-		//System.out.println(epnum);
+		System.out.println(epnum);
 		int insertResult = epsvc.applyResume(epnum, remid);
 		System.out.println(insertResult);
-		if (insertResult == 0) {
-			mav.addObject("msg", "지원 실패 ");
+		if (insertResult == 1) {
+			System.out.println("지원완료");
+			mav.addObject("msg", "지원 완료");
 			mav.addObject("url", "close");
 			mav.setViewName("AlertScreen");
 		} else if (insertResult == 9) {
-			mav.addObject("msg", "이미 지원하신 공고 입니다. ");
-			mav.addObject("url", "");
+			System.out.println("중복된 지원");
+			mav.addObject("msg", "중복된 지원");
+			mav.addObject("url", "close");
 			mav.setViewName("AlertScreen");
 		} else {
-			mav.addObject("msg", "지원 성공 ");
-			mav.addObject("url", "");
+			System.out.println("에러");
+			mav.addObject("msg", "에러");
+			mav.addObject("url", "close");
 			mav.setViewName("AlertScreen");
 		}
-		
 		return mav;
 	}
 
@@ -135,34 +137,54 @@ public class EmploymentController {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("Epcontroller WriteEssayPage요청");
 		if (session.getAttribute("loginInfo") == null) {
-			mav.setViewName("member/Login");
+			mav.addObject("msg", "로그인이 필요한 서비스입니다.");
+			mav.addObject("url", "login");
+			mav.addObject("pop", "pop");
+			mav.setViewName("AlertScreen");
 		} else {
-			System.out.println("epnum" + epnum);
-			System.out.println("epciname" + epciname);
+			String loginId = mctrl.callLoginId("P");
+			ArrEssayDto myEssay = epsvc.findEssay(epnum, loginId);
+			System.out.println(myEssay);
 			String epname = epsvc.SelectEpname(epnum);
-			System.out.println("epname" + epname);
-			mav.addObject("epciname", epciname);
-			mav.addObject("epname", epname);
-			mav.addObject("epnum", epnum);
-			mav.setViewName("employment/WriteEssayPage");
+			if (myEssay != null) {
+				mav.addObject("myEssay", myEssay);
+				mav.addObject("epciname",myEssay.getEsciname());
+				mav.addObject("epname", epname);
+				mav.addObject("epnum", epnum);
+				mav.addObject("content", "o");
+				mav.setViewName("employment/WriteEssayPage");
+			} else {
+				mav.addObject("epciname", epciname);
+				mav.addObject("epname", epname);
+				mav.addObject("epnum", epnum);
+				mav.addObject("content", "x");
+				mav.setViewName("employment/WriteEssayPage");
+			}
 		}
 		return mav;
 	}
 
 	// 자소서 작성 요청
 	@RequestMapping(value = "/WriteEssay")
-	public ModelAndView WriteEssay(EssayDto EssayInfo) {
-		ModelAndView mav = new ModelAndView();
+	public @ResponseBody int WriteEssay(EssayDto EssayInfo, String DataArea1, String DataArea2, String DataArea3,
+			String content) {
 		System.out.println("Epcontroller WriteEssay요청");
-		//System.out.println(EssayInfo);
-		int insertResult = epsvc.insertEssay(EssayInfo);
-		if (insertResult > 0) {
-			mav.setViewName("Main");
+		System.out.println(EssayInfo);
+		System.out.println("DataArea1: " + DataArea1);
+		System.out.println("DataArea2: " + DataArea2);
+		System.out.println("DataArea3: " + DataArea3);
+		EssayInfo.setEscontents(DataArea1+"!@#"+DataArea2+"!@#"+DataArea3);
+		System.out.println(EssayInfo.getEscontents());
+		System.out.println("content: " + content);
+		int result = epsvc.insertEssay(EssayInfo,content);
+		System.out.println("저장 결과: " + result);
+		if (result == 1) {
+			System.out.println("자소서 작성 완료");
 		} else {
-			mav.setViewName("employment/WriteEssayPage");
+			result = 0;
 		}
 
-		return null;
+		return result;
 	}
 
 	// 스크랩 요청
@@ -295,29 +317,32 @@ public class EmploymentController {
 		System.out.println("loginType: " + loginType);
 		System.out.println("sideX 테스트 " + sideX);
 		System.out.println(epnum);
-		if (loginType.equals("P")) {
-			String loginId = mctrl.callLoginId(loginType);
-			System.out.println("loginId: " + loginId);
-			ArrResumeDto myresume = epsvc.SelectResume(loginId);
-			System.out.println(myresume);
-			if (myresume == null) {
-				mav.addObject("msg", "저장된 이력서가 없습니다. 작성하시겠습니까?");
-				mav.addObject("url", "WriteResumePage");
-				mav.setViewName("ConfirmScreen");
-			} else {
-				mav.addObject("Resume", myresume);
-				mav.addObject("sideX", sideX);
-				mav.addObject("epnum", epnum);
-				mav.setViewName("employment/MyResumePage");
-			}
-		} else if (loginType.equals("C")) {
-			mav.addObject("msg", "개인회원 전용 페이지 입니다.");
-			mav.addObject("url", "");
-			mav.setViewName("AlertScreen");
-		} else {
+		if (loginType == null) {
 			mav.addObject("msg", "로그인(개인) 이후 이용가능합니다");
 			mav.addObject("url", "login");
+			mav.addObject("pop", "pop");
 			mav.setViewName("AlertScreen");
+		} else {
+			if (loginType.equals("P")) {
+				String loginId = mctrl.callLoginId(loginType);
+				System.out.println("loginId: " + loginId);
+				ArrResumeDto myresume = epsvc.SelectResume(loginId);
+				System.out.println(myresume);
+				if (myresume == null) {
+					mav.addObject("msg", "저장된 이력서가 없습니다. 작성하시겠습니까?");
+					mav.addObject("url", "WriteResumePage");
+					mav.setViewName("ConfirmScreen");
+				} else {
+					mav.addObject("Resume", myresume);
+					mav.addObject("sideX", sideX);
+					mav.addObject("epnum", epnum);
+					mav.setViewName("employment/MyResumePage");
+				}
+			} else {
+				mav.addObject("msg", "개인회원 전용 페이지 입니다.");
+				mav.addObject("url", "");
+				mav.setViewName("AlertScreen");
+			}
 		}
 		return mav;
 	}
@@ -336,8 +361,7 @@ public class EmploymentController {
 		ArrayList<Map<String, String>> epSchedule = epsvc.epSchedule();
 		return epSchedule;
 	}
-	
-	
+
 	@RequestMapping(value = "/viewApply")
 	public ModelAndView viewApply() {
 		ModelAndView mav = new ModelAndView();

@@ -4,7 +4,6 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.jsoup.Jsoup;
@@ -14,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Project_Job.dao.EmploymentDao;
+import com.Project_Job.dto.ArrEssayDto;
 import com.Project_Job.dto.ArrResumeDto;
 import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.EmploymentDto;
@@ -384,22 +384,30 @@ public class EmploymentService {
 	}
 
 	// 자소서 작성
-	public int insertEssay(EssayDto essayInfo) {
+	public int insertEssay(EssayDto essayInfo,String content) {
 		System.out.println("epsvc insertEssay요청");
-		String maxEicode = epdao.selectMaxEsnum();
-		System.out.println("자소서코드 최대값 : " + maxEicode);
-		String escode = "ES";
-		if (maxEicode == null) {
-			escode = escode + String.format("%03d", 1);
-			System.out.println("처음 자소서코드 : " + escode);
-		} else {
-			int escodeNum = Integer.parseInt(maxEicode.replace("ES", "")) + 1;
-			escode = escode + String.format("%03d", escodeNum);
+		System.out.println(essayInfo);
+		if(content.equals("x")) {
+			String maxEicode = epdao.selectMaxEsnum();
+			System.out.println("자소서코드 최대값 : " + maxEicode);
+			String escode = "ES";
+			if (maxEicode == null) {
+				escode = escode + String.format("%03d", 1);
+				System.out.println("처음 자소서코드 : " + escode);
+			} else {
+				int escodeNum = Integer.parseInt(maxEicode.replace("ES", "")) + 1;
+				escode = escode + String.format("%03d", escodeNum);
+			}
+			System.out.println("자소서코드 : " + escode);
+			essayInfo.setEsnum(escode);
+			int insertResult = epdao.insertEssay(essayInfo);
+			System.out.println("insertResult: " + insertResult);
+			return insertResult;			
+		}else {
+			int updateResult = epdao.updateEssay(essayInfo);
+			System.out.println("updateResult: " + updateResult);
+			return updateResult;
 		}
-		System.out.println("자소서코드 : " + escode);
-		essayInfo.setEsnum(escode);
-		int insertResult = epdao.insertEssay(essayInfo);
-		return insertResult;
 	}
 
 	// 이력서 가져오기
@@ -407,31 +415,35 @@ public class EmploymentService {
 		System.out.println("epsvc SelectResume 요청");
 		ArrResumeDto ArrResumeInfo = new ArrResumeDto();
 		ResumeDto ResumeInfo = epdao.SelectResume(remid);
-		ArrResumeInfo.setRemid(remid);
-		ArrResumeInfo.setRetell(ResumeInfo.getRetell());
-		ArrResumeInfo.setRecount(ResumeInfo.getRecount());
-		ArrResumeInfo.setRehope(ResumeInfo.getRehope());
-		if (ResumeInfo.getReedu() != null) {
-			String[] reedu = ResumeInfo.getReedu().split("!@#");
-			ArrResumeInfo.setReedu(reedu);
+		if (ResumeInfo == null) {
+			return null;
+		} else {
+			ArrResumeInfo.setRemid(remid);
+			ArrResumeInfo.setRetell(ResumeInfo.getRetell());
+			ArrResumeInfo.setRecount(ResumeInfo.getRecount());
+			ArrResumeInfo.setRehope(ResumeInfo.getRehope());
+			if (ResumeInfo.getReedu() != null) {
+				String[] reedu = ResumeInfo.getReedu().split("!@#");
+				ArrResumeInfo.setReedu(reedu);
+			}
+			if (ResumeInfo.getRecarrer() != null) {
+				String[] recarrer = ResumeInfo.getRecarrer().split("!@#");
+				ArrResumeInfo.setRecarrer(recarrer);
+			}
+			if (ResumeInfo.getReact() != null) {
+				String[] react = ResumeInfo.getReact().split("!@#");
+				ArrResumeInfo.setReact(react);
+			}
+			if (ResumeInfo.getRelicense() != null) {
+				String[] relicense = ResumeInfo.getRelicense().split("!@#");
+				ArrResumeInfo.setRelicense(relicense);
+			}
+			if (ResumeInfo.getReciname() != null) {
+				String[] reciname = ResumeInfo.getReciname().split("!@#");
+				ArrResumeInfo.setReciname(reciname);
+			}
+			return ArrResumeInfo;
 		}
-		if (ResumeInfo.getRecarrer() != null) {
-			String[] recarrer = ResumeInfo.getRecarrer().split("!@#");
-			ArrResumeInfo.setRecarrer(recarrer);
-		}
-		if (ResumeInfo.getReact() != null) {
-			String[] react = ResumeInfo.getReact().split("!@#");
-			ArrResumeInfo.setReact(react);
-		}
-		if (ResumeInfo.getRelicense() != null) {
-			String[] relicense = ResumeInfo.getRelicense().split("!@#");
-			ArrResumeInfo.setRelicense(relicense);
-		}
-		if (ResumeInfo.getReciname() != null) {
-			String[] reciname = ResumeInfo.getReciname().split("!@#");
-			ArrResumeInfo.setReciname(reciname);
-		}
-		return ArrResumeInfo;
 	}
 
 	// 공고이름
@@ -564,7 +576,7 @@ public class EmploymentService {
 
 	public ArrayList<Map<String, String>> epSchedule() {
 		System.out.println("EmploymentService callEpDate() 호출");
-		ArrayList<Map<String, String>> epSchedule = new ArrayList<Map<String,String>>();
+		ArrayList<Map<String, String>> epSchedule = new ArrayList<Map<String, String>>();
 		ArrayList<EmploymentDto> epPost = epdao.selectEpPost();
 		ArrayList<EmploymentDto> epDead = epdao.selectEpDead();
 		for (int i = 0; i < epPost.size(); i++) {
@@ -604,7 +616,6 @@ public class EmploymentService {
 
 	public ArrayList<ArrResumeDto> viewResumeInfo() {
 		ArrayList<ArrResumeDto> resumeList = epdao.viewResumeInfo();
-		//
 		System.out.println("epsvc viewResumeInfo 요청");
 		System.out.println(resumeList);
 		ArrayList<ResumeDto> ResumeInfo = epdao.SelectResumeInfo();
@@ -646,6 +657,7 @@ public class EmploymentService {
 		ArrayList<EmploymentDto> closeDeadLine = epdao.selectCloseDeadLine();
 		return closeDeadLine;
 	}
+	//열람 기업 목록
 	public void updateReciname(String cmciname, String viewId) {
 		String selectResult = epdao.checkCmciname(cmciname);
 		System.out.println("updateReciname 호출");
@@ -659,27 +671,63 @@ public class EmploymentService {
 			}
 		}
 	}
-
+	//기업 번호 찾기
 	public String selectCinum(String viewReciname) {
 		String cinum = epdao.selectCinum(viewReciname);
 		return cinum;
 	}
 
+	//공고 검색기능
 	public String getEpListGson(String searchValue) {
 		ArrayList<EmploymentDto> epList = epdao.getSearchList(searchValue);
 		System.out.println();
 		return new Gson().toJson(epList);
 	}
 
+	//기업 검색기능
 	public String getCiListGson(String searchValue) {
 		ArrayList<CinfoDto> ciList = epdao.getCiList(searchValue);
 		System.out.println();
 		return new Gson().toJson(ciList);
 	}
 
+	//기업 상세페이지 공고 찾기
 	public ArrayList<EmploymentDto> cinfoEpList(String cinum) {
 		ArrayList<EmploymentDto> epList = epdao.cinfoEpList(cinum);
 		System.out.println();
 		return epList;
+
+	
+	// 내 자소서 찾기
+	public ArrEssayDto findEssay(String epnum, String loginId) {
+		System.out.println("EmploymentService findEssay() 호출");
+		ArrEssayDto essay = new ArrEssayDto();
+		try {
+			EssayDto myessay = epdao.selectEssay(epnum,loginId);
+			System.out.println(myessay);
+			if(myessay == null) {
+				return null;
+			}else {
+				essay.setEsnum(myessay.getEsnum());
+				essay.setEsciname(myessay.getEsciname());
+				essay.setEsepnum(myessay.getEsepnum());
+				essay.setEsmid(myessay.getEsmid());
+				essay.setEscontents(myessay.getEscontents().split("!@#"));
+				essay.setEsstate(myessay.getEsstate());
+				return essay;				
+			}
+		} catch (Exception e) {
+			System.out.println("에러");
+			return null;
+		}
+	}
+
+	public String checkEssay(String epnum, String loginId) {
+		String result = "N";
+		EssayDto checkEssay = epdao.selectEssay(epnum, loginId);
+		if(checkEssay != null) {
+			result = "Y";
+		}
+		return result;
 	}
 }

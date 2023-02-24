@@ -9,8 +9,10 @@
 	<script type="text/javascript">
 		var msg = '${msg}';
 		var url = '${url}';
+		var back = '${back}';
 		console.log(msg);
 		console.log(url);
+		console.log(back);
 		var select = confirm(msg);
 		if (select) {
 			if (opener) {

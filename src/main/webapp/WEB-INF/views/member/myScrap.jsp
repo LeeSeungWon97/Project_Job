@@ -35,14 +35,14 @@
 					<%@ include file="/WEB-INF/views/includes/infoSidebar.jsp"%>
 				</div>
 	
-				<div class="col-lg-10 col-xl-8" style="width: 70%;">
+				<div class="col-lg-10 col-xl-8" style="width: 65%;">
 					<div class="card border-0 shadow rounded-3">
 						<div class="card-body p-4 p-sm-5 mb-3">
 							<c:forEach items="${myScrap }" var="myScrap">
-								<input type="text" value="${myScrap.epciname }" readonly="readonly">
-								<input type="text" value="${myScrap.epname }" readonly="readonly">
-								<input type="text" value="${myScrap.epdeadline }" readonly="readonly">
-								<br>
+								<input class="form-control-plaintext" type="text" value="${myScrap.epciname }" readonly="readonly">
+								<input class="form-control-plaintext" type="text" value="${myScrap.epname }" readonly="readonly">
+								<input class="form-control-plaintext" type="text" value="${myScrap.epdeadline }" readonly="readonly">
+								<hr>
 							</c:forEach>
 						</div>
 					</div>

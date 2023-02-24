@@ -164,4 +164,10 @@ public interface EmploymentDao {
 	@Select("SELECT EPNUM, EPNAME, EPCINAME, EPEDU, EPCAREER, EPTREAT, EPTYPE, EPMONEY, EPAREA, EPTIME, TO_CHAR(EPPOST,'YY-MM-DD') AS EPPOST, TO_CHAR(EPDEADLINE,'YY-MM-DD') AS EPDEADLINE, EPSTATE, EPESSTATE  FROM EMPLOYMENT EP, CINFO CI WHERE EP.EPCINAME = CI.CINAME AND CI.CINUM = #{cinum}")
 	ArrayList<EmploymentDto> cinfoEpList(String cinum);
 
+	@Select("SELECT * FROM ESSAY WHERE ESEPNUM = #{epnum} AND ESMID = #{loginId}")
+	EssayDto selectEssay(@Param("epnum") String epnum, @Param("loginId") String loginId);
+
+	@Update("UPDATE ESSAY SET ESCONTENTS = #{escontents} WHERE ESEPNUM = #{esepnum} AND ESMID = #{esmid}")
+	int updateEssay(EssayDto essayInfo);
+
 }

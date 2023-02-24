@@ -47,7 +47,7 @@
 .content {
 	border-bottom: 1px solid #ebebeb;
 	border-top: 1px solid #ebebeb;
-	padding: 30px;
+	padding: 20px;
 }
 
 p {
@@ -69,9 +69,9 @@ p {
 
 	<!-- Section -->
 	<section id="section">
-		<div class="section-div">
-			<div class="col-lg-10 col-xl-8 mx-auto">
-				<div class="card flex-row  mt-4 mb-4 border-0 shadow rounded-3">
+		<div class="section-div" style="justify-content:center;">
+			<div class="col-lg-10 col-xl-8 " style="width: 65%;">
+				<div class="card mt-4 mb-4 border-0 shadow rounded-3">
 					<div class="card-body p-4 p-sm-5 mb-3">
 						<div class="row-5 mx-auto mb-5">
 							<h1>${cinfo.ciname }</h1>
@@ -84,24 +84,20 @@ p {
 							</div>
 						</div>
 
-
-
-
-
 						<div class="mb-5">
 							<h4>기업정보</h4>
 							<div class="row content">
-								<div class="col-6">
+								<div class="col-5" style="margin-right: auto;">
 									<p>
-										<strong>기업형태:</strong> ${cinfo.citype }
+										<strong>기업형태 :</strong> ${cinfo.citype }
 									</p>
 									<br>
 									<p>
-										<strong>자본금:</strong> ${cinfo.cimoney }
+										<strong>자본금 :</strong> ${cinfo.cimoney }
 									</p>
-									<br> <strong>업종:</strong>${cinfo.cimajor }
+									<br> <strong>업종 :</strong> ${cinfo.cimajor }
 								</div>
-								<div class="col-6">
+								<div class="col-5">
 									<p>
 										<strong>대표자 :</strong> ${cinfo.cileader }
 									</p>
@@ -111,7 +107,7 @@ p {
 									</p>
 									<br>
 									<p>
-										<strong>매출액 :</strong> : ${cinfo.cisales }
+										<strong>매출액 :</strong> ${cinfo.cisales }
 									</p>
 									<br> <strong>4대보험 :</strong> ${cinfo.ciinsurance }
 								</div>

@@ -70,6 +70,7 @@
 	background-color: gray;
 	color: white;
 }
+
 </style>
 </head>
 <body>
@@ -126,6 +127,16 @@
 
 						</tbody>
 					</table>
+				</div>
+				<div class="mx-auto my-auto">
+					<ul class="pagination">
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" href="#">4</a></li>
+						<li class="page-item"><a class="page-link" href="#">5</a></li>
+						<li class="page-item active"><a class="page-link" href="#">다음></a></li>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -248,19 +259,14 @@
 
 
 	function WriteResume(sideX, epnum) {
+		var popupWidth = 900;
+		var popupHeight = 950;
+		var popupX = (window.screen.width/2)-(popupWidth/2);
+		var popupY = (window.screen.height/2)-(popupHeight/2);
 		console.log(sideX);
 		console.log(epnum);
-		if (loginId == "") {
-			alert("로그인이 필요한 서비스입니다.");
-			location.href = "${pageContext.request.contextPath}/login";
-		} else if (loginType == "C") {
-			alert("일반회원을 위한 서비스입니다.");
-			location.reload();
-		} else {
-			window.open("${pageContext.request.contextPath}/myResume?sideX="+sideX+"&epnum="+epnum,
-					"이력서 선택", "width=400,height=400,top=10,left=100");
-		}
-
+		window.open("${pageContext.request.contextPath}/myResume?sideX="+sideX+"&epnum="+epnum,
+				"이력서 선택", "width="+popupWidth+",height="+popupHeight+",top="+popupY+",left="+popupX);
 	}
 	</script>
 
