@@ -220,7 +220,7 @@ color:  #79BAEC;
 			window.open("${pageContext.request.contextPath}/WriteResumePage",
 					"이력서 선택", "width=400,height=400,top=10,left=100");
 		}
-
+	
 	}
 	</script>
 

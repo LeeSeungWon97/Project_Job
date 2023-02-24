@@ -113,7 +113,7 @@ color:  #79BAEC;
 							<c:forEach items="${epList }" var="employ">
 								<tr>
 									<td class="reci">
-										<a href="">
+										<a href="${pageContext.request.contextPath }/viewReciname?viewReciname=${employ.epciname }">
 											<span>${employ.epciname }</span>
 										</a>
 									</td>

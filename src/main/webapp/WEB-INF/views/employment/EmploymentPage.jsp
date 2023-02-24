@@ -65,7 +65,10 @@
 	width: 7%;
 	text-align: right; /* 즉시지원 */
 }
-
+.selectM {
+	background-color: gray;
+	color: white;
+  }
 .top{
 border: 2px solid #79BAEC;
 padding: 3px;
@@ -73,7 +76,6 @@ padding-top: 0px;
 display:scroll; position:fixed;
 bottom:20px; right:60px; text-align: center;
 color:  #79BAEC;
-
 }
 
 </style>
@@ -91,32 +93,49 @@ color:  #79BAEC;
 	<!-- Section -->
 	<section id="section">
 		<div class="section-div">
+			<div class="card mt-4 mb-4 border-0 shadow rounded-3">
+				<div class="table-responsive">
+					<!--  -->
+					<div class="input-group mb-3">
+						<select id="selectType">
+							<option value="공고">공고</option>
+							<option value="기업">기업</option>
+							<option value="">직접입력</option>
+						</select> <input class="form-control me-2" type="search" placeholder="기업명, 공고제목 등 검색" aria-label="Search" name="searchValue" id="searchInput">
+						<button class="search-btn" onclick="searchValue()">
+							<img src="${pageContext.request.contextPath }/resources/assets/img/update/search-icon.png" style="width: 90%; height: auto;">
+						</button>
+					</div>
+					<!-- <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+  <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button> -->
 
-				<div class="card mt-4 mb-4 border-0 shadow rounded-3">
-					<div class="table-responsive">
-						<table class="table">
-							<thead style="background-color: #f2f9fe;">
-								<tr style="color: #888; text-align: center;">
-									<th scope="col">기업명</th>
-									<th scope="col"></th>
-									<th scope="col">제목</th>
-									<th scope="col">마감일</th>
-									<th scope="col"></th>
+					<!--  -->
+					<table class="table">
+						<thead style="background-color: #f2f9fe; border-top: 1px solid #eaeaea;" id="ajaxCiname">
+							<tr style="color: #888; text-align: center;">
+								<th scope="col" style="font-size: 20px;">회사</th>
+								<th scope="col"></th>
+								<th scope="col" style="font-size: 20px;">공고명</th>
+								<th scope="col" style="font-size: 20px;">마감일</th>
+
+							</tr>
+						</thead>
+						<tbody id="epListArea">
+							<c:forEach items="${epList }" var="employ">
+								<tr>
+									<td class="emci"><a href=""><span>${employ.epciname }</span></a></td>
+									<td class="emnu"><input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"></td>
+									<td class="emna"><a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }"><span style="color: #333; font-weight: bold;">${employ.epname }</span></a></td>
+									<td class="emde"><span>${employ.epdeadline }</span></td>
+									<td class="embu">
+										<button class="mt-1" onclick="WriteResume('sideX','${employ.epnum }')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">
+											<span style="color: white;">즉시지원</span>
+										</button>
+									</td>
 								</tr>
-							</thead>
-							<tbody style="border-top: none;">
-								<c:forEach items="${epList }" var="employ">
-									<tr>	 	
-										<td class="emci"><a href=""><span>${employ.epciname }</span></a></td>
-										<td class="emnu"><input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"></td>
-										<td class="emna"><a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }"><span style="color: #333; font-weight: bold;">${employ.epname }</span></a></td>
-										<td class="emde"><span>${employ.epdeadline }</span></td>
-										<td class="embu">
-											<button class="mt-1" onclick="WriteResume('sideX','${employ.epnum }')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;"><span style="color: white;">즉시지원</span></button>
-										</td>
-									</tr>
-								</c:forEach>				
-							</tbody>
+							</c:forEach>
+
+						</tbody>
 					</table>
 				</div>
 				<div class="mx-auto my-auto">
@@ -164,6 +183,91 @@ color:  #79BAEC;
 	});
 </script>
 <script type="text/javascript">
+	function searchValue(){
+		var searchVal = $('#searchInput').val();	
+		var selectType = $('#selectType').val();	
+		console.log(searchVal);
+		console.log(selectType);
+		if(searchVal.length < 2){
+			alert('검색어는 2글자 이상 입력해주세요');
+		}
+		$.ajax({
+			type: "get",
+			url: "${pageContext.request.contextPath }/searchValueJson",
+			data : {"searchValue" : searchVal,
+					"selectType" : selectType},
+			dataType : "json",
+			success:function(epListArea){
+				console.log(epListArea);
+				var output ="";
+				var output2 ="";
+				if(epListArea.length <= 0){
+					alert("검색결과가 없습니다.정확한 이름인지 다시 한번 확인해 주세요.");
+					return null;
+				}else{
+					//회사명, 대표이름, 주소
+						if(selectType == "공고"){	
+							output2 += '<tr style="color: #888; text-align: center;" >';
+							output2 +='<th scope="col" style="font-size: 20px;" >기업</th>';
+							output2 +='<th scope="col"></th>';
+							output2 +='<th scope="col" style="font-size: 20px;" >공고명</th>';
+							output2 +='<th scope="col" style="font-size: 20px;" >마감일</th>';
+							output2 +='</tr>';
+								for(var i = 0; i < epListArea.length; i++){
+								output += '<tr>';
+								output += '<td class="emci"><span>'+epListArea[i].epciname+'</span></td>';
+								output += '<td class="emnu"><input type="button" class="scrap" id="'+ epListArea[i].epnum + '" onclick="checkVal('+"'"+epListArea[i].epnum+"'"+' , this)" value="⭐"></td>';
+								output += '<td  class="emna">';
+								output += '<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum='+epListArea[i].epnum+'><span style="color: #333; font-weight: bold;">'+epListArea[i].epname+ '</span></a>';
+								output += '</td>';
+								output += '<td class="emde"><span>'+epListArea[i].epdeadline+'</span></td>';
+								output +='<td class="embu">';
+								output += '<button class="mt-1" onclick="WriteResume(sideX,'+epListArea[i].epnum +')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">';
+								output += '<span style="color: white;">즉시지원</span></button></td>';
+								output += '</tr>';
+								}
+						
+						}else{
+							output2 += '<tr style="color: #888; text-align: center;" >';
+							output2 +='<th scope="col" style="font-size: 20px;" >기업</th>';
+							output2 +='<th scope="col"></th>';
+							output2 +='<th scope="col" style="font-size: 20px;" >산업</th>';
+							output2 +='<th scope="col" style="font-size: 20px;" >설립일</th>';
+							output2 +='</tr>';
+								for(var i = 0; i < epListArea.length; i++){
+								output += '<tr>';
+								output += '<td class="emci"><span>'+epListArea[i].ciname+'</span></td>';
+								output += '<td class="emnu"><input type="button" class="scrap" id="'+ epListArea[i].epnum + '" onclick="checkVal('+ "'"+epListArea[i].epnum+"'" +',this)" value="⭐"></td>';
+								output += '<td  class="emna">';
+								output += '<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum='+epListArea[i].epnum+'><span style="color: #333; font-weight: bold;">'+epListArea[i].ciind+ '</span></a>';
+								output += '</td>';
+								output += '<td class="emde"><span>'+epListArea[i].ciest+'</span></td>';
+								output +='<td class="embu">';
+								output += '<button class="mt-1" onclick="WriteResume(sideX,'+epListArea[i].epnum +')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">';
+								output += '<span style="color: white;">즉시지원</span></button></td>';
+								output += '</tr>';
+								}
+							
+							
+						}
+					
+					
+				}
+				$("#epListArea").html(output);
+				$("#ajaxCiname").html(output2);
+				
+				
+				
+				selectScrapInfo();
+			}
+			
+		});
+		}	
+	
+
+	
+
+
 	function WriteResume(sideX, epnum) {
 		var popupWidth = 900;
 		var popupHeight = 950;

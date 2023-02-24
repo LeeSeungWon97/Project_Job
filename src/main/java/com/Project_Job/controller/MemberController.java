@@ -398,4 +398,9 @@ public class MemberController {
 		}
 		return mav;
 	}
+
+	public String selectCmciname(String loginId) {
+		String cmciname = msvc.selectCmciname(loginId);
+		return cmciname;
+	}
 }

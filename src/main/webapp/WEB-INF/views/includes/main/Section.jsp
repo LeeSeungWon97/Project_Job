@@ -109,7 +109,11 @@
 											<button type="button" class="btn btn-outline-secondary btn-sm">공고등록</button>
 										</a>
 									</c:if>
-									
+									<c:if test="${sessionScope.loginType == 'P' }">
+									<a href="${pageContext.request.contextPath }/RecinameList">
+										<button type="button" class="btn btn-outline-secondary btn-sm">열람기업</button>
+									</a>
+									</c:if>
 								</div>
 							</div>
 						</c:if>

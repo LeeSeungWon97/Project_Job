@@ -126,25 +126,33 @@ h5 {
 									<strong> 지역 : </strong>${epInfo.eparea }</p>
 							</div>
 						</div>
-					</div>
-					<div style="text-align: center; margin: 30px">
-						<button type="button" class="btn btn-warning btn-lg mx-1"
-							onclick="WriteResume('${epInfo.epnum }')">
-							<i class="bi bi-check-lg"></i> 즉시지원
-						</button>
-						<input type="button" class="btn btn-lg scrap"
-							id="${epInfo.epnum }"
-							onclick="checkVal('${epInfo.epnum }', this)" value="⭐ 스크랩">
-					</div>
 
-			
-			
-			<div class="mt-5" style="text-align: center;">
+						</div>
+						<div style="text-align: center; margin: 30px">
+							<c:if test="${epInfo.epesstate =='x' }">
+							<input type="button" class="btn btn-warning btn-lg mx-1" onclick="WriteResume('${epInfo.epnum }')" value="즉시지원">
+							</c:if> 
+							<c:if test="${epInfo.epesstate =='Y' }">
+							<input type="button" class="btn btn-warning btn-lg mx-1" onclick="WriteResume('${epInfo.epnum }','${epInfo.epciname }','${epInfo.epname }')" value="자소서작성">
+							</c:if> 
+							<div style="text-align: center; margin: 30px">
+						    <button type="button" class="btn btn-warning btn-lg mx-1"
+							  onclick="WriteResume('${epInfo.epnum }')">
+							  <i class="bi bi-check-lg"></i> 즉시지원
+						    </button>
+						    <input type="button" class="btn btn-lg scrap"
+							   id="${epInfo.epnum }"
+							    onclick="checkVal('${epInfo.epnum }', this)" value="⭐ 스크랩">
+					    </div>
+              <div class="mt-5" style="text-align: center;">
 							<a href="${pageContext.request.contextPath }/EmploymentPage">
 								<button type="button" class="btn btn-outline-danger btn-lg">
 									<i class="bi bi-file-excel"></i> 닫기
 								</button>
 							</a>
+
+					</div>
+
 						</div>
 				</div>
 			</div>
@@ -185,8 +193,10 @@ h5 {
 	});
 </script>
 <script type="text/javascript">
-	function WriteResume(epnum) {
-		console.log(epnum)
+	function WriteResume(epnum, epciname, epname) {
+		console.log(epnum);
+		console.log(epciname);
+		console.log(epname);
 		if (loginId == "") {
 			alert("로그인이 필요한 서비스입니다.");
 			location.href = "${pageContext.request.contextPath}/login";
@@ -194,8 +204,13 @@ h5 {
 			alert("일반회원을 위한 서비스입니다.");
 			location.reload();
 		} else {
-			window.open("${pageContext.request.contextPath}/WriteResumePage?epnum="+epnum,
-					"이력서 선택", "width=400,height=400,top=10,left=100");
+			if(typeof epciname == "undefined"){
+				window.open("${pageContext.request.contextPath}/myResume?sideX=sideX&epnum="+epnum,
+						"이력서 선택", "width=400,height=400,top=10,left=100");
+			}else{
+				location.href = "${pageContext.request.contextPath }/WriteEssayPage?epnum="
+					+ epnum + "&epciname=" + epciname;
+			}
 		}
 
 	}

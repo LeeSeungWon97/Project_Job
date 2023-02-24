@@ -117,10 +117,29 @@ p {
 						<div class="nowRs">
 							<h4>지금 채용중인 공고</h4>
 							<div class="content">
-								<p>내용</p>
-								<div class="d-md-flex justify-content-md-end" style=" margin: 10px">
-									<input type="button" class="btn btn-warning mx-1" onclick="WriteResume('${cinfo.cinum }')" value="즉시지원">
 
+								<div style="text-align: right; margin: 10px">
+									<c:forEach items="${epList}" var="employ">
+										<c:choose>
+											<c:when test="${employ.epnum == null }">
+												<p>등록된 공고정보가 없습니다.</p>
+											</c:when>
+
+											<c:otherwise>
+												<tr>
+													<td class="emci"><a href=""><span>${employ.epciname }</span></a></td>
+													<td class="emnu"><input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"></td>
+													<td class="emna"><a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }"><span style="color: #333; font-weight: bold;">${employ.epname }</span></a></td>
+													<td class="emde"><span>${employ.epdeadline }</span></td>
+													<td class="embu">
+														<button class="mt-1" onclick="WriteResume('sideX','${employ.epnum }')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">
+															<span style="color: white;">즉시지원</span>
+														</button>
+													</td>
+												</tr>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
@@ -172,20 +191,21 @@ p {
 	});
 </script>
 <script type="text/javascript">
-	function WriteResume(epnum) {
-		console.log(epnum)
-		if (loginId == "") {
-			alert("로그인이 필요한 서비스입니다.");
-			location.href = "${pageContext.request.contextPath}/login";
-		} else if (loginType == "C") {
-			alert("일반회원을 위한 서비스입니다.");
-			location.reload();
-		} else {
-			window.open("${pageContext.request.contextPath}/WriteResumePage?epnum="+epnum,
-					"이력서 선택", "width=400,height=400,top=10,left=100");
-		}
-
+function WriteResume(sideX, epnum) {
+	console.log(sideX);
+	console.log(epnum);
+	if (loginId == "") {
+		alert("로그인이 필요한 서비스입니다.");
+		location.href = "${pageContext.request.contextPath}/login";
+	} else if (loginType == "C") {
+		alert("일반회원을 위한 서비스입니다.");
+		location.reload();
+	} else {
+		window.open("${pageContext.request.contextPath}/myResume?sideX="+sideX+"&epnum="+epnum,
+				"이력서 선택", "width=400,height=400,top=10,left=100");
 	}
+
+}
 	</script>
 
 

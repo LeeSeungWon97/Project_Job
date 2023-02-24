@@ -57,7 +57,7 @@ public class EmploymentController {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("EmploymentPage요청");
 		ArrayList<EmploymentDto> epList = epsvc.getEpList("employ");
-		System.out.println(epList);
+		//System.out.println(epList);
 		mav.addObject("epList", epList);
 		mav.setViewName("employment/EmploymentPage");
 		return mav;
@@ -89,7 +89,7 @@ public class EmploymentController {
 		System.out.println("Epcontroller WriteResume요청");
 		String loginId = mctrl.callLoginId("P");
 		ResumeInfo.setRemid(loginId);
-		System.out.println("입력받은 이력서 작성 정보 : " + ResumeInfo);
+		//System.out.println("입력받은 이력서 작성 정보 : " + ResumeInfo);
 
 		int insertResult = epsvc.WriteResume(ResumeInfo);
 		if (insertResult < 0) {
@@ -276,7 +276,10 @@ public class EmploymentController {
 		System.out.println("viewCiInfo 호출");
 		System.out.println("요청받은 기업코드 : " + cinum);
 		CinfoDto cinfo = epsvc.viewCinfo(cinum);
+		ArrayList<EmploymentDto> epList = epsvc.cinfoEpList(cinum);
+		System.out.println(epList);
 		mav.addObject("cinfo", cinfo);
+		mav.addObject("epList", epList);
 		mav.setViewName("employment/ViewCiInfo");
 		return mav;
 	}
@@ -383,6 +386,12 @@ public class EmploymentController {
 	public ModelAndView viewApplyInfo(String viewId) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("viewApplyInfo호출");
+		String loginType = (String) session.getAttribute("loginType");
+		if (loginType.equals("C")) {
+			String loginId = mctrl.callLoginId(loginType);
+			String cmciname = mctrl.selectCmciname(loginId);
+			epsvc.updateReciname(cmciname, viewId);
+		}
 		ArrResumeDto myresume = epsvc.SelectResume(viewId);
 		MemberDto member = epsvc.selectViewInfo(viewId);
 		System.out.println(myresume);
@@ -402,4 +411,53 @@ public class EmploymentController {
 		mav.setViewName("employment/Cmember/viewResumeInfo");
 		return mav;
 	}
+
+	@RequestMapping(value = "/RecinameList")
+	public ModelAndView RecinameList() {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("RecinameList호출");
+		String loginType = (String) session.getAttribute("loginType");
+		String loginId = mctrl.callLoginId(loginType);
+		ArrResumeDto resume = epsvc.SelectResume(loginId);
+		System.out.println(resume);
+		mav.addObject("Resume", resume);
+		mav.setViewName("employment/RecinameList");
+		return mav;
+	}
+
+	@RequestMapping(value = "/viewReciname")
+	public ModelAndView viewReciname(String viewReciname) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("viewReciname호출");
+		String cinum = epsvc.selectCinum(viewReciname);
+		mav.setViewName("redirect:/viewCiInfo?cinum=" + cinum);
+		return mav;
+	}
+
+	
+	@RequestMapping(value = "/searchValueJson")
+	public @ResponseBody String searchValueJson(String searchValue,String selectType) {
+		System.out.println(searchValue);
+		System.out.println(selectType);
+		String epList ="";
+		String ciList ="";
+		if(searchValue.length() >= 2) {
+			if(selectType.equals("공고")) {
+				epList = epsvc.getEpListGson(searchValue);
+				System.out.println("공고 : " + epList);
+				return epList;
+			}else if(selectType.equals("기업")) {
+				ciList =epsvc.getCiListGson(searchValue);
+				System.out.println("기업 : " + ciList);
+				return ciList;
+			}else {
+				
+				return "";
+			}
+		}else {
+			return null;
+		}
+	}
+	
+	
 }

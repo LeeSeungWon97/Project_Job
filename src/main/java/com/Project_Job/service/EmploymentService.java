@@ -351,11 +351,15 @@ public class EmploymentService {
 
 	public ArrayList<EmploymentDto> getEpList(String pageType) {
 		System.out.println("epsvc getEpList 호출");
+		System.out.println("pageType: "+ pageType);
 		if (pageType == "employ") {
 			ArrayList<EmploymentDto> epList = epdao.getEpList();
 			return epList;
-		} else {
+		} else if(pageType == "recruitment"){
 			ArrayList<EmploymentDto> epList = epdao.getRcList();
+			return epList;
+		}else {
+			ArrayList<EmploymentDto> epList = epdao.getSearchList(pageType);
 			return epList;
 		}
 	}
@@ -435,12 +439,11 @@ public class EmploymentService {
 				ArrResumeInfo.setRelicense(relicense);
 			}
 			if (ResumeInfo.getReciname() != null) {
-				String[] reciname = ResumeInfo.getReciname().split(",");
+				String[] reciname = ResumeInfo.getReciname().split("!@#");
 				ArrResumeInfo.setReciname(reciname);
 			}
 			return ArrResumeInfo;
 		}
-
 	}
 
 	// 공고이름
@@ -538,31 +541,29 @@ public class EmploymentService {
 		}
 		System.out.println("공고코드 : " + epcode);
 
-//			String epCheck = epdao.checkEp(epname, epciname);
-//			if(epCheck != null) {
-//				return 0;
-//			}
-//			if(epinfo.getEpname().equals("")) {
-//				epinfo.setEpname("-");
-//			}if(epinfo.getEpciname().equals("")) {
-//				epinfo.setEpciname("-");
-//			}if(epinfo.getEpcareer().equals("")) {
-//				epinfo.setEpcareer("-");
-//			}if(epinfo.getEpedu().equals("")) {
-//				epinfo.setEpedu("-");
-//			}if(epinfo.getEptype().equals("")) {
-//				epinfo.setEptype("-");
-//			}if(epinfo.getEpmoney().equals("")) {
-//				epinfo.setEpmoney("-");
-//			}if(epinfo.getEptime().equals("")) {
-//				epinfo.setEptime("-");
-//			}if(epinfo.getEparea().equals("")) {
-//				epinfo.setEparea("-");
-//			}if(epinfo.getEptreat().equals("")) {
-//				epinfo.setEptreat("-");
-//			}if(epinfo.getEppost().equals(null)) {
-//				epinfo.setEppost(eppost);
-//			}
+			String epCheck = epdao.checkEp(epname, epciname);
+			if(epCheck != null) {
+				return 0;
+			}
+			if(epinfo.getEpname().equals("")) {
+				epinfo.setEpname("-");
+			}if(epinfo.getEpciname().equals("")) {
+				epinfo.setEpciname("-");
+			}if(epinfo.getEpcareer().equals("")) {
+				epinfo.setEpcareer("-");
+			}if(epinfo.getEpedu().equals("")) {
+				epinfo.setEpedu("-");
+			}if(epinfo.getEptype().equals("")) {
+				epinfo.setEptype("-");
+			}if(epinfo.getEpmoney().equals("")) {
+				epinfo.setEpmoney("회사내규에 따름");
+			}if(epinfo.getEptime().equals("")) {
+				epinfo.setEptime("시간협의");
+			}if(epinfo.getEparea().equals("")) {
+				epinfo.setEparea("-");
+			}if(epinfo.getEptreat().equals("")) {
+				epinfo.setEptreat("-");
+			}
 
 		epinfo.setEpnum(epcode);
 		epinfo.setEppost(eppost);
@@ -641,9 +642,10 @@ public class EmploymentService {
 				resumeList.get(i).setRelicense(relicense);
 			}
 			if (ResumeInfo.get(i).getReciname() != null) {
-				String[] reciname = ResumeInfo.get(i).getReciname().split(",");
+				String[] reciname = ResumeInfo.get(i).getReciname().split("!@#");
 				resumeList.get(i).setReciname(reciname);
 			}
+			
 		}
 		//
 		return resumeList;
@@ -655,6 +657,45 @@ public class EmploymentService {
 		ArrayList<EmploymentDto> closeDeadLine = epdao.selectCloseDeadLine();
 		return closeDeadLine;
 	}
+	//열람 기업 목록
+	public void updateReciname(String cmciname, String viewId) {
+		String selectResult = epdao.checkCmciname(cmciname);
+		System.out.println("updateReciname 호출");
+		if(selectResult == null) {
+			String checkciname = epdao.checkCmcinameViewId(viewId);
+			cmciname = cmciname+"!@#";
+			if(checkciname.equals("x")) {
+				epdao.removeReciname(cmciname,viewId);	
+			}else {
+			epdao.updateReciname(cmciname,viewId);
+			}
+		}
+	}
+	//기업 번호 찾기
+	public String selectCinum(String viewReciname) {
+		String cinum = epdao.selectCinum(viewReciname);
+		return cinum;
+	}
+
+	//공고 검색기능
+	public String getEpListGson(String searchValue) {
+		ArrayList<EmploymentDto> epList = epdao.getSearchList(searchValue);
+		System.out.println();
+		return new Gson().toJson(epList);
+	}
+
+	//기업 검색기능
+	public String getCiListGson(String searchValue) {
+		ArrayList<CinfoDto> ciList = epdao.getCiList(searchValue);
+		System.out.println();
+		return new Gson().toJson(ciList);
+	}
+
+	//기업 상세페이지 공고 찾기
+	public ArrayList<EmploymentDto> cinfoEpList(String cinum) {
+		ArrayList<EmploymentDto> epList = epdao.cinfoEpList(cinum);
+		System.out.println();
+		return epList;
 
 	
 	// 내 자소서 찾기
