@@ -4,12 +4,12 @@
 
 <div id="EssayForm">
 	<div class="input-group input-group-lg mb-1">
-		<input type="hidden" class="form-control" placeholder="자소서 작성 아이디" name="esmid" value="${sessionScope.loginInfo.mid}"> <input type="hidden" class="form-control" placeholder="공고코드" name="esepnum" value="${epnum}"> <input type="hidden" class="form-control" name="escontents" id="escontents">
+		<input type="hidden" class="form-control" name="esmid" value="${sessionScope.loginInfo.mid}"> <input type="hidden" class="form-control" name="esepnum" value="${epnum}"> <input type="hidden" class="form-control" name="escontents" id="escontents">
 	</div>
 
 
 	<div class="top">
-		<input type="text" readonly class="form-control-plaintext esciname" placeholder="기업명" name="esciname" value="${epciname}"> <input type="text" readonly class="form-control-plaintext epname" placeholder="공고명" value="${epname}" readonly="readonly">
+		<input type="text" readonly class="form-control-plaintext esciname" name="esciname" value="${epciname}"> <input type="text" readonly class="form-control-plaintext epname" value="${epname}" readonly="readonly">
 	</div>
 
 	<div>
@@ -33,8 +33,7 @@
 	<div class="box">
 		<input type="text" readonly class="form-control-plaintext" name="retell" placeholder="1번질문" value="1번질문">
 		<div class="form-floating">
-			<textarea readonly class="form-control EssayContent area1" onchange="writeContents()" id="area1" style="height: 100px"></textarea>
-
+			<textarea readonly class="form-control EssayContent area1" id="area1" style="height: 100px"></textarea>
 		</div>
 	</div>
 
@@ -44,7 +43,7 @@
 
 
 		<div class="form-floating">
-			<textarea readonly class="form-control EssayContent area2" onchange="writeContents()" id="area2" style="height: 100px"></textarea>
+			<textarea readonly class="form-control EssayContent area2" id="area2" style="height: 100px"></textarea>
 
 		</div>
 	</div>
@@ -53,7 +52,7 @@
 		<input type="text" readonly class="form-control-plaintext" placeholder="3번질문" readonly="readonly" value="3번질문">
 
 		<div class="form-floating">
-			<textarea readonly class="form-control EssayContent area3" onchange="writeContents()" id="area3" style="height: 100px"></textarea>
+			<textarea readonly class="form-control EssayContent area3" id="area3" style="height: 100px"></textarea>
 
 		</div>
 	</div>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Project_Job.dto.ArrEssayDto;
 import com.Project_Job.dto.ArrResumeDto;
 import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.EmploymentDto;
@@ -114,17 +115,17 @@ public class EmploymentController {
 		if (insertResult == 1) {
 			System.out.println("지원완료");
 			mav.addObject("msg", "지원 완료");
-			mav.addObject("url","close");
+			mav.addObject("url", "close");
 			mav.setViewName("AlertScreen");
 		} else if (insertResult == 9) {
 			System.out.println("중복된 지원");
 			mav.addObject("msg", "중복된 지원");
-			mav.addObject("url","close");
+			mav.addObject("url", "close");
 			mav.setViewName("AlertScreen");
 		} else {
 			System.out.println("에러");
 			mav.addObject("msg", "에러");
-			mav.addObject("url","close");
+			mav.addObject("url", "close");
 			mav.setViewName("AlertScreen");
 		}
 		return mav;
@@ -136,34 +137,54 @@ public class EmploymentController {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("Epcontroller WriteEssayPage요청");
 		if (session.getAttribute("loginInfo") == null) {
-			mav.setViewName("member/Login");
+			mav.addObject("msg", "로그인이 필요한 서비스입니다.");
+			mav.addObject("url", "login");
+			mav.addObject("pop", "pop");
+			mav.setViewName("AlertScreen");
 		} else {
-			System.out.println("epnum" + epnum);
-			System.out.println("epciname" + epciname);
+			String loginId = mctrl.callLoginId("P");
+			ArrEssayDto myEssay = epsvc.findEssay(epnum, loginId);
+			System.out.println(myEssay);
 			String epname = epsvc.SelectEpname(epnum);
-			System.out.println("epname" + epname);
-			mav.addObject("epciname", epciname);
-			mav.addObject("epname", epname);
-			mav.addObject("epnum", epnum);
-			mav.setViewName("employment/WriteEssayPage");
+			if (myEssay != null) {
+				mav.addObject("myEssay", myEssay);
+				mav.addObject("epciname",myEssay.getEsciname());
+				mav.addObject("epname", epname);
+				mav.addObject("epnum", epnum);
+				mav.addObject("content", "o");
+				mav.setViewName("employment/WriteEssayPage");
+			} else {
+				mav.addObject("epciname", epciname);
+				mav.addObject("epname", epname);
+				mav.addObject("epnum", epnum);
+				mav.addObject("content", "x");
+				mav.setViewName("employment/WriteEssayPage");
+			}
 		}
 		return mav;
 	}
 
 	// 자소서 작성 요청
 	@RequestMapping(value = "/WriteEssay")
-	public ModelAndView WriteEssay(EssayDto EssayInfo) {
-		ModelAndView mav = new ModelAndView();
+	public @ResponseBody int WriteEssay(EssayDto EssayInfo, String DataArea1, String DataArea2, String DataArea3,
+			String content) {
 		System.out.println("Epcontroller WriteEssay요청");
 		System.out.println(EssayInfo);
-		int insertResult = epsvc.insertEssay(EssayInfo);
-		if (insertResult > 0) {
-			mav.setViewName("Main");
+		System.out.println("DataArea1: " + DataArea1);
+		System.out.println("DataArea2: " + DataArea2);
+		System.out.println("DataArea3: " + DataArea3);
+		EssayInfo.setEscontents(DataArea1+"!@#"+DataArea2+"!@#"+DataArea3);
+		System.out.println(EssayInfo.getEscontents());
+		System.out.println("content: " + content);
+		int result = epsvc.insertEssay(EssayInfo,content);
+		System.out.println("저장 결과: " + result);
+		if (result == 1) {
+			System.out.println("자소서 작성 완료");
 		} else {
-			mav.setViewName("employment/WriteEssayPage");
+			result = 0;
 		}
 
-		return null;
+		return result;
 	}
 
 	// 스크랩 요청
@@ -296,7 +317,7 @@ public class EmploymentController {
 		if (loginType == null) {
 			mav.addObject("msg", "로그인(개인) 이후 이용가능합니다");
 			mav.addObject("url", "login");
-			mav.addObject("pop","pop");
+			mav.addObject("pop", "pop");
 			mav.setViewName("AlertScreen");
 		} else {
 			if (loginType.equals("P")) {
