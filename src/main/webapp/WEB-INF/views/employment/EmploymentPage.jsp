@@ -66,9 +66,22 @@
 	text-align: right; /* 즉시지원 */
 }
 
+.top{
+border: 2px solid #79BAEC;
+padding: 3px;
+padding-top: 0px;
+display:scroll; position:fixed;
+bottom:20px; right:60px; text-align: center;
+color:  #79BAEC;
+
+}
+
 </style>
 </head>
 <body>
+
+	<!-- topbar -->
+	<a class="top" href="javascript:window.scrollTo(0,0);" ><i class="bi bi-caret-up-fill"></i><br> TOP</a>
 
 	<!-- Header -->
 	<%@ include file="/WEB-INF/views/includes/main/Header.jsp"%>
