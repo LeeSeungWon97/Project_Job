@@ -115,8 +115,9 @@ h1 {
 			var content = '${content}';
 			if (content == 'x') {
 				$('#modifyBtn').addClass("d-none");
+				$('#applyBtn').addClass("d-none");
 				$('#saveBtn').removeClass("d-none");
-				$('#cancleBtn').removeClass("d-none");
+				$('#cancleBtn').addClass("d-none");
 				$('.EssayContent').attr("readonly", false);
 			} else {
 				alert("이미 작성한 자소서가 있습니다.");
@@ -169,7 +170,7 @@ h1 {
 			});
 
 			$('#modifyBtn').removeClass("d-none");
-			$('#applyBtn').addClass("d-none");
+			$('#applyBtn').removeClass("d-none");
 			$('#saveBtn').addClass("d-none");
 			$('#cancleBtn').addClass("d-none");
 			$('.EssayContent').attr("readonly", true);
