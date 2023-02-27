@@ -87,33 +87,42 @@
 							</div>
 							<div class="card-footer">
 								<div class="d-flex justify-content-center gap-1">
-									<a href="${pageContext.request.contextPath }/myInfo">
-										<button type="button" class="btn btn-outline-secondary btn-sm">내정보</button>
-									</a>
 									
+									<%-- 개인회원 로그인 --%>
 									<c:if test="${sessionScope.loginType == 'P' }">
+										<a href="${pageContext.request.contextPath }/myInfo">
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 75%;">내정보</button>
+										</a>
 										<a href="${pageContext.request.contextPath }/myResume">
-											<button type="button" class="btn btn-outline-secondary btn-sm">이력서</button>
+											<button type="button" class="btn btn-outline-secondary btn-sm"  style="font-size: 75%;">이력서</button>
+										</a>
+										<a href="${pageContext.request.contextPath }/viewApply">
+											<button type="button" class="btn btn-outline-secondary btn-sm"  style="font-size: 75%;">지원현황</button>
+										</a>
+										<a href="${pageContext.request.contextPath }/myScrap">
+											<button type="button" class="btn btn-outline-secondary btn-sm"  style="font-size: 75%;">스크랩</button>
+										</a>
+										<a href="${pageContext.request.contextPath }/RecinameList">
+											<button type="button" class="btn btn-outline-secondary btn-sm"  style="font-size: 75%;">열람기업</button>
 										</a>
 									</c:if>
 									
-									<a href="${pageContext.request.contextPath }/viewApply">
-										<button type="button" class="btn btn-outline-secondary btn-sm">지원현황</button>
-									</a>
-									<a href="${pageContext.request.contextPath }/myScrap">
-										<button type="button" class="btn btn-outline-secondary btn-sm">스크랩</button>
-									</a>
-								
+									<%-- 기업회원 로그인 --%>
 									<c:if test="${sessionScope.loginType == 'C' }">
+										<a href="${pageContext.request.contextPath }/myInfo">
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 75%;">내정보</button>
+										</a>
+										<a href="${pageContext.request.contextPath }/myResume">
+											<button type="button" class="btn btn-outline-secondary btn-sm"  style="font-size: 75%;">이력서</button>
+										</a>
+										<a href="${pageContext.request.contextPath }/myScrap">
+											<button type="button" class="btn btn-outline-secondary btn-sm"  style="font-size: 75%;">스크랩</button>
+										</a>
 										<a href="${pageContext.request.contextPath }/WriteEmploymentPage">
-											<button type="button" class="btn btn-outline-secondary btn-sm">공고등록</button>
+											<button type="button" class="btn btn-outline-secondary btn-sm"  style="font-size: 75%;">공고등록</button>
 										</a>
 									</c:if>
-									<c:if test="${sessionScope.loginType == 'P' }">
-									<a href="${pageContext.request.contextPath }/RecinameList">
-										<button type="button" class="btn btn-outline-secondary btn-sm">열람기업</button>
-									</a>
-									</c:if>
+									
 								</div>
 							</div>
 						</c:if>

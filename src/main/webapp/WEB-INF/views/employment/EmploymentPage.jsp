@@ -95,29 +95,31 @@ color:  #79BAEC;
 		<div class="section-div">
 			<div class="card mt-4 mb-4 border-0 shadow rounded-3">
 				<div class="table-responsive">
-					<!--  -->
-					<div class="input-group mb-3">
-						<select id="selectType">
+					
+					<div class="d-flex justify-content-center">
+					<div class="input-group mx-3 mt-4 mb-4" style="width: 100%;">
+						<select id="selectType" class="form-select" style="border: 1px solid #ddd; max-width: 120px;">
 							<option value="공고">공고</option>
 							<option value="기업">기업</option>
-							<option value="">직접입력</option>
-						</select> <input class="form-control me-2" type="search" placeholder="기업명, 공고제목 등 검색" aria-label="Search" name="searchValue" id="searchInput">
-						<button class="search-btn" onclick="searchValue()">
+						</select> 
+						<input class="form-control" type="search" placeholder="기업명, 공고제목 등 검색" aria-label="Search" name="searchValue" id="searchInput" style="border: 1px solid #ddd;">
+						<button class="search-btn " onclick="searchValue()" style="border: 1px solid #ddd; height: auto;">
 							<img src="${pageContext.request.contextPath }/resources/assets/img/update/search-icon.png" style="width: 90%; height: auto;">
 						</button>
 					</div>
+					</div>	
 					<!-- <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-  <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button> -->
+  					<button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button> -->
 
 					<!--  -->
 					<table class="table">
 						<thead style="background-color: #f2f9fe; border-top: 1px solid #eaeaea;" id="ajaxCiname">
 							<tr style="color: #888; text-align: center;">
-								<th scope="col" style="font-size: 20px;">회사</th>
+								<th scope="col" style="">회사</th>
 								<th scope="col"></th>
-								<th scope="col" style="font-size: 20px;">공고명</th>
-								<th scope="col" style="font-size: 20px;">마감일</th>
-
+								<th scope="col" style="">공고명</th>
+								<th scope="col" style="">마감일</th>
+								<th scope="col"></th>
 							</tr>
 						</thead>
 						<tbody id="epListArea">

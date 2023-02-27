@@ -77,10 +77,11 @@ p {
 							<h1>${cinfo.ciname }</h1>
 							<h5>${cinfo.ciind }</h5>
 							<div class="d-md-flex justify-content-md-end">
-
+								<!--  
 								<button type="button" class="btn btn-outline-secondary btn-lg" onclick="deleteInfo()">
 									<i class="bi bi-bookmark-check"></i> 스크랩
 								</button>
+								-->
 							</div>
 						</div>
 
@@ -118,7 +119,7 @@ p {
 							<h4>지금 채용중인 공고</h4>
 							<div class="content">
 
-								<div style="text-align: right; margin: 10px">
+								<div style="text-align: center; margin: 10px">
 									<c:forEach items="${epList}" var="employ">
 										<c:choose>
 											<c:when test="${employ.epnum == null }">
@@ -126,14 +127,14 @@ p {
 											</c:when>
 
 											<c:otherwise>
-												<tr>
+												<tr style="font-size: 16px;">
 													<td class="emci"><a href=""><span>${employ.epciname }</span></a></td>
 													<td class="emnu"><input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"></td>
 													<td class="emna"><a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }"><span style="color: #333; font-weight: bold;">${employ.epname }</span></a></td>
 													<td class="emde"><span>${employ.epdeadline }</span></td>
 													<td class="embu">
-														<button class="mt-1" onclick="WriteResume('sideX','${employ.epnum }')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">
-															<span style="color: white;">즉시지원</span>
+														<button class="mx-1 mt-1" onclick="WriteResume('sideX','${employ.epnum }')" style=" background-color: #ff7e00; border: solid #ff7e00;">
+															<span style="color: white; ">즉시지원</span>
 														</button>
 													</td>
 												</tr>

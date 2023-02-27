@@ -696,6 +696,7 @@ public class EmploymentService {
 		ArrayList<EmploymentDto> epList = epdao.cinfoEpList(cinum);
 		System.out.println();
 		return epList;
+	}
 
 	
 	// 내 자소서 찾기
