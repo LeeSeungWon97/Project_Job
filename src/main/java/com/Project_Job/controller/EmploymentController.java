@@ -267,6 +267,7 @@ public class EmploymentController {
 			ArrayList<CinfoDto> ciList = epsvc.getCiList(searchValue);
 			mav.addObject("epList", epList);
 			mav.addObject("ciList", ciList);
+			mav.addObject("searchValue",searchValue);
 			mav.setViewName("employment/SearchPage");
 		}
 
@@ -463,29 +464,41 @@ public class EmploymentController {
 		mav.setViewName("redirect:/viewCiInfo?cinum=" + cinum);
 		return mav;
 	}
-
+	
 	@RequestMapping(value = "/searchValueJson")
 	public @ResponseBody String searchValueJson(String searchValue, String selectType) {
 		System.out.println(searchValue);
 		System.out.println(selectType);
 		String epList = "";
-		String ciList = "";
 		if (searchValue.length() >= 2) {
-			if (selectType.equals("공고")) {
-				epList = epsvc.getEpListGson(searchValue);
-				System.out.println("공고 : " + epList);
-				return epList;
-			} else if (selectType.equals("기업")) {
-				ciList = epsvc.getCiListGson(searchValue);
-				System.out.println("기업 : " + ciList);
-				return ciList;
-			} else {
-
-				return "";
-			}
+			epList = epsvc.getEpListGson(searchValue, selectType);
+			return epList;
 		} else {
 			return null;
 		}
 	}
+
+//	@RequestMapping(value = "/searchValueJson")
+//	public @ResponseBody String searchValueJson(String searchValue, String selectType) {
+//		System.out.println(searchValue);
+//		System.out.println(selectType);
+//		String epList = "";
+//		String ciList = "";
+//		if (searchValue.length() >= 2) {
+//			if (selectType.equals("공고")) {
+//				epList = epsvc.getEpListGson(searchValue);
+//				System.out.println("공고 : " + epList);
+//				return epList;
+//			} else if (selectType.equals("기업")) {
+//				ciList = epsvc.getCiListGson(searchValue);
+//				System.out.println("기업 : " + ciList);
+//				return ciList;
+//			} else {
+//				return "";
+//			}
+//		} else {
+//			return null;
+//		}
+//	}
 
 }

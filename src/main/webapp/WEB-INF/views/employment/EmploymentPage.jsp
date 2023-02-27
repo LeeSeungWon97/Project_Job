@@ -103,13 +103,12 @@
 	<section id="section">
 		
 			<div class="card mt-4 mb-4 border-0 shadow rounded-3" style="width: 1280px;">
-				<div class="table-responsive">
-					
+				<div class="table-responsive">		
 					<div class="d-flex justify-content-center">
 					<div class="input-group mx-3 mt-4 mb-4" style="width: 100%;">
 						<select id="selectType" class="form-select" style="border: 1px solid #ddd; max-width: 120px;">
-							<option value="공고">공고</option>
-							<option value="기업">기업</option>
+							<option value="공고">공고명</option>
+							<option value="기업">기업명</option>
 						</select> 
 						<input class="form-control" type="search" placeholder="기업명, 공고제목 등 검색" aria-label="Search" name="searchValue" id="searchInput" style="border: 1px solid #ddd;">
 						<button class="search-btn " onclick="searchValue()" style="border: 1px solid #ddd; height: auto;">
@@ -163,12 +162,6 @@
 				</div>
 				<div class="mx-auto my-auto">
 					<ul class="pagination">
-						<!-- <li class="page-item"><p class="page-link" onclick="pageLoad(this)">1</p></li>
-						<li class="page-item"><p class="page-link" onclick="pageLoad(this)">2</p></li>
-						<li class="page-item"><p class="page-link" onclick="pageLoad(this)">3</p></li>
-						<li class="page-item"><p class="page-link" onclick="pageLoad(this)">4</p></li>
-						<li class="page-item"><p class="page-link" onclick="pageLoad(this)">5</p></li>
-						<li class="page-item active"><a class="page-link" href="#">다음></a></li> -->
 					</ul>
 				</div>
 			</div>
@@ -244,74 +237,44 @@
 			dataType : "json",
 			success:function(epListArea){
 				console.log(epListArea);
-				var output ="";
-				var output2 ="";
+				var element = $('#epListArea');
+				var output = "";
 				if(epListArea.length <= 0){
 					alert("검색결과가 없습니다.정확한 이름인지 다시 한번 확인해 주세요.");
 					return null;
-				}else{
-					//회사명, 대표이름, 주소
-						if(selectType == "공고"){	
-							output2 += '<tr style="color: #888; text-align: center;" >';
-							output2 +='<th scope="col" style="font-size: 20px;" >기업</th>';
-							output2 +='<th scope="col"></th>';
-							output2 +='<th scope="col" style="font-size: 20px;" >공고명</th>';
-							output2 +='<th scope="col" style="font-size: 20px;" >마감일</th>';
-							output2 +='</tr>';
-								for(var i = 0; i < epListArea.length; i++){
-								output += '<tr>';
-								output += '<td class="emci"><span>'+epListArea[i].epciname+'</span></td>';
-								output += '<td class="emnu"><input type="button" class="scrap" id="'+ epListArea[i].epnum + '" onclick="checkVal('+"'"+epListArea[i].epnum+"'"+' , this)" value="⭐"></td>';
-								output += '<td  class="emna">';
-								output += '<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum='+epListArea[i].epnum+'><span style="color: #333; font-weight: bold;">'+epListArea[i].epname+ '</span></a>';
-								output += '</td>';
-								output += '<td class="emde"><span>'+epListArea[i].epdeadline+'</span></td>';
-								output +='<td class="embu">';
-								output += '<button class="mt-1" onclick="WriteResume(sideX,'+epListArea[i].epnum +')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">';
-								output += '<span style="color: white;">즉시지원</span></button></td>';
-								output += '</tr>';
-								}
-						
-						}else{
-							output2 += '<tr style="color: #888; text-align: center;" >';
-							output2 +='<th scope="col" style="font-size: 20px;" >기업</th>';
-							output2 +='<th scope="col"></th>';
-							output2 +='<th scope="col" style="font-size: 20px;" >산업</th>';
-							output2 +='<th scope="col" style="font-size: 20px;" >설립일</th>';
-							output2 +='</tr>';
-								for(var i = 0; i < epListArea.length; i++){
-								output += '<tr>';
-								output += '<td class="emci"><span>'+epListArea[i].ciname+'</span></td>';
-								output += '<td class="emnu"><input type="button" class="scrap" id="'+ epListArea[i].epnum + '" onclick="checkVal('+ "'"+epListArea[i].epnum+"'" +',this)" value="⭐"></td>';
-								output += '<td  class="emna">';
-								output += '<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum='+epListArea[i].epnum+'><span style="color: #333; font-weight: bold;">'+epListArea[i].ciind+ '</span></a>';
-								output += '</td>';
-								output += '<td class="emde"><span>'+epListArea[i].ciest+'</span></td>';
-								output +='<td class="embu">';
-								output += '<button class="mt-1" onclick="WriteResume(sideX,'+epListArea[i].epnum +')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">';
-								output += '<span style="color: white;">즉시지원</span></button></td>';
-								output += '</tr>';
-								}
-							
-							
-						}
-					
-					
+				} else{
+					for(var i = 0; i<epListArea.length;i++){
+						output += '<tr>';
+						output += '<td class="emci">';
+						output += '<a href="">';
+						output += '<span>'+epListArea[i].epciname+'</span>';
+						output += '</a>';
+						output += '</td>';
+						output += '<td class="emnu">';
+						output += '<input type="button" class="scrap" id="'+epListArea[i].epnum+'" onclick="checkVal(\''+epListArea[i].epnum+'\', this)" value="⭐">';
+						output += '</td>';
+						output += '<td class="emna">';
+						output += '<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum='+epListArea[i].epnum+'">';
+						output += '<span style="color: #333; font-weight: bold;">'+epListArea[i].epname+'</span>';
+						output += '</a>';
+						output += '</td>';
+						output += '<td class="emde">';
+						output += '<span>'+epListArea[i].epdeadline+'</span>';
+						output += '</td>';
+						output += '<td class="embu">';
+						output += '<button class="mt-1" onclick="WriteResume(\'sideX\',\''+epListArea[i].epnum+'\')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">';
+						output += '<span style="color: white;">즉시지원</span>';
+						output += '</button>';
+						output += '</td>';
+						output += '</tr>';
+					}	
 				}
-				$("#epListArea").html(output);
-				$("#ajaxCiname").html(output2);
-				
-				
-				
+				element.html(output);
 				selectScrapInfo();
+				$('.pagination').addClass("d-none");
 			}
-			
 		});
 		}	
-	
-
-	
-
 
 	function WriteResume(sideX, epnum) {
 		var popupWidth = 900;
