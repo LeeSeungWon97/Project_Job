@@ -70,10 +70,11 @@ h5 {
 	<%@ include file="/WEB-INF/views/includes/main/Header.jsp"%>
 	<!-- Nav -->
 	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
-	<div class="container">
-
-		<div class="col-lg-10 col-xl-8 mx-auto">
-			<div class="card flex-row  border-0 shadow rounded-3">
+	
+	<section id="section">
+		<div class="section-div" style="justify-content:center;">
+		<div class="col-lg-10 col-xl-8" style="width: 65%;">
+			<div class="card mt-4 mb-4  border-0 shadow rounded-3">
 				<div class="card-body p-4 p-sm-5 mb-3">
 					<div class="">
 						<div class="row-5 mx-auto topBox">
@@ -81,7 +82,7 @@ h5 {
 							<h2>${epInfo.epname }</h2>
 						</div>
 						<div class="row content">
-							<div class="col-6">
+							<div class="col-6" style="margin-right: auto;">
 								<h5>지원자격</h5>
 								<p>
 									<strong>경력:</strong> ${epInfo.epcareer }<br>
@@ -111,6 +112,7 @@ h5 {
 
 					</div>
 
+
 					<div style="text-align: center; margin: 30px">
 						<c:choose>
 							<c:when test="${epInfo.epesstate == 'x' }">
@@ -134,11 +136,11 @@ h5 {
 							</button>
 						
 					</div>
-
 				</div>
 			</div>
 		</div>
 	</div>
+	</section>
 	<input type="hidden" id="loginType" value="${sessionScope.loginType }">
 	<c:choose>
 		<c:when test="${sessionScope.loginType == 'P'}">

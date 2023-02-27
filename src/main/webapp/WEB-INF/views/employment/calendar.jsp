@@ -3,10 +3,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공채달력</title>
 <!-- jQuery -->
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-
+<link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/update/main-icon.png" />
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js'></script>
 <script>
 	document.addEventListener('DOMContentLoaded', function() {

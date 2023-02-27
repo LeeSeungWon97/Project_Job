@@ -141,7 +141,7 @@ h2 {
 										</div>
 										
 									</div>
-									<div>
+									<div class="mb-3">
 										<h2>
 											 <img alt=""
 												src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png"
