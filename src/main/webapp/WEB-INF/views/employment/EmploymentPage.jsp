@@ -65,25 +65,31 @@
 	width: 7%;
 	text-align: right; /* 즉시지원 */
 }
+
 .selectM {
 	background-color: gray;
 	color: white;
-  }
-.top{
-border: 2px solid #79BAEC;
-padding: 3px;
-padding-top: 0px;
-display:scroll; position:fixed;
-bottom:20px; right:60px; text-align: center;
-color:  #79BAEC;
 }
 
+.top {
+	border: 2px solid #79BAEC;
+	padding: 3px;
+	padding-top: 0px;
+	display: scroll;
+	position: fixed;
+	bottom: 20px;
+	right: 60px;
+	text-align: center;
+	color: #79BAEC;
+}
 </style>
 </head>
 <body>
 
 	<!-- topbar -->
-	<a class="top" href="javascript:window.scrollTo(0,0);" ><i class="bi bi-caret-up-fill"></i><br> TOP</a>
+	<a class="top" href="javascript:window.scrollTo(0,0);">
+		<i class="bi bi-caret-up-fill"></i><br> TOP
+	</a>
 
 	<!-- Header -->
 	<%@ include file="/WEB-INF/views/includes/main/Header.jsp"%>
@@ -101,7 +107,8 @@ color:  #79BAEC;
 							<option value="공고">공고</option>
 							<option value="기업">기업</option>
 							<option value="">직접입력</option>
-						</select> <input class="form-control me-2" type="search" placeholder="기업명, 공고제목 등 검색" aria-label="Search" name="searchValue" id="searchInput">
+						</select>
+						<input class="form-control me-2" type="search" placeholder="기업명, 공고제목 등 검색" aria-label="Search" name="searchValue" id="searchInput">
 						<button class="search-btn" onclick="searchValue()">
 							<img src="${pageContext.request.contextPath }/resources/assets/img/update/search-icon.png" style="width: 90%; height: auto;">
 						</button>
@@ -123,10 +130,22 @@ color:  #79BAEC;
 						<tbody id="epListArea">
 							<c:forEach items="${epList }" var="employ">
 								<tr>
-									<td class="emci"><a href=""><span>${employ.epciname }</span></a></td>
-									<td class="emnu"><input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"></td>
-									<td class="emna"><a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }"><span style="color: #333; font-weight: bold;">${employ.epname }</span></a></td>
-									<td class="emde"><span>${employ.epdeadline }</span></td>
+									<td class="emci">
+										<a href="">
+											<span>${employ.epciname }</span>
+										</a>
+									</td>
+									<td class="emnu">
+										<input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐">
+									</td>
+									<td class="emna">
+										<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }">
+											<span style="color: #333; font-weight: bold;">${employ.epname }</span>
+										</a>
+									</td>
+									<td class="emde">
+										<span>${employ.epdeadline }</span>
+									</td>
 									<td class="embu">
 										<button class="mt-1" onclick="WriteResume('sideX','${employ.epnum }')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">
 											<span style="color: white;">즉시지원</span>
@@ -134,18 +153,17 @@ color:  #79BAEC;
 									</td>
 								</tr>
 							</c:forEach>
-
 						</tbody>
 					</table>
 				</div>
 				<div class="mx-auto my-auto">
 					<ul class="pagination">
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">4</a></li>
-						<li class="page-item"><a class="page-link" href="#">5</a></li>
-						<li class="page-item active"><a class="page-link" href="#">다음></a></li>
+						<!-- <li class="page-item"><p class="page-link" onclick="pageLoad(this)">1</p></li>
+						<li class="page-item"><p class="page-link" onclick="pageLoad(this)">2</p></li>
+						<li class="page-item"><p class="page-link" onclick="pageLoad(this)">3</p></li>
+						<li class="page-item"><p class="page-link" onclick="pageLoad(this)">4</p></li>
+						<li class="page-item"><p class="page-link" onclick="pageLoad(this)">5</p></li>
+						<li class="page-item active"><a class="page-link" href="#">다음></a></li> -->
 					</ul>
 				</div>
 			</div>
@@ -180,7 +198,29 @@ color:  #79BAEC;
 	var loginId = $('#loginId').val();	
 	$(document).ready(function(){
 		selectScrapInfo();
+		createPageBtn();
 	});
+	
+	function pageLoad(pageBtn){
+		var pageNum = pageBtn.innerText;
+		location.href = "${pageContext.request.contextPath}/EmploymentPage?pageNum="+pageNum;
+	}
+	
+	function createPageBtn(){
+		var maxNum = '${pageIdxMax}';
+		var element = $('.pagination');
+		var pageNum = '${pageNum}';
+		var output = "";
+		console.log(maxNum);
+		for(var i = 0; i < maxNum; i++ ){
+			if(i+1 == pageNum){
+				output += '<li class="page-item active"><p class="page-link" onclick="pageLoad(this)">'+(i+1)+'</p></li>';	
+			} else{
+				output += '<li class="page-item"><p class="page-link" onclick="pageLoad(this)">'+(i+1)+'</p></li>';				
+			}
+		}
+		element.html(output);
+	}
 </script>
 <script type="text/javascript">
 	function searchValue(){
