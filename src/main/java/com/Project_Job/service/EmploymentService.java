@@ -678,11 +678,27 @@ public class EmploymentService {
 	}
 
 	//공고 검색기능
-	public String getEpListGson(String searchValue) {
-		ArrayList<EmploymentDto> epList = epdao.getSearchList(searchValue);
+	public String getEpListGson(String searchValue, String selectType) {
+		System.out.println("EmploymentService getEpListGson 호출");
+		ArrayList<EmploymentDto> epList = new  ArrayList<EmploymentDto>();
+		if(selectType.equals("공고")) {
+			epList = epdao.getSearchList(searchValue);			
+		} else {
+			epList = epdao.getSearchCiname(searchValue);
+		}
 		System.out.println();
+		for(int i = 0; i < epList.size();i++) {
+			System.err.println(epList.get(i));
+		}
 		return new Gson().toJson(epList);
 	}
+	
+//	//공고 검색기능
+//	public String getEpListGson(String searchValue) {
+//		ArrayList<EmploymentDto> epList = epdao.getSearchList(searchValue);
+//		System.out.println();
+//		return new Gson().toJson(epList);
+//	}
 
 	//기업 검색기능
 	public String getCiListGson(String searchValue) {

@@ -128,11 +128,11 @@ h5 {
 						<input type="button" class="btn btn-lg scrap" id="${epInfo.epnum }" onclick="checkVal('${epInfo.epnum }', this)" value="⭐ 스크랩">
 					</div>
 					<div class="mt-5" style="text-align: center;">
-						<a href="${pageContext.request.contextPath }/EmploymentPage">
-							<button type="button" class="btn btn-outline-danger btn-lg">
+						
+							<button type="button" class="btn btn-outline-danger btn-lg" onclick="backpage()">
 								<i class="bi bi-file-excel"></i> 닫기
 							</button>
-						</a>
+						
 					</div>
 
 				</div>
@@ -188,7 +188,7 @@ h5 {
 		var popupX = (window.screen.width/2)-(popupWidth/2);
 		var popupY = (window.screen.height/2)-(popupHeight/2);
 		console.log(epnum);
-		window.open("${pageContext.request.contextPath}/myResume?sideX=sideX&epnum="+epnum,
+		window.open("${pageContext.request.contextPath}/myResume?sideX=sideX&epnum="+epnum+"&state=1",
 				"이력서 선택", "width="+popupWidth+",height="+popupHeight+",top="+popupY+",left="+popupX);
 	}
 	</script>
@@ -243,7 +243,9 @@ h5 {
 			} );			
 		}
 		
-		
+		function backpage(){
+			history.back();
+		}
 		
 	</script>
 
