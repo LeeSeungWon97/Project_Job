@@ -1,46 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>좋은 직장을 위한 취업플랫폼, 굿잡</title>
-<link rel="icon"
-	href="${pageContext.request.contextPath }/resources/assets/img/update/main-icon.png" />
+<link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/update/main-icon.png" />
 
 <!-- Bootstrap icons-->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
-	rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link
-	href="${pageContext.request.contextPath }/resources/assets/css/styles.css"
-	rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
 
-<link
-	href="${pageContext.request.contextPath }/resources/assets/css/header.css"
-	rel="stylesheet" />
-<link
-	href="${pageContext.request.contextPath }/resources/assets/css/nav.css"
-	rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/header.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
 
-<link
-	href="${pageContext.request.contextPath }/resources/assets/css/section.css"
-	rel="stylesheet" />
-<link
-	href="${pageContext.request.contextPath }/resources/assets/css/footer.css"
-	rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/section.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/footer.css" rel="stylesheet" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 
 
 <title>내 이력서</title>
@@ -97,10 +80,7 @@ h2 {
 
 	<div class="container">
 		<div class="d-flex justify-content-center">
-			<a class="navbar-brand" href="${pageContext.request.contextPath }/">
-				<img
-				src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png"
-				style="width: 200px; height: 100px;">
+			<a class="navbar-brand" href="${pageContext.request.contextPath }/"> <img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 200px; height: 100px;">
 			</a>
 		</div>
 		<div class="row">
@@ -121,11 +101,8 @@ h2 {
 						<div class="row">
 							<c:forEach items="${Resume.reciname }" varStatus="i" step="1">
 								<div style="padding: 10px;" class="list-group reserveArea">
-									<div class="row"
-										style="padding: 10px; border-bottom-style: dotted;">
-										<a
-											href="${pageContext.request.contextPath}/viewReciname?viewReciname=${Resume.reciname[i.index]}"
-											target="_blank">${Resume.reciname[i.index]}</a>
+									<div class="row" style="padding: 10px; border-bottom-style: dotted;">
+										<a href="${pageContext.request.contextPath}/viewReciname?viewReciname=${Resume.reciname[i.index]}" target="_blank">${Resume.reciname[i.index]}</a>
 										<%-- <p class="card-text">${Resume.reciname[i.index + 1]}</p> --%>
 									</div>
 								</div>

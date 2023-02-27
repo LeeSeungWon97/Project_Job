@@ -82,6 +82,9 @@
 	text-align: center;
 	color: #79BAEC;
 }
+.page-link{
+	cursor:pointer;
+}
 </style>
 </head>
 <body>
@@ -98,8 +101,8 @@
 
 	<!-- Section -->
 	<section id="section">
-		<div class="section-div">
-			<div class="card mt-4 mb-4 border-0 shadow rounded-3">
+		
+			<div class="card mt-4 mb-4 border-0 shadow rounded-3" style="width: 1280px;">
 				<div class="table-responsive">
 					
 					<div class="d-flex justify-content-center">
@@ -169,7 +172,7 @@
 					</ul>
 				</div>
 			</div>
-		</div>
+	
 	</section>
 
 	<input type="hidden" id="loginType" value="${sessionScope.loginType }">
