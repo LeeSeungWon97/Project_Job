@@ -121,7 +121,7 @@ color:  #79BAEC;
 										<input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐">
 									</td>
 									<td class="rena">
-										<a href="">
+										<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum}">
 											<span style="color: #333; font-weight: bold;">${employ.epname }</span>
 										</a>
 									</td>
@@ -133,7 +133,7 @@ color:  #79BAEC;
 									</td>
 									<td class="rebu">
 										<button class="mt-1" onclick="WriteResume('${employ.epnum }','${employ.epciname }','${employ.epname }')" style="min-width: 85px; font-size: 14px; background-color: #19ce60; border: solid #19ce60;">
-											<span style="color: white;">자소서작성</span>
+											<span style="color: white;">즉시지원</span>
 										</button>
 									</td>
 								</tr>
@@ -202,8 +202,10 @@ color:  #79BAEC;
 			alert("일반회원을 위한 서비스입니다.");
 			location.reload();
 		} else {
-			window.open("${pageContext.request.contextPath }/WriteEssayPage?epnum="+ epnum + "&epciname=" + epciname,
+			window.open("${pageContext.request.contextPath }/myResume?epnum="+ epnum + "&epciname=" + epciname+"&state=2&sideX=sideX",
 					"이력서 선택", "width="+popupWidth+",height="+popupHeight+",top="+popupY+",left="+popupX);
+			/* window.open("${pageContext.request.contextPath }/WriteEssayPage?epnum="+ epnum + "&epciname=" + epciname+"&state=2",
+					"이력서 선택", "width="+popupWidth+",height="+popupHeight+",top="+popupY+",left="+popupX); */
 
 		}
 	}

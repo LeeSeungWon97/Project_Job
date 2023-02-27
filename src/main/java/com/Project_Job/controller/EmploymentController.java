@@ -53,16 +53,30 @@ public class EmploymentController {
 
 	// 채용공고 페이지 요청
 	@RequestMapping(value = "/EmploymentPage")
-	public ModelAndView EmploymentPage() {
+	public ModelAndView EmploymentPage(int pageNum) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("EmploymentPage요청");
-		ArrayList<EmploymentDto> epList = epsvc.getEpList("employ");
-		//System.out.println(epList);
+		System.out.println("pageNum: " + pageNum);
+		ArrayList<EmploymentDto> epListAll = epsvc.getEpList("employ");
+		ArrayList<EmploymentDto> epList = new ArrayList<EmploymentDto>();
+		int pageIdx = pageNum;
+		int pageIdxMax = epListAll.size()/15 + 1;
+		System.out.println("pageIdxMax: " + pageIdxMax);
+		int startIdx = 15 * (pageIdx - 1);
+		int endIdx = startIdx + 14;
+		if(endIdx >= epListAll.size()) {
+			endIdx = epListAll.size();
+		}
+		for (int i = startIdx; i < endIdx; i++) {
+			epList.add(epListAll.get(i));
+		}
 		mav.addObject("epList", epList);
+		mav.addObject("pageNum", pageIdx);
+		mav.addObject("pageIdxMax",pageIdxMax);
 		mav.setViewName("employment/EmploymentPage");
 		return mav;
-	}
 
+	}
 	// 공채 페이지 요청
 	@RequestMapping(value = "/RecruitmentPage")
 	public ModelAndView RecruitmentPage() {
@@ -89,7 +103,7 @@ public class EmploymentController {
 		System.out.println("Epcontroller WriteResume요청");
 		String loginId = mctrl.callLoginId("P");
 		ResumeInfo.setRemid(loginId);
-		//System.out.println("입력받은 이력서 작성 정보 : " + ResumeInfo);
+		// System.out.println("입력받은 이력서 작성 정보 : " + ResumeInfo);
 
 		int insertResult = epsvc.WriteResume(ResumeInfo);
 		if (insertResult < 0) {
@@ -141,24 +155,36 @@ public class EmploymentController {
 			mav.addObject("url", "login");
 			mav.addObject("pop", "pop");
 			mav.setViewName("AlertScreen");
+		} else if (session.getAttribute("loginType").equals("C")) {
+			mav.addObject("msg", "개인회원 전용 서비스입니다.");
+			mav.addObject("url", "");
+			mav.addObject("pop", "pop");
+			mav.setViewName("AlertScreen");
 		} else {
 			String loginId = mctrl.callLoginId("P");
-			ArrEssayDto myEssay = epsvc.findEssay(epnum, loginId);
-			System.out.println(myEssay);
-			String epname = epsvc.SelectEpname(epnum);
-			if (myEssay != null) {
-				mav.addObject("myEssay", myEssay);
-				mav.addObject("epciname",myEssay.getEsciname());
-				mav.addObject("epname", epname);
-				mav.addObject("epnum", epnum);
-				mav.addObject("content", "o");
-				mav.setViewName("employment/WriteEssayPage");
+			ArrResumeDto myresume = epsvc.SelectResume(loginId);
+			if (myresume == null) {
+				mav.addObject("msg", "저장된 이력서가 없습니다. 작성하시겠습니까?");
+				mav.addObject("url", "WriteResumePage");
+				mav.setViewName("ConfirmScreen");
 			} else {
-				mav.addObject("epciname", epciname);
-				mav.addObject("epname", epname);
-				mav.addObject("epnum", epnum);
-				mav.addObject("content", "x");
-				mav.setViewName("employment/WriteEssayPage");
+				ArrEssayDto myEssay = epsvc.findEssay(epnum, loginId);
+				System.out.println(myEssay);
+				String epname = epsvc.SelectEpname(epnum);
+				if (myEssay != null) {
+					mav.addObject("myEssay", myEssay);
+					mav.addObject("epciname", myEssay.getEsciname());
+					mav.addObject("epname", epname);
+					mav.addObject("epnum", epnum);
+					mav.addObject("content", "o");
+					mav.setViewName("employment/WriteEssayPage");
+				} else {
+					mav.addObject("epciname", epciname);
+					mav.addObject("epname", epname);
+					mav.addObject("epnum", epnum);
+					mav.addObject("content", "x");
+					mav.setViewName("employment/WriteEssayPage");
+				}
 			}
 		}
 		return mav;
@@ -173,10 +199,10 @@ public class EmploymentController {
 		System.out.println("DataArea1: " + DataArea1);
 		System.out.println("DataArea2: " + DataArea2);
 		System.out.println("DataArea3: " + DataArea3);
-		EssayInfo.setEscontents(DataArea1+"!@#"+DataArea2+"!@#"+DataArea3);
+		EssayInfo.setEscontents(DataArea1 + "!@#" + DataArea2 + "!@#" + DataArea3);
 		System.out.println(EssayInfo.getEscontents());
 		System.out.println("content: " + content);
-		int result = epsvc.insertEssay(EssayInfo,content);
+		int result = epsvc.insertEssay(EssayInfo, content);
 		System.out.println("저장 결과: " + result);
 		if (result == 1) {
 			System.out.println("자소서 작성 완료");
@@ -253,6 +279,7 @@ public class EmploymentController {
 		System.out.println("viewEpInfo 호출");
 		System.out.println(epnum);
 		EmploymentDto epInfo = epsvc.viewEpInfo(epnum);
+		System.out.println(epInfo);
 		mav.addObject("epInfo", epInfo);
 		mav.setViewName("employment/ViewEpInfo2");
 
@@ -311,7 +338,7 @@ public class EmploymentController {
 	}
 
 	@RequestMapping(value = "/myResume")
-	public ModelAndView myResume(String sideX, String epnum) {
+	public ModelAndView myResume(String sideX, String epnum, String state, String epciname) {
 		ModelAndView mav = new ModelAndView();
 		String loginType = (String) session.getAttribute("loginType");
 		System.out.println("loginType: " + loginType);
@@ -323,6 +350,7 @@ public class EmploymentController {
 			mav.addObject("pop", "pop");
 			mav.setViewName("AlertScreen");
 		} else {
+			//
 			if (loginType.equals("P")) {
 				String loginId = mctrl.callLoginId(loginType);
 				System.out.println("loginId: " + loginId);
@@ -336,6 +364,8 @@ public class EmploymentController {
 					mav.addObject("Resume", myresume);
 					mav.addObject("sideX", sideX);
 					mav.addObject("epnum", epnum);
+					mav.addObject("state", state);
+					mav.addObject("epciname", epciname);
 					mav.setViewName("employment/MyResumePage");
 				}
 			} else {
@@ -434,30 +464,28 @@ public class EmploymentController {
 		return mav;
 	}
 
-	
 	@RequestMapping(value = "/searchValueJson")
-	public @ResponseBody String searchValueJson(String searchValue,String selectType) {
+	public @ResponseBody String searchValueJson(String searchValue, String selectType) {
 		System.out.println(searchValue);
 		System.out.println(selectType);
-		String epList ="";
-		String ciList ="";
-		if(searchValue.length() >= 2) {
-			if(selectType.equals("공고")) {
+		String epList = "";
+		String ciList = "";
+		if (searchValue.length() >= 2) {
+			if (selectType.equals("공고")) {
 				epList = epsvc.getEpListGson(searchValue);
 				System.out.println("공고 : " + epList);
 				return epList;
-			}else if(selectType.equals("기업")) {
-				ciList =epsvc.getCiListGson(searchValue);
+			} else if (selectType.equals("기업")) {
+				ciList = epsvc.getCiListGson(searchValue);
 				System.out.println("기업 : " + ciList);
 				return ciList;
-			}else {
-				
+			} else {
+
 				return "";
 			}
-		}else {
+		} else {
 			return null;
 		}
 	}
-	
-	
+
 }
