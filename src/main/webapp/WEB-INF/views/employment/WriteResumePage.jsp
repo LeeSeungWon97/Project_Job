@@ -58,10 +58,10 @@ h2 {
 		</div>
 
 		<div class="row">
-			<div class="col-2">
+			<%-- <div class="col-2">
 				<!-- SideBar -->
 				<%@ include file="/WEB-INF/views/includes/infoSidebar.jsp"%>
-			</div>
+			</div> --%>
 
 			<div class="mainbox">
 				<h1 style="text-align: center;">이력서</h1>
@@ -80,6 +80,7 @@ h2 {
 
 	<script type="text/javascript">
 		$(document).ready(function() {
+			$('#modifyBtn').addClass("d-none");
 			$('.modifyBtn').removeClass("d-none");
 			$('.resumeContent').attr("readonly", false);
 		});
@@ -145,12 +146,14 @@ h2 {
 				async : false,
 				success : function(result) {
 					console.log(result);
+					alert("이력서 작성 완료");
 				}
 			});
 			$('#modifyBtn').removeClass("d-none");
 			$('#saveBtn').addClass("d-none");
 			$('.modifyBtn').addClass("d-none");
 			$('.resumeContent').attr("readonly", true);
+			location.href = "${pageContext.request.contextPath}/myResume";
 		}
 
 		function addSearchKeyA() {

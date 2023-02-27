@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.Date"%>
 
@@ -8,40 +7,24 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>채용공고</title>
-<link rel="icon"
-	href="${pageContext.request.contextPath }/resources/assets/img/update/main-icon.png" />
+<link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/update/main-icon.png" />
 
 <!-- Bootstrap icons-->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
-	rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link
-	href="${pageContext.request.contextPath }/resources/assets/css/styles.css"
-	rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
 
-<link
-	href="${pageContext.request.contextPath }/resources/assets/css/header.css"
-	rel="stylesheet" />
-<link
-	href="${pageContext.request.contextPath }/resources/assets/css/nav.css"
-	rel="stylesheet" />
-<link
-	href="${pageContext.request.contextPath }/resources/assets/css/section.css"
-	rel="stylesheet" />
-<link
-	href="${pageContext.request.contextPath }/resources/assets/css/footer.css"
-	rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/header.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/section.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/assets/css/footer.css" rel="stylesheet" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style type="text/css">
 .scrap {
@@ -49,7 +32,6 @@
 	text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
 	border: 1px solid gray;
 	background-color: gray;
-
 }
 
 .scrap:hover {
@@ -127,33 +109,32 @@ h5 {
 							</div>
 						</div>
 
-						</div>
-						<div style="text-align: center; margin: 30px">
-							<c:if test="${epInfo.epesstate =='x' }">
-							<input type="button" class="btn btn-warning btn-lg mx-1" onclick="WriteResume('${epInfo.epnum }')" value="즉시지원">
-							</c:if> 
-							<c:if test="${epInfo.epesstate =='Y' }">
-							<input type="button" class="btn btn-warning btn-lg mx-1" onclick="WriteResume('${epInfo.epnum }','${epInfo.epciname }','${epInfo.epname }')" value="자소서작성">
-							</c:if> 
-							<div style="text-align: center; margin: 30px">
-						    <button type="button" class="btn btn-warning btn-lg mx-1"
-							  onclick="WriteResume('${epInfo.epnum }')">
-							  <i class="bi bi-check-lg"></i> 즉시지원
-						    </button>
-						    <input type="button" class="btn btn-lg scrap"
-							   id="${epInfo.epnum }"
-							    onclick="checkVal('${epInfo.epnum }', this)" value="⭐ 스크랩">
-					    </div>
-              <div class="mt-5" style="text-align: center;">
-							<a href="${pageContext.request.contextPath }/EmploymentPage">
-								<button type="button" class="btn btn-outline-danger btn-lg">
-									<i class="bi bi-file-excel"></i> 닫기
-								</button>
-							</a>
-
 					</div>
 
-						</div>
+					<div style="text-align: center; margin: 30px">
+						<c:choose>
+							<c:when test="${epInfo.epesstate == 'x' }">
+								<button type="button" class="btn btn-warning btn-lg mx-1" onclick="WriteResume1('${epInfo.epnum }')">
+									<i class="bi bi-check-lg"></i> 즉시지원
+								</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" class="btn btn-warning btn-lg mx-1" onclick="WriteResume2('${epInfo.epnum }','${epInfo.epciname }')">
+									<i class="bi bi-check-lg"></i> 즉시지원
+								</button>
+							</c:otherwise>
+
+						</c:choose>
+						<input type="button" class="btn btn-lg scrap" id="${epInfo.epnum }" onclick="checkVal('${epInfo.epnum }', this)" value="⭐ 스크랩">
+					</div>
+					<div class="mt-5" style="text-align: center;">
+						<a href="${pageContext.request.contextPath }/EmploymentPage">
+							<button type="button" class="btn btn-outline-danger btn-lg">
+								<i class="bi bi-file-excel"></i> 닫기
+							</button>
+						</a>
+					</div>
+
 				</div>
 			</div>
 		</div>
@@ -161,30 +142,25 @@ h5 {
 	<input type="hidden" id="loginType" value="${sessionScope.loginType }">
 	<c:choose>
 		<c:when test="${sessionScope.loginType == 'P'}">
-			<input type="hidden" id="loginId"
-				value="${sessionScope.loginInfo.mid }">
+			<input type="hidden" id="loginId" value="${sessionScope.loginInfo.mid }">
 		</c:when>
 		<c:otherwise>
-			<input type="hidden" id="loginId"
-				value="${sessionScope.loginInfo.cmid }">
+			<input type="hidden" id="loginId" value="${sessionScope.loginInfo.cmid }">
 		</c:otherwise>
 	</c:choose>
 	<!-- Footer-->
 	<%@ include file="/WEB-INF/views/includes/main/Footer.jsp"%>
 
 	<!-- Bootstrap core JS-->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Core theme JS-->
-	<script
-		src="${pageContext.request.contextPath }/resources/assets/js/scripts.js"></script>
+	<script src="${pageContext.request.contextPath }/resources/assets/js/scripts.js"></script>
 
 </body>
 
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script type="text/javascript">
 	var loginType = $('#loginType').val();
 	var loginId = $('#loginId').val();	
@@ -193,26 +169,27 @@ h5 {
 	});
 </script>
 <script type="text/javascript">
-	function WriteResume(epnum, epciname, epname) {
+	function WriteResume2(epnum, epciname) {
+		console.log("자소서 창");
+		var popupWidth = 900;
+		var popupHeight = 950;
+		var popupX = (window.screen.width/2)-(popupWidth/2);
+		var popupY = (window.screen.height/2)-(popupHeight/2);
 		console.log(epnum);
 		console.log(epciname);
-		console.log(epname);
-		if (loginId == "") {
-			alert("로그인이 필요한 서비스입니다.");
-			location.href = "${pageContext.request.contextPath}/login";
-		} else if (loginType == "C") {
-			alert("일반회원을 위한 서비스입니다.");
-			location.reload();
-		} else {
-			if(typeof epciname == "undefined"){
-				window.open("${pageContext.request.contextPath}/myResume?sideX=sideX&epnum="+epnum,
-						"이력서 선택", "width=400,height=400,top=10,left=100");
-			}else{
-				location.href = "${pageContext.request.contextPath }/WriteEssayPage?epnum="
-					+ epnum + "&epciname=" + epciname;
-			}
-		}
-
+		window.open("${pageContext.request.contextPath }/WriteEssayPage?epnum=" + epnum + "&epciname=" + epciname,
+				"이력서 선택", "width="+popupWidth+",height="+popupHeight+",top="+popupY+",left="+popupX);
+	}
+	
+	function WriteResume1(epnum) {
+		console.log("이력서창")
+		var popupWidth = 900;
+		var popupHeight = 950;
+		var popupX = (window.screen.width/2)-(popupWidth/2);
+		var popupY = (window.screen.height/2)-(popupHeight/2);
+		console.log(epnum);
+		window.open("${pageContext.request.contextPath}/myResume?sideX=sideX&epnum="+epnum,
+				"이력서 선택", "width="+popupWidth+",height="+popupHeight+",top="+popupY+",left="+popupX);
 	}
 	</script>
 

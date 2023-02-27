@@ -9,16 +9,23 @@
 	<script type="text/javascript">
 		var msg = '${msg}';
 		var url = '${url}';
-		var back = '${back}';
-		console.log(msg);
-		console.log(url);
-		console.log(back);
+		var pop = '${pop}';
 		var select = confirm(msg);
 		if (select) {
 			if (opener) {
-				window.opener.location.href = '${pageContext.request.contextPath}/'
-						+ url;
-				window.close();
+				if (url == "close") {
+					window.opener.location.reload();
+					window.close();
+				} else {
+					if (pop == "pop") {
+						location.href = '${pageContext.request.contextPath}/'
+								+ url;
+					} else {
+						window.opener.location.href = '${pageContext.request.contextPath}/'
+								+ url;
+						window.close();
+					}
+				}
 			} else {
 				location.href = '${pageContext.request.contextPath}/' + url;
 			}

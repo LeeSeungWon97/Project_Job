@@ -98,9 +98,7 @@ h1 {
 					<button id="cancleBtn" class="btn btn-dark btn-lg d-none" type="button" onclick="modifyCancle()">
 						<i class="bi bi-x"></i> 취소
 					</button>
-					<button id="applyBtn" class="btn btn-dark btn-lg" type="button" onclick="apply()">
-						<i class="bi bi-x"></i> 지원
-					</button>
+					<button id="applyBtn" class="btn btn-dark btn-lg" type="button" onclick="apply()">지원</button>
 				</div>
 			</div>
 
