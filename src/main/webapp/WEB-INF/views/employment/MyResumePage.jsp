@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,10 +87,10 @@ h2 {
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var checkSide = '${sideX}';
+			console.log(checkSide);
 			if (checkSide.length > 0) {
 				$('#sideBar').addClass("d-none");
 			}
-
 		});
 
 		function modifyResume() {
@@ -174,6 +175,13 @@ h2 {
 			location.href = "${pageContext.request.contextPath}/applyResume?epnum="
 					+ epnum;
 
+		}
+
+		function callEssay(epnum, epciname) {
+			console.log("해당 공고 자소서 요청");
+			console.log(epnum);
+			console.log(epciname);
+			location.href="${pageContext.request.contextPath}/WriteEssayPage?epnum="+ epnum + "&epciname=" + epciname;
 		}
 
 		function modifyCancle() {

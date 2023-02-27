@@ -141,24 +141,36 @@ public class EmploymentController {
 			mav.addObject("url", "login");
 			mav.addObject("pop", "pop");
 			mav.setViewName("AlertScreen");
+		} else if(session.getAttribute("loginType").equals("C")){
+			mav.addObject("msg", "개인회원 전용 서비스입니다.");
+			mav.addObject("url", "");
+			mav.addObject("pop", "pop");
+			mav.setViewName("AlertScreen");
 		} else {
 			String loginId = mctrl.callLoginId("P");
-			ArrEssayDto myEssay = epsvc.findEssay(epnum, loginId);
-			System.out.println(myEssay);
-			String epname = epsvc.SelectEpname(epnum);
-			if (myEssay != null) {
-				mav.addObject("myEssay", myEssay);
-				mav.addObject("epciname",myEssay.getEsciname());
-				mav.addObject("epname", epname);
-				mav.addObject("epnum", epnum);
-				mav.addObject("content", "o");
-				mav.setViewName("employment/WriteEssayPage");
+			ArrResumeDto myresume = epsvc.SelectResume(loginId);
+			if (myresume == null) {
+				mav.addObject("msg", "저장된 이력서가 없습니다. 작성하시겠습니까?");
+				mav.addObject("url", "WriteResumePage");
+				mav.setViewName("ConfirmScreen");
 			} else {
-				mav.addObject("epciname", epciname);
-				mav.addObject("epname", epname);
-				mav.addObject("epnum", epnum);
-				mav.addObject("content", "x");
-				mav.setViewName("employment/WriteEssayPage");
+				ArrEssayDto myEssay = epsvc.findEssay(epnum, loginId);
+				System.out.println(myEssay);
+				String epname = epsvc.SelectEpname(epnum);
+				if (myEssay != null) {
+					mav.addObject("myEssay", myEssay);
+					mav.addObject("epciname",myEssay.getEsciname());
+					mav.addObject("epname", epname);
+					mav.addObject("epnum", epnum);
+					mav.addObject("content", "o");
+					mav.setViewName("employment/WriteEssayPage");
+				} else {
+					mav.addObject("epciname", epciname);
+					mav.addObject("epname", epname);
+					mav.addObject("epnum", epnum);
+					mav.addObject("content", "x");
+					mav.setViewName("employment/WriteEssayPage");
+				}				
 			}
 		}
 		return mav;
@@ -253,6 +265,7 @@ public class EmploymentController {
 		System.out.println("viewEpInfo 호출");
 		System.out.println(epnum);
 		EmploymentDto epInfo = epsvc.viewEpInfo(epnum);
+		System.out.println(epInfo);
 		mav.addObject("epInfo", epInfo);
 		mav.setViewName("employment/ViewEpInfo2");
 
@@ -311,7 +324,7 @@ public class EmploymentController {
 	}
 
 	@RequestMapping(value = "/myResume")
-	public ModelAndView myResume(String sideX, String epnum) {
+	public ModelAndView myResume(String sideX, String epnum,String state, String epciname) {
 		ModelAndView mav = new ModelAndView();
 		String loginType = (String) session.getAttribute("loginType");
 		System.out.println("loginType: " + loginType);
@@ -323,6 +336,7 @@ public class EmploymentController {
 			mav.addObject("pop", "pop");
 			mav.setViewName("AlertScreen");
 		} else {
+			//
 			if (loginType.equals("P")) {
 				String loginId = mctrl.callLoginId(loginType);
 				System.out.println("loginId: " + loginId);
@@ -336,6 +350,8 @@ public class EmploymentController {
 					mav.addObject("Resume", myresume);
 					mav.addObject("sideX", sideX);
 					mav.addObject("epnum", epnum);
+					mav.addObject("state",state);
+					mav.addObject("epciname",epciname);
 					mav.setViewName("employment/MyResumePage");
 				}
 			} else {

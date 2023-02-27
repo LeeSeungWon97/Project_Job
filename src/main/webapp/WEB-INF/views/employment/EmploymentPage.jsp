@@ -275,7 +275,7 @@ color:  #79BAEC;
 		var popupY = (window.screen.height/2)-(popupHeight/2);
 		console.log(sideX);
 		console.log(epnum);
-		window.open("${pageContext.request.contextPath}/myResume?sideX="+sideX+"&epnum="+epnum,
+		window.open("${pageContext.request.contextPath}/myResume?sideX="+sideX+"&epnum="+epnum+"&state=1",
 				"이력서 선택", "width="+popupWidth+",height="+popupHeight+",top="+popupY+",left="+popupX);
 	}
 	</script>
