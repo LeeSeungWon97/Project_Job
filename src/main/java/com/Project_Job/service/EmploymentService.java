@@ -617,6 +617,7 @@ public class EmploymentService {
 		return ApplyList;
 	}
 
+
 	public MemberDto selectViewInfo(String viewId) {
 		MemberDto member = epdao.selectViewInfo(viewId);
 		return member;
@@ -776,4 +777,12 @@ public class EmploymentService {
 		}
 		return popularEmploy;
 	}
+
+	
+	public EmploymentDto selectEpInfo(String apepnum) {
+		System.out.println("EmploymentService selectEpInfo 호출");
+		EmploymentDto epdto = epdao.selectEpInfo(apepnum);
+		return epdto;
+	}
+
 }
