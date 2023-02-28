@@ -79,8 +79,13 @@ h5 {
 					<div class="">
 						<div class="row-5 mx-auto topBox">
 							<h6>${epInfo.epciname }</h6>
-							<h2>${epInfo.epname }</h2>
+							<h3>${epInfo.epname }</h3>
 						</div>
+						
+							<div class="mt-1" style="text-align: right;">
+						~ ${epInfo.epdeadline}
+						</div>
+						
 						<div class="row content">
 							<div class="col-6" style="margin-right: auto;">
 								<h5>지원자격</h5>
@@ -131,7 +136,7 @@ h5 {
 					</div>
 					<div class="mt-5" style="text-align: center;">
 						
-							<button type="button" class="btn btn-outline-danger btn-lg" onclick="backpage()">
+							<button type="button" class="btn btn-outline-danger" onclick="backpage()">
 								<i class="bi bi-file-excel"></i> 닫기
 							</button>
 						
