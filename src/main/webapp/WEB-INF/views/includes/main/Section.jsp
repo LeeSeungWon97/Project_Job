@@ -11,7 +11,7 @@
 
 				<div class="swiper mt-4">
 					<!-- Additional required wrapper -->
-					<h2>얼마 남지 않았어요!</h2>
+					<h2>얼마 남지않은 공고</h2>
 					<div class="swiper-wrapper">
 						<!-- Slides -->
 						<c:forEach items="${closeDeadLine}" var="closeDead">
@@ -25,14 +25,27 @@
 						</c:forEach>
 					</div>
 					<!-- If we need pagination -->
-					<div class="swiper-pagination"></div>
+					<!-- <div class="swiper-pagination"></div> -->
 
 				</div>
 			</div>
-
-
 			<div class="section-l-bottom">
-				<h5>공채목록</h5>
+				<div class="swiper mt-4">
+					<!-- Additional required wrapper -->
+					<h2>새로운 공고</h2>
+					<div class="swiper-wrapper">
+						<!-- Slides -->
+						<c:forEach items="${newEmploy}" var="newEmploy">
+							<div class="swiper-slide">
+								<h3>
+									<a href="">${newEmploy.epciname }</a>
+								</h3>
+								<hr>
+								<span>${newEmploy.epname }</span>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
 
 			</div>
 		</div>
@@ -56,9 +69,11 @@
 								<div class="d-flex justify-content-center gap-1">
 									<a href="${pageContext.request.contextPath }/join">
 										<button class="btn btn-outline-secondary btn-sm" type="button">회원가입</button>
-									</a> <a href="${pageContext.request.contextPath }/FindIdPage">
+									</a>
+									<a href="${pageContext.request.contextPath }/FindIdPage">
 										<button class="btn btn-outline-secondary btn-sm" type="button">아이디 찾기</button>
-									</a> <a href="${pageContext.request.contextPath }/FindPwPage">
+									</a>
+									<a href="${pageContext.request.contextPath }/FindPwPage">
 										<button class="btn btn-outline-secondary btn-sm" type="button">비밀번호 찾기</button>
 									</a>
 								</div>
@@ -78,7 +93,8 @@
 										</c:otherwise>
 									</c:choose>
 
-									&ensp;&ensp;&ensp;&ensp; <a href="${pageContext.request.contextPath }/logout">
+									&ensp;&ensp;&ensp;&ensp;
+									<a href="${pageContext.request.contextPath }/logout">
 										<button type="button" class="btn-lg" style="background-color: #539DDB; border: solid #539DDB;">
 											<span style="color: white;">로그아웃</span>
 										</button>
@@ -142,7 +158,16 @@
 							</table>
 						</div>
 					</div>
+					<div class="card-body">
+						<h5>인기 공고 Top 5</h5>
+						<ul style="list-style: none; padding-left: 0px;">
+							<c:forEach items="${popularEmploy }" var="popularEmploy" varStatus="i">
+								<li><a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${popularEmploy.epnum}">${i.index + 1 }. ${popularEmploy.epname }</a></li>
+							</c:forEach>
+						</ul>
+					</div>
 				</div>
+
 			</div>
 		</div>
 	</div>

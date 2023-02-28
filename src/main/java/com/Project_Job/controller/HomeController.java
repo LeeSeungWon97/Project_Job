@@ -27,7 +27,11 @@ public class HomeController {
 		System.out.println("메인페이지 이동 요청");
 		ModelAndView mav = new ModelAndView();
 		ArrayList<EmploymentDto> closeDeadLine = epsvc.closeDeadLine();
+		ArrayList<EmploymentDto> newEmploy = epsvc.newEmploy();
+		ArrayList<EmploymentDto> popularEmploy = epsvc.popularEmploy();
 		mav.addObject("closeDeadLine", closeDeadLine);
+		mav.addObject("newEmploy", newEmploy);
+		mav.addObject("popularEmploy",popularEmploy);
 		mav.setViewName("Main");
 		return mav;
 	}

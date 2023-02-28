@@ -351,14 +351,14 @@ public class EmploymentService {
 
 	public ArrayList<EmploymentDto> getEpList(String pageType) {
 		System.out.println("epsvc getEpList 호출");
-		System.out.println("pageType: "+ pageType);
+		System.out.println("pageType: " + pageType);
 		if (pageType == "employ") {
 			ArrayList<EmploymentDto> epList = epdao.getEpList();
 			return epList;
-		} else if(pageType == "recruitment"){
+		} else if (pageType == "recruitment") {
 			ArrayList<EmploymentDto> epList = epdao.getRcList();
 			return epList;
-		}else {
+		} else {
 			ArrayList<EmploymentDto> epList = epdao.getSearchList(pageType);
 			return epList;
 		}
@@ -384,10 +384,10 @@ public class EmploymentService {
 	}
 
 	// 자소서 작성
-	public int insertEssay(EssayDto essayInfo,String content) {
+	public int insertEssay(EssayDto essayInfo, String content) {
 		System.out.println("epsvc insertEssay요청");
 		System.out.println(essayInfo);
-		if(content.equals("x")) {
+		if (content.equals("x")) {
 			String maxEicode = epdao.selectMaxEsnum();
 			System.out.println("자소서코드 최대값 : " + maxEicode);
 			String escode = "ES";
@@ -402,8 +402,8 @@ public class EmploymentService {
 			essayInfo.setEsnum(escode);
 			int insertResult = epdao.insertEssay(essayInfo);
 			System.out.println("insertResult: " + insertResult);
-			return insertResult;			
-		}else {
+			return insertResult;
+		} else {
 			int updateResult = epdao.updateEssay(essayInfo);
 			System.out.println("updateResult: " + updateResult);
 			return updateResult;
@@ -541,29 +541,37 @@ public class EmploymentService {
 		}
 		System.out.println("공고코드 : " + epcode);
 
-			String epCheck = epdao.checkEp(epname, epciname);
-			if(epCheck != null) {
-				return 0;
-			}
-			if(epinfo.getEpname().equals("")) {
-				epinfo.setEpname("-");
-			}if(epinfo.getEpciname().equals("")) {
-				epinfo.setEpciname("-");
-			}if(epinfo.getEpcareer().equals("")) {
-				epinfo.setEpcareer("-");
-			}if(epinfo.getEpedu().equals("")) {
-				epinfo.setEpedu("-");
-			}if(epinfo.getEptype().equals("")) {
-				epinfo.setEptype("-");
-			}if(epinfo.getEpmoney().equals("")) {
-				epinfo.setEpmoney("회사내규에 따름");
-			}if(epinfo.getEptime().equals("")) {
-				epinfo.setEptime("시간협의");
-			}if(epinfo.getEparea().equals("")) {
-				epinfo.setEparea("-");
-			}if(epinfo.getEptreat().equals("")) {
-				epinfo.setEptreat("-");
-			}
+		String epCheck = epdao.checkEp(epname, epciname);
+		if (epCheck != null) {
+			return 0;
+		}
+		if (epinfo.getEpname().equals("")) {
+			epinfo.setEpname("-");
+		}
+		if (epinfo.getEpciname().equals("")) {
+			epinfo.setEpciname("-");
+		}
+		if (epinfo.getEpcareer().equals("")) {
+			epinfo.setEpcareer("-");
+		}
+		if (epinfo.getEpedu().equals("")) {
+			epinfo.setEpedu("-");
+		}
+		if (epinfo.getEptype().equals("")) {
+			epinfo.setEptype("-");
+		}
+		if (epinfo.getEpmoney().equals("")) {
+			epinfo.setEpmoney("회사내규에 따름");
+		}
+		if (epinfo.getEptime().equals("")) {
+			epinfo.setEptime("시간협의");
+		}
+		if (epinfo.getEparea().equals("")) {
+			epinfo.setEparea("-");
+		}
+		if (epinfo.getEptreat().equals("")) {
+			epinfo.setEptreat("-");
+		}
 
 		epinfo.setEpnum(epcode);
 		epinfo.setEppost(eppost);
@@ -645,7 +653,7 @@ public class EmploymentService {
 				String[] reciname = ResumeInfo.get(i).getReciname().split("!@#");
 				resumeList.get(i).setReciname(reciname);
 			}
-			
+
 		}
 		//
 		return resumeList;
@@ -657,42 +665,44 @@ public class EmploymentService {
 		ArrayList<EmploymentDto> closeDeadLine = epdao.selectCloseDeadLine();
 		return closeDeadLine;
 	}
-	//열람 기업 목록
+
+	// 열람 기업 목록
 	public void updateReciname(String cmciname, String viewId) {
 		String selectResult = epdao.checkCmciname(cmciname);
 		System.out.println("updateReciname 호출");
-		if(selectResult == null) {
+		if (selectResult == null) {
 			String checkciname = epdao.checkCmcinameViewId(viewId);
-			cmciname = cmciname+"!@#";
-			if(checkciname.equals("x")) {
-				epdao.removeReciname(cmciname,viewId);	
-			}else {
-			epdao.updateReciname(cmciname,viewId);
+			cmciname = cmciname + "!@#";
+			if (checkciname.equals("x")) {
+				epdao.removeReciname(cmciname, viewId);
+			} else {
+				epdao.updateReciname(cmciname, viewId);
 			}
 		}
 	}
-	//기업 번호 찾기
+
+	// 기업 번호 찾기
 	public String selectCinum(String viewReciname) {
 		String cinum = epdao.selectCinum(viewReciname);
 		return cinum;
 	}
 
-	//공고 검색기능
+	// 공고 검색기능
 	public String getEpListGson(String searchValue, String selectType) {
 		System.out.println("EmploymentService getEpListGson 호출");
-		ArrayList<EmploymentDto> epList = new  ArrayList<EmploymentDto>();
-		if(selectType.equals("공고")) {
-			epList = epdao.getSearchList(searchValue);			
+		ArrayList<EmploymentDto> epList = new ArrayList<EmploymentDto>();
+		if (selectType.equals("공고")) {
+			epList = epdao.getSearchList(searchValue);
 		} else {
 			epList = epdao.getSearchCiname(searchValue);
 		}
 		System.out.println();
-		for(int i = 0; i < epList.size();i++) {
+		for (int i = 0; i < epList.size(); i++) {
 			System.err.println(epList.get(i));
 		}
 		return new Gson().toJson(epList);
 	}
-	
+
 //	//공고 검색기능
 //	public String getEpListGson(String searchValue) {
 //		ArrayList<EmploymentDto> epList = epdao.getSearchList(searchValue);
@@ -700,14 +710,14 @@ public class EmploymentService {
 //		return new Gson().toJson(epList);
 //	}
 
-	//기업 검색기능
+	// 기업 검색기능
 	public String getCiListGson(String searchValue) {
 		ArrayList<CinfoDto> ciList = epdao.getCiList(searchValue);
 		System.out.println();
 		return new Gson().toJson(ciList);
 	}
 
-	//기업 상세페이지 공고 찾기
+	// 기업 상세페이지 공고 찾기
 	public ArrayList<EmploymentDto> cinfoEpList(String cinum) {
 		ArrayList<EmploymentDto> epList = epdao.cinfoEpList(cinum);
 		System.out.println();
@@ -719,18 +729,18 @@ public class EmploymentService {
 		System.out.println("EmploymentService findEssay() 호출");
 		ArrEssayDto essay = new ArrEssayDto();
 		try {
-			EssayDto myessay = epdao.selectEssay(epnum,loginId);
+			EssayDto myessay = epdao.selectEssay(epnum, loginId);
 			System.out.println(myessay);
-			if(myessay == null) {
+			if (myessay == null) {
 				return null;
-			}else {
+			} else {
 				essay.setEsnum(myessay.getEsnum());
 				essay.setEsciname(myessay.getEsciname());
 				essay.setEsepnum(myessay.getEsepnum());
 				essay.setEsmid(myessay.getEsmid());
 				essay.setEscontents(myessay.getEscontents().split("!@#"));
 				essay.setEsstate(myessay.getEsstate());
-				return essay;				
+				return essay;
 			}
 		} catch (Exception e) {
 			System.out.println("에러");
@@ -741,9 +751,29 @@ public class EmploymentService {
 	public String checkEssay(String epnum, String loginId) {
 		String result = "N";
 		EssayDto checkEssay = epdao.selectEssay(epnum, loginId);
-		if(checkEssay != null) {
+		if (checkEssay != null) {
 			result = "Y";
 		}
 		return result;
+	}
+
+	// 최신 등록 공고
+	public ArrayList<EmploymentDto> newEmploy() {
+		System.out.println("EmploymentService newEmploy() 호출");
+		ArrayList<EmploymentDto> newEmploy = epdao.selectNewEmploy();
+		return newEmploy;
+	}
+
+	// 인기 공고
+	public ArrayList<EmploymentDto> popularEmploy() {
+		System.out.println("EmploymentService popularEmploy() 호츌");
+		ArrayList<EmploymentDto> popularEmploy = new ArrayList<EmploymentDto>();
+		ArrayList<String> popularEpName = epdao.selectPopularEpName();
+		for (int i = 0; i < popularEpName.size(); i++) {
+			String epnum = popularEpName.get(i);
+			EmploymentDto epInfo = epdao.selectEpInfo(epnum);
+			popularEmploy.add(epInfo);
+		}
+		return popularEmploy;
 	}
 }
