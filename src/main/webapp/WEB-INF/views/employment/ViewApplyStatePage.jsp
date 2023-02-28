@@ -89,7 +89,7 @@
 									<c:forEach items="${ApplyList}" var="apply">
 										<div class="row" style="padding: 10px; border-bottom-style: dotted;">
 											<div class="col-4">
-												<p class="lead">${apply.CINAME}</p>
+												<p class="lead">${apply.EPCINAME}</p>
 											</div>
 											<div class="col-6">
 												<p class="lead">공고명 :${apply.EPNAME}</p>

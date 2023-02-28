@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.Project_Job.dto.ApplyStateDto;
 import com.Project_Job.dto.ArrResumeDto;
 import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.EmploymentDto;
@@ -106,49 +107,37 @@ public interface EmploymentDao {
 
 	@Select("SELECT * FROM CINFO WHERE CINUM = #{cinum}")
 	CinfoDto viewCinfo(String cinum);
-	
+
 	@Select(" SELECT AP.APEPNUM, AP.APREMID,M.MNAME, EP.EPNAME,EP.EPNUM,TO_CHAR(EPDEADLINE,'YY-MM-DD') AS EPDEADLINE ,CI.CINAME,CI.CINUM , CM.CMID  "
-			+ " FROM "
-			+ " APPLYSTATE AP, EMPLOYMENT EP, CINFO CI, CMEMBERS CM, MEMBERS M"
-			+ " WHERE AP.APEPNUM = EP.EPNUM "
-			+ " AND AP.APREMID = M.MID "
-			+ " AND EP.EPCINAME = CI.CINAME "
-			+ " AND CI.CINUM = CM.CMCINUM "
-			+ " AND CMID = #{loginId} ")
+			+ " FROM " + " APPLYSTATE AP, EMPLOYMENT EP, CINFO CI, CMEMBERS CM, MEMBERS M"
+			+ " WHERE AP.APEPNUM = EP.EPNUM " + " AND AP.APREMID = M.MID " + " AND EP.EPCINAME = CI.CINAME "
+			+ " AND CI.CINUM = CM.CMCINUM " + " AND CMID = #{loginId} ")
 	ArrayList<Map<String, String>> viewApplyCmember(String loginId);
-	
-	@Select(" SELECT AP.APEPNUM,AP.APSTATE, AP.APREMID,M.MNAME, EP.EPNAME,EP.EPNUM,TO_CHAR(EPDEADLINE,'YY-MM-DD') AS EPDEADLINE ,CI.CINAME,CI.CINUM , M.MID  "
-			+ " FROM "
-			+ " APPLYSTATE AP, EMPLOYMENT EP, CINFO CI,  MEMBERS M "
-			+ " WHERE AP.APEPNUM = EP.EPNUM "
-			+ " AND AP.APREMID = M.MID "
-			+ " AND EP.EPCINAME = CI.CINAME "
-			+ " AND MID = #{loginId}")
+
+	@Select("SELECT AP.APEPNUM,AP.APSTATE, AP.APREMID,EP.EPCINAME, EP.EPNAME,EP.EPNUM,TO_CHAR(EPDEADLINE,'YY-MM-DD') AS EPDEADLINE FROM APPLYSTATE AP INNER JOIN EMPLOYMENT EP ON  AP.APEPNUM = EP.EPNUM WHERE AP.APREMID = #{loginId}")
 	ArrayList<Map<String, String>> viewApplyMember(String loginId);
-	
+
 	@Select("SELECT * FROM MEMBERS WHERE MID = #{viewId} ")
 	MemberDto selectViewInfo(String viewId);
-	
+
 	@Select("SELECT * FROM RESUME ")
 	ArrayList<ArrResumeDto> viewResumeInfo();
-	
+
 	@Select("SELECT * FROM RESUME ")
 	ArrayList<ResumeDto> SelectResumeInfo();
-	
+
 	@Select("SELECT RECINAME FROM RESUME WHERE RECINAME LIKE '%${cmciname}%'  ")
 	String checkCmciname(String cmciname);
-	
-	@Update("UPDATE RESUME SET RECINAME = CONCAT(RECINAME, #{cmciname}) "
-			+ " WHERE REMID = #{viewId} ")
-	void updateReciname(@Param("cmciname")String cmciname,@Param("viewId")String viewId);
-	
+
+	@Update("UPDATE RESUME SET RECINAME = CONCAT(RECINAME, #{cmciname}) " + " WHERE REMID = #{viewId} ")
+	void updateReciname(@Param("cmciname") String cmciname, @Param("viewId") String viewId);
+
 	@Select("SELECT RECINAME FROM RESUME WHERE REMID = #{viewId} ")
 	String checkCmcinameViewId(String viewId);
-	
-	@Update("UPDATE RESUME SET RECINAME = #{cmciname} "
-			+ " WHERE REMID = #{viewId} ")
-	void removeReciname(@Param("cmciname")String cmciname,@Param("viewId")String viewId);
-	
+
+	@Update("UPDATE RESUME SET RECINAME = #{cmciname} " + " WHERE REMID = #{viewId} ")
+	void removeReciname(@Param("cmciname") String cmciname, @Param("viewId") String viewId);
+
 	@Select("SELECT CINUM FROM CINFO WHERE CINAME = #{viewReciname} ")
 	String selectCinum(String viewReciname);
 
@@ -160,7 +149,7 @@ public interface EmploymentDao {
 
 	@Select("SELECT EPNAME, EPDEADLINE, EPCINAME FROM(SELECT * FROM EMPLOYMENT WHERE TO_CHAR(SYSDATE,'YYYYMMDD') <= TO_CHAR(EPDEADLINE,'YYYYMMDD') ORDER BY EPDEADLINE ASC) WHERE ROWNUM <= 5")
 	ArrayList<EmploymentDto> selectCloseDeadLine();
-	
+
 	@Select("SELECT EPNUM, EPNAME, EPCINAME, EPEDU, EPCAREER, EPTREAT, EPTYPE, EPMONEY, EPAREA, EPTIME, TO_CHAR(EPPOST,'YY-MM-DD') AS EPPOST, TO_CHAR(EPDEADLINE,'YY-MM-DD') AS EPDEADLINE, EPSTATE, EPESSTATE  FROM EMPLOYMENT EP, CINFO CI WHERE EP.EPCINAME = CI.CINAME AND CI.CINUM = #{cinum}")
 	ArrayList<EmploymentDto> cinfoEpList(String cinum);
 
@@ -181,5 +170,8 @@ public interface EmploymentDao {
 
 	@Select("SELECT * FROM EMPLOYMENT WHERE EPNUM = #{epnum}")
 	EmploymentDto selectEpInfo(String epnum);
+
+	@Select("SELECT * FROM APPLYSTATE WHERE APREMID = #{loginId}")
+	ArrayList<ApplyStateDto> selectMyApply(String loginId);
 
 }
