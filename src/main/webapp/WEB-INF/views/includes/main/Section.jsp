@@ -107,35 +107,35 @@
 									<%-- 개인회원 로그인 --%>
 									<c:if test="${sessionScope.loginType == 'P' }">
 										<a href="${pageContext.request.contextPath }/myInfo">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 75%;">내정보</button>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">내정보</button>
 										</a>
-										<a href="${pageContext.request.contextPath }/myResume">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 75%;">이력서</button>
+										<a href="${pageContext.request.contextPath }/myResume" >
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">이력서</button>
 										</a>
 										<a href="${pageContext.request.contextPath }/viewApply">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 75%;">지원현황</button>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">지원현황</button>
 										</a>
 										<a href="${pageContext.request.contextPath }/myScrap">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 75%;">스크랩</button>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">스크랩</button>
 										</a>
 										<a href="${pageContext.request.contextPath }/RecinameList">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 75%;">열람기업</button>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">열람기업</button>
 										</a>
 									</c:if>
 
 									<%-- 기업회원 로그인 --%>
 									<c:if test="${sessionScope.loginType == 'C' }">
 										<a href="${pageContext.request.contextPath }/myInfo">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 75%;">내정보</button>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">내정보</button>
 										</a>
 										<a href="${pageContext.request.contextPath }/myResume">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 75%;">이력서</button>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">이력서</button>
 										</a>
 										<a href="${pageContext.request.contextPath }/myScrap">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 75%;">스크랩</button>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">스크랩</button>
 										</a>
 										<a href="${pageContext.request.contextPath }/WriteEmploymentPage">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 75%;">공고등록</button>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">공고등록</button>
 										</a>
 									</c:if>
 
@@ -146,28 +146,33 @@
 				</div>
 			</div>
 			<div class="section-r-bottom">
-				<div class="mt-2">
-					<div class="card-body">
-						<div class="container text-center">
-							<table class="table table-bordered">
-								<tr>
-									<th scope="col"><a href="${pageContext.request.contextPath }/calendar">공채달력</a></th>
-									<th scope="col"><a href="">합격자소서</a></th>
-									<th scope="col"><a href="">취업후기</a></th>
-								</tr>
-							</table>
-						</div>
+				<div class="card-body mt-4 mx-auto">
+					<div class="text-center">
+						<table class="table table-bordered">
+							<tr>
+								<th scope="col"><a href="${pageContext.request.contextPath }/calendar">공채달력</a></th>
+								<th scope="col"><a href="">합격자소서</a></th>
+								<th scope="col"><a href="">취업후기</a></th>
+							</tr>
+						</table>
 					</div>
-					<div class="card-body">
-						<h5>인기 공고 Top 5</h5>
-						<ul style="list-style: none; padding-left: 0px;">
+				</div>
+				<div class="card-body mx-auto mb-2">
+					<div class="pop" style="border: 1px solid #dee2e6; border-radius: 0.25rem; padding: 1.5rem 1.5rem 0 1.5rem;">
+						<h5>채용 Top 5</h5>
+						<hr>
+						<ul style="list-style: none; padding-left: 0;">
 							<c:forEach items="${popularEmploy }" var="popularEmploy" varStatus="i">
-								<li><a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${popularEmploy.epnum}">${i.index + 1 }. ${popularEmploy.epname }</a></li>
+								<li>
+									<span>${i.index + 1 }. </span>
+									<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${popularEmploy.epnum}"> 
+										<span>${popularEmploy.epciname }</span>
+									</a>
+								</li>
 							</c:forEach>
 						</ul>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
