@@ -196,8 +196,8 @@ h2 {
 
 		function addSearchKeyA() {
 			var rowItem = "<div class=input-group>";
-			rowItem += "<input type='text' class='form-control resumeContent reedu' style='height: 60px;'>";
-			rowItem += "<input type='text' class='form-control resumeContent reedu' name='reedu' style='width: 300px; height: 60px;'>";
+			rowItem += "<input type='text' class='form-control resumeContent reedu' placeholder='재학기간' style='height: 60px;'>";
+			rowItem += "<input type='text' class='form-control resumeContent reedu' name='reedu' placeholder='학교명' style='width: 300px; height: 60px;'>";
 			rowItem += "</div>";
 
 			$('#reeduData').append(rowItem);
@@ -212,8 +212,8 @@ h2 {
 
 		function addSearchKeyB() {
 			var rowItem = "<div class=input-group>";
-			rowItem += "<input type='text' class='form-control resumeContent recarrer' style='height: 60px;'>";
-			rowItem += "<input type='text' class='form-control resumeContent recarrer' name='recarrer' style='width: 300px; height: 60px;'>";
+			rowItem += "<input type='text' class='form-control resumeContent recarrer' placeholder='경력기간' style='height: 60px;'>";
+			rowItem += "<input type='text' class='form-control resumeContent recarrer' name='recarrer' placeholder='회사명' style='width: 300px; height: 60px;'>";
 			rowItem += "</div>";
 
 			$('#recarrerData').append(rowItem);
@@ -228,8 +228,8 @@ h2 {
 
 		function addSearchKeyC() {
 			var rowItem = "<div class=input-group>";
-			rowItem += "<input type='text' class='form-control resumeContent react' style='height: 60px;'>";
-			rowItem += "<input type='text' class='form-control resumeContent react' name='react' style='width: 300px; height: 60px;'>";
+			rowItem += "<input type='text' class='form-control resumeContent react' placeholder='활동기간' style='height: 60px;'>";
+			rowItem += "<input type='text' class='form-control resumeContent react' name='react' placeholder='활동명' style='width: 300px; height: 60px;'>";
 			rowItem += "</div>";
 
 			$('#reactData').append(rowItem);
@@ -244,8 +244,8 @@ h2 {
 
 		function addSearchKeyD() {
 			var rowItem = "<div class=input-group>";
-			rowItem += "<input type='text' class='form-control resumeContent relicense' style='height: 60px;'>";
-			rowItem += "<input type='text' class='form-control resumeContent relicense' name='relicense' style='width: 300px; height: 60px;'>";
+			rowItem += "<input type='text' class='form-control resumeContent relicense' placeholder='취득일자' style='height: 60px;'>";
+			rowItem += "<input type='text' class='form-control resumeContent relicense' name='relicense' placeholder='자격증명' style='width: 300px; height: 60px;'>";
 			rowItem += "</div>";
 
 			$('#relicenseData').append(rowItem);

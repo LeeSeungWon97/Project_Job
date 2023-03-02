@@ -128,8 +128,8 @@
 										<a href="${pageContext.request.contextPath }/myInfo">
 											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">내정보</button>
 										</a>
-										<a href="${pageContext.request.contextPath }/myResume">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">이력서</button>
+										<a href="${pageContext.request.contextPath }/viewApply">
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">지원현황</button>
 										</a>
 										<a href="${pageContext.request.contextPath }/myScrap">
 											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">스크랩</button>

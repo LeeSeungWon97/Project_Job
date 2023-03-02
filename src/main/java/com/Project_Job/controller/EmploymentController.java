@@ -472,8 +472,10 @@ public class EmploymentController {
 	@RequestMapping(value = "/viewReciname")
 	public ModelAndView viewReciname(String viewReciname) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println("viewReciname호출");
+		System.out.println("viewReciname 호출");
+		System.out.println("viewReciname: " + viewReciname);
 		String cinum = epsvc.selectCinum(viewReciname);
+		System.out.println("cinum: " + cinum);
 		mav.setViewName("redirect:/viewCiInfo?cinum=" + cinum);
 		return mav;
 	}
