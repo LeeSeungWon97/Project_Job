@@ -3,15 +3,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>탈퇴</title>
+<!-- Bootstrap icons-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
+
 </head>
 <body>
+		<div class="col-lg- col-xl-8 mx-auto" style="text-align: center;">
+		<div class="card-body p-4 p-sm-5 mt-5">
 	<label>비밀번호</label>
 	<br>
-	<input type="password" id="inputPw">
-	<button onclick="checkPw()">확인</button>
+	<input type="password" id="inputPw" class="form-control mt-1">
+	<button onclick="checkPw()" class="btn btn-outline-danger mt-2">확인</button>
 	<input type="hidden" id="result">
-
+</div>
+</div>
 
 	<!-- jQuery -->
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>

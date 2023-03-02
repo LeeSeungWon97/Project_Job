@@ -148,7 +148,7 @@ p {
 
 						<div style="text-align: center; margin: 5px">
 							<a href="${pageContext.request.contextPath }/CinfoListPage">
-								<button type="button" class="btn btn-outline-danger btn-lg">
+								<button type="button" class="btn btn-outline-danger">
 									<i class="bi bi-file-excel"></i> 닫기
 								</button>
 							</a>

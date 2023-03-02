@@ -11,7 +11,7 @@
 
 				<div class="swiper mt-4">
 					<!-- Additional required wrapper -->
-					<h2>얼마 남지 않았어요!</h2>
+					<h2>얼마 남지않은 공고</h2>
 					<div class="swiper-wrapper">
 						<!-- Slides -->
 						<c:forEach items="${closeDeadLine}" var="closeDead">
@@ -25,14 +25,27 @@
 						</c:forEach>
 					</div>
 					<!-- If we need pagination -->
-					<div class="swiper-pagination"></div>
+					<!-- <div class="swiper-pagination"></div> -->
 
 				</div>
 			</div>
-
-
 			<div class="section-l-bottom">
-				<h5>공채목록</h5>
+				<div class="swiper mt-4">
+					<!-- Additional required wrapper -->
+					<h2>새로운 공고</h2>
+					<div class="swiper-wrapper">
+						<!-- Slides -->
+						<c:forEach items="${newEmploy}" var="newEmploy">
+							<div class="swiper-slide">
+								<h3>
+									<a href="">${newEmploy.epciname }</a>
+								</h3>
+								<hr>
+								<span>${newEmploy.epname }</span>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
 
 			</div>
 		</div>
@@ -56,9 +69,11 @@
 								<div class="d-flex justify-content-center gap-1">
 									<a href="${pageContext.request.contextPath }/join">
 										<button class="btn btn-outline-secondary btn-sm" type="button">회원가입</button>
-									</a> <a href="${pageContext.request.contextPath }/FindIdPage">
+									</a>
+									<a href="${pageContext.request.contextPath }/FindIdPage">
 										<button class="btn btn-outline-secondary btn-sm" type="button">아이디 찾기</button>
-									</a> <a href="${pageContext.request.contextPath }/FindPwPage">
+									</a>
+									<a href="${pageContext.request.contextPath }/FindPwPage">
 										<button class="btn btn-outline-secondary btn-sm" type="button">비밀번호 찾기</button>
 									</a>
 								</div>
@@ -78,7 +93,8 @@
 										</c:otherwise>
 									</c:choose>
 
-									&ensp;&ensp;&ensp;&ensp; <a href="${pageContext.request.contextPath }/logout">
+									&ensp;&ensp;&ensp;&ensp;
+									<a href="${pageContext.request.contextPath }/logout">
 										<button type="button" class="btn-lg" style="background-color: #539DDB; border: solid #539DDB;">
 											<span style="color: white;">로그아웃</span>
 										</button>
@@ -91,35 +107,35 @@
 									<%-- 개인회원 로그인 --%>
 									<c:if test="${sessionScope.loginType == 'P' }">
 										<a href="${pageContext.request.contextPath }/myInfo">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 75%;">내정보</button>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">내정보</button>
 										</a>
-										<a href="${pageContext.request.contextPath }/myResume">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 75%;">이력서</button>
+										<a href="${pageContext.request.contextPath }/myResume" >
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">이력서</button>
 										</a>
 										<a href="${pageContext.request.contextPath }/viewApply">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 75%;">지원현황</button>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">지원현황</button>
 										</a>
 										<a href="${pageContext.request.contextPath }/myScrap">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 75%;">스크랩</button>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">스크랩</button>
 										</a>
 										<a href="${pageContext.request.contextPath }/RecinameList">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 75%;">열람기업</button>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">열람기업</button>
 										</a>
 									</c:if>
 
 									<%-- 기업회원 로그인 --%>
 									<c:if test="${sessionScope.loginType == 'C' }">
 										<a href="${pageContext.request.contextPath }/myInfo">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 75%;">내정보</button>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">내정보</button>
 										</a>
 										<a href="${pageContext.request.contextPath }/myResume">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 75%;">이력서</button>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">이력서</button>
 										</a>
 										<a href="${pageContext.request.contextPath }/myScrap">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 75%;">스크랩</button>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">스크랩</button>
 										</a>
 										<a href="${pageContext.request.contextPath }/WriteEmploymentPage">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 75%;">공고등록</button>
+											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">공고등록</button>
 										</a>
 									</c:if>
 
@@ -130,17 +146,31 @@
 				</div>
 			</div>
 			<div class="section-r-bottom">
-				<div class="mt-2">
-					<div class="card-body">
-						<div class="container text-center">
-							<table class="table table-bordered">
-								<tr>
-									<th scope="col"><a href="${pageContext.request.contextPath }/calendar">공채달력</a></th>
-									<th scope="col"><a href="">합격자소서</a></th>
-									<th scope="col"><a href="">취업후기</a></th>
-								</tr>
-							</table>
-						</div>
+				<div class="card-body mt-4 mx-auto">
+					<div class="text-center">
+						<table class="table table-bordered">
+							<tr>
+								<th scope="col"><a href="${pageContext.request.contextPath }/calendar">공채달력</a></th>
+								<th scope="col"><a href="">합격자소서</a></th>
+								<th scope="col"><a href="">취업후기</a></th>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="card-body mx-auto mb-2">
+					<div class="pop" style="border: 1px solid #dee2e6; border-radius: 0.25rem; padding: 1.5rem 1.5rem 0 1.5rem;">
+						<h5>채용 Top 5</h5>
+						<hr>
+						<ul style="list-style: none; padding-left: 0;">
+							<c:forEach items="${popularEmploy }" var="popularEmploy" varStatus="i">
+								<li>
+									<span>${i.index + 1 }. </span>
+									<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${popularEmploy.epnum}"> 
+										<span>${popularEmploy.epciname }</span>
+									</a>
+								</li>
+							</c:forEach>
+						</ul>
 					</div>
 				</div>
 			</div>

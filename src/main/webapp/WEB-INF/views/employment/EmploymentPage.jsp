@@ -82,8 +82,9 @@
 	text-align: center;
 	color: #79BAEC;
 }
-.page-link{
-	cursor:pointer;
+
+.page-link {
+	cursor: pointer;
 }
 </style>
 </head>
@@ -101,59 +102,71 @@
 
 	<!-- Section -->
 	<section id="section">
-		
-			<div class="card mt-4 mb-4 border-0 shadow rounded-3" style="width: 1280px;">
-				<div class="table-responsive">		
-					<div class="d-flex justify-content-center">
+
+		<div class="card mt-4 mb-4 border-0 shadow rounded-3" style="width: 1280px;">
+			<div class="table-responsive">
+				<div class="d-flex justify-content-center">
 					<div class="input-group mx-3 mt-4 mb-4" style="width: 100%;">
 						<select id="selectType" class="form-select" style="border: 1px solid #ddd; max-width: 120px;">
 							<option value="공고">공고명</option>
 							<option value="기업">기업명</option>
-						</select> 
+						</select>
 						<input class="form-control" type="search" placeholder="기업명, 공고제목 등 검색" aria-label="Search" name="searchValue" id="searchInput" style="border: 1px solid #ddd;">
 						<button class="search-btn " onclick="searchValue()" style="border: 1px solid #ddd; height: auto;">
 
 							<img src="${pageContext.request.contextPath }/resources/assets/img/update/search-icon.png" style="width: 90%; height: auto;">
 						</button>
 					</div>
-					</div>	
-					<!-- <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+				</div>
+				<!-- <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
   					<button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button> -->
 
-					<!--  -->
-					<table class="table">
-						<thead style="background-color: #f2f9fe; border-top: 1px solid #eaeaea;" id="ajaxCiname">
-							<tr style="color: #888; text-align: center;">
-								<th scope="col" style="">회사</th>
-								<th scope="col"></th>
-								<th scope="col" style="">공고명</th>
-								<th scope="col" style="">마감일</th>
-								<th scope="col"></th>
+				<!--  -->
+				<table class="table">
+					<thead style="background-color: #f2f9fe; border-top: 1px solid #eaeaea;" id="ajaxCiname">
+						<tr style="color: #888; text-align: center;">
+							<th scope="col" style="">회사</th>
+							<th scope="col"></th>
+							<th scope="col" style="">공고명</th>
+							<th scope="col" style="">마감일</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody id="epListArea">
+						<c:forEach items="${epList }" var="employ">
+							<tr>
+								<td class="emci">
+									<a href="">
+										<span>${employ.epciname }</span>
+									</a>
+								</td>
+								<td class="emnu">
+									<input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐">
+								</td>
+								<td class="emna">
+									<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }">
+										<span style="color: #333; font-weight: bold;">${employ.epname }</span>
+									</a>
+								</td>
+								<td class="emde">
+									<span>${employ.epdeadline }</span>
+								</td>
+								<td class="embu">
+									<button class="mt-1" onclick="WriteResume('sideX','${employ.epnum }')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">
+										<span style="color: white;">즉시지원</span>
+									</button>
+								</td>
 							</tr>
-						</thead>
-						<tbody id="epListArea">
-							<c:forEach items="${epList }" var="employ">
-								<tr>
-									<td class="emci"><span>${employ.epciname }</span></td>
-									<td class="emnu"><input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"></td>
-									<td class="emna"><a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }"><span style="color: #333; font-weight: bold;">${employ.epname }</span></a></td>
-									<td class="emde"><span>${employ.epdeadline }</span></td>
-									<td class="embu">
-										<button class="mt-1" onclick="WriteResume('sideX','${employ.epnum }')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">
-											<span style="color: white;">즉시지원</span>
-										</button>
-									</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-				<div class="mx-auto my-auto">
-					<ul class="pagination">
-					</ul>
-				</div>
+						</c:forEach>
+					</tbody>
+				</table>
 			</div>
-	
+			<div class="mx-auto my-auto">
+				<ul class="pagination">
+				</ul>
+			</div>
+		</div>
+
 	</section>
 
 	<input type="hidden" id="loginType" value="${sessionScope.loginType }">
@@ -234,29 +247,31 @@
 					return null;
 				} else{
 					for(var i = 0; i<epListArea.length;i++){
-						output += '<tr>';
-						output += '<td class="emci">';
-						output += '<a href="">';
-						output += '<span>'+epListArea[i].epciname+'</span>';
-						output += '</a>';
-						output += '</td>';
-						output += '<td class="emnu">';
-						output += '<input type="button" class="scrap" id="'+epListArea[i].epnum+'" onclick="checkVal(\''+epListArea[i].epnum+'\', this)" value="⭐">';
-						output += '</td>';
-						output += '<td class="emna">';
-						output += '<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum='+epListArea[i].epnum+'">';
-						output += '<span style="color: #333; font-weight: bold;">'+epListArea[i].epname+'</span>';
-						output += '</a>';
-						output += '</td>';
-						output += '<td class="emde">';
-						output += '<span>'+epListArea[i].epdeadline+'</span>';
-						output += '</td>';
-						output += '<td class="embu">';
-						output += '<button class="mt-1" onclick="WriteResume(\'sideX\',\''+epListArea[i].epnum+'\')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">';
-						output += '<span style="color: white;">즉시지원</span>';
-						output += '</button>';
-						output += '</td>';
-						output += '</tr>';
+						if(epListArea[i].epesstate == 'x'){
+							output += '<tr>';
+							output += '<td class="emci">';
+							output += '<a href="">';
+							output += '<span>'+epListArea[i].epciname+'</span>';
+							output += '</a>';
+							output += '</td>';
+							output += '<td class="emnu">';
+							output += '<input type="button" class="scrap" id="'+epListArea[i].epnum+'" onclick="checkVal(\''+epListArea[i].epnum+'\', this)" value="⭐">';
+							output += '</td>';
+							output += '<td class="emna">';
+							output += '<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum='+epListArea[i].epnum+'">';
+							output += '<span style="color: #333; font-weight: bold;">'+epListArea[i].epname+'</span>';
+							output += '</a>';
+							output += '</td>';
+							output += '<td class="emde">';
+							output += '<span>'+epListArea[i].epdeadline+'</span>';
+							output += '</td>';
+							output += '<td class="embu">';
+							output += '<button class="mt-1" onclick="WriteResume(\'sideX\',\''+epListArea[i].epnum+'\')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">';
+							output += '<span style="color: white;">즉시지원</span>';
+							output += '</button>';
+							output += '</td>';
+							output += '</tr>';	
+						}
 					}	
 				}
 				element.html(output);

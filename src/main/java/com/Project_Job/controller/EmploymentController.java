@@ -79,11 +79,24 @@ public class EmploymentController {
 	}
 	// 공채 페이지 요청
 	@RequestMapping(value = "/RecruitmentPage")
-	public ModelAndView RecruitmentPage() {
+	public ModelAndView RecruitmentPage(int pageNum) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("RecruitmentPage요청");
-		ArrayList<EmploymentDto> epList = epsvc.getEpList("recruitment");
+		ArrayList<EmploymentDto> epListAll = epsvc.getEpList("recruitment");
+		ArrayList<EmploymentDto> epList = new ArrayList<EmploymentDto>();
+		int pageIdx = pageNum;
+		int pageIdxMax = epListAll.size()/15 + 1;
+		int startIdx = 15 * (pageIdx - 1);
+		int endIdx = startIdx + 14;
+		if(endIdx >= epListAll.size()) {
+			endIdx = epListAll.size();
+		}
+		for (int i = startIdx; i < endIdx; i++) {
+			epList.add(epListAll.get(i));
+		}
 		mav.addObject("epList", epList);
+		mav.addObject("pageNum", pageIdx);
+		mav.addObject("pageIdxMax",pageIdxMax);
 		mav.setViewName("employment/RecruitmentPage");
 		return mav;
 	}
