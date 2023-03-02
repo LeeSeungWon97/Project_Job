@@ -134,22 +134,10 @@
 						<tbody id="epListArea">
 							<c:forEach items="${epList }" var="employ">
 								<tr>
-									<td class="emci">
-										<a href="">
-											<span>${employ.epciname }</span>
-										</a>
-									</td>
-									<td class="emnu">
-										<input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐">
-									</td>
-									<td class="emna">
-										<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }">
-											<span style="color: #333; font-weight: bold;">${employ.epname }</span>
-										</a>
-									</td>
-									<td class="emde">
-										<span>${employ.epdeadline }</span>
-									</td>
+									<td class="emci"><span>${employ.epciname }</span></td>
+									<td class="emnu"><input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"></td>
+									<td class="emna"><a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }"><span style="color: #333; font-weight: bold;">${employ.epname }</span></a></td>
+									<td class="emde"><span>${employ.epdeadline }</span></td>
 									<td class="embu">
 										<button class="mt-1" onclick="WriteResume('sideX','${employ.epnum }')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">
 											<span style="color: white;">즉시지원</span>
@@ -195,9 +183,11 @@
 	var loginType = $('#loginType').val();
 	var loginId = $('#loginId').val();	
 	$(document).ready(function(){
+		if(loginType == 'P'){
 		selectScrapInfo();
 		createPageBtn();
-	});
+	}
+});
 	
 	function pageLoad(pageBtn){
 		var pageNum = pageBtn.innerText;

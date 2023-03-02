@@ -185,11 +185,14 @@ color:  #79BAEC;
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <script type="text/javascript">
-	$(document).ready(function(){
-		selectScrapInfo();
-	});
 	var loginType = $('#loginType').val();
 	var loginId = $('#loginId').val();	
+	
+	$(document).ready(function(){
+		if(loginType == 'P'){
+			selectScrapInfo();
+			}
+	});
 	
 	function WriteResume(epnum, epciname, epname) {
 		var popupWidth = 900;

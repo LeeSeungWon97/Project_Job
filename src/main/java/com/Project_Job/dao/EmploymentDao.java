@@ -89,8 +89,8 @@ public interface EmploymentDao {
 	@Select("SELECT * FROM SCRAPINFO WHERE SPMID = #{spmid} ")
 	ArrayList<ScrapDto> selectScrapInfo(String spmid);
 
-	@Select("SELECT * FROM EMPLOYMENT WHERE EPNAME LIKE '%' || #{searchValue} || '%'")
-	ArrayList<EmploymentDto> getSearchList(String searchValue);
+	@Select("SELECT * FROM EMPLOYMENT WHERE EPNAME LIKE '%${pageType}%' AND EPESSTATE = 'x' ")
+	ArrayList<EmploymentDto> getSearchList(String pageType);
 
 	@Select("SELECT * FROM CINFO WHERE CINAME LIKE '%${searchValue}%'  ")
 	ArrayList<CinfoDto> getCiList(String searchValue);
@@ -117,13 +117,12 @@ public interface EmploymentDao {
 			+ " AND CMID = #{loginId} ")
 	ArrayList<Map<String, String>> viewApplyCmember(String loginId);
 	
-	@Select(" SELECT AP.APEPNUM,AP.APSTATE, AP.APREMID,M.MNAME, EP.EPNAME,EP.EPNUM,TO_CHAR(EPDEADLINE,'YY-MM-DD') AS EPDEADLINE ,CI.CINAME,CI.CINUM , M.MID  "
+	@Select(" SELECT AP.APEPNUM,AP.APSTATE, AP.APREMID,M.MNAME, EP.EPNAME,EP.EPNUM,TO_CHAR(EPDEADLINE,'YY-MM-DD') AS EPDEADLINE  , M.MID  "
 			+ " FROM "
-			+ " APPLYSTATE AP, EMPLOYMENT EP, CINFO CI,  MEMBERS M "
-			+ " WHERE AP.APEPNUM = EP.EPNUM "
-			+ " AND AP.APREMID = M.MID "
-			+ " AND EP.EPCINAME = CI.CINAME "
-			+ " AND MID = #{loginId}")
+			+ " APPLYSTATE AP "
+			+ "  INNER JOIN EMPLOYMENT EP ON  AP.APEPNUM = EP.EPNUM  "
+			+ "  INNER JOIN MEMBERS M  ON   AP.APREMID = M.MID  "
+			+ " WHERE MID = #{loginId} ")
 	ArrayList<Map<String, String>> viewApplyMember(String loginId);
 	
 	@Select("SELECT * FROM MEMBERS WHERE MID = #{viewId} ")

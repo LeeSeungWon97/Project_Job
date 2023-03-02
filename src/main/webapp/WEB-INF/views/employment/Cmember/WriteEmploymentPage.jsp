@@ -46,7 +46,15 @@
 				</div>
 				<div class="input-group input-group-lg mb-3">
 					<span class="input-group-text" style="width: 15%; justify-content: center;">학력</span>
-					<input type="text" class="form-control" name="epedu" value="">
+					<select name="epedu" class="form-control">
+							<option value="대학교졸업(4년)">대학교졸업(4년)</option>
+							<option value="대졸(2년)">대졸(2년)</option>
+							<option value="대학원 석사 졸업">대학원 석사 졸업</option>
+							<option value="대학원 박사 졸업">대학원 박사 졸업</option>
+							<option value="고등학교 졸업">고등학교 졸업</option>
+							<option value="학력무관">학력무관</option>
+					</select> 
+					<!-- <input type="text" class="form-control" name="epedu" value=""> -->
 				</div>
 				<div class="input-group input-group-lg mb-3">
 					<span class="input-group-text" style="width: 15%; justify-content: center;">경력</span>
@@ -58,7 +66,17 @@
 				</div>
 				<div class="input-group input-group-lg mb-3">
 					<span class="input-group-text" style="width: 15%; justify-content: center;">고용형태</span>
-					<input type="text" class="form-control" name="eptype" value="">
+					<select name="eptype" class="form-control">
+							<option value="정규직">정규직</option>
+							<option value="계약직">계약직</option>
+							<option value="인턴">인턴</option>
+							<option value="파견직">파견직</option>
+							<option value="도급">도급</option>
+							<option value="프리랜서">프리랜서</option>
+							<option value="아르바이트">아르바이트</option>
+							<option value="연수생/교육생">연수생/교육생</option>
+					</select> 
+					<!-- <input type="text" class="form-control" name="eptype" value=""> -->
 				</div>
 				<div class="input-group input-group-lg mb-3">
 					<span class="input-group-text" style="width: 15%; justify-content: center;">급여</span>
@@ -66,7 +84,7 @@
 				</div>
 				<div class="input-group input-group-lg mb-3">
 					<span class="input-group-text" style="width: 15%; justify-content: center;">지역</span>
-					<input type="text" class="form-control" name="eparea" value="${sessionScope.cinfo.ciaddr}" readonly="readonly" style="background-color: white;">
+					<input type="text" class="form-control" name="eparea" value="" readonly="readonly" style="background-color: white;">
 				</div>
 		
 				<div class="input-group input-group-lg mb-3">
