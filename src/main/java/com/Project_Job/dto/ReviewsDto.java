@@ -1,7 +1,5 @@
 package com.Project_Job.dto;
 
-import java.util.Arrays;
-
 public class ReviewsDto {
 	private String rvciname;
 	private String rvdate;
@@ -9,9 +7,10 @@ public class ReviewsDto {
 	private String rvobj;
 	private String rvdif;
 	private String rvmid;
-	private String[] rvcontents;
+	private String rvcontents;
 	private String rvtype;
 	private String rvstate;
+	
 	public String getRvciname() {
 		return rvciname;
 	}
@@ -48,10 +47,10 @@ public class ReviewsDto {
 	public void setRvmid(String rvmid) {
 		this.rvmid = rvmid;
 	}
-	public String[] getRvcontents() {
+	public String getRvcontents() {
 		return rvcontents;
 	}
-	public void setRvcontents(String[] rvcontents) {
+	public void setRvcontents(String rvcontents) {
 		this.rvcontents = rvcontents;
 	}
 	public String getRvtype() {
@@ -65,12 +64,6 @@ public class ReviewsDto {
 	}
 	public void setRvstate(String rvstate) {
 		this.rvstate = rvstate;
-	}
-	@Override
-	public String toString() {
-		return "ReviewsDto [rvciname=" + rvciname + ", rvdate=" + rvdate + ", rveptype=" + rveptype + ", rvobj=" + rvobj
-				+ ", rvdif=" + rvdif + ", rvmid=" + rvmid + ", rvcontents=" + Arrays.toString(rvcontents) + ", rvtype="
-				+ rvtype + ", rvstate=" + rvstate + "]";
 	}
 	
 	

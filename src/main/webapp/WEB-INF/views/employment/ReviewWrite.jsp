@@ -429,6 +429,7 @@ h1 {
 					console.log(result);
 					if(result == 1){
 					alert("등록 요청 완료!");
+					window.close();
 					}else{
 						alert("등록 요청 실패");							
 					}
