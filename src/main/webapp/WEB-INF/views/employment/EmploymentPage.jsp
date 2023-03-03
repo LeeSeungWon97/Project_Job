@@ -132,7 +132,7 @@
 							<th scope="col"></th>
 						</tr>
 					</thead>
-					<tbody id="epListArea">
+					<tbody id="epListArea" style="border-top: none;">
 						<c:forEach items="${epList }" var="employ">
 							<tr>			
 								<td class="emci">

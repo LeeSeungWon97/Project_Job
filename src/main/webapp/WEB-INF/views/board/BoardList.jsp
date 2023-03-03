@@ -7,11 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>좋은 직장을 위한 취업플랫폼, 굿잡</title>
+<title>커뮤니티</title>
 <link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/update/main-icon.png" />
-
-<!-- Bootstrap icons-->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
 
@@ -25,9 +22,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-
 </head>
 <body>
 	<!-- Header -->
@@ -36,52 +30,78 @@
 	<!-- Nav -->
 	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
 
-	<!--start board  -->
-	<div class="row">
-		<div class="col-2"></div>
-		<div class="col-8">
-			<!-- Page Heading -->
-			<div class="row">
-				<div align="right">
-					<button style="align-items:" onclick="boardWritePage()">글작성버튼</button>
-				</div>
-			</div>
-			<div class="row" style="text-align: center; padding-top: 20px;">
-				<div class="col-4" style="">
-					<button>좋아요 남긴 글</button>
-				</div>
-				<div class="col-4">
-					<button>인기</button>
-				</div>
-				<div class="col-4">
-					<button>전체</button>
-				</div>
-			</div>
-			<!-- Content Row -->
-			<!-- DataTales Example -->
-			<div>
-				<div style="padding: 10px;" class="list-group reserveArea">
-					 <c:forEach items="${boardList}" var="board"> 
-					 
-					<div class="row" style="padding: 10px; border-style: groove;">
-						<a href="${pageContext.request.contextPath }/ViewBoardInfo?bno=${board.bno}">
-						<div class="row-2">
-							<p class="lead">${board.btitle}</p>
-						</div>
-						<div class="row-5" style="overflow:hidden;">
-							<p class="lead">${board.bcontents }</p>
-						</div>
-						</a>
-						<div class="row-2">
-							<div class="small mb-1">${board.bhope}, 조회수: ${board.bcount} 댓글 : ${board.breplycount}</div>
-						</div>
+	<!-- Section  -->
+	<section id="section">
+
+
+		<div class="card mt-4 mb-4 shadow rounded-3" style="width: 1000px; border: 1px solid #e3e6f0;">
+
+			<div class="d-flex justify-content-between">
+				<div class="mt-4 mb-3">
+					<div class="input-group mx-3" style="width: 100%;">
+						<select id="selectType" class="form-select" style="border: 1px solid #ddd; max-width: 120px;">
+							<option value="공고">제목</option>
+							<option value="기업">내용</option>
+							<option value="기업">작성자</option>
+						</select> <input class="form-control" type="search" placeholder="검색어를 입력해주세요" aria-label="Search" name="searchValue" id="searchInput" style="border: 1px solid #ddd;">
+						<button class="search-btn" onclick="" style="border: 1px solid #ddd; height: auto;">
+							<img src="${pageContext.request.contextPath }/resources/assets/img/update/search-icon.png" style="width: 90%; height: auto;">
+						</button>
 					</div>
-					</c:forEach> 
 				</div>
-
+				<div class="mt-4 mb-3">
+					<div class="mx-3">
+						<button class="btn-dark btn-lg" style="color: white;" onclick="boardWritePage()">글쓰기</button>
+					</div>
+				</div>
 			</div>
 
+
+			<div class="card-body">
+				<div class="table-responsive">
+					<div class="row" style="line-height: 2;">
+						<table class="table">
+							<thead style="background-color: #f9f9f8; border-top: 1px solid black;">
+								<tr>
+									<th scope="col" style="padding: 12px; text-align: center;">번호</th>
+									<th scope="col" style="padding: 12px;">제목</th>
+									<th scope="col" style="padding: 12px;">작성자</th>
+									<th scope="col" style="padding: 12px; text-align: center;">작성일</th>
+									<th scope="col" style="padding: 12px; text-align: center;">조회</th>
+								</tr>
+							</thead>
+
+							<tbody class="reserveArea" style="border-top: 1px solid #eaeaea;">
+								<c:forEach items="${boardList}" var="board">
+									<tr>
+										<td style="padding: 12px; width: 10%; text-align: center;">${board.bno}</td>
+										<td style="padding: 12px; width: 30%;"><a href="${pageContext.request.contextPath }/ViewBoardInfo?bno=${board.bno}"> <span>${board.btitle}</span>
+										</a></td>
+										<td style="padding: 12px; width: 20%;"><span>${board.bmid}</span></td>
+										<td style="padding: 12px; width: 15%; text-align: center;"><span>${board.bdate}</span></td>
+										<td style="padding: 12px; width: 5%; text-align: center;"><span>${board.bcount}</span></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
+	</section>
+
+
+	<!--  
+
+
+							<div class="small mb-1">${board.bhope}, 조회수: ${board.bcount} 댓글 : ${board.breplycount}</div>
+		
+				
+		-->
+	
+		
+		
+		
 		<input type="hidden" id="loginType" value="${sessionScope.loginType }">
 		<c:choose>
 			<c:when test="${sessionScope.loginType == 'P'}">
@@ -100,7 +120,7 @@
 
 	<!-- Bootstrap core JS-->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
+	
 	<!-- Core theme JS-->
 	<script src="${pageContext.request.contextPath }/resources/assets/js/scripts.js"></script>
 </body>
