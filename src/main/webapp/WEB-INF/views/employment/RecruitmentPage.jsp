@@ -196,7 +196,9 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		selectScrapInfo();
+		if(loginType == 'P'){
+			selectScrapInfo();
+		}
 		createPageBtn();
 	});
 	var loginType = $('#loginType').val();

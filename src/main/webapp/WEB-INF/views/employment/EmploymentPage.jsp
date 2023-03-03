@@ -136,7 +136,7 @@
 						<c:forEach items="${epList }" var="employ">
 							<tr>
 								<td class="emci">
-									<a href="">
+									<a href="${pageContext.request.contextPath}/viewReciname?viewReciname=${employ.epciname}">
 										<span>${employ.epciname }</span>
 									</a>
 								</td>
@@ -198,8 +198,8 @@
 	$(document).ready(function(){
 		if(loginType == 'P'){
 		selectScrapInfo();
+		}
 		createPageBtn();
-	}
 });
 	
 	function pageLoad(pageBtn){
