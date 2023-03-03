@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.Project_Job.dto.ApplyStateDto;
 import com.Project_Job.dto.ArrResumeDto;
 import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.EmploymentDto;
@@ -90,8 +89,8 @@ public interface EmploymentDao {
 	@Select("SELECT * FROM SCRAPINFO WHERE SPMID = #{spmid} ")
 	ArrayList<ScrapDto> selectScrapInfo(String spmid);
 
-	@Select("SELECT * FROM EMPLOYMENT WHERE EPNAME LIKE '%' || #{searchValue} || '%'")
-	ArrayList<EmploymentDto> getSearchList(String searchValue);
+	@Select("SELECT * FROM EMPLOYMENT WHERE EPNAME LIKE '%${pageType}%' AND EPESSTATE = 'x' ")
+	ArrayList<EmploymentDto> getSearchList(String pageType);
 
 	@Select("SELECT * FROM CINFO WHERE CINAME LIKE '%${searchValue}%'  ")
 	ArrayList<CinfoDto> getCiList(String searchValue);
@@ -171,7 +170,7 @@ public interface EmploymentDao {
 	@Select("SELECT * FROM EMPLOYMENT WHERE EPNUM = #{epnum}")
 	EmploymentDto selectEpInfo(String epnum);
 
-	@Select("SELECT * FROM APPLYSTATE WHERE APREMID = #{loginId}")
-	ArrayList<ApplyStateDto> selectMyApply(String loginId);
+//	@Select("SELECT * FROM APPLYSTATE WHERE APREMID = #{loginId}")
+//	ArrayList<ApplyStateDto> selectMyApply(String loginId);
 
 }
