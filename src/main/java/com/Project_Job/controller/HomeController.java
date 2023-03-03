@@ -28,10 +28,10 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView();
 		ArrayList<EmploymentDto> closeDeadLine = epsvc.closeDeadLine();
 		ArrayList<EmploymentDto> newEmploy = epsvc.newEmploy();
-		ArrayList<EmploymentDto> popularEmploy = epsvc.popularEmploy();
+		ArrayList<CinfoDto> popularCompany = epsvc.popularCinfo();
 		mav.addObject("closeDeadLine", closeDeadLine);
 		mav.addObject("newEmploy", newEmploy);
-		mav.addObject("popularEmploy",popularEmploy);
+		mav.addObject("popularCompany",popularCompany);
 		mav.setViewName("Main");
 		return mav;
 	}

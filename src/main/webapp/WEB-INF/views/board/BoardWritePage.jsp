@@ -28,13 +28,13 @@
 	<section id="section">
 		<div class="section-div" style="justify-content: center;">
 			<div class="card border-0 shadow rounded-3 mt-3 mb-3" style="width: 60%;">
-				<span class="h3 mt-2" style="text-align: center;">공고 양식</span>
+				<span class="h3 mt-2" style="text-align: center;">공고 작성</span>
 
 				<div class="card-body px-5 mt-1">
 
 
 					<form action="${pageContext.request.contextPath }/BoardWrite" method="post" class="user" onsubmit="return BoardWriteCheck(this)">
-						<div class="form-group ">
+						<div class="form-group mb-2">
 							<input name="btitle" type="text" id="inputTitle" placeholder="제목을 입력해주세요." class="form-control form-control-user">
 							<c:choose>
 								<c:when test="${sessionScope.loginType =='P'}">
@@ -45,13 +45,13 @@
 								</c:otherwise>
 							</c:choose>
 						</div>
-						<div class="form-group">
+						<div class="form-group mb-2">
 							<textarea name="bcontents" id="inputContent" class="form-control" rows="10"></textarea>
 						</div>
-						<div class="form-group ">
+						<div class="form-group mb-2">
 							<input type="hidden" >
-							<label for="inputHope" >관력 직무 태그</label>
-							 <select  id="inputHope" name="bhope" class="form-control">
+							<label for="inputHope" class="mb-1">관력 직무 태그</label>
+							 <select  id="inputHope" name="bhope" class="form-select">
 								<option value="경영,사무">경영,사무</option>
 								<option value="마케팅,광고,홍보">마케팅,광고,홍보</option>
 								<option value="IT인터넷">IT인터넷</option>
@@ -69,7 +69,7 @@
 							</select> 
 							<!-- <input name="bhope" type="text" id="inputHope" placeholder="#태그입력(#으로 구분해주세요.)" class="form-control form-control-user"> -->
 						</div>
-						<div class="form-group " style="text-align: center;">
+						<div class="form-group mb-2" style="text-align: center;">
 							<button class="btn btn-dark btn-lg" type="submit">글작성</button>
 						</div>
 					</form>

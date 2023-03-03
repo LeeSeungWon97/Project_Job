@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>채용공고</title>
+<title>기업정보</title>
 <link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/update/main-icon.png" />
 
 <!-- Bootstrap icons-->
@@ -144,14 +144,15 @@ p {
 								</div>
 							</div>
 						</div>
-
+						
+						
 
 						<div style="text-align: center; margin: 5px">
-							<a href="${pageContext.request.contextPath }/CinfoListPage">
-								<button type="button" class="btn btn-outline-danger">
+							
+								<button type="button" class="btn btn-outline-danger" onclick="backpage()">
 									<i class="bi bi-file-excel"></i> 닫기
 								</button>
-							</a>
+							
 						</div>
 
 					</div>
@@ -259,6 +260,9 @@ function WriteResume(sideX, epnum) {
 			} );			
 		}
 		
+		function backpage(){
+			history.back();
+		}
 		
 		
 	</script>

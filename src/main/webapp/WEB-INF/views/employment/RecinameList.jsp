@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>좋은 직장을 위한 취업플랫폼, 굿잡</title>
+<title>열람기업</title>
 <link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/update/main-icon.png" />
 
 <!-- Bootstrap icons-->
@@ -71,58 +71,57 @@ h2 {
 <body>
 
 	<!-- Header -->
-	<%@ include file="/WEB-INF/views/includes/main/Header.jsp"%>
-
-	<!-- Nav -->
-	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
-
-
-
-	<div class="container">
-		<div class="d-flex justify-content-center">
-			<a class="navbar-brand" href="${pageContext.request.contextPath }/"> <img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 200px; height: 100px;">
-			</a>
-		</div>
-		<div class="row">
-			<div class="col-2">
-				<!-- SideBar -->
-				<div id="sideBar">
-					<%@ include file="/WEB-INF/views/includes/infoSidebar.jsp"%>
-				</div>
+	<header id="header">
+		<div class="header-div">
+			<div class="logo">
+				<a class="navbar-brand" href="${pageContext.request.contextPath }/"> <img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 80%; height: auto;">
+				</a>
 			</div>
+		</div>
+	</header>
 
 
-			<div class="mainbox">
-				<h1 style="text-align: center;">열람기업</h1>
 
-				<!--  -->
-				<div class="section-l">
-					<div class="section-l-bottom">
-						<div class="row">
-							<c:forEach items="${Resume.reciname }" varStatus="i" step="1">
-								<div style="padding: 10px;" class="list-group reserveArea">
-									<div class="row" style="padding: 10px; border-bottom-style: dotted;">
-										<a href="${pageContext.request.contextPath}/viewReciname?viewReciname=${Resume.reciname[i.index]}" target="_blank">${Resume.reciname[i.index]}</a>
-										<%-- <p class="card-text">${Resume.reciname[i.index + 1]}</p> --%>
+	<!-- Section -->
+	<section id="section">
+		<div class="section-div" style="justify-content: center;">
+
+			<div class="row my-4" style="width: 100%;">
+				<div class="col-2  mx-4" style="width: 15%;">
+					<!-- SideBar -->
+					<div id="sideBar">
+						<%@ include file="/WEB-INF/views/includes/infoSidebar.jsp"%>
+					</div>
+				</div>
+
+
+				<div class="col-lg-10 col-xl-8" style="width: 65%;">
+					<div class="card border-0 shadow rounded-3">
+						<div class="card-body p-4 p-sm-5 mb-3">
+							<h1 style="text-align: center;">열람기업</h1>
+							<div class="row">
+								<c:forEach items="${Resume.reciname }" varStatus="i" step="1">
+									<div style="padding: 10px;" class="list-group reserveArea">
+										<div class="row" style="padding: 10px; border-bottom-style: dotted;">
+											<a href="${pageContext.request.contextPath}/viewReciname?viewReciname=${Resume.reciname[i.index]}" target="_blank">${Resume.reciname[i.index]}</a>
+											<%-- <p class="card-text">${Resume.reciname[i.index + 1]}</p> --%>
+										</div>
 									</div>
-								</div>
-							</c:forEach>
+								</c:forEach>
+
+							</div>
+
+
 
 						</div>
 					</div>
 				</div>
-				<!--  -->
-
-
-
 
 			</div>
-
 		</div>
-	</div>
+	</section>
 
-	<!-- Footer-->
-	<%@ include file="/WEB-INF/views/includes/main/Footer.jsp"%>
+
 
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 

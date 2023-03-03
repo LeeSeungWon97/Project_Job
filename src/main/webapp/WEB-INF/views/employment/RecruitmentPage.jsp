@@ -98,8 +98,8 @@
 
 	<!-- Section -->
 	<section id="section">
-		<div class="section-div">
-			<div class="card mt-4 mb-4 border-0 shadow rounded-3">
+		
+			<div class="card mt-4 mb-4 border-0 shadow rounded-3" style="width: 1280px;">
 				<div class="table-responsive">
 					<div class="d-flex justify-content-center">
 						<div class="input-group mx-3 mt-4 mb-4" style="width: 100%;">
@@ -162,7 +162,7 @@
 					</ul>
 				</div>
 			</div>
-		</div>
+		
 	</section>
 
 	<input type="hidden" id="loginType" value="${sessionScope.loginType }">
@@ -196,7 +196,9 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		selectScrapInfo();
+		if(loginType == 'P'){
+			selectScrapInfo();
+		}
 		createPageBtn();
 	});
 	var loginType = $('#loginType').val();
@@ -222,12 +224,6 @@
 		}
 		element.html(output);
 	}
-	
-	$(document).ready(function(){
-		if(loginType == 'P'){
-			selectScrapInfo();
-			}
-	});
 	
 	function WriteResume(epnum, epciname, epname) {
 		var popupWidth = 900;
@@ -255,6 +251,7 @@
 		console.log(selectType);
 		if(searchVal.length < 2){
 			alert('검색어는 2글자 이상 입력해주세요');
+			location.reload();
 		}
 		$.ajax({
 			type: "get",
