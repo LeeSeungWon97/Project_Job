@@ -292,7 +292,7 @@ public class EmploymentController {
 	public ModelAndView viewEpInfo(String epnum) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("viewEpInfo 호출");
-		System.out.println(epnum);
+		System.out.println("EPNUM : "+epnum);
 		EmploymentDto epInfo = epsvc.viewEpInfo(epnum);
 		System.out.println(epInfo);
 		mav.addObject("epInfo", epInfo);
@@ -355,7 +355,7 @@ public class EmploymentController {
 		int insertResult = epsvc.WriteEmployment(epinfo);
 		if (insertResult > 0) {
 			mav.addObject("msg", "공고등록완료!");
-			mav.addObject("url", requestUrl);
+			mav.addObject("url", "");
 			mav.setViewName("AlertScreen");
 		} else {
 			mav.addObject("msg", "입력 정보를 다시 확인해주세요!");
