@@ -75,5 +75,8 @@ public interface BoardDao {
 	@Select("SELECT RE.* FROM REPLYS RE, CMEMBERS CM "
 			+ " WHERE ( RE.REWRITER = CM.CMID ) AND REBNO = #{rebno} ORDER BY RENUM ")
 	ArrayList<ReplyDto> selectReplyListC(String rebno);
+	
+//	@Insert("INSERT INTO REVIEWS VALUES(#{rvciname},#{rvdate},#{rveptype},#{rvobj},#{rvobj},#{rvdif},#{rvmid},#{rvcontents},#{rvtype},#{rvstate})")
+//	int insertReivew(ReviewsDto review);
 
 }

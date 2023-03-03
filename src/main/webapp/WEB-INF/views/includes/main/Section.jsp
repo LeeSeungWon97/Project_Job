@@ -155,7 +155,7 @@
 							<tr>
 								<th scope="col"><a href="${pageContext.request.contextPath }/calendar">공채달력</a></th>
 								<th scope="col"><a href="">합격자소서</a></th>
-								<th scope="col"><a href="">취업후기</a></th>
+								<th scope="col"><a href="${pageContext.request.contextPath }/ReviewState">취업후기</a></th>
 							</tr>
 						</table>
 					</div>

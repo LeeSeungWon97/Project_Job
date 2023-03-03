@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Project_Job.dto.ArrResumeDto;
 import com.Project_Job.dto.BoardDto;
+import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.ReplyDto;
+import com.Project_Job.dto.ReviewsDto;
 import com.Project_Job.service.BoardService;
+import com.Project_Job.service.EmploymentService;
 
 @Controller
 public class BoardController {
@@ -22,6 +26,8 @@ public class BoardController {
 	private HttpSession session;
 	@Autowired
 	private MemberController mctrl;
+	@Autowired
+	private EmploymentService epsvc;
 
 	private String requestUrl = "http://localhost:8080/controller/";
 
@@ -136,5 +142,53 @@ public class BoardController {
 		int deleteResult = bsvc.replyDelete(renum);
 		return deleteResult + "";
 	}	
+	
+	@RequestMapping(value = "/ReviewState")
+	public ModelAndView ReviewState() {
+		ModelAndView mav = new ModelAndView();
+		ArrayList<CinfoDto> cinfoList = epsvc.getCiList("");
+		mav.addObject("cinfoList", cinfoList);
+		mav.setViewName("employment/ReviewState");
+		return mav;
+	}
+	
+	
+	@RequestMapping(value = "/ReviewWrite")
+	public ModelAndView ReviewWrite(String cinum, String type) {
+		ModelAndView mav = new ModelAndView();
+		String loginType = (String) session.getAttribute("loginType");
+		String loginId = mctrl.callLoginId(loginType);
+		ArrResumeDto myresume = epsvc.SelectResume(loginId);
+		System.out.println(cinum);
+		System.out.println(type);
+		CinfoDto cinfo = epsvc.viewCinfo(cinum);
+		System.out.println(cinfo);
+		mav.addObject("Resume", myresume);
+		mav.addObject("cinfo", cinfo);
+		mav.addObject("rvtype", type);
+		mav.setViewName("employment/ReviewWrite");
+		return mav;
+	}	
+	
+	@RequestMapping(value = "/ReviewType")
+	public ModelAndView ReviewType(String cinum) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("cinum", cinum);
+		mav.setViewName("ReviewType");
+		return mav;
+	}	
+	
+	@RequestMapping(value = "/WriteReview")
+	public @ResponseBody int WriteReview(ReviewsDto review) {
+		ModelAndView mav = new ModelAndView();
+		String loginType = (String) session.getAttribute("loginType");
+		String loginId = mctrl.callLoginId(loginType);
+		review.setRvmid(loginId);
+		System.out.println(review);
+//		int insertResult = bsvc.insertReivew(review);
+		
+		return 0;
+	}	
+	
 	
 }
