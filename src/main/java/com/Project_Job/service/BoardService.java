@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.Project_Job.dao.BoardDao;
 import com.Project_Job.dto.BoardDto;
 import com.Project_Job.dto.ReplyDto;
+import com.Project_Job.dto.ReviewsDto;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -192,6 +193,12 @@ public class BoardService {
 		System.out.println( gson.toJson(replyLike_json) );
 		return gson.toJson(replyLike_json);
 	}
+
+//	public int insertReivew(ReviewsDto review) {
+//		int insertResult = bdao.insertReivew(review);
+//		
+//		return insertResult;
+//	}
 
 
 }
