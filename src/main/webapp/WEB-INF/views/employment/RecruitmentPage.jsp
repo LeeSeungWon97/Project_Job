@@ -223,6 +223,12 @@
 		element.html(output);
 	}
 	
+	$(document).ready(function(){
+		if(loginType == 'P'){
+			selectScrapInfo();
+			}
+	});
+	
 	function WriteResume(epnum, epciname, epname) {
 		var popupWidth = 900;
 		var popupHeight = 950;

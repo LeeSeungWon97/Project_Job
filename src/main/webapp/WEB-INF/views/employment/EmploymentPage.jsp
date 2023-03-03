@@ -196,9 +196,11 @@
 	var loginType = $('#loginType').val();
 	var loginId = $('#loginId').val();	
 	$(document).ready(function(){
+		if(loginType == 'P'){
 		selectScrapInfo();
 		createPageBtn();
-	});
+	}
+});
 	
 	function pageLoad(pageBtn){
 		var pageNum = pageBtn.innerText;
