@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공고작성</title>
+<title>글상세보기</title>
 <link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png">
 <link href="${pageContext.request.contextPath }/resources/assets/css/header.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
@@ -28,10 +28,8 @@
 	<section id="section">
 		<div class="section-div" style="justify-content: center;">
 			<div class="card border-0 shadow rounded-3 mt-3 mb-3" style="width: 60%;">
-				<span class="h3 mt-2" style="text-align: center;">상세보기 양식</span>
 
 				<div class="card-body px-5 mt-1">
-					<!--  -->
 					<div style="padding: 10px;" class="list-group reserveArea">
 
 						<div class="row" style="padding: 10px; border-style: groove;">
@@ -39,19 +37,19 @@
 								<div class="small mb-1">${board.bhope}</div>
 							</div>
 							<div class="row-2">
-								<h1>${board.btitle}</h1>
+								<h1>제목: ${board.btitle}</h1>
 							</div>
 							<div class="row-5">
-								<p class="lead">${board.bcontents }</p>
+								<p class="lead">내용: ${board.bcontents }</p>
 							</div>
 							<div class="row-2">
-								<div class="small mb-1">${board.bmid}${board.bdate }</div>
+								<div class="small mb-1">작성자: ${board.bmid}${board.bdate }</div>
 							</div>
 						</div>
 					</div>
-					<!--  -->
+					
 				</div>
-				<!--  -->
+				
 				<!-- 게시글 추천 버튼 -->
 				<div class="row">
 					<div class="col-lg-7 ml-auto mr-auto align-items-center text-center pb-3" style="background-color: white;">
@@ -61,10 +59,10 @@
 					</div>
 				</div>
 
-				<hr>
+
 
 				<!-- 댓글 출력 -->
-				<div class="row">
+				<div class="row" style="border-top: 1px solid #e3e6f0;">
 					<div class="col-lg-7 ml-auto mr-auto" style="background-color: white;">
 						<div class="pt-1 px-5 pb-1 ">
 							<div class="text-center">

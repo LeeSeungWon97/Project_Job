@@ -123,7 +123,7 @@
 
 				<!--  -->
 				<table class="table">
-					<thead style="background-color: #f2f9fe; border-top: 1px solid #eaeaea;" id="ajaxCiname">
+					<thead style="background-color: #f9f9f8;  border-top: 1px solid black;" id="ajaxCiname">
 						<tr style="color: #888; text-align: center;">
 							<th scope="col" style="">회사</th>
 							<th scope="col"></th>
