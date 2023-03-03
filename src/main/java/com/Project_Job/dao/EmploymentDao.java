@@ -89,8 +89,8 @@ public interface EmploymentDao {
 	@Select("SELECT * FROM SCRAPINFO WHERE SPMID = #{spmid} ")
 	ArrayList<ScrapDto> selectScrapInfo(String spmid);
 
-	@Select("SELECT * FROM EMPLOYMENT WHERE EPNAME LIKE '%${pageType}%' AND EPESSTATE = 'x' ")
-	ArrayList<EmploymentDto> getSearchList(String pageType);
+	@Select("SELECT * FROM EMPLOYMENT WHERE EPNAME LIKE '%'||#{searchValue}||'%'")
+	ArrayList<EmploymentDto> getSearchList(String searchValue);
 
 	@Select("SELECT * FROM CINFO WHERE CINAME LIKE '%${searchValue}%'  ")
 	ArrayList<CinfoDto> getCiList(String searchValue);
