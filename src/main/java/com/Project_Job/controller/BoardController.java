@@ -48,8 +48,7 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("BoardWrite요청");
 		System.out.println("전달받은 DTo : " + board);
-		int insertResult = 0;
-		// int insertResult = bsvc.BoardWrite(board);
+		int insertResult = bsvc.BoardWrite(board);
 		if (insertResult > 0) {
 			mav.addObject("msg", "글작성완료!");
 			mav.addObject("url", "BoardListPage");
@@ -59,7 +58,7 @@ public class BoardController {
 			mav.addObject("url", "BoardWritePage");
 			mav.setViewName("AlertScreen");
 		}
-		return null;
+		return mav;
 	}
 
 	@RequestMapping(value = "/ViewBoardInfo")
@@ -73,8 +72,14 @@ public class BoardController {
 		// 2. 추천수 조회
 		int blikeCount = bsvc.boardLikeCount(bno);
 		mav.addObject("blikeCount", blikeCount);
+		
+		
 		String loginType = (String) session.getAttribute("loginType");
-		String loginId = mctrl.callLoginId(loginType);
+		String loginId = null;
+		System.out.println("loginType"+loginType);
+		if(loginType != null) {
+		loginId = mctrl.callLoginId(loginType);
+		}
 		
 		// 3. 댓글 목록 조회
 		ArrayList<ReplyDto> replyList = bsvc.boardReplyList(bno, loginId);
@@ -106,9 +111,30 @@ public class BoardController {
 		System.out.println("댓글 목록 조회 요청");
 		System.out.println("댓글을 조회할 글번호 : " + rebno);
 		String loginType = (String) session.getAttribute("loginType");
-		String loginId = mctrl.callLoginId(loginType);
+		String loginId = null;
+		System.out.println("loginType"+loginType);
+		if(loginType != null) {
+		loginId = mctrl.callLoginId(loginType);
+		}
 		String replyList = bsvc.replyList(rebno,loginId);
 		return replyList;
+	}	
+	
+	@RequestMapping(value = "/replyLike")
+	public @ResponseBody String replyLike(String rlnum, String rlmid) {
+		System.out.println("댓글 추천 등록 요청");
+		System.out.println("추천할 댓글번호 : " + rlnum);
+		String likeResult = bsvc.replyLike(rlnum, rlmid);
+		
+		return likeResult;
+	}
+	
+	@RequestMapping(value = "/replyDelete_ajax")
+	public @ResponseBody String replyDelete_ajax(String renum) {
+		System.out.println("댓글 삭제 요청");
+		System.out.println("삭제할 댓글 번호 : " + renum);
+		int deleteResult = bsvc.replyDelete(renum);
+		return deleteResult + "";
 	}	
 	
 }

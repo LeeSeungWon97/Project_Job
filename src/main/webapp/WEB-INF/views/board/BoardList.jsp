@@ -73,7 +73,7 @@
 						</div>
 						</a>
 						<div class="row-2">
-							<div class="small mb-1">${board.bhope}, 좋아요, ${board.breplycount}</div>
+							<div class="small mb-1">${board.bhope}, 조회수: ${board.bcount} 댓글 : ${board.breplycount}</div>
 						</div>
 					</div>
 					</c:forEach> 
@@ -108,7 +108,9 @@
 <script type="text/javascript">
 	var loginType = $('#loginType').val();
 	var loginId = $('#loginId').val();	
-
+	
+	
+	
 	function boardWritePage() {
 		console.log("글작성 버튼 클릭");
 		if (loginId == "") {

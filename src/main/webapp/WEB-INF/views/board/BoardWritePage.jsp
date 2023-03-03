@@ -87,9 +87,12 @@
 			var bmid = formObj.bmid.value;
 			var bcontents = formObj.bcontents.value;
 			var bhope = formObj.bhope.value;
-			if (btitle.length)
-
-				return false;
+			if (btitle.length<0){
+				btitle.focus();
+				alert('글 제목을 입력해주세요! ');
+			}else{
+				return true;
+			}
 
 		}
 	</script>

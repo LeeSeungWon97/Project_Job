@@ -29,7 +29,7 @@ public class BoardService {
 			int BcodeNum = Integer.parseInt(maxBcode.replace("B", "")) + 1;
 			Bcode = Bcode + String.format("%05d", BcodeNum);
 		}
-		System.out.println("공고코드 : " + Bcode);
+		System.out.println("BNO : " + Bcode);
 		board.setBno(Bcode);
 		int insertResult = bdao.BoardWrite(board);
 		
@@ -37,12 +37,19 @@ public class BoardService {
 	}
 
 	public ArrayList<BoardDto> selectBoardList() {
+		
 		ArrayList<BoardDto> boardList = bdao.selectBoardList();
+		for(int i = 0; i < boardList.size();i++) {
+			String bno = boardList.get(i).getBno();
+			int breplycount = bdao.selectBreplyCount(bno);
+			boardList.get(i).setBreplycount(breplycount);
+		}
 		return boardList;
 	}
 
 	public BoardDto selectBoardInfo(String bno) {
 		BoardDto boardInfo = bdao.selectBoardInfo(bno);
+		bdao.updateCount(bno);
 		return boardInfo;
 	}
 
@@ -65,7 +72,7 @@ public class BoardService {
 			
 			//현재 페이지를 보는 사용자의 댓글 추천 여부 조회
 			if(loginId != null) {
-				//SELECT RLMID FROM REPLYLIKE WHERE RLNUM = #{renum} AND RLMID = #{loginId};
+				System.out.println("loginId != null");
 				String relikeCheck = bdao.selectReplyLikeCheck(renum, loginId);
 				replyList.get(i).setRelikeCheck(relikeCheck);
 			}
@@ -126,7 +133,42 @@ public class BoardService {
 		return insertResult;
 	}
 
-	public String replyList(String rlnum, String rlmid) {
+	public String replyList(String rebno, String loginId) {
+		System.out.println("BoardService replyList()");
+		ArrayList<ReplyDto> reList = bdao.selectReplyList(rebno);
+		System.out.println(reList);
+		ArrayList<ReplyDto> reListC = bdao.selectReplyListC(rebno);
+		System.out.println(reListC);
+		reList.addAll(reListC);
+		System.out.println(reList);
+		for(int i = 0; i < reList.size(); i++) {
+			System.out.println(reList.get(i).getRenum());
+			String renum = reList.get(i).getRenum();
+			int relikecount = bdao.selectReplyLikeCount(renum);
+			reList.get(i).setRelikecount(relikecount);
+			if(loginId != null) {
+				//SELECT RLMID FROM REPLYLIKE WHERE RLNUM = #{renum} AND RLMID = #{loginId};
+				String relikeCheck = bdao.selectReplyLikeCheck(renum, loginId);
+				reList.get(i).setRelikeCheck(relikeCheck);
+			}			
+		}
+		System.out.println(reList);
+		Gson gson = new Gson();
+		String reList_json = gson.toJson(reList);
+		System.out.println(reList_json);
+		
+		return reList_json;
+	}	
+	
+
+	public int replyDelete(String renum) {
+		System.out.println("BoardService replyDelete()");
+		bdao.deleteReplyLike2(renum);
+		int deleteResult = bdao.deleteReply(renum);
+		return deleteResult;
+	}
+
+	public String replyLike(String rlnum, String rlmid) {
 		System.out.println("BoardService replyLike()");
 		Gson gson = new Gson();
 		JsonObject replyLike_json = new JsonObject();
@@ -150,5 +192,6 @@ public class BoardService {
 		System.out.println( gson.toJson(replyLike_json) );
 		return gson.toJson(replyLike_json);
 	}
+
 
 }
