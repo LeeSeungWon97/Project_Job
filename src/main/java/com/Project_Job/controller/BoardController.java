@@ -185,9 +185,9 @@ public class BoardController {
 		String loginId = mctrl.callLoginId(loginType);
 		review.setRvmid(loginId);
 		System.out.println(review);
-//		int insertResult = bsvc.insertReivew(review);
+		int insertResult = bsvc.insertReivew(review);
 		
-		return 0;
+		return insertResult;
 	}	
 	
 	

@@ -194,11 +194,11 @@ public class BoardService {
 		return gson.toJson(replyLike_json);
 	}
 
-//	public int insertReivew(ReviewsDto review) {
-//		int insertResult = bdao.insertReivew(review);
-//		
-//		return insertResult;
-//	}
+	public int insertReivew(ReviewsDto review) {
+		int insertResult = bdao.insertReivew(review);
+		
+		return insertResult;
+	}
 
 
 }
