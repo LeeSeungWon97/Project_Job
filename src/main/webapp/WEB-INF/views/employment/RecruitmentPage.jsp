@@ -196,7 +196,9 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		selectScrapInfo();
+		if(loginType == 'P'){
+			selectScrapInfo();
+		}
 		createPageBtn();
 	});
 	var loginType = $('#loginType').val();
@@ -222,12 +224,6 @@
 		}
 		element.html(output);
 	}
-	
-	$(document).ready(function(){
-		if(loginType == 'P'){
-			selectScrapInfo();
-			}
-	});
 	
 	function WriteResume(epnum, epciname, epname) {
 		var popupWidth = 900;
@@ -255,6 +251,7 @@
 		console.log(selectType);
 		if(searchVal.length < 2){
 			alert('검색어는 2글자 이상 입력해주세요');
+			location.reload();
 		}
 		$.ajax({
 			type: "get",

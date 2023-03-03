@@ -198,8 +198,8 @@
 	$(document).ready(function(){
 		if(loginType == 'P'){
 		selectScrapInfo();
+		}
 		createPageBtn();
-	}
 });
 	
 	function pageLoad(pageBtn){
@@ -231,6 +231,7 @@
 		console.log(selectType);
 		if(searchVal.length < 2){
 			alert('검색어는 2글자 이상 입력해주세요');
+			location.reload();
 		}
 		$.ajax({
 			type: "get",

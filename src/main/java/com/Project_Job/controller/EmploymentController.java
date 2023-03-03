@@ -60,11 +60,11 @@ public class EmploymentController {
 		ArrayList<EmploymentDto> epListAll = epsvc.getEpList("employ");
 		ArrayList<EmploymentDto> epList = new ArrayList<EmploymentDto>();
 		int pageIdx = pageNum;
-		int pageIdxMax = epListAll.size()/15 + 1;
+		int pageIdxMax = epListAll.size() / 15 + 1;
 		System.out.println("pageIdxMax: " + pageIdxMax);
 		int startIdx = 15 * (pageIdx - 1);
 		int endIdx = startIdx + 14;
-		if(endIdx >= epListAll.size()) {
+		if (endIdx >= epListAll.size()) {
 			endIdx = epListAll.size();
 		}
 		for (int i = startIdx; i < endIdx; i++) {
@@ -72,11 +72,12 @@ public class EmploymentController {
 		}
 		mav.addObject("epList", epList);
 		mav.addObject("pageNum", pageIdx);
-		mav.addObject("pageIdxMax",pageIdxMax);
+		mav.addObject("pageIdxMax", pageIdxMax);
 		mav.setViewName("employment/EmploymentPage");
 		return mav;
 
 	}
+
 	// 공채 페이지 요청
 	@RequestMapping(value = "/RecruitmentPage")
 	public ModelAndView RecruitmentPage(int pageNum) {
@@ -85,10 +86,10 @@ public class EmploymentController {
 		ArrayList<EmploymentDto> epListAll = epsvc.getEpList("recruitment");
 		ArrayList<EmploymentDto> epList = new ArrayList<EmploymentDto>();
 		int pageIdx = pageNum;
-		int pageIdxMax = epListAll.size()/15 + 1;
+		int pageIdxMax = epListAll.size() / 15 + 1;
 		int startIdx = 15 * (pageIdx - 1);
 		int endIdx = startIdx + 14;
-		if(endIdx >= epListAll.size()) {
+		if (endIdx >= epListAll.size()) {
 			endIdx = epListAll.size();
 		}
 		for (int i = startIdx; i < endIdx; i++) {
@@ -96,7 +97,7 @@ public class EmploymentController {
 		}
 		mav.addObject("epList", epList);
 		mav.addObject("pageNum", pageIdx);
-		mav.addObject("pageIdxMax",pageIdxMax);
+		mav.addObject("pageIdxMax", pageIdxMax);
 		mav.setViewName("employment/RecruitmentPage");
 		return mav;
 	}
@@ -280,7 +281,7 @@ public class EmploymentController {
 			ArrayList<CinfoDto> ciList = epsvc.getCiList(searchValue);
 			mav.addObject("epList", epList);
 			mav.addObject("ciList", ciList);
-			mav.addObject("searchValue",searchValue);
+			mav.addObject("searchValue", searchValue);
 			mav.setViewName("employment/SearchPage");
 		}
 
@@ -301,16 +302,29 @@ public class EmploymentController {
 	}
 
 	@RequestMapping(value = "/CinfoListPage")
-	public ModelAndView CinfoListPage() {
+	public ModelAndView CinfoListPage(int pageNum) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("CinfoListPage 호출");
-		ArrayList<CinfoDto> cinfoList = epsvc.getCiList("");
+		ArrayList<CinfoDto> cinfoListAll = epsvc.getCiList("");
+		ArrayList<CinfoDto> cinfoList = new ArrayList<CinfoDto>();
+		int pageIdx = pageNum;
+		int pageIdxMax = cinfoListAll.size() / 10 + 1;
+		int startIdx = 10*(pageIdx - 1);
+		int endIdx = startIdx + 9;
+		if(endIdx >= cinfoListAll.size()) {
+			endIdx = cinfoListAll.size();
+		}
+		for(int i = startIdx; i<endIdx;i++) {
+			cinfoList.add(cinfoListAll.get(i));
+		}
 		mav.addObject("cinfoList", cinfoList);
+		mav.addObject("pageNum", pageIdx);
+		mav.addObject("pageIdxMax", pageIdxMax);
 		mav.setViewName("employment/CinfoListPage");
 
 		return mav;
 	}
-
+	
 	@RequestMapping(value = "/viewCiInfo")
 	public ModelAndView viewCiInfo(String cinum) {
 		ModelAndView mav = new ModelAndView();
@@ -479,7 +493,7 @@ public class EmploymentController {
 		mav.setViewName("redirect:/viewCiInfo?cinum=" + cinum);
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/searchValueJson")
 	public @ResponseBody String searchValueJson(String searchValue, String selectType) {
 		System.out.println(searchValue);
@@ -493,27 +507,16 @@ public class EmploymentController {
 		}
 	}
 
-//	@RequestMapping(value = "/searchValueJson")
-//	public @ResponseBody String searchValueJson(String searchValue, String selectType) {
-//		System.out.println(searchValue);
-//		System.out.println(selectType);
-//		String epList = "";
-//		String ciList = "";
-//		if (searchValue.length() >= 2) {
-//			if (selectType.equals("공고")) {
-//				epList = epsvc.getEpListGson(searchValue);
-//				System.out.println("공고 : " + epList);
-//				return epList;
-//			} else if (selectType.equals("기업")) {
-//				ciList = epsvc.getCiListGson(searchValue);
-//				System.out.println("기업 : " + ciList);
-//				return ciList;
-//			} else {
-//				return "";
-//			}
-//		} else {
-//			return null;
-//		}
-//	}
+	@RequestMapping(value = "/searchCinfoJson")
+	public @ResponseBody String searchCinfoJson(String searchValue) {
+		System.out.println("EmploymentController searchCinfoJson 호출");
+		String cinfoList = "";
+		if (searchValue.length() >= 2) {
+			cinfoList = epsvc.getCiListGson(searchValue);
+			return cinfoList;
+		} else {
+			return null;
+		}
+	}
 
 }
