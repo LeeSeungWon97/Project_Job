@@ -251,7 +251,14 @@ h5 {
 		}
 		
 		function backpage(){
-			history.back();
+			var referrer = document.referrer;
+			if(referrer == 'http://localhost:8080/controller/login'){
+				history.go(-2);
+			} else{
+				history.back();
+			}
+			
+			
 		}
 		
 	</script>

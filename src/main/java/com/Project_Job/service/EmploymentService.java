@@ -713,8 +713,12 @@ public class EmploymentService {
 
 	// 기업 검색기능
 	public String getCiListGson(String searchValue) {
+		System.out.println("EmploymentService getCiListGson 호출");
 		ArrayList<CinfoDto> ciList = epdao.getCiList(searchValue);
 		System.out.println();
+		for(int i = 0; i<ciList.size();i++) {
+			System.out.println(ciList.get(i));
+		}
 		return new Gson().toJson(ciList);
 	}
 
@@ -766,16 +770,19 @@ public class EmploymentService {
 	}
 
 	// 인기 공고
-	public ArrayList<EmploymentDto> popularEmploy() {
-		System.out.println("EmploymentService popularEmploy() 호츌");
-		ArrayList<EmploymentDto> popularEmploy = new ArrayList<EmploymentDto>();
-		ArrayList<String> popularEpName = epdao.selectPopularEpName();
-		for (int i = 0; i < popularEpName.size(); i++) {
-			String epnum = popularEpName.get(i);
+	public ArrayList<CinfoDto> popularCinfo() {
+		System.out.println("EmploymentService popularCinfo() 호츌");
+		ArrayList<CinfoDto> popularCinfo = new ArrayList<CinfoDto>();
+		ArrayList<String> popularEpNum = epdao.selectPopularEpNum();
+		for (int i = 0; i < popularEpNum.size(); i++) {
+			String epnum = popularEpNum.get(i);
 			EmploymentDto epInfo = epdao.selectEpInfo(epnum);
-			popularEmploy.add(epInfo);
+			String ciname = epInfo.getEpciname();
+			System.out.println("ciname: " + ciname);
+			CinfoDto cinfo = epdao.selectCinfo(ciname);
+			popularCinfo.add(cinfo);
 		}
-		return popularEmploy;
+		return popularCinfo;
 	}
 
 	

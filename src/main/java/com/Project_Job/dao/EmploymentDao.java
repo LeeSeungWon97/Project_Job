@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.Project_Job.dto.ApplyStateDto;
 import com.Project_Job.dto.ArrResumeDto;
 import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.EmploymentDto;
@@ -47,10 +46,10 @@ public interface EmploymentDao {
 	@Select("SELECT MAX(CINUM) FROM CINFO ")
 	String selectMaxCinum();
 
-	@Select("SELECT EPNUM, EPNAME, EPCINAME, EPEDU, EPCAREER, EPTREAT, EPTYPE, EPMONEY, EPAREA, EPTIME, TO_CHAR(EPPOST,'YY-MM-DD') AS EPPOST, TO_CHAR(EPDEADLINE,'YY-MM-DD') AS EPDEADLINE, EPSTATE, EPESSTATE FROM EMPLOYMENT WHERE EPESSTATE = 'x' ")
+	@Select("SELECT EPNUM, EPNAME, EPCINAME, EPEDU, EPCAREER, EPTREAT, EPTYPE, EPMONEY, EPAREA, EPTIME, TO_CHAR(EPPOST,'YY-MM-DD') AS EPPOST, TO_CHAR(EPDEADLINE,'YY-MM-DD') AS EPDEADLINE, EPSTATE, EPESSTATE FROM EMPLOYMENT WHERE EPESSTATE = 'x' ORDER BY EPPOST DESC")
 	ArrayList<EmploymentDto> getEpList();
 
-	@Select("SELECT EPNUM, EPNAME, EPCINAME, EPEDU, EPCAREER, EPTREAT, EPTYPE, EPMONEY, EPAREA, EPTIME, TO_CHAR(EPPOST,'YY-MM-DD') AS EPPOST, TO_CHAR(EPDEADLINE,'YY-MM-DD') AS EPDEADLINE, EPSTATE, EPESSTATE FROM EMPLOYMENT WHERE EPESSTATE = 'Y' ")
+	@Select("SELECT EPNUM, EPNAME, EPCINAME, EPEDU, EPCAREER, EPTREAT, EPTYPE, EPMONEY, EPAREA, EPTIME, TO_CHAR(EPPOST,'YY-MM-DD') AS EPPOST, TO_CHAR(EPDEADLINE,'YY-MM-DD') AS EPDEADLINE, EPSTATE, EPESSTATE FROM EMPLOYMENT WHERE EPESSTATE = 'Y' ORDER BY EPPOST DESC")
 	ArrayList<EmploymentDto> getRcList();
 
 	@Insert("INSERT INTO RESUME VALUES(#{remid},#{retell},#{reedu},#{recarrer},#{react},#{relicense},#{rehope},'0', 'x' ) ")
@@ -166,12 +165,12 @@ public interface EmploymentDao {
 	ArrayList<EmploymentDto> selectNewEmploy();
 
 	@Select("SELECT APEPNUM FROM (SELECT APEPNUM, COUNT(*) FROM APPLYSTATE GROUP BY APEPNUM ORDER BY COUNT(*) DESC) WHERE ROWNUM <= 5")
-	ArrayList<String> selectPopularEpName();
+	ArrayList<String> selectPopularEpNum();
 
 	@Select("SELECT * FROM EMPLOYMENT WHERE EPNUM = #{epnum}")
 	EmploymentDto selectEpInfo(String epnum);
 
-	@Select("SELECT * FROM APPLYSTATE WHERE APREMID = #{loginId}")
-	ArrayList<ApplyStateDto> selectMyApply(String loginId);
+	@Select("SELECT * FROM CINFO WHERE CINAME = #{ciname}")
+	CinfoDto selectCinfo(String ciname);
 
 }
