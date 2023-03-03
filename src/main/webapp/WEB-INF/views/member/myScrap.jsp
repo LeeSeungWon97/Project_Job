@@ -43,6 +43,14 @@ a{
   color : black;
   text-decoration: none;
 }
+h4{
+text-align: center;
+}
+ul{width: 100%; padding-right: 2rem; margin-top: 1rem;}
+
+.Sli{list-style: none; border-bottom: 1px solid #ebebeb; width: 100%;}
+
+.mainCon{width: 100%; padding: 1rem; align-items: center; display: flex;}
 </style>
 
 </head>
@@ -73,12 +81,11 @@ a{
 					<div class="card border-0 shadow rounded-3">
 
 						<div class="card-body p-4 p-sm-5 mb-3">
-
-							<ul style="width: 100%; padding-right: 2rem; margin-top: 1rem">
-								<c:forEach items="${myScrap }" var="myScrap">
-									<li
-										style="list-style: none; border-bottom: 1px solid #ebebeb; width: 100%;">
-										<div style="width: 100%; padding: 1rem; align-items: center; display: flex;">
+							<h4>스크랩</h4>
+							<ul>	
+								<c:forEach items="${myScrap }" var="myScrap">									
+									<li class="Sli">
+										<div class="mainCon">
 											<div class="sName col-3">
 												<p>${myScrap.epciname }</p>
 												<br>
@@ -98,7 +105,7 @@ a{
 														<i class="bi bi-check-lg"></i> 즉시지원
 													</button>
 													<p style="text-align: center; font-size: smaller;">
-														~${myScrap.epdeadline }</p>
+														~${myScrap.epdeadline } </p>
 												</div>
 											</div>
 											<div class="sDel col-1">
