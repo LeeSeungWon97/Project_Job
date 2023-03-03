@@ -1,6 +1,7 @@
 package com.Project_Job.dao;
 
 import java.util.ArrayList;
+
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
@@ -9,6 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+//import com.Project_Job.dto.ApplyStateDto;
 import com.Project_Job.dto.ArrResumeDto;
 import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.EmploymentDto;

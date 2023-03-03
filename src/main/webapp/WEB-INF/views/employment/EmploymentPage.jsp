@@ -132,11 +132,11 @@
 							<th scope="col"></th>
 						</tr>
 					</thead>
-					<tbody id="epListArea">
+					<tbody id="epListArea" style="border-top: none;">
 						<c:forEach items="${epList }" var="employ">
-							<tr>
+							<tr>			
 								<td class="emci">
-									<a href="${pageContext.request.contextPath}/viewReciname?viewReciname=${employ.epciname}">
+									<a href="${pageContext.request.contextPath }/viewReciname?viewReciname=${employ.epciname }">
 										<span>${employ.epciname }</span>
 									</a>
 								</td>
