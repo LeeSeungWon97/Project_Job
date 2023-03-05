@@ -214,6 +214,8 @@
 				});
 			} else {
 				alert('로그인 후 추천 가능합니다.');
+				location.href = "${pageContext.request.contextPath}/login";
+				
 			}
 		}
 
@@ -251,16 +253,7 @@
 			return false;
 		}
 
-		function BoardWriteCheck(formObj) {
-			var btitle = formObj.btitle.value;
-			var bmid = formObj.bmid.value;
-			var bcontents = formObj.bcontents.value;
-			var bhope = formObj.bhope.value;
-			if (btitle.length)
-
-				return false;
-
-		}
+		
 
 		function boardLike(bno) {
 			console.log(loginId);
@@ -293,6 +286,7 @@
 				});
 			} else {
 				alert('로그인 후 추천 가능합니다.');
+				location.href = "${pageContext.request.contextPath}/login";
 			}
 		}
 
