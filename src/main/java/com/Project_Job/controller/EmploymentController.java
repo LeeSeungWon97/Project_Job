@@ -1,5 +1,6 @@
 package com.Project_Job.controller;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -292,7 +293,7 @@ public class EmploymentController {
 	public ModelAndView viewEpInfo(String epnum) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("viewEpInfo 호출");
-		System.out.println("EPNUM : "+epnum);
+		System.out.println("EPNUM : " + epnum);
 		EmploymentDto epInfo = epsvc.viewEpInfo(epnum);
 		System.out.println(epInfo);
 		mav.addObject("epInfo", epInfo);
@@ -309,12 +310,12 @@ public class EmploymentController {
 		ArrayList<CinfoDto> cinfoList = new ArrayList<CinfoDto>();
 		int pageIdx = pageNum;
 		int pageIdxMax = cinfoListAll.size() / 10 + 1;
-		int startIdx = 10*(pageIdx - 1);
+		int startIdx = 10 * (pageIdx - 1);
 		int endIdx = startIdx + 9;
-		if(endIdx >= cinfoListAll.size()) {
+		if (endIdx >= cinfoListAll.size()) {
 			endIdx = cinfoListAll.size();
 		}
-		for(int i = startIdx; i<endIdx;i++) {
+		for (int i = startIdx; i < endIdx; i++) {
 			cinfoList.add(cinfoListAll.get(i));
 		}
 		mav.addObject("cinfoList", cinfoList);
@@ -324,15 +325,14 @@ public class EmploymentController {
 
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/viewCiInfo")
-	public ModelAndView viewCiInfo(String cinum) {
+	public ModelAndView viewCiInfo(String cinum) throws ParseException {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("viewCiInfo 호출");
 		System.out.println("요청받은 기업코드 : " + cinum);
 		CinfoDto cinfo = epsvc.viewCinfo(cinum);
 		ArrayList<EmploymentDto> epList = epsvc.cinfoEpList(cinum);
-		System.out.println(epList);
 		mav.addObject("cinfo", cinfo);
 		mav.addObject("epList", epList);
 		mav.setViewName("employment/ViewCiInfo");
