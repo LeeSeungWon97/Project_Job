@@ -263,8 +263,9 @@
 				console.log(epListArea);
 				var element = $('#epListArea');
 				var output = "";
+				var count = 0;
 				if(epListArea.length <= 0){
-					alert("검색결과가 없습니다.정확한 이름인지 다시 한번 확인해 주세요.");
+					alert("검색결과가 없습니다.");
 					return null;
 				} else{
 					for(var i = 0; i<epListArea.length;i++){
@@ -292,8 +293,14 @@
 							output += '</button>';
 							output += '</td>';
 							output += '</tr>';	
+						} else{
+							count++;
 						}
-					}	
+					}
+					if(count == epListArea.length){
+						alert("검색결과가 없습니다.");
+						return null;
+					}
 				}
 				element.html(output);
 				selectScrapInfo();
