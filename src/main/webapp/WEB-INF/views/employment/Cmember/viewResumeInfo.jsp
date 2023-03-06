@@ -122,13 +122,6 @@ h6 {
 	<!-- Nav -->
 	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
 
-
-
-
-
-
-
-
 	<!-- Section -->
 	<section id="section">
 		<div class="section-div" style="justify-content: center;">
@@ -138,7 +131,6 @@ h6 {
 					<c:forEach items="${ResumeList}" var="Resume">
 						<div class="col-4 resumbox"
 							onclick="checkMtype('${Resume.remid}')">
-							<%-- <a class="btn" href="${pageContext.request.contextPath}/viewApplyInfo?viewId=${Resume.remid}" target="_blank"> --%>
 							<div class="d-flex">
 								<img class="card-img-top"
 									style="border-radius: 70%; width: 55px; height: 45px;"

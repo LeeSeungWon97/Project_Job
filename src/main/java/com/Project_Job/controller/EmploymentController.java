@@ -1,5 +1,6 @@
 package com.Project_Job.controller;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -326,13 +327,12 @@ public class EmploymentController {
 	}
 
 	@RequestMapping(value = "/viewCiInfo")
-	public ModelAndView viewCiInfo(String cinum) {
+	public ModelAndView viewCiInfo(String cinum) throws ParseException {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("viewCiInfo 호출");
 		System.out.println("요청받은 기업코드 : " + cinum);
 		CinfoDto cinfo = epsvc.viewCinfo(cinum);
 		ArrayList<EmploymentDto> epList = epsvc.cinfoEpList(cinum);
-		System.out.println(epList);
 		mav.addObject("cinfo", cinfo);
 		mav.addObject("epList", epList);
 		mav.setViewName("employment/ViewCiInfo");
