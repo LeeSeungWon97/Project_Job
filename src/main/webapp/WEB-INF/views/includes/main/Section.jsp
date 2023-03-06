@@ -17,7 +17,7 @@
 						<c:forEach items="${closeDeadLine}" var="closeDead">
 							<div class="swiper-slide">
 								<h3>
-									<a href="">${closeDead.epciname }</a>
+									<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${closeDead.epnum}">${closeDead.epciname }</a>
 								</h3>
 								<hr>
 								<span>${closeDead.epname }</span>
@@ -38,7 +38,7 @@
 						<c:forEach items="${newEmploy}" var="newEmploy">
 							<div class="swiper-slide">
 								<h3>
-									<a href="">${newEmploy.epciname }</a>
+									<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${newEmploy.epnum}">${newEmploy.epciname }</a>
 								</h3>
 								<hr>
 								<span>${newEmploy.epname }</span>
