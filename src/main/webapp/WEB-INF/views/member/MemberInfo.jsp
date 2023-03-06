@@ -51,7 +51,7 @@
 								<div class="input-group input-group-lg mb-3">
 									<span class="input-group-text" style="width: 17%; justify-content: center;">비밀번호</span>
 									<input type="password" class="pw form-control" value="${sessionScope.loginInfo.mpw }" readonly="readonly" style="background-color: white;">
-									<input type="hidden" class="pwBtn btn btn-secondary" onclick="changePw()" value="변경">
+									<input type="hidden" class="pwBtn btn btn-success" onclick="changePw()" value="변경">
 								</div>
 								<div class="input-group input-group-lg mb-3">
 									<span class="input-group-text" style="width: 17%; justify-content: center;">이름</span>
@@ -63,7 +63,7 @@
 								</div>
 								<div class="input-group input-group-lg mb-3">
 									<span class="input-group-text" style="width: 17%; justify-content: center;">생년월일</span>
-									<input type="text" class="form-control" value="${sessionScope.loginInfo.mbirth }" readonly="readonly" style="background-color: white;">
+									<input type="text" class="birth form-control" value="${sessionScope.loginInfo.mbirth }" readonly="readonly" style="background-color: white;">
 								</div>
 								<div class="input-group input-group-lg mb-3">
 									<span class="input-group-text" style="width: 17%; justify-content: center;">이메일</span>
@@ -85,7 +85,7 @@
 								<div class="input-group input-group-lg mb-3">
 									<span class="input-group-text" style="width: 17%; justify-content: center;">비밀번호</span>
 									<input type="password" class="pw form-control" value="${sessionScope.loginInfo.cmpw }" readonly="readonly" style="background-color: white;">
-									<input type="hidden" class="pwBtn btn btn-secondary" onclick="changePw()" value="변경">
+									<input type="hidden" class="pwBtn btn btn-success" onclick="changePw()" value="변경">
 								</div>
 								<div class="input-group input-group-lg mb-3">
 									<span class="input-group-text" style="width: 17%; justify-content: center;">이름</span>
@@ -93,7 +93,7 @@
 								</div>
 								<div class="input-group input-group-lg mb-3">
 									<span class="input-group-text" style="width: 17%; justify-content: center;">이메일</span>
-									<input type="text" class="form-control" value="${sessionScope.loginInfo.cmemail }" readonly="readonly" style="background-color: white;">
+									<input type="text" class="email form-control" value="${sessionScope.loginInfo.cmemail }" readonly="readonly" style="background-color: white;">
 								</div>
 							</c:otherwise>
 						</c:choose>
@@ -140,9 +140,15 @@
 
 		function changeInfo() {
 			console.log("changeInfo() 호출");
-			$('.pw').prop("readonly", false);
 			$('.name').prop("readonly", false);
 			$('.addr').prop("readonly", false);
+			
+			$('.pw').css("background","#e9ecef");
+			$('.id').css("background","#e9ecef");
+			$('.birth').css("background","#e9ecef");
+			$('.email').css("background","#e9ecef");
+			$('.cmciname').css("background","#e9ecef");
+			
 			$('.pwBtn').prop("type", "button");
 			$('.changeBtn').prop("type", "hidden");
 			$('.saveBtn').prop("type", "button");
@@ -185,15 +191,23 @@
 					}
 				}
 			});
-
-			$('.pw').prop("readonly", true);
 			$('.name').prop("readonly", true);
 			$('.addr').prop("readonly", true);
+			
+			$('.pw').css("background","white");
+			$('.id').css("background","white");
+			$('.birth').css("background","white");
+			$('.email').css("background","white");
+			$('.cmciname').css("background","white");
+			
+			
+			
 			$('.pwBtn').prop("type", "hidden");
 			$('.changeBtn').prop("type", "button");
 			$('.saveBtn').prop("type", "hidden");
 			$('.deleteBtn').prop("type", "button");
 			$('.cancleBtn').prop("type", "hidden");
+			alert('변경되었습니다.');
 		}
 
 		function deleteInfo() {
