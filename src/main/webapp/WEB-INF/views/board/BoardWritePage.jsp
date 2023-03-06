@@ -31,7 +31,7 @@
 				<span class="h3 mt-2" style="text-align: center;">공고 작성</span>
 
 				<div class="card-body px-5 mt-1">
-
+				
 
 					<form action="${pageContext.request.contextPath }/BoardWrite" method="post" class="user" onsubmit="return BoardWriteCheck(this)">
 						<div class="form-group mb-3">
@@ -50,8 +50,9 @@
 						</div>
 						<div class="form-group mb-4">
 							<input type="hidden" >
-							<label for="inputHope" class="mb-1">관력 직무 태그</label>
-							 <select  id="inputHope" name="bhope" class="form-select">
+							<label for="inputHope"  class="mb-1">관력 직무 태그</label>
+							 <select  id="inputHope" name ="bhope" class="form-select">
+								<option value="기타">기타</option>
 								<option value="경영,사무">경영,사무</option>
 								<option value="마케팅,광고,홍보">마케팅,광고,홍보</option>
 								<option value="IT인터넷">IT인터넷</option>
@@ -67,7 +68,7 @@
 								<option value="미디어">미디어</option>
 								<option value="전문,특수직">전문,특수직</option>
 							</select> 
-							<!-- <input name="bhope" type="text" id="inputHope" placeholder="#태그입력(#으로 구분해주세요.)" class="form-control form-control-user"> -->
+							<!-- <input name="bhope" type="text" id="inputTag" placeholder="#태그입력(#으로 구분해주세요.)" class="form-control form-control-user"> -->
 						</div>
 						<div class="form-group mb-3" style="text-align: center;">
 							<button class="btn btn-dark btn-lg" type="submit">글작성</button>
@@ -82,17 +83,28 @@
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript">
 		function BoardWriteCheck(formObj) {
-
 			var btitle = formObj.btitle.value;
 			var bmid = formObj.bmid.value;
 			var bcontents = formObj.bcontents.value;
+			
 			var bhope = formObj.bhope.value;
-			if (btitle.length<0){
-				btitle.focus();
+			var inputHope = $('#inputHope').val();
+			var inputTag = $('#inputTag').val();
+			
+			bhope += inputHope + inputTag;
+			console.log(bhope);
+			console.log(btitle.length);
+			
+			 if (btitle.length<=0){
 				alert('글 제목을 입력해주세요! ');
-			}else{
-				return true;
+				 return false;
+			}else if(bcontents.length <=0){
+				alert('글 내용을 입력해주세요! ');
+				 return false;
 			}
+			 else{
+				return true;
+			} 
 
 		}
 	</script>

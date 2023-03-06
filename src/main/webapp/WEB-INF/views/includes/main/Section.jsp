@@ -131,12 +131,6 @@
 										<a href="${pageContext.request.contextPath }/viewApply">
 											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">지원현황</button>
 										</a>
-										<a href="${pageContext.request.contextPath }/myScrap">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">스크랩</button>
-										</a>
-										<a href="${pageContext.request.contextPath }/viewApply">
-											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">지원현황</button>
-										</a>
 										<a href="${pageContext.request.contextPath }/WriteEmploymentPage">
 											<button type="button" class="btn btn-outline-secondary btn-sm" style="font-size: 65%;">공고등록</button>
 										</a>

@@ -127,8 +127,8 @@ public interface EmploymentDao {
 	@Select("SELECT * FROM RESUME ")
 	ArrayList<ResumeDto> SelectResumeInfo();
 
-	@Select("SELECT RECINAME FROM RESUME WHERE RECINAME LIKE '%${cmciname}%'  ")
-	String checkCmciname(String cmciname);
+	@Select("SELECT RECINAME FROM RESUME WHERE RECINAME LIKE '%${cmciname}%' AND REMID = #{viewId} ")
+	String checkCmciname(@Param("cmciname") String cmciname,@Param("viewId") String viewId);
 
 	@Update("UPDATE RESUME SET RECINAME = CONCAT(RECINAME, #{cmciname}) " + " WHERE REMID = #{viewId} ")
 	void updateReciname(@Param("cmciname") String cmciname, @Param("viewId") String viewId);
@@ -151,7 +151,7 @@ public interface EmploymentDao {
 	@Select("SELECT * FROM(SELECT * FROM EMPLOYMENT WHERE TO_CHAR(SYSDATE,'YYYYMMDD') <= TO_CHAR(EPDEADLINE,'YYYYMMDD') ORDER BY EPDEADLINE ASC) WHERE ROWNUM <= 5")
 	ArrayList<EmploymentDto> selectCloseDeadLine();
 
-	@Select("SELECT EPNUM, EPNAME, EPCINAME, EPEDU, EPCAREER, EPTREAT, EPTYPE, EPMONEY, EPAREA, EPTIME, TO_CHAR(EPPOST,'YY-MM-DD') AS EPPOST, TO_CHAR(EPDEADLINE,'YY-MM-DD') AS EPDEADLINE, EPSTATE, EPESSTATE  FROM EMPLOYMENT EP, CINFO CI WHERE EP.EPCINAME = CI.CINAME AND CI.CINUM = #{cinum}")
+	@Select("SELECT EPNUM, EPNAME, EPCINAME, EPEDU, EPCAREER, EPTREAT, EPTYPE, EPMONEY, EPAREA, EPTIME, TO_CHAR(EPPOST,'YYYY-MM-DD') AS EPPOST, TO_CHAR(EPDEADLINE,'YYYY-MM-DD') AS EPDEADLINE, EPSTATE, EPESSTATE  FROM EMPLOYMENT EP, CINFO CI WHERE EP.EPCINAME = CI.CINAME AND CI.CINUM = #{cinum}")
 	ArrayList<EmploymentDto> cinfoEpList(String cinum);
 
 	@Select("SELECT * FROM ESSAY WHERE ESEPNUM = #{epnum} AND ESMID = #{loginId}")
@@ -172,10 +172,9 @@ public interface EmploymentDao {
 	@Select("SELECT * FROM EMPLOYMENT WHERE EPNUM = #{epnum}")
 	EmploymentDto selectEpInfo(String epnum);
 
-
 	@Select("SELECT * FROM CINFO WHERE CINAME = #{ciname}")
 	CinfoDto selectCinfo(String ciname);
 
-//	@Select("SELECT * FROM APPLYSTATE WHERE APREMID = #{loginId}")
-//	ArrayList<ApplyStateDto> selectMyApply(String loginId);
+	@Update("UPDATE APPLYSTATE SET APSTATE = #{state} WHERE APREMID = #{apremid} AND APEPNUM = #{apepnum}")
+	int updateApState(@Param("apepnum") String apepnum, @Param("apremid") String apremid, @Param("state") String state);
 }

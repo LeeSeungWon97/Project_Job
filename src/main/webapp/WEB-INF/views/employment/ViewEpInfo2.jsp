@@ -121,12 +121,12 @@ h5 {
 					<div style="text-align: center; margin: 30px">
 						<c:choose>
 							<c:when test="${epInfo.epesstate == 'x' }">
-								<button type="button" class="btn btn-warning btn-lg mx-1" onclick="WriteResume1('${epInfo.epnum }')">
+								<button type="button" class="btn btn-warning btn-lg mx-1" onclick="WriteResume1('${epInfo.epnum }','${epInfo.epdeadline }')">
 									<i class="bi bi-check-lg"></i> 즉시지원
 								</button>
 							</c:when>
 							<c:otherwise>
-								<button type="button" class="btn btn-warning btn-lg mx-1" onclick="WriteResume2('${epInfo.epnum }','${epInfo.epciname }')">
+								<button type="button" class="btn btn-warning btn-lg mx-1" onclick="WriteResume2('${epInfo.epnum }','${epInfo.epciname }','${epInfo.epdeadline }')">
 									<i class="bi bi-check-lg"></i> 즉시지원
 								</button>
 							</c:otherwise>
@@ -176,7 +176,17 @@ h5 {
 	});
 </script>
 <script type="text/javascript">
-	function WriteResume2(epnum, epciname) {
+	function checkDate(date){
+	var today = new Date();
+	var targetDay = new Date(date);
+	return today > targetDay;
+	}
+	
+	
+	function WriteResume2(epnum, epciname, epdeadline) {
+		if(checkDate(epdeadline)){
+			alert("지원 마감");
+		}else{
 		console.log("자소서 창");
 		var popupWidth = 900;
 		var popupHeight = 950;
@@ -186,9 +196,14 @@ h5 {
 		console.log(epciname);
 		window.open("${pageContext.request.contextPath }/WriteEssayPage?epnum=" + epnum + "&epciname=" + epciname,
 				"이력서 선택", "width="+popupWidth+",height="+popupHeight+",top="+popupY+",left="+popupX);
+		}
 	}
 	
-	function WriteResume1(epnum) {
+	function WriteResume1(epnum, epdeadline) {
+		if(checkDate(epdeadline)){
+			alert("지원 마감");
+		}else{
+			
 		console.log("이력서창")
 		var popupWidth = 900;
 		var popupHeight = 950;
@@ -197,6 +212,7 @@ h5 {
 		console.log(epnum);
 		window.open("${pageContext.request.contextPath}/myResume?sideX=sideX&epnum="+epnum+"&state=1",
 				"이력서 선택", "width="+popupWidth+",height="+popupHeight+",top="+popupY+",left="+popupX);
+		}
 	}
 	</script>
 
