@@ -196,15 +196,27 @@ public class BoardController {
 	}	
 	
 	@RequestMapping(value = "/ViewReview")
-	public ModelAndView ViewReview(String rvtype) {
+	public ModelAndView ViewReview(String rvtype, String ciname) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("rvtype : "+rvtype);
-		ArrayList<ArrReviewsDto> reviewList = bsvc.selectReview(rvtype);
+		System.out.println("ciname : "+ciname);
+		ArrayList<ArrReviewsDto> reviewList = bsvc.selectReview(rvtype, ciname);
 		System.out.println(reviewList);
+		mav.addObject("ciname", ciname);
 		mav.addObject("reviewList", reviewList);
 		mav.setViewName("board/ViewReviewWithType");
 		return mav;
 	}	
 	
+	@RequestMapping(value = "/PassEssayPage")
+	public ModelAndView PassEssayPage(String rvtype) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("rvtype : "+rvtype);
+		ArrayList<ArrReviewsDto> reviewList = bsvc.selectReview(rvtype,"");
+		System.out.println(reviewList);
+		mav.addObject("reviewList", reviewList);
+		mav.setViewName("PassEssayPage");
+		return mav;
+	}	
 	
 }
