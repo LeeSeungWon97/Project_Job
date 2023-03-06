@@ -252,7 +252,7 @@
 						if(epListArea[i].epesstate == 'x'){
 							output += '<tr>';
 							output += '<td class="emci">';
-							output += '<a href="">';
+							output += '<a href="${pageContext.request.contextPath }/viewReciname?viewReciname='+epListArea[i].epciname+'">';
 							output += '<span>'+epListArea[i].epciname+'</span>';
 							output += '</a>';
 							output += '</td>';

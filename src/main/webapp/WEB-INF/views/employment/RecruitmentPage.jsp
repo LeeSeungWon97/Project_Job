@@ -238,9 +238,6 @@
 		} else {
 			window.open("${pageContext.request.contextPath }/myResume?epnum="+ epnum + "&epciname=" + epciname+"&state=2&sideX=sideX",
 					"이력서 선택", "width="+popupWidth+",height="+popupHeight+",top="+popupY+",left="+popupX);
-			/* window.open("${pageContext.request.contextPath }/WriteEssayPage?epnum="+ epnum + "&epciname=" + epciname+"&state=2",
-					"이력서 선택", "width="+popupWidth+",height="+popupHeight+",top="+popupY+",left="+popupX); */
-
 		}
 	}
 	
@@ -271,28 +268,31 @@
 					for(var i = 0; i<epListArea.length;i++){
 						if(epListArea[i].epesstate == 'Y'){
 							output += '<tr>';
-							output += '<td class="emci">';
-							output += '<a href="">';
-							output += '<span>'+epListArea[i].epciname+'</span>';
+							output += '<td class="reci">';
+							output += '<a href="${pageContext.request.contextPath }/viewReciname?viewReciname='+epListArea[i].epciname+'">';
+							output += '<span>'+epListArea[i].epciname+'</span>'
 							output += '</a>';
 							output += '</td>';
-							output += '<td class="emnu">';
+							output += '<td class="renu">';
 							output += '<input type="button" class="scrap" id="'+epListArea[i].epnum+'" onclick="checkVal(\''+epListArea[i].epnum+'\', this)" value="⭐">';
 							output += '</td>';
-							output += '<td class="emna">';
+							output += '<td class="rena">';
 							output += '<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum='+epListArea[i].epnum+'">';
 							output += '<span style="color: #333; font-weight: bold;">'+epListArea[i].epname+'</span>';
 							output += '</a>';
 							output += '</td>';
-							output += '<td class="emde">';
+							output += '<td class="reed">';
+							output += '<span>'+epListArea[i].epedu+'</span>';
+							output += '</td>';
+							output += '<td class="rede">';
 							output += '<span>'+epListArea[i].epdeadline+'</span>';
 							output += '</td>';
-							output += '<td class="embu">';
-							output += '<button class="mt-1" onclick="WriteResume(\'sideX\',\''+epListArea[i].epnum+'\')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">';
+							output += '<td class="rebu">';
+							output += '<button class="mt-1" onclick="WriteResume(\''+epListArea[i].epnum+'\',\''+epListArea[i].epciname+'\',\''+epListArea[i].epname+'\')" style="min-width: 85px; font-size: 14px; background-color: #19ce60; border: solid #19ce60;">';
 							output += '<span style="color: white;">즉시지원</span>';
 							output += '</button>';
 							output += '</td>';
-							output += '</tr>';	
+							output += '</tr>';
 						} else{
 							count++;
 						}
