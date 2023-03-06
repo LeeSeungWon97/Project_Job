@@ -82,6 +82,9 @@
 	text-align: center;
 	color: #79BAEC;
 }
+.page-link {
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -115,7 +118,7 @@
 						</div>
 					</div>
 					<table class="table">
-						<thead style="background-color: #f2f9fe;">
+						<thead style="background-color: #f9f9f8; border-top: 1px solid black;">
 							<tr style="color: #888; text-align: center;">
 								<th scope="col">기업명</th>
 								<th scope="col"></th>

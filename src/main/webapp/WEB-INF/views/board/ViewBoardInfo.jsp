@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공고작성</title>
+<title>글상세보기</title>
 <link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png">
 <link href="${pageContext.request.contextPath }/resources/assets/css/header.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
@@ -14,6 +14,7 @@
 <link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
 </head>
 <body>
+
 	<!-- Header -->
 	<header id="header">
 		<div class="header-div">
@@ -28,126 +29,120 @@
 	<section id="section">
 		<div class="section-div" style="justify-content: center;">
 			<div class="card border-0 shadow rounded-3 mt-3 mb-3" style="width: 60%;">
-				<span class="h3 mt-2" style="text-align: center;">상세보기 양식</span>
+				<div class="card-body" style="padding: 29px 29px 0;">		
+					<!-- 머리말 -->
+					<div class="Article_header reserveArea" style="border-bottom: 1px solid #e3e6f0; margin-bottom: 20px; padding-bottom: 20px;">
+						<div class="Article_title" style="margin-bottom: 10px;">
+							<span style="color: #539DDB; font-size: 14px;">태그: ${board.bhope}</span>
+							<h3 style="margin-top: 7px; font-size: 28px;">제목: ${board.btitle}</h3>
+						</div>
 
-				<div class="card-body px-5 mt-1">
-					<!--  -->
-					<div style="padding: 10px;" class="list-group reserveArea">
+						<div class="writer_info">
+							<div class="profile_area" style="margin-bottom: 6px;">
+								<span style="font-size: 14px;">작성자: ${board.bmid}</span><br>
+							</div>
 
-						<div class="row" style="padding: 10px; border-style: groove;">
-							<div class="row-2">
-								<div class="small mb-1">${board.bhope}</div>
-							</div>
-							<div class="row-2">
-								<h1>${board.btitle}</h1>
-							</div>
-							<div class="row-5">
-								<p class="lead">${board.bcontents }</p>
-							</div>
-							<div class="row-2">
-								<div class="small mb-1">${board.bmid}${board.bdate }</div>
+							<div class="dateHit_area" style="font-size: 12px;">
+								<span style="margin-right: 8px;">${board.bdate }</span> <span>조회: ${board.bcount }</span>
 							</div>
 						</div>
+					</div>	
+					<!-- 내용 -->
+					<div class="content_area">
+						<p style="line-height: 1.8;">
+							<span>${board.bcontents }</span>
+						</p>
 					</div>
-					<!--  -->
-				</div>
-				<!--  -->
-				<!-- 게시글 추천 버튼 -->
-				<div class="row">
-					<div class="col-lg-7 ml-auto mr-auto align-items-center text-center pb-3" style="background-color: white;">
-						<button id="likeBtn" class="btn border-primary btn-user text-primary" onclick="boardLike('${board.bno }')">
-							<i class="p-0 far fa-thumbs-up ">추천</i> <span id="like_count">${blikeCount}</span>
-						</button>
+					<!-- 게시글 추천 버튼 -->
+					<div class="like_box" style="margin: 40px 0 25px;">
+						<div class="d-flex justify-content-center" style="background-color: white;">
+							<button id="likeBtn" class="btn border-primary btn-user text-primary" onclick="boardLike('${board.bno }')">
+								<i class="p-0 far fa-thumbs-up ">추천</i> <span id="like_count">${blikeCount}</span>
+							</button>
+						</div>
 					</div>
-				</div>
-
-				<hr>
-
-				<!-- 댓글 출력 -->
-				<div class="row">
-					<div class="col-lg-7 ml-auto mr-auto" style="background-color: white;">
-						<div class="pt-1 px-5 pb-1 ">
-							<div class="text-center">
-								<h1 class="h4 text-gray-900 mb-1">댓글 목록</h1>
-							</div>
-
-							<div id="replyListArea">
-								<c:forEach items="${replyList }" var="reply">
-									<div class="card shadow">
-										<div class="card-body p-3">
-											<div class="row no-gutters align-items-center text-xs font-weight-bold">
-												<div class="col">
-													<span class="text-primary">${reply.rewriter }</span> <span class="text-uppercase pl-2">${reply.redate }</span>
+					<!-- 댓글 출력 -->
+					<div class="comment_box" style="border-top: 1px solid #e3e6f0;">
+						<div class="comment_option" style="padding-top: 16px; margin-bottom: 11px;">
+							<div class="pt-1 px-5 pb-1 ">
+								<div class="text-center" style="padding-bottom: 16px;">
+									<h3 class="text-gray-900 mb-1" style="font-size: 20px;">댓글 목록</h3>
+								</div>
+								<div id="replyListArea">
+									<c:forEach items="${replyList }" var="reply">
+										<div class="card shadow">
+											<div class="card-body p-3">
+												<div class="row no-gutters align-items-center text-xs font-weight-bold">
+													<div class="col">
+														<span class="text-primary">${reply.rewriter }</span><span class="text-uppercase pl-2">작성일: ${reply.redate }</span>
+													</div>
+													<div class="col-auto">
+														<c:choose>
+															<c:when test="${reply.relikeCheck == null }">
+																<button class=" text-xs btn btn-sm border-primary btn-user text-primary" onclick="replyLike('${reply.renum}',this)">
+																	추천 <span> ${reply.relikecount } </span>
+																</button>
+															</c:when>
+															<c:otherwise>
+																<button class=" text-xs btn btn-sm border-primary btn-user text-white bg-primary" onclick="replyLike('${reply.renum}',this)">
+																	추천 <span> ${reply.relikecount } </span>
+																</button>
+															</c:otherwise>
+														</c:choose>
+													</div>
 												</div>
-												<div class="col-auto">
-													<c:choose>
-														<c:when test="${reply.relikeCheck == null }">
-															<button class=" text-xs btn btn-sm border-primary btn-user text-primary" onclick="replyLike('${reply.renum}',this)">
-																추천 <span> ${reply.relikecount } </span>
-															</button>
-														</c:when>
-														<c:otherwise>
-															<button class=" text-xs btn btn-sm border-primary btn-user text-white bg-primary" onclick="replyLike('${reply.renum}',this)">
-																추천 <span> ${reply.relikecount } </span>
-															</button>
-														</c:otherwise>
-													</c:choose>
-
-												</div>
-											</div>
-											<hr class="my-1">
-											<div class="row no-gutters align-items-center">
-												<div class="col">
-													<textarea readonly="readonly" class="retext mb-2 border-0 font-weight-bold text-gray-800 w-100">${reply.recontent }</textarea>
-												</div>
-												<div class="col-auto">
-													<c:if test="${reply.rewriter == sessionScope.loginInfo.mid}">
-														<button class="btn btn-sm btn-danger btn-user" onclick="replyDelete_ajax('${reply.renum}')">삭제</button>
-													</c:if>
+												<hr class="my-1">
+												<div class="row no-gutters align-items-center">
+													<div class="col">
+														<textarea readonly="readonly" class="retext mb-2 border-0 font-weight-bold text-gray-800 w-100">${reply.recontent }</textarea>
+													</div>
+													<div class="col-auto">
+														<c:if test="${reply.rewriter == sessionScope.loginInfo.mid}">
+															<button class="btn btn-sm btn-danger btn-user" onclick="replyDelete_ajax('${reply.renum}')">삭제</button>
+														</c:if>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-								</c:forEach>
+									</c:forEach>
+								</div>
 							</div>
-
 						</div>
 					</div>
-				</div>
-
-				<hr>
-
-				<!-- 댓글 작성 폼 -->
-				<c:if test="${sessionScope.loginType != null }">
-					<div class="row">
-						<div class="col-lg-7 ml-auto mr-auto" style="background-color: white;">
+					<!-- 댓글 작성 폼 -->
+					<div class="comment_writer" style="margin: 22px 0 29px; padding: 16px 10px 10px 18px; border: 1px solid #e3e6f0; border-radius: 6px; box-sizing: border-box;">
+						<c:if test="${sessionScope.loginType != null }">
 							<div class="pt-1 px-5 pb-1">
 								<form class="user" onsubmit="return replyWrite(this)">
-									<input type="text" name="rebno" value="${board.bno }">
-									<c:choose>
-										<c:when test="${sessionScope.loginType == 'P'}">
-											<input type="text" name="rewriter" id="loginId" value="${sessionScope.loginInfo.mid}">
-										</c:when>
-										<c:otherwise>
-											<input type="text" name="rewriter" id="loginId" value="${sessionScope.loginInfo.cmid}">
-										</c:otherwise>
-									</c:choose>
-									<div class="form-group">
-										<label for="inputrecontent" class="font-weight-bold">댓글작성</label>
-										<textarea name="recontent" id="inputrecontent" class="form-control" rows="3"></textarea>
+									<div class="input-group">
+										<input type="text" name="rebno" value="${board.bno }" class="form-control" readonly="readonly">
+										<c:choose>
+											<c:when test="${sessionScope.loginType == 'P'}">
+												<input type="text" name="rewriter" id="loginId" value="${sessionScope.loginInfo.mid}" class="form-control" readonly="readonly">
+											</c:when>
+											<c:otherwise>
+												<input type="text" name="rewriter" id="loginId" value="${sessionScope.loginInfo.cmid}" class="form-control" readonly="readonly">
+											</c:otherwise>
+										</c:choose>
 									</div>
-									<button type="submit" class="btn btn-primary btn-user btn-block">댓글작성</button>
-									<hr>
+									<div class="form-group">
+										<textarea name="recontent" id="inputrecontent" class="form-control" rows="3" placeholder="댓글을 남겨보세요"></textarea>
+									</div>
+									<div class="mt-1" style="text-align: center;">
+										<button type="submit" class="btn btn-dark btn-user btn-block">댓글작성</button>
+									</div>
 								</form>
 							</div>
-						</div>
+						</c:if>
 					</div>
-				</c:if>
-
-				<!--  -->
+				</div>
 			</div>
 		</div>
 	</section>
+
+
+
+
 
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript">

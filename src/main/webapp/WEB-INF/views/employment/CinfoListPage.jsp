@@ -55,6 +55,9 @@
 	text-align: center;
 	color: #79BAEC;
 }
+.page-link {
+	cursor: pointer;
+}
 </style>
 
 </head>
@@ -75,7 +78,7 @@
 		<div class="section-div" style="justify-content: center;">
 			<div class="card mt-4 mb-4 shadow rounded-3 " style="width: 65%;">
 				<div class="d-flex justify-content-center">
-					<div class="input-group mx-3 mt-4 mb-4" style="width: 100%;">
+					<div class="input-group mx-3 mt-4" style="width: 100%;">
 						<input class="form-control" type="search" placeholder="기업명 검색" aria-label="Search" name="searchValue" id="searchInput" style="border: 1px solid #ddd;">
 						<button class="search-btn " onclick="searchValue()" style="border: 1px solid #ddd; height: auto;">
 							<img src="${pageContext.request.contextPath }/resources/assets/img/update/search-icon.png" style="width: 90%; height: auto;">
