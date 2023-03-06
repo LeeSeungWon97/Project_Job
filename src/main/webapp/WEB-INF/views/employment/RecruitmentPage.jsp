@@ -78,7 +78,7 @@
 	display: scroll;
 	position: fixed;
 	bottom: 20px;
-	right: 80px;
+	right: 60px;
 	text-align: center;
 	color: #79BAEC;
 }
