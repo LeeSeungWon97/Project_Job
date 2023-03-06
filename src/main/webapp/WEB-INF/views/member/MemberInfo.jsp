@@ -20,28 +20,24 @@
 <body>
 	<!-- Header -->
 	<header id="header">
-	<div class="header-div">
-		<div class="logo">
-			<a class="navbar-brand" href="${pageContext.request.contextPath }/">
-				<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 80%; height: auto;">
-			</a>
+		<div class="header-div">
+			<div class="logo">
+				<a class="navbar-brand" href="${pageContext.request.contextPath }/">
+					<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 80%; height: auto;">
+				</a>
+			</div>
 		</div>
-	</div>
 	</header>
-	
+
 	<!-- Section -->
 	<section id="section">
 		<div class="section-div" style="justify-content: center;">
 			<div class="row my-4" style="width: 100%;">
-			
-			<div class="col-2 mx-4" style="width:15%;">
-				<!-- SideBar -->
-				<%@ include file="/WEB-INF/views/includes/infoSidebar.jsp" %>
-			</div>
 
 			<div class="col-lg-10 col-xl-8" style="width: 70%;">
 				<div class="card border-0 shadow rounded-3">
 					<div class="card-body p-4 p-sm-5 mb-3">
+						<input type="hidden" id="mType" value="${sessionScope.loginType }">
 						<c:choose>
 							<c:when test="${sessionScope.loginType == 'P'}">
 								<div class="input-group input-group-lg mb-3">
@@ -98,16 +94,10 @@
 							</c:otherwise>
 						</c:choose>
 
-						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-							<input type="button" class="changeBtn btn btn-outline-primary btn-lg mx-1" onclick="changeInfo()" value="수정">
-							<input type="hidden" class="saveBtn btn btn-outline-primary btn-lg mx-1" onclick="saveInfo()" value="저장">
-							<input type="button" class="deleteBtn btn btn-outline-danger btn-lg" onclick="deleteInfo()" value="탈퇴">
-							<input type="hidden" class="cancleBtn btn btn-outline-secondary btn-lg" onclick="changeCancle()" value="취소">
-						</div>
 
+						</div>
 					</div>
 				</div>
-			</div>
 			</div>
 		</div>
 	</section>
@@ -135,7 +125,6 @@
 			console.log("changePw() 호출");
 			window.open("${pageContext.request.contextPath }/changePw",
 					"비밀번호 변경", "width=400,height=400,top=10,left=100");
-
 		}
 
 		function changeInfo() {

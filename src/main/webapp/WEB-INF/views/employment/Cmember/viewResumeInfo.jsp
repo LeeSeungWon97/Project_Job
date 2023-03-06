@@ -141,7 +141,7 @@ h6 {
 							<%-- <a class="btn" href="${pageContext.request.contextPath}/viewApplyInfo?viewId=${Resume.remid}" target="_blank"> --%>
 							<div class="d-flex">
 								<img class="card-img-top"
-									style="border-radius: 70%; width: 65px; height: 55px;"
+									style="border-radius: 70%; width: 55px; height: 45px;"
 									src="${pageContext.request.contextPath }/resources/assets/img/resumePerson.png" />
 								<div class="h5 mx-1 mt-1"
 									style="color: black; text-align: center;">${Resume.remid}</div>

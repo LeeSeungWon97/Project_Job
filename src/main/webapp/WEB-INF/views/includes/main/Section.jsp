@@ -17,7 +17,7 @@
 						<c:forEach items="${closeDeadLine}" var="closeDead">
 							<div class="swiper-slide">
 								<h3>
-									<a href="">${closeDead.epciname }</a>
+									<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${closeDead.epnum}">${closeDead.epciname }</a>
 								</h3>
 								<hr>
 								<span>${closeDead.epname }</span>
@@ -38,7 +38,7 @@
 						<c:forEach items="${newEmploy}" var="newEmploy">
 							<div class="swiper-slide">
 								<h3>
-									<a href="">${newEmploy.epciname }</a>
+									<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${newEmploy.epnum}">${newEmploy.epciname }</a>
 								</h3>
 								<hr>
 								<span>${newEmploy.epname }</span>
@@ -154,7 +154,7 @@
 						<table class="table table-bordered">
 							<tr>
 								<th scope="col"><a href="${pageContext.request.contextPath }/calendar">공채달력</a></th>
-								<th scope="col"><a href="">합격자소서</a></th>
+								<th scope="col"><a href="${pageContext.request.contextPath }/PassEssayPage?rvtype=1">합격자소서</a></th>
 								<th scope="col"><a href="${pageContext.request.contextPath }/ReviewState">취업후기</a></th>
 							</tr>
 						</table>

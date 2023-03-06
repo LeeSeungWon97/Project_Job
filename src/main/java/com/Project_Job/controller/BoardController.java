@@ -1,6 +1,7 @@
 package com.Project_Job.controller;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Project_Job.dto.ArrResumeDto;
+import com.Project_Job.dto.ArrReviewsDto;
 import com.Project_Job.dto.BoardDto;
 import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.ReplyDto;
@@ -147,6 +149,9 @@ public class BoardController {
 	public ModelAndView ReviewState() {
 		ModelAndView mav = new ModelAndView();
 		ArrayList<CinfoDto> cinfoList = epsvc.getCiList("");
+		ArrayList<Map<String, String>> reviewcount = bsvc.getReviewCount();
+		System.out.println(reviewcount);
+		mav.addObject("reviewcount", reviewcount);
 		mav.addObject("cinfoList", cinfoList);
 		mav.setViewName("employment/ReviewState");
 		return mav;
@@ -190,5 +195,28 @@ public class BoardController {
 		return insertResult;
 	}	
 	
+	@RequestMapping(value = "/ViewReview")
+	public ModelAndView ViewReview(String rvtype, String ciname) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("rvtype : "+rvtype);
+		System.out.println("ciname : "+ciname);
+		ArrayList<ArrReviewsDto> reviewList = bsvc.selectReview(rvtype, ciname);
+		System.out.println(reviewList);
+		mav.addObject("ciname", ciname);
+		mav.addObject("reviewList", reviewList);
+		mav.setViewName("board/ViewReviewWithType");
+		return mav;
+	}	
+	
+	@RequestMapping(value = "/PassEssayPage")
+	public ModelAndView PassEssayPage(String rvtype) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("rvtype : "+rvtype);
+		ArrayList<ArrReviewsDto> reviewList = bsvc.selectReview(rvtype,"");
+		System.out.println(reviewList);
+		mav.addObject("reviewList", reviewList);
+		mav.setViewName("employment/PassEssayPage");
+		return mav;
+	}	
 	
 }
