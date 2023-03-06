@@ -70,7 +70,7 @@
 										</a>
 									</div>
 									<div class="summary" style="color: #666; font-size: 20px; margin-bottom: 10px;">
-										<a href=""> <span style="color: black; max-height: 3em; line-height: 1.5em;">내용: ${board.bcontents}</span>
+										<a href="${pageContext.request.contextPath }/ViewBoardInfo?bno=${board.bno}"> <span style="color: black; max-height: 3em; line-height: 1.5em;">내용: ${board.bcontents}</span>
 										</a>
 									</div>
 									<div class="detail" style="font-size: 15px;">
