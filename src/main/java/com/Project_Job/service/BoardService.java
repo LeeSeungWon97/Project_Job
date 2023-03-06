@@ -10,6 +10,7 @@ import com.Project_Job.dao.BoardDao;
 import com.Project_Job.dto.ArrResumeDto;
 import com.Project_Job.dto.ArrReviewsDto;
 import com.Project_Job.dto.BoardDto;
+import com.Project_Job.dto.EmploymentDto;
 import com.Project_Job.dto.ReplyDto;
 import com.Project_Job.dto.ResumeDto;
 import com.Project_Job.dto.ReviewsDto;
@@ -221,6 +222,24 @@ public class BoardService {
 	public ArrayList<Map<String, String>> getReviewCount() {
 		ArrayList<Map<String, String>> reviewCount = bdao.getReviewCount();
 		return reviewCount;
+	}
+
+	public String searchBoardList(String searchValue, String selectType) {
+		System.out.println("EmploymentService getEpListGson 호출");
+		ArrayList<BoardDto> boardList = new ArrayList<BoardDto>();
+		if (selectType.equals("BTITLE")) {
+			boardList = bdao.getSearchTilte(searchValue);
+		} else if(selectType.equals("BCONTENTS")){
+			boardList = bdao.getSearchContents(searchValue);
+		}else {
+			boardList = bdao.getSearchWriter(searchValue);
+		}
+		
+		System.out.println();
+		for (int i = 0; i < boardList.size(); i++) {
+			System.err.println(boardList.get(i));
+		}
+		return new Gson().toJson(boardList);
 	}
 
 
