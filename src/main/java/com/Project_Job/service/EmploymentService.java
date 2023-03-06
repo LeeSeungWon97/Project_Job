@@ -808,4 +808,19 @@ public class EmploymentService {
 		EmploymentDto epdto = epdao.selectEpInfo(apepnum);
 		return epdto;
 	}
+
+	// 공고지원 현황 상태 업데이트
+	public int updateApState(boolean passResult, String apepnum, String apremid) {
+		System.out.println("EmploymentService updateApState 호출");
+		String state = "F";
+		if(passResult) {
+			state = "T";
+		}
+		System.out.println("apepnum: " + apepnum);
+		System.out.println("apremid: " + apremid);
+		System.out.println("state: " + state);
+		int updateResult = epdao.updateApState(apepnum, apremid, state);
+		System.out.println("updateResult: " + updateResult);
+		return updateResult;
+	}
 }
