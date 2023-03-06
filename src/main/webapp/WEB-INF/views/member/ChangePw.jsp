@@ -11,25 +11,20 @@
 
 </head>
 <body>
-   		<div class="col-lg-10 col-xl-8 mx-auto" style="text-align: center;">
+	<div class="col-lg-10 col-xl-8 mx-auto" style="text-align: center;">
 
-	    				<div class="card-body p-4 p-sm-5 mb-3">
-	<label>현재 비밀번호</label>
-	<br>
-	<input type="password" id="currentPw" class="form-control">
-	<br>
-	<label>새 비밀번호</label>
-	<br>
-	<input type="password" id="newPw" class="form-control">
-	<br>
-	<label>새 비밀번호 확인</label>
-	<br>
-	<input type="password" id="newPwCheck" class="form-control">
-	<br>
+		<div class="card-body p-4 p-sm-5 mb-3">
+			<label>현재 비밀번호</label> <br>
+			<input type="password" id="currentPw" class="form-control">
+			<br> <label>새 비밀번호</label> <br>
+			<input type="password" id="newPw" class="form-control">
+			<br> <label>새 비밀번호 확인</label> <br>
+			<input type="password" id="newPwCheck" class="form-control">
+			<br>
 
-	<input type="button" id="changeBtn" class="btn btn-outline-primary btn-lg" value="변경" onclick="changePw()">
-</div>
-</div>
+			<input type="button" id="changeBtn" class="btn btn-outline-primary btn-lg" value="변경" onclick="changePw()">
+		</div>
+	</div>
 
 	<!-- jQuery -->
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -114,12 +109,12 @@
 				if (ischeckNewPwForm) {
 					checkPw();
 					if (isCheckNewPw) {
-						if($('#newPw').val() == $('#currentPw').val()){
+						if ($('#newPw').val() == $('#currentPw').val()) {
 							alert("새 비밀번호는 현재 비밀번호와 달라야합니다.");
-						} else{
+						} else {
 							alert("변경확인");
 							window.opener.document.getElementById('pw').value = document.getElementById('newPw').value;
-							window.close();														
+							window.close();
 						}
 					}
 				}
