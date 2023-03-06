@@ -257,12 +257,12 @@ h1 {
 
 
 				<!-- ResumeForm -->
-				<h1 style="text-align: center;">${cinfo.ciname }합격스펙</h1>
+				<h1 style="text-align: center; margin-top: 30px;">${cinfo.ciname }합격스펙</h1>
 				<div id="resumeForm">
 					<div class="mb-3">
-						<h2>
+						<h5>
 							<img src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png" style="width: 30px; height: 20px;"> 학력
-						</h2>
+						</h5>
 						<div class="input-group" id="reeduData">
 							<c:forEach items="${Resume.reedu }" varStatus="i" step="2">
 								<div class="input-group">
@@ -273,9 +273,9 @@ h1 {
 
 					</div>
 					<div class="mb-3">
-						<h2>
+						<h5>
 							<img alt="" src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png" style="width: 30px; height: 20px;"> 경력
-						</h2>
+						</h5>
 						<div class="input-group" id="recarrerData">
 							<c:forEach items="${Resume.recarrer }" varStatus="i" step="2">
 								<div class="input-group">
@@ -286,9 +286,9 @@ h1 {
 
 					</div>
 					<div class="mb-3">
-						<h2>
+						<h5>
 							<img alt="" src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png" style="width: 30px; height: 20px;"> 인턴/대외활동
-						</h2>
+						</h5>
 						<div class="input-group" id="reactData">
 							<c:forEach items="${Resume.react }" varStatus="i" step="2">
 								<div class="input-group">
@@ -299,9 +299,9 @@ h1 {
 
 					</div>
 					<div class="mb-5">
-						<h2>
+						<h5>
 							<img alt="" src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png" style="width: 30px; height: 20px;"> 자격증
-						</h2>
+						</h5>
 						<div class="input-group" id="relicenseData">
 							<c:forEach items="${Resume.relicense }" varStatus="i" step="2">
 								<div class="input-group">

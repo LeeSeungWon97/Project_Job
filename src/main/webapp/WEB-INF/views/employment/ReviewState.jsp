@@ -76,7 +76,7 @@ color:  #79BAEC;
 							<div class="cLogo col-2">
 								<img class="card-img-top" src="${pageContext.request.contextPath }/resources/assets/img/building.png" style="width: 80%; height: auto;">
 								<br>
-								<span class="h3">${cinfo.ciname }</span>
+								<span class="h6">${cinfo.ciname }</span>
 							</div>
 							<div class="col-2">
 								<span class="h5">인적성후기</span>
@@ -91,8 +91,10 @@ color:  #79BAEC;
 							<div class="col-2">
 								<span class="h5">최종합격후기</span>
 							</div>
-							
-							<button onclick="WriteReview('${cinfo.cinum}')"> 후기작성하기</button>
+
+							<div style="margin-left: 10px;">
+							<button class="btn btn-secondary btn-sm" onclick="WriteReview('${cinfo.cinum}')"> 후기작성하기</button>
+							</div>
 							
 						</div>			
 					</li>
