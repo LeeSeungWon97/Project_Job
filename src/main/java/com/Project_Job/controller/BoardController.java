@@ -215,7 +215,7 @@ public class BoardController {
 		ArrayList<ArrReviewsDto> reviewList = bsvc.selectReview(rvtype,"");
 		System.out.println(reviewList);
 		mav.addObject("reviewList", reviewList);
-		mav.setViewName("PassEssayPage");
+		mav.setViewName("employment/PassEssayPage");
 		return mav;
 	}	
 	

@@ -82,10 +82,10 @@ public interface BoardDao {
 	@Insert("INSERT INTO REVIEWS VALUES(#{rvciname},#{rvdate},#{rveptype},#{rvobj},#{rvdif},#{rvmid},#{rvcontents},#{rvtype},#{rvstate})")
 	int insertReivew(ReviewsDto review);
 	
-	@Select("SELECT * FROM REVIEWS WHERE RVTYPE LIKE  '%${rvtype}%' AND RVCINAME LIKE  '%${ciname}%' ")
+	@Select("SELECT * FROM REVIEWS WHERE RVTYPE LIKE  '%${rvtype}%' AND RVCINAME LIKE '%${ciname}%' ")
 	ArrayList<ArrReviewsDto> selectReview(@Param("rvtype") String rvtype, @Param("ciname") String ciname);
 	
-	@Select("SELECT * FROM REVIEWS WHERE RVTYPE LIKE  '%${rvtype}%' AND LIKE  '%${ciname}%' ")
+	@Select("SELECT * FROM REVIEWS WHERE RVTYPE LIKE  '%${rvtype}%' AND  RVCINAME LIKE '%${ciname}%' ")
 	ArrayList<ReviewsDto> SelectReviewInfo(@Param("rvtype") String rvtype, @Param("ciname") String ciname);
 	
 	@Select("SELECT RVCINAME,RVTYPE,COUNT(*) AS RVCOUNT FROM REVIEWS GROUP BY RVCINAME, RVTYPE ")
