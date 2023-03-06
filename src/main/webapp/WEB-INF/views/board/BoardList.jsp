@@ -40,9 +40,28 @@
 				<div class="mt-4 mb-3">
 					<div class="input-group mx-3" style="width: 100%;">
 						<select id="selectType" class="form-select" style="border: 1px solid #ddd; max-width: 120px;">
+							<option value="ALL">전체</option>
 							<option value="BTITLE">제목</option>
 							<option value="BCONTENTS">내용</option>
 							<option value="BMID">작성자</option>
+						</select>
+						<select id="selectTag" class="form-select" style="border: 1px solid #ddd; max-width: 120px;">
+								<option value="ALL">전체</option>
+								<option value="기타">기타</option>
+								<option value="경영,사무">경영,사무</option>
+								<option value="마케팅,광고,홍보">마케팅,광고,홍보</option>
+								<option value="IT인터넷">IT인터넷</option>
+								<option value="디자인">디자인</option>
+								<option value="무역,유통">무역,유통</option>
+								<option value="영업,고객상담">영업,고객상담</option>
+								<option value="서비스">서비스</option>
+								<option value="연구개발,설계">연구개발,설계</option>
+								<option value="생산,제조">생산,제조</option>
+								<option value="교육">교육</option>
+								<option value="건설">건설</option>
+								<option value="의료">의료</option>
+								<option value="미디어">미디어</option>
+								<option value="전문,특수직">전문,특수직</option>
 						</select>
 						 <input class="form-control" type="search" placeholder="검색어를 입력해주세요" aria-label="Search" name="searchValue" id="searchInput" style="border: 1px solid #ddd;">
 						<button class="search-btn" onclick="searchValue()" style="border: 1px solid #ddd; height: auto;">
@@ -50,8 +69,11 @@
 						</button>
 					</div>
 				</div>
+						
 				<div class="mt-4 mb-3">
 					<div class="mx-3">
+						
+					
 						<button class="btn-dark btn-lg" style="color: white;" onclick="boardWritePage()">글쓰기</button>
 					</div>
 				</div>
@@ -133,8 +155,10 @@
 	function searchValue(){
 		var searchVal = $('#searchInput').val();	
 		var selectType = $('#selectType').val();	
+		var selectTag = $('#selectTag').val();	
 		console.log(searchVal);
 		console.log(selectType);
+		console.log(selectTag);
 		if(searchVal.length < 2){
 			alert('검색어는 2글자 이상 입력해주세요');
 			location.reload();
@@ -143,7 +167,8 @@
 			type: "get",
 			url: "${pageContext.request.contextPath }/searchBoardJson",
 			data : {"searchValue" : searchVal,
-					"selectType" : selectType},
+					"selectType" : selectType,
+					"selectTag" : selectTag},
 			dataType : "json",
 			success:function(boardList){
 				console.log(boardList);

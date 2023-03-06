@@ -19,12 +19,12 @@ import com.google.gson.JsonObject;
 
 @Service
 public class BoardService {
-	
+
 	@Autowired
 	private BoardDao bdao;
-	
+
 	public int BoardWrite(BoardDto board) {
-		
+
 		String maxBcode = bdao.selectMaxBnum();
 		System.out.println("BNO 최대값 : " + maxBcode);
 		String Bcode = "B";
@@ -38,14 +38,14 @@ public class BoardService {
 		System.out.println("BNO : " + Bcode);
 		board.setBno(Bcode);
 		int insertResult = bdao.BoardWrite(board);
-		
+
 		return insertResult;
 	}
 
 	public ArrayList<BoardDto> selectBoardList() {
-		
+
 		ArrayList<BoardDto> boardList = bdao.selectBoardList();
-		for(int i = 0; i < boardList.size();i++) {
+		for (int i = 0; i < boardList.size(); i++) {
 			String bno = boardList.get(i).getBno();
 			int breplycount = bdao.selectBreplyCount(bno);
 			boardList.get(i).setBreplycount(breplycount);
@@ -68,21 +68,21 @@ public class BoardService {
 	public ArrayList<ReplyDto> boardReplyList(String bno, String loginId) {
 		System.out.println("BoardService boardReplyList()");
 		ArrayList<ReplyDto> replyList = bdao.selectReplyList(bno);
-		//0번인덱스 댓글번호, 댓글작성자, 댓글내용, 댓글 작성일 + 추천수 + 추천확인
-		
-		for(int i = 0; i < replyList.size(); i++) {
-			//댓글의 추천수 조회
+		// 0번인덱스 댓글번호, 댓글작성자, 댓글내용, 댓글 작성일 + 추천수 + 추천확인
+
+		for (int i = 0; i < replyList.size(); i++) {
+			// 댓글의 추천수 조회
 			String renum = replyList.get(i).getRenum();
 			int relikecount = bdao.selectReplyLikeCount(renum);
 			replyList.get(i).setRelikecount(relikecount);
-			
-			//현재 페이지를 보는 사용자의 댓글 추천 여부 조회
-			if(loginId != null) {
+
+			// 현재 페이지를 보는 사용자의 댓글 추천 여부 조회
+			if (loginId != null) {
 				System.out.println("loginId != null");
 				String relikeCheck = bdao.selectReplyLikeCheck(renum, loginId);
 				replyList.get(i).setRelikeCheck(relikeCheck);
 			}
-		}		
+		}
 		return replyList;
 	}
 
@@ -90,11 +90,11 @@ public class BoardService {
 		System.out.println("BoardService boardLike()");
 		Gson gson = new Gson();
 		JsonObject boardLike_json = new JsonObject();
-		
-		//1. 추천유무 확인
+
+		// 1. 추천유무 확인
 		String likeMid = bdao.selectLikeCheck(lbno, lmid);
-		
-		if(likeMid == null) {
+
+		if (likeMid == null) {
 			System.out.println("추천 입력");
 			bdao.insertBoardLike(lbno, lmid);
 			boardLike_json.addProperty("likeResult", "1");
@@ -103,12 +103,12 @@ public class BoardService {
 			bdao.deleteBoardLike(lbno, lmid);
 			boardLike_json.addProperty("likeResult", "-1");
 		}
-		
-		//2. 추천 처리 이후 추천수 조회
+
+		// 2. 추천 처리 이후 추천수 조회
 		int likeCount = bdao.selectLikeCount(lbno);
 		boardLike_json.addProperty("likeCount", likeCount);
-		
-		System.out.println( gson.toJson(boardLike_json) );
+
+		System.out.println(gson.toJson(boardLike_json));
 		return gson.toJson(boardLike_json);
 	}
 
@@ -125,11 +125,10 @@ public class BoardService {
 			renum = renum + String.format("%05d", recodeNum);
 		}
 		System.out.println("recode : " + renum);
-		
+
 		reply.setRenum(renum);
-		
-		
-		//2.댓글 등록
+
+		// 2.댓글 등록
 		int insertResult = 0;
 		try {
 			insertResult = bdao.insertReply(reply);
@@ -147,25 +146,24 @@ public class BoardService {
 		System.out.println(reListC);
 		reList.addAll(reListC);
 		System.out.println(reList);
-		for(int i = 0; i < reList.size(); i++) {
+		for (int i = 0; i < reList.size(); i++) {
 			System.out.println(reList.get(i).getRenum());
 			String renum = reList.get(i).getRenum();
 			int relikecount = bdao.selectReplyLikeCount(renum);
 			reList.get(i).setRelikecount(relikecount);
-			if(loginId != null) {
-				//SELECT RLMID FROM REPLYLIKE WHERE RLNUM = #{renum} AND RLMID = #{loginId};
+			if (loginId != null) {
+				// SELECT RLMID FROM REPLYLIKE WHERE RLNUM = #{renum} AND RLMID = #{loginId};
 				String relikeCheck = bdao.selectReplyLikeCheck(renum, loginId);
 				reList.get(i).setRelikeCheck(relikeCheck);
-			}			
+			}
 		}
 		System.out.println(reList);
 		Gson gson = new Gson();
 		String reList_json = gson.toJson(reList);
 		System.out.println(reList_json);
-		
+
 		return reList_json;
-	}	
-	
+	}
 
 	public int replyDelete(String renum) {
 		System.out.println("BoardService replyDelete()");
@@ -178,10 +176,10 @@ public class BoardService {
 		System.out.println("BoardService replyLike()");
 		Gson gson = new Gson();
 		JsonObject replyLike_json = new JsonObject();
-		//1. 추천유무 확인
+		// 1. 추천유무 확인
 		String likeCheck = bdao.selectReplyLikeCheck(rlnum, rlmid);
-		
-		if(likeCheck == null) {
+
+		if (likeCheck == null) {
 			System.out.println("댓글 추천 입력");
 			bdao.insertReplyLike(rlnum, rlmid);
 			replyLike_json.addProperty("likeResult", "1");
@@ -190,12 +188,12 @@ public class BoardService {
 			bdao.deleteReplyLike(rlnum, rlmid);
 			replyLike_json.addProperty("likeResult", "-1");
 		}
-		
-		//2. 추천 처리 이후 추천수 조회
+
+		// 2. 추천 처리 이후 추천수 조회
 		int likeCount = bdao.selectReplyLikeCount(rlnum);
 		replyLike_json.addProperty("likeCount", likeCount);
-		
-		System.out.println( gson.toJson(replyLike_json) );
+
+		System.out.println(gson.toJson(replyLike_json));
 		return gson.toJson(replyLike_json);
 	}
 
@@ -203,7 +201,7 @@ public class BoardService {
 		int insertResult = bdao.insertReivew(review);
 		return insertResult;
 	}
-	
+
 	public ArrayList<ArrReviewsDto> selectReview(String rvtype, String ciname) {
 		ArrayList<ArrReviewsDto> reviewList = bdao.selectReview(rvtype, ciname);
 		System.out.println("bsvc selectReview 요청");
@@ -216,7 +214,7 @@ public class BoardService {
 			}
 		}
 		return reviewList;
-		
+
 	}
 
 	public ArrayList<Map<String, String>> getReviewCount() {
@@ -224,23 +222,36 @@ public class BoardService {
 		return reviewCount;
 	}
 
-	public String searchBoardList(String searchValue, String selectType) {
+	public String searchBoardList(String searchValue, String selectType, String selectTag) {
 		System.out.println("EmploymentService getEpListGson 호출");
 		ArrayList<BoardDto> boardList = new ArrayList<BoardDto>();
-		if (selectType.equals("BTITLE")) {
-			boardList = bdao.getSearchTilte(searchValue);
-		} else if(selectType.equals("BCONTENTS")){
-			boardList = bdao.getSearchContents(searchValue);
-		}else {
-			boardList = bdao.getSearchWriter(searchValue);
+		if (selectTag.equals("ALL")) {
+			if (selectType.equals("BTITLE")) {
+				boardList = bdao.getSearchTilte(searchValue,"");
+			} else if (selectType.equals("BCONTENT")) {
+				boardList = bdao.getSearchContents(searchValue,"");
+			} else if(selectType.equals("BMID")){
+				boardList = bdao.getSearchWriter(searchValue,"");
+			}else {
+				boardList = bdao.getSearchWriter("","");
+			}
+			System.out.println("selectTag all 인경우");
+			
+		} else if(selectType.equals("ALL")){
+			//태그만 있음
+			System.out.println("태그만 있음");
+			boardList = bdao.getBoardListWithTag(selectTag);
+			
+		} else {
+			//둘다 있음
+			System.out.println("태그랑 타입 둘다  있음");
+			boardList = bdao.getSearchTilte(searchValue,selectTag);
 		}
 		
-		System.out.println();
 		for (int i = 0; i < boardList.size(); i++) {
 			System.err.println(boardList.get(i));
 		}
 		return new Gson().toJson(boardList);
 	}
-
 
 }

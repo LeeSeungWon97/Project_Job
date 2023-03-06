@@ -88,12 +88,12 @@
 			var bcontents = formObj.bcontents.value;
 			
 			var bhope = formObj.bhope.value;
-			var inputHope = $('#inputHope').val();
+			/* var inputHope = $('#inputHope').val();
 			var inputTag = $('#inputTag').val();
 			
 			bhope += inputHope + inputTag;
 			console.log(bhope);
-			console.log(btitle.length);
+			console.log(btitle.length); */
 			
 			 if (btitle.length<=0){
 				alert('글 제목을 입력해주세요! ');
