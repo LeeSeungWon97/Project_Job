@@ -74,7 +74,8 @@ h2 {
 	<header id="header">
 		<div class="header-div">
 			<div class="logo">
-				<a class="navbar-brand" href="${pageContext.request.contextPath }/"> <img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 80%; height: auto;">
+				<a class="navbar-brand" href="${pageContext.request.contextPath }/">
+					<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 80%; height: auto;">
 				</a>
 			</div>
 		</div>
@@ -100,14 +101,21 @@ h2 {
 						<div class="card-body p-4 p-sm-5 mb-3">
 							<h1 style="text-align: center;">열람기업</h1>
 							<div class="row">
-								<c:forEach items="${Resume.reciname }" varStatus="i" step="1">
-									<div style="padding: 10px;" class="list-group reserveArea">
-										<div class="row" style="padding: 10px; border-bottom-style: dotted;">
-											<a href="${pageContext.request.contextPath}/viewReciname?viewReciname=${Resume.reciname[i.index]}" target="_blank">${Resume.reciname[i.index]}</a>
-											<%-- <p class="card-text">${Resume.reciname[i.index + 1]}</p> --%>
-										</div>
-									</div>
-								</c:forEach>
+								<c:choose>
+									<c:when test="${Resume.reciname == null }">
+										<p>열람한 기업이 없습니다.</p>
+									</c:when>
+									<c:otherwise>
+										<c:forEach items="${Resume.reciname }" varStatus="i" step="1">
+											<div style="padding: 10px;" class="list-group reserveArea">
+												<div class="row" style="padding: 10px; border-bottom-style: dotted;">
+													<a href="${pageContext.request.contextPath}/viewReciname?viewReciname=${Resume.reciname[i.index]}" target="_blank">${Resume.reciname[i.index]}</a>
+													<%-- <p class="card-text">${Resume.reciname[i.index + 1]}</p> --%>
+												</div>
+											</div>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
 
 							</div>
 

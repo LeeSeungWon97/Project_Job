@@ -20,94 +20,95 @@
 <body>
 	<!-- Header -->
 	<header id="header">
-	<div class="header-div">
-		<div class="logo">
-			<a class="navbar-brand" href="${pageContext.request.contextPath }/">
-				<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 80%; height: auto;">
-			</a>
+		<div class="header-div">
+			<div class="logo">
+				<a class="navbar-brand" href="${pageContext.request.contextPath }/">
+					<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 80%; height: auto;">
+				</a>
+			</div>
 		</div>
-	</div>
 	</header>
-	
+
 	<!-- Section -->
 	<section id="section">
 		<div class="section-div" style="justify-content: center;">
 			<div class="row my-4" style="width: 100%;">
-			
-			<div class="col-2 mx-4" style="width:15%;">
-				<!-- SideBar -->
-				<%@ include file="/WEB-INF/views/includes/infoSidebar.jsp" %>
-			</div>
 
-			<div class="col-lg-10 col-xl-8" style="width: 70%;">
-				<div class="card border-0 shadow rounded-3">
-					<div class="card-body p-4 p-sm-5 mb-3">
-						<c:choose>
-							<c:when test="${sessionScope.loginType == 'P'}">
-								<div class="input-group input-group-lg mb-3">
-									<span class="input-group-text" style="width: 17%; justify-content: center;">아이디</span>
-									<input type="text" class="id form-control" value="${sessionScope.loginInfo.mid }" readonly="readonly" style="background-color: white;">
-								</div>
-								<div class="input-group input-group-lg mb-3">
-									<span class="input-group-text" style="width: 17%; justify-content: center;">비밀번호</span>
-									<input type="password" class="pw form-control" value="${sessionScope.loginInfo.mpw }" readonly="readonly" style="background-color: white;">
-									<input type="hidden" class="pwBtn btn btn-secondary" onclick="changePw()" value="변경">
-								</div>
-								<div class="input-group input-group-lg mb-3">
-									<span class="input-group-text" style="width: 17%; justify-content: center;">이름</span>
-									<input type="text" class="name form-control" value="${sessionScope.loginInfo.mname }" readonly="readonly" style="background-color: white;">
-								</div>
-								<div class="input-group input-group-lg mb-3">
-									<span class="input-group-text" style="width: 17%; justify-content: center;">주소</span>
-									<input type="text" class="addr form-control" value="${sessionScope.loginInfo.maddr }" readonly="readonly" style="background-color: white;">
-								</div>
-								<div class="input-group input-group-lg mb-3">
-									<span class="input-group-text" style="width: 17%; justify-content: center;">생년월일</span>
-									<input type="text" class="form-control" value="${sessionScope.loginInfo.mbirth }" readonly="readonly" style="background-color: white;">
-								</div>
-								<div class="input-group input-group-lg mb-3">
-									<span class="input-group-text" style="width: 17%; justify-content: center;">이메일</span>
-									<input type="text" class="email form-control" value="${sessionScope.loginInfo.memail }" readonly="readonly" style="background-color: white;">
-								</div>
-							</c:when>
-							<c:otherwise>
-								<div>
-									<input type="hidden" class="cmcinum" value="${sessionScope.loginInfo.cmcinum }" readonly="readonly">
-								</div>
-								<div class="input-group input-group-lg mb-3">
-									<span class="input-group-text" style="width: 17%; justify-content: center;">회사명</span>
-									<input type="text" class="cmciname form-control" value="${sessionScope.cinfo.ciname }" readonly="readonly" style="background-color: white;">
-								</div>
-								<div class="input-group input-group-lg mb-3">
-									<span class="input-group-text" style="width: 17%; justify-content: center;">아이디</span>
-									<input type="text" class="id form-control" value="${sessionScope.loginInfo.cmid }" readonly="readonly" style="background-color: white;">
-								</div>
-								<div class="input-group input-group-lg mb-3">
-									<span class="input-group-text" style="width: 17%; justify-content: center;">비밀번호</span>
-									<input type="password" class="pw form-control" value="${sessionScope.loginInfo.cmpw }" readonly="readonly" style="background-color: white;">
-									<input type="hidden" class="pwBtn btn btn-secondary" onclick="changePw()" value="변경">
-								</div>
-								<div class="input-group input-group-lg mb-3">
-									<span class="input-group-text" style="width: 17%; justify-content: center;">이름</span>
-									<input type="text" class="name form-control" value="${sessionScope.loginInfo.cmname }" readonly="readonly" style="background-color: white;">
-								</div>
-								<div class="input-group input-group-lg mb-3">
-									<span class="input-group-text" style="width: 17%; justify-content: center;">이메일</span>
-									<input type="text" class="form-control" value="${sessionScope.loginInfo.cmemail }" readonly="readonly" style="background-color: white;">
-								</div>
-							</c:otherwise>
-						</c:choose>
+				<div class="col-2 mx-4" style="width: 15%;">
+					<!-- SideBar -->
+					<%@ include file="/WEB-INF/views/includes/infoSidebar.jsp"%>
+				</div>
 
-						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-							<input type="button" class="changeBtn btn btn-outline-primary btn-lg mx-1" onclick="changeInfo()" value="수정">
-							<input type="hidden" class="saveBtn btn btn-outline-primary btn-lg mx-1" onclick="saveInfo()" value="저장">
-							<input type="button" class="deleteBtn btn btn-outline-danger btn-lg" onclick="deleteInfo()" value="탈퇴">
-							<input type="hidden" class="cancleBtn btn btn-outline-secondary btn-lg" onclick="changeCancle()" value="취소">
+				<div class="col-lg-10 col-xl-8" style="width: 70%;">
+					<div class="card border-0 shadow rounded-3">
+						<div class="card-body p-4 p-sm-5 mb-3">
+							<input type="hidden" id="mType" value="${sessionScope.loginType }">
+							<c:choose>
+								<c:when test="${sessionScope.loginType == 'P'}">
+									<div class="input-group input-group-lg mb-3">
+										<span class="input-group-text" style="width: 17%; justify-content: center;">아이디</span>
+										<input type="text" class="id form-control" value="${sessionScope.loginInfo.mid }" readonly="readonly" style="background-color: white;">
+									</div>
+									<div class="input-group input-group-lg mb-3">
+										<span class="input-group-text" style="width: 17%; justify-content: center;">비밀번호</span>
+										<input type="password" id="pw" class="pw form-control" value="${sessionScope.loginInfo.mpw }" readonly="readonly" style="background-color: white;">
+										<input type="hidden" class="pwBtn btn btn-secondary" onclick="changePw()" value="변경">
+									</div>
+									<div class="input-group input-group-lg mb-3">
+										<span class="input-group-text" style="width: 17%; justify-content: center;">이름</span>
+										<input type="text" class="name form-control" value="${sessionScope.loginInfo.mname }" readonly="readonly" style="background-color: white;">
+									</div>
+									<div class="input-group input-group-lg mb-3">
+										<span class="input-group-text" style="width: 17%; justify-content: center;">주소</span>
+										<input type="text" class="addr form-control" value="${sessionScope.loginInfo.maddr }" readonly="readonly" style="background-color: white;">
+									</div>
+									<div class="input-group input-group-lg mb-3">
+										<span class="input-group-text" style="width: 17%; justify-content: center;">생년월일</span>
+										<input type="text" class="form-control" value="${sessionScope.loginInfo.mbirth }" readonly="readonly" style="background-color: white;">
+									</div>
+									<div class="input-group input-group-lg mb-3">
+										<span class="input-group-text" style="width: 17%; justify-content: center;">이메일</span>
+										<input type="text" class="email form-control" value="${sessionScope.loginInfo.memail }" readonly="readonly" style="background-color: white;">
+									</div>
+								</c:when>
+								<c:otherwise>
+									<div>
+										<input type="hidden" class="cmcinum" value="${sessionScope.loginInfo.cmcinum }" readonly="readonly">
+									</div>
+									<div class="input-group input-group-lg mb-3">
+										<span class="input-group-text" style="width: 17%; justify-content: center;">회사명</span>
+										<input type="text" class="cmciname form-control" value="${sessionScope.cinfo.ciname }" readonly="readonly" style="background-color: white;">
+									</div>
+									<div class="input-group input-group-lg mb-3">
+										<span class="input-group-text" style="width: 17%; justify-content: center;">아이디</span>
+										<input type="text" class="id form-control" value="${sessionScope.loginInfo.cmid }" readonly="readonly" style="background-color: white;">
+									</div>
+									<div class="input-group input-group-lg mb-3">
+										<span class="input-group-text" style="width: 17%; justify-content: center;">비밀번호</span>
+										<input type="password" class="pw form-control" value="${sessionScope.loginInfo.cmpw }" readonly="readonly" style="background-color: white;">
+										<input type="hidden" class="pwBtn btn btn-secondary" onclick="changePw()" value="변경">
+									</div>
+									<div class="input-group input-group-lg mb-3">
+										<span class="input-group-text" style="width: 17%; justify-content: center;">이름</span>
+										<input type="text" class="name form-control" value="${sessionScope.loginInfo.cmname }" readonly="readonly" style="background-color: white;">
+									</div>
+									<div class="input-group input-group-lg mb-3">
+										<span class="input-group-text" style="width: 17%; justify-content: center;">이메일</span>
+										<input type="text" class="form-control" value="${sessionScope.loginInfo.cmemail }" readonly="readonly" style="background-color: white;">
+									</div>
+								</c:otherwise>
+							</c:choose>
+
+							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+								<input type="button" class="changeBtn btn btn-outline-primary btn-lg mx-1" onclick="changeInfo()" value="수정">
+								<input type="hidden" class="saveBtn btn btn-outline-primary btn-lg mx-1" onclick="saveInfo()" value="저장">
+								<input type="button" class="deleteBtn btn btn-outline-danger btn-lg" onclick="deleteInfo()" value="탈퇴">
+								<input type="hidden" class="cancleBtn btn btn-outline-secondary btn-lg" onclick="changeCancle()" value="취소">
+							</div>
+
 						</div>
-
 					</div>
 				</div>
-			</div>
 			</div>
 		</div>
 	</section>
@@ -135,12 +136,11 @@
 			console.log("changePw() 호출");
 			window.open("${pageContext.request.contextPath }/changePw",
 					"비밀번호 변경", "width=400,height=400,top=10,left=100");
-
 		}
 
 		function changeInfo() {
 			console.log("changeInfo() 호출");
-			$('.pw').prop("readonly", false);
+			/* $('.pw').prop("readonly", false); */
 			$('.name').prop("readonly", false);
 			$('.addr').prop("readonly", false);
 			$('.pwBtn').prop("type", "button");
