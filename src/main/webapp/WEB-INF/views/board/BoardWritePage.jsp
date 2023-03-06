@@ -34,7 +34,7 @@
 				
 
 					<form action="${pageContext.request.contextPath }/BoardWrite" method="post" class="user" onsubmit="return BoardWriteCheck(this)">
-						<div class="form-group mb-2">
+						<div class="form-group mb-3">
 							<input name="btitle" type="text" id="inputTitle" placeholder="제목을 입력해주세요." class="form-control form-control-user">
 							<c:choose>
 								<c:when test="${sessionScope.loginType =='P'}">
@@ -45,10 +45,10 @@
 								</c:otherwise>
 							</c:choose>
 						</div>
-						<div class="form-group mb-2">
-							<textarea name="bcontents" id="inputContent" class="form-control" rows="10"></textarea>
+						<div class="form-group mb-3">
+							<textarea name="bcontents" id="inputContent" class="form-control" rows="10"  placeholder="내용을 입력해주세요."></textarea>
 						</div>
-						<div class="form-group mb-2">
+						<div class="form-group mb-4">
 							<input type="hidden" >
 							<label for="inputHope"  class="mb-1">관력 직무 태그</label>
 							 <select  id="inputHope" name ="bhope" class="form-select">
@@ -70,7 +70,7 @@
 							</select> 
 							<!-- <input name="bhope" type="text" id="inputTag" placeholder="#태그입력(#으로 구분해주세요.)" class="form-control form-control-user"> -->
 						</div>
-						<div class="form-group mb-2" style="text-align: center;">
+						<div class="form-group mb-3" style="text-align: center;">
 							<button class="btn btn-dark btn-lg" type="submit">글작성</button>
 						</div>
 					</form>

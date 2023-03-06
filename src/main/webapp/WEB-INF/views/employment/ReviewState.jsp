@@ -80,8 +80,17 @@
 						<li style="list-style: none; border-bottom: 1px solid #ebebeb; width: 100%;">
 							<div class="" style="width: 100%; padding: 1rem; align-items: center; display: flex;">
 								<div class="cLogo col-2">
-									<img class="card-img-top" src="${pageContext.request.contextPath }/resources/assets/img/building.png" style="width: 80%; height: auto;"> <br>
-									<span class="h3">${cinfo.ciname }</span>
+
+									<img class="card-img-top" src="${pageContext.request.contextPath }/resources/assets/img/building.png" style="width: 80%; height: auto;"> <br> <span class="h5">${cinfo.ciname }</span>
+								</div>
+								<div class="col-2">
+									<c:forEach items="${reviewcount }" var="review">
+										<c:if test="${cinfo.ciname == review.RVCINAME && review.RVTYPE == '1'}">
+											<h4 style="text-align: center;">${review.RVCOUNT }</h4>
+										</c:if>
+									</c:forEach>
+									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=1"><span class="h5">인적성후기</span></a>
+
 								</div>
 								<div class="col-2">
 									<c:forEach items="${reviewcount }" var="review">
@@ -95,11 +104,13 @@
 								</div>
 								
 								<div class="col-2">
+								
 									<c:forEach items="${reviewcount }" var="review">
 										<c:if test="${cinfo.ciname == review.RVCINAME && review.RVTYPE == '3'}">
 											<h4 style="text-align: center;">${review.RVCOUNT }</h4>
 										</c:if>
 									</c:forEach>
+
 									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=3&ciname=${cinfo.ciname }">
 										<span class="h5">면접후기</span>
 									</a>
@@ -115,7 +126,9 @@
 									</a>
 								</div>
 
-								<button onclick="WriteReview('${cinfo.cinum}')">후기작성하기</button>
+								<div style="margin-left: 15px;">
+								<button class="btn btn-secondary btn-sm" onclick="WriteReview('${cinfo.cinum}')">후기작성하기</button>
+								</div>
 
 							</div>
 						</li>
