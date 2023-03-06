@@ -1,6 +1,7 @@
 package com.Project_Job.dao;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -8,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.Project_Job.dto.ArrReviewsDto;
 import com.Project_Job.dto.BoardDto;
 import com.Project_Job.dto.ReplyDto;
 import com.Project_Job.dto.ReviewsDto;
@@ -79,5 +81,14 @@ public interface BoardDao {
 	
 	@Insert("INSERT INTO REVIEWS VALUES(#{rvciname},#{rvdate},#{rveptype},#{rvobj},#{rvdif},#{rvmid},#{rvcontents},#{rvtype},#{rvstate})")
 	int insertReivew(ReviewsDto review);
+	
+	@Select("SELECT * FROM REVIEWS WHERE RVTYPE LIKE  '%${rvtype}%' ")
+	ArrayList<ArrReviewsDto> selectReview(String rvtype);
+	
+	@Select("SELECT * FROM REVIEWS WHERE RVTYPE LIKE  '%${rvtype}%' ")
+	ArrayList<ReviewsDto> SelectReviewInfo(String rvtype);
+	
+	@Select("SELECT RVCINAME,RVTYPE,COUNT(*) AS RVCOUNT FROM REVIEWS GROUP BY RVCINAME, RVTYPE ")
+	ArrayList<Map<String, String>> getReviewCount();
 
 }
