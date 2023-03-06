@@ -1,13 +1,17 @@
 package com.Project_Job.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Project_Job.dao.BoardDao;
+import com.Project_Job.dto.ArrResumeDto;
+import com.Project_Job.dto.ArrReviewsDto;
 import com.Project_Job.dto.BoardDto;
 import com.Project_Job.dto.ReplyDto;
+import com.Project_Job.dto.ResumeDto;
 import com.Project_Job.dto.ReviewsDto;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -196,8 +200,27 @@ public class BoardService {
 
 	public int insertReivew(ReviewsDto review) {
 		int insertResult = bdao.insertReivew(review);
-		
 		return insertResult;
+	}
+	
+	public ArrayList<ArrReviewsDto> selectReview(String rvtype) {
+		ArrayList<ArrReviewsDto> reviewList = bdao.selectReview(rvtype);
+		System.out.println("bsvc selectReview 요청");
+		System.out.println(reviewList);
+		ArrayList<ReviewsDto> Review = bdao.SelectReviewInfo(rvtype);
+		for (int i = 0; i < reviewList.size(); i++) {
+			if (Review.get(i).getRvcontents() != null) {
+				String[] reedu = Review.get(i).getRvcontents().split("!@#");
+				reviewList.get(i).setRvcontents(reedu);
+			}
+		}
+		return reviewList;
+		
+	}
+
+	public ArrayList<Map<String, String>> getReviewCount() {
+		ArrayList<Map<String, String>> reviewCount = bdao.getReviewCount();
+		return reviewCount;
 	}
 
 
