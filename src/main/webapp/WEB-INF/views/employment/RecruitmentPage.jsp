@@ -148,7 +148,7 @@
 										<span>${employ.epdeadline }</span>
 									</td>
 									<td class="rebu">
-										<button class="mt-1" onclick="WriteResume('${employ.epnum }','${employ.epciname }','${employ.epname }')" style="min-width: 85px; font-size: 14px; background-color: #19ce60; border: solid #19ce60;">
+										<button class="mt-1" onclick="WriteResume('${employ.epnum }','${employ.epciname }','${employ.epname }','${employ.epdeadline }')" style="min-width: 85px; font-size: 14px; background-color: #19ce60; border: solid #19ce60;">
 											<span style="color: white;">즉시지원</span>
 										</button>
 									</td>
@@ -204,6 +204,12 @@
 	var loginType = $('#loginType').val();
 	var loginId = $('#loginId').val();
 	
+	function checkDate(date){
+		var today = new Date();
+		var targetDay = new Date(date);
+		return today > targetDay;
+	}
+	
 	function pageLoad(pageBtn){
 		var pageNum = pageBtn.innerText;
 		location.href = "${pageContext.request.contextPath}/RecruitmentPage?pageNum="+pageNum;
@@ -225,19 +231,23 @@
 		element.html(output);
 	}
 	
-	function WriteResume(epnum, epciname, epname) {
-		var popupWidth = 900;
-		var popupHeight = 950;
-		var popupX = (window.screen.width/2)-(popupWidth/2);
-		var popupY = (window.screen.height/2)-(popupHeight/2);
-		
-		console.log(epnum + epciname + epname);
-		if (loginType == "C") {
-			alert("일반회원을 위한 서비스입니다.");
-			location.reload();
-		} else {
-			window.open("${pageContext.request.contextPath }/myResume?epnum="+ epnum + "&epciname=" + epciname+"&state=2&sideX=sideX",
-					"이력서 선택", "width="+popupWidth+",height="+popupHeight+",top="+popupY+",left="+popupX);
+	function WriteResume(epnum, epciname, epname, epdeadline) {
+		if(checkDate(epdeadline)){
+			alert("지원 마감");
+		} else{
+			var popupWidth = 900;
+			var popupHeight = 950;
+			var popupX = (window.screen.width/2)-(popupWidth/2);
+			var popupY = (window.screen.height/2)-(popupHeight/2);
+			
+			console.log(epnum + epciname + epname);
+			if (loginType == "C") {
+				alert("일반회원을 위한 서비스입니다.");
+				location.reload();
+			} else {
+				window.open("${pageContext.request.contextPath }/myResume?epnum="+ epnum + "&epciname=" + epciname+"&state=2&sideX=sideX",
+						"이력서 선택", "width="+popupWidth+",height="+popupHeight+",top="+popupY+",left="+popupX);
+			}			
 		}
 	}
 	
@@ -288,7 +298,7 @@
 							output += '<span>'+epListArea[i].epdeadline+'</span>';
 							output += '</td>';
 							output += '<td class="rebu">';
-							output += '<button class="mt-1" onclick="WriteResume(\''+epListArea[i].epnum+'\',\''+epListArea[i].epciname+'\',\''+epListArea[i].epname+'\')" style="min-width: 85px; font-size: 14px; background-color: #19ce60; border: solid #19ce60;">';
+							output += '<button class="mt-1" onclick="WriteResume(\''+epListArea[i].epnum+'\',\''+epListArea[i].epciname+'\',\''+epListArea[i].epname+'\',\''+epListArea[i].epdeadline+'\')" style="min-width: 85px; font-size: 14px; background-color: #19ce60; border: solid #19ce60;">';
 							output += '<span style="color: white;">즉시지원</span>';
 							output += '</button>';
 							output += '</td>';
