@@ -123,7 +123,7 @@
 
 				<!--  -->
 				<table class="table">
-					<thead style="background-color: #f2f9fe; border-top: 1px solid #eaeaea;" id="ajaxCiname">
+					<thead style="background-color: #f9f9f8;  border-top: 1px solid black;" id="ajaxCiname">
 						<tr style="color: #888; text-align: center;">
 							<th scope="col" style="">회사</th>
 							<th scope="col"></th>
@@ -134,7 +134,7 @@
 					</thead>
 					<tbody id="epListArea" style="border-top: none;">
 						<c:forEach items="${epList }" var="employ">
-							<tr>			
+							<tr>
 								<td class="emci">
 									<a href="${pageContext.request.contextPath }/viewReciname?viewReciname=${employ.epciname }">
 										<span>${employ.epciname }</span>
@@ -152,7 +152,7 @@
 									<span>${employ.epdeadline }</span>
 								</td>
 								<td class="embu">
-									<button class="mt-1" onclick="WriteResume('sideX','${employ.epnum }')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">
+									<button class="mt-1" onclick="WriteResume('sideX','${employ.epnum }','${employ.epdeadline }')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">
 										<span style="color: white;">즉시지원</span>
 									</button>
 								</td>
@@ -202,6 +202,12 @@
 		createPageBtn();
 });
 	
+	function checkDate(date){
+		var today = new Date();
+		var targetDay = new Date(date);
+		return today > targetDay;
+	}
+
 	function pageLoad(pageBtn){
 		var pageNum = pageBtn.innerText;
 		location.href = "${pageContext.request.contextPath}/EmploymentPage?pageNum="+pageNum;
@@ -243,15 +249,16 @@
 				console.log(epListArea);
 				var element = $('#epListArea');
 				var output = "";
+				var count = 0;
 				if(epListArea.length <= 0){
-					alert("검색결과가 없습니다.정확한 이름인지 다시 한번 확인해 주세요.");
+					alert("검색결과가 없습니다.");
 					return null;
 				} else{
 					for(var i = 0; i<epListArea.length;i++){
 						if(epListArea[i].epesstate == 'x'){
 							output += '<tr>';
 							output += '<td class="emci">';
-							output += '<a href="">';
+							output += '<a href="${pageContext.request.contextPath }/viewReciname?viewReciname='+epListArea[i].epciname+'">';
 							output += '<span>'+epListArea[i].epciname+'</span>';
 							output += '</a>';
 							output += '</td>';
@@ -267,13 +274,19 @@
 							output += '<span>'+epListArea[i].epdeadline+'</span>';
 							output += '</td>';
 							output += '<td class="embu">';
-							output += '<button class="mt-1" onclick="WriteResume(\'sideX\',\''+epListArea[i].epnum+'\')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">';
+							output += '<button class="mt-1" onclick="WriteResume(\'sideX\',\''+epListArea[i].epnum+'\',\''+epListArea[i].epdeadline+'\')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">';
 							output += '<span style="color: white;">즉시지원</span>';
 							output += '</button>';
 							output += '</td>';
 							output += '</tr>';	
+						} else{
+							count++;
 						}
-					}	
+					}
+					if(count == epListArea.length){
+						alert("검색결과가 없습니다.");
+						return null;
+					}
 				}
 				element.html(output);
 				selectScrapInfo();
@@ -282,15 +295,20 @@
 		});
 		}	
 
-	function WriteResume(sideX, epnum) {
-		var popupWidth = 900;
-		var popupHeight = 950;
-		var popupX = (window.screen.width/2)-(popupWidth/2);
-		var popupY = (window.screen.height/2)-(popupHeight/2);
-		console.log(sideX);
-		console.log(epnum);
-		window.open("${pageContext.request.contextPath}/myResume?sideX="+sideX+"&epnum="+epnum+"&state=1",
-				"이력서 선택", "width="+popupWidth+",height="+popupHeight+",top="+popupY+",left="+popupX);
+	function WriteResume(sideX, epnum, epdeadline) {
+		console.log(epdeadline);
+		if(checkDate(epdeadline)){
+			alert("지원 마감");
+		} else{
+			var popupWidth = 900;
+			var popupHeight = 950;
+			var popupX = (window.screen.width/2)-(popupWidth/2);
+			var popupY = (window.screen.height/2)-(popupHeight/2);
+			console.log(sideX);
+			console.log(epnum);
+			window.open("${pageContext.request.contextPath}/myResume?sideX="+sideX+"&epnum="+epnum+"&state=1",
+					"이력서 선택", "width="+popupWidth+",height="+popupHeight+",top="+popupY+",left="+popupX);			
+		}
 	}
 	</script>
 

@@ -203,11 +203,11 @@ public class BoardService {
 		return insertResult;
 	}
 	
-	public ArrayList<ArrReviewsDto> selectReview(String rvtype) {
-		ArrayList<ArrReviewsDto> reviewList = bdao.selectReview(rvtype);
+	public ArrayList<ArrReviewsDto> selectReview(String rvtype, String ciname) {
+		ArrayList<ArrReviewsDto> reviewList = bdao.selectReview(rvtype, ciname);
 		System.out.println("bsvc selectReview 요청");
 		System.out.println(reviewList);
-		ArrayList<ReviewsDto> Review = bdao.SelectReviewInfo(rvtype);
+		ArrayList<ReviewsDto> Review = bdao.SelectReviewInfo(rvtype, ciname);
 		for (int i = 0; i < reviewList.size(); i++) {
 			if (Review.get(i).getRvcontents() != null) {
 				String[] reedu = Review.get(i).getRvcontents().split("!@#");
