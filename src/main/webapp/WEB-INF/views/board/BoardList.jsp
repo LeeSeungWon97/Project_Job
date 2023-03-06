@@ -56,64 +56,46 @@
 					</div>
 				</div>
 			</div>
-
-
 			<div class="card-body">
-				<div class="table-responsive">
-					<div class="row" style="line-height: 2;">
-						<table class="table">
-							<thead style="background-color: #f9f9f8; border-top: 1px solid black;">
-								<tr>
-									<th scope="col" style="padding: 12px; text-align: center;">번호</th>
-									<th scope="col" style="padding: 12px;">제목</th>
-									<th scope="col" style="padding: 12px;">작성자</th>
-									<th scope="col" style="padding: 12px; text-align: center;">작성일</th>
-									<th scope="col" style="padding: 12px; text-align: center;">조회</th>
-								</tr>
-							</thead>
-
-							<tbody id="boardListArea" class="reserveArea" style="border-top: 1px solid #eaeaea;">
-								<c:forEach items="${boardList}" var="board">
-									<tr>
-										<td style="padding: 12px; width: 10%; text-align: center;">${board.bno}</td>
-										<td style="padding: 12px; width: 30%;"><a href="${pageContext.request.contextPath }/ViewBoardInfo?bno=${board.bno}"> <span>${board.btitle}</span>
-										</a></td>
-										<td style="padding: 12px; width: 20%;"><span>${board.bmid}</span></td>
-										<td style="padding: 12px; width: 15%; text-align: center;"><span>${board.bdate}</span></td>
-										<td style="padding: 12px; width: 5%; text-align: center;"><span>${board.bcount}</span></td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</div>
+				<div class="" style="line-height: 2.5;">
+					<ul style="list-style: none; padding: 0; margin: 0; border-top: 1px solid #e1e5e8;">
+						
+						<c:forEach items="${boardList}" var="board">
+							<li style="padding: 29px 20px 0;">
+								<div class="topArea">
+									<a href="" style="background: #f0f3f9; padding: 5px; color: #777;">태그: ${board.bhope}</a>
+								</div>
+								<div class="contArea" style="padding: 0 15px 25px; border-bottom: 1px solid #e1e5e8;">
+									<div class="title" style="position: relative;">
+										<a href="${pageContext.request.contextPath }/ViewBoardInfo?bno=${board.bno}"> <i class="icoQ_on qnaSpB" style="font-size: 30px;">Q</i> <span style="font-size: 30px; color: black; padding-left: 10px;">제목: ${board.btitle}</span>
+										</a>
+									</div>
+									<div class="summary" style="color: #666; font-size: 20px; margin-bottom: 10px;">
+										<a href="${pageContext.request.contextPath }/ViewBoardInfo?bno=${board.bno}"> <span style="color: black; max-height: 3em; line-height: 1.5em;">내용: ${board.bcontents}</span>
+										</a>
+									</div>
+									<div class="detail" style="font-size: 15px;">
+										<span style="margin-right: 10px;">작성자: ${board.bmid}</span> <span style="margin-right: 10px;">작성일: ${board.bdate}</span> <span style="margin-right: 10px;">조회: ${board.bcount}</span> <span>추천: ${board.breplycount}</span>
+									</div>
+								</div>
+							</li>
+						</c:forEach>
+					</ul>
 				</div>
 			</div>
 		</div>
 	</section>
 
+	<input type="hidden" id="loginType" value="${sessionScope.loginType }">
+	<c:choose>
+		<c:when test="${sessionScope.loginType == 'P'}">
+			<input type="hidden" id="loginId" value="${sessionScope.loginInfo.mid }">
+		</c:when>
+		<c:otherwise>
+			<input type="hidden" id="loginId" value="${sessionScope.loginInfo.cmid }">
+		</c:otherwise>
+	</c:choose>
 
-	<!--  
-
-
-							<div class="small mb-1">${board.bhope}, 조회수: ${board.bcount} 댓글 : ${board.breplycount}</div>
-		
-				
-		-->
-	
-		
-		
-		
-		<input type="hidden" id="loginType" value="${sessionScope.loginType }">
-		<c:choose>
-			<c:when test="${sessionScope.loginType == 'P'}">
-				<input type="hidden" id="loginId" value="${sessionScope.loginInfo.mid }">
-			</c:when>
-			<c:otherwise>
-				<input type="hidden" id="loginId" value="${sessionScope.loginInfo.cmid }">
-			</c:otherwise>
-		</c:choose>
-		<div class="col-2"></div>
-	</div>
 	<!--end board  -->
 
 	<!-- Footer-->
@@ -121,7 +103,7 @@
 
 	<!-- Bootstrap core JS-->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-	
+
 	<!-- Core theme JS-->
 	<script src="${pageContext.request.contextPath }/resources/assets/js/scripts.js"></script>
 </body>
