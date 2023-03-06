@@ -220,13 +220,13 @@ public class BoardController {
 	}	
 	
 	@RequestMapping(value = "/searchBoardJson")
-	public @ResponseBody String searchBoardJson(String searchValue, String selectType) {
+	public @ResponseBody String searchBoardJson(String searchValue, String selectType, String selectTag) {
 		System.out.println("searchBoardJson호출");
 		System.out.println("searchBoardJson호출"+searchValue);
 		System.out.println("searchBoardJson호출"+selectType);
 		String boardList = "";
 		if (searchValue.length() >= 2) {
-			boardList = bsvc.searchBoardList(searchValue, selectType);
+			boardList = bsvc.searchBoardList(searchValue, selectType, selectTag);
 			return boardList;
 		} else {
 			return null;
