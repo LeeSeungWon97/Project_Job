@@ -186,34 +186,44 @@ h1 {
 
 				<div id="InterviewReview" class="d-none">
 					<div class="box">
-						<input type="text" class="form-control-plaintext" name="" placeholder="면접은 어디에서, 몇 시에 보셨습니까?" value="면접은 어디에서, 몇 시에 보셨습니까?">
+						<input type="text" class="form-control-plaintext" readonly="readonly" placeholder="면접은 어디에서, 몇 시에 보셨습니까?" value="면접은 어디에서, 몇 시에 보셨습니까?">
 						<div class="form-floating">
 							<textarea class="form-control " id="" style="height: 100px"></textarea>
 						</div>
 					</div>
 					<div class="box">
-						<input type="text" class="form-control-plaintext" name="" placeholder="면접관 및 지원자는 몇 명이었습니까?" value="면접관 및 지원자는 몇 명이었습니까?">
+						<input type="text" class="form-control-plaintext" readonly="readonly" placeholder="면접관 및 지원자는 몇 명이었습니까?" value="면접관 및 지원자는 몇 명이었습니까?">
 						<div class="form-floating">
 							<textarea class="form-control " id="" style="height: 100px"></textarea>
 						</div>
 					</div>
 					<div class="box">
-						<input type="text" class="form-control-plaintext" name="" placeholder="면접유형은 어땠습니까? " value="면접유형은 어땠습니까?">
+						<input type="text" class="form-control-plaintext" readonly="readonly" placeholder="면접유형은 어땠습니까? " value="면접유형은 어땠습니까?">
 						<div class="form-floating">
 							<textarea class="form-control " id="" style="height: 100px"></textarea>
 						</div>
 					</div>
 					<div class="box">
-						<input type="text" class="form-control-plaintext" name="" placeholder="면접 진행방식에 대해 적어주세요. " value="면접 진행방식에 대해 적어주세요.">
+						<input type="text" class="form-control-plaintext" readonly="readonly" placeholder="면접 진행방식에 대해 적어주세요. " value="면접 진행방식에 대해 적어주세요.">
 						<div class="form-floating">
 							<textarea class="form-control " id="" style="height: 100px"></textarea>
 						</div>
 					</div>
+					<div id="QnAarea">
 					<div class="box">
-						<input type="text" class="form-control-plaintext" name="" placeholder="면접 질문과 그에 대한 답변을 적어주세요. " value="면접 질문과 그에 대한 답변을 적어주세요.">
+						<input type="text" class="form-control-plaintext" placeholder="면접 질문과 그에 대한 답변을 적어주세요. " value="면접 질문과 그에 대한 답변을 적어주세요.">
 						<div class="form-floating">
 							<textarea class="form-control " id="" style="height: 100px"></textarea>
 						</div>
+					</div>
+					</div>
+					<div style="text-align: center;" class="mt-2">
+						<button type="button" class="btn btn-secondary  modifyBtn" onclick="addSearchKeyB()">
+							<span class="plus">+</span>
+						</button>
+						<button type="button" class="btn btn-danger modifyBtn" onclick="delSearchKeyB(this)">
+							<span class="die">-</span>
+						</button>
 					</div>
 
 				</div>
@@ -222,25 +232,25 @@ h1 {
 				<!--  -->
 				<div id="FinalReview" class="d-none">
 					<div class="box">
-						<input type="text" class="form-control-plaintext" name="" placeholder="어떤 점이 합격에 가장 큰 영향을 주었다고 생각하십니까?" value="어떤 점이 합격에 가장 큰 영향을 주었다고 생각하십니까?">
+						<input type="text" class="form-control-plaintext" readonly="readonly" placeholder="어떤 점이 합격에 가장 큰 영향을 주었다고 생각하십니까?" value="어떤 점이 합격에 가장 큰 영향을 주었다고 생각하십니까?">
 						<div class="form-floating">
 							<textarea class="form-control " id="" style="height: 100px"></textarea>
 						</div>
 					</div>
 					<div class="box">
-						<input type="text" class="form-control-plaintext" name="" placeholder="취업준비에 가장 도움이 되었던 활동은 무엇입니까?" value="취업준비에 가장 도움이 되었던 활동은 무엇입니까?">
+						<input type="text" class="form-control-plaintext" readonly="readonly" placeholder="취업준비에 가장 도움이 되었던 활동은 무엇입니까?" value="취업준비에 가장 도움이 되었던 활동은 무엇입니까?">
 						<div class="form-floating">
 							<textarea class="form-control " id="" style="height: 100px"></textarea>
 						</div>
 					</div>
 					<div class="box">
-						<input type="text" class="form-control-plaintext" name="" placeholder="회사에 입사해보니 어떤가요? " value="회사에 입사해보니 어떤가요? ">
+						<input type="text" class="form-control-plaintext" readonly="readonly" placeholder="회사에 입사해보니 어떤가요? " value="회사에 입사해보니 어떤가요? ">
 						<div class="form-floating">
 							<textarea class="form-control " id="" style="height: 100px"></textarea>
 						</div>
 					</div>
 					<div class="box">
-						<input type="text" class="form-control-plaintext" name="" placeholder="취업 준비생에게 조언을 한다면?" value="취업 준비생에게 조언을 한다면?">
+						<input type="text" class="form-control-plaintext" readonly="readonly"" placeholder="취업 준비생에게 조언을 한다면?" value="취업 준비생에게 조언을 한다면?">
 						<div class="form-floating">
 							<textarea class="form-control " id="" style="height: 100px"></textarea>
 						</div>
@@ -369,7 +379,31 @@ h1 {
 		function delSearchKeyA() {
 			$("#EssayForm div:last").remove();
 		}
+			
+		
+		function addSearchKeyB() {
+			var rowItem = '<div class="box">';
+			rowItem += '<input type="text" class="form-control-plaintext reviewQ"  placeholder="면접 질문과 그에 대한 답변을 적어주세요. " value="면접 질문과 그에 대한 답변을 적어주세요.">';
+			rowItem += '<div class="form-floating">';
+			rowItem += '<textarea class="form-control answer" id="" style="height: 100px"></textarea>';
+			rowItem += "</div>";
+			rowItem += "</div>";
 
+			$('#QnAarea').append(rowItem);
+		}
+
+		function delSearchKeyB() {
+			$("#QnAarea div:last").remove();
+		}
+			
+		
+		
+		
+		
+			
+		
+		
+		
 		function WriteReview() {
 			var rvdate = $('#rvdate').val();
 			var rveptype = $('#rveptype').val();
