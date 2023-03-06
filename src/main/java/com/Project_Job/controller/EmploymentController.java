@@ -518,6 +518,17 @@ public class EmploymentController {
 			return null;
 		}
 	}
+	
+	@RequestMapping(value = "/updateApState")
+	public @ResponseBody String updateApState(boolean passResult, String apepnum, String apremid) {
+		System.out.println("EmploymentController updateApState 호출");
+		String result = "NO";
+		int updateResult = epsvc.updateApState(passResult, apepnum, apremid);
+		if(updateResult == 1) {
+			result = "OK";
+		}
+		return result;
+	}
 
 
 }
