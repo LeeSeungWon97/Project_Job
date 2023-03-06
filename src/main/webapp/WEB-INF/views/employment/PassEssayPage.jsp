@@ -55,6 +55,11 @@
 	text-align: center;
 	color: #79BAEC;
 }
+.txt_line {
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+  }
 </style>
 
 </head>
@@ -87,12 +92,12 @@
 										<div class="small mb-1">${review.rvciname}-${review.rvdate}-${review.rveptype}-${review.rvobj}</div>
 									</div>
 									<div class="row-7">
-										<c:forEach items="${review.rvcontents }" varStatus="i" step="2">
-											<div class="row-5">
-												<h3>${review.rvcontents[0]}</h3>
+										<%-- <c:forEach items="${review.rvcontents }" > --%>
+											<div class="row-5 txt_line">
+												<h3> ${review.rvcontents[0]}</h3>
 												<p class="lead">${review.rvcontents[1]}</p>
 											</div>
-										</c:forEach>
+										<%-- </c:forEach> --%>
 									</div>
 								</div>
 

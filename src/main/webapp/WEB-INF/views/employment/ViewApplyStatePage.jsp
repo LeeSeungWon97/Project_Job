@@ -89,10 +89,11 @@
 									<c:forEach items="${ApplyList}" var="apply">
 										<div class="row" style="padding: 10px; border-bottom-style: dotted;">
 											<div class="col-4">
-												<p class="lead">${apply.EPCINAME}</p>
+												<p class="lead"> <a href="${pageContext.request.contextPath }/viewReciname?viewReciname=${apply.EPCINAME}">   ${apply.EPCINAME}</a></p>
 											</div>
 											<div class="col-6">
-												<p class="lead">공고명 :${apply.EPNAME}</p>
+											<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${apply.EPNUM}">
+												<p class="lead">공고명 :${apply.EPNAME}</p></a>
 												<div class="small mb-1">마감일 : ${apply.EPDEADLINE}</div>
 											</div>
 

@@ -127,8 +127,8 @@ public interface EmploymentDao {
 	@Select("SELECT * FROM RESUME ")
 	ArrayList<ResumeDto> SelectResumeInfo();
 
-	@Select("SELECT RECINAME FROM RESUME WHERE RECINAME LIKE '%${cmciname}%'  ")
-	String checkCmciname(String cmciname);
+	@Select("SELECT RECINAME FROM RESUME WHERE RECINAME LIKE '%${cmciname}%' AND REMID = #{viewId} ")
+	String checkCmciname(@Param("cmciname") String cmciname,@Param("viewId") String viewId);
 
 	@Update("UPDATE RESUME SET RECINAME = CONCAT(RECINAME, #{cmciname}) " + " WHERE REMID = #{viewId} ")
 	void updateReciname(@Param("cmciname") String cmciname, @Param("viewId") String viewId);
@@ -175,6 +175,7 @@ public interface EmploymentDao {
 
 	@Select("SELECT * FROM CINFO WHERE CINAME = #{ciname}")
 	CinfoDto selectCinfo(String ciname);
+	
 
 //	@Select("SELECT * FROM APPLYSTATE WHERE APREMID = #{loginId}")
 //	ArrayList<ApplyStateDto> selectMyApply(String loginId);

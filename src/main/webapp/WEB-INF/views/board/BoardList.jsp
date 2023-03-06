@@ -40,11 +40,12 @@
 				<div class="mt-4 mb-3">
 					<div class="input-group mx-3" style="width: 100%;">
 						<select id="selectType" class="form-select" style="border: 1px solid #ddd; max-width: 120px;">
-							<option value="공고">제목</option>
-							<option value="기업">내용</option>
-							<option value="기업">작성자</option>
-						</select> <input class="form-control" type="search" placeholder="검색어를 입력해주세요" aria-label="Search" name="searchValue" id="searchInput" style="border: 1px solid #ddd;">
-						<button class="search-btn" onclick="" style="border: 1px solid #ddd; height: auto;">
+							<option value="BTITLE">제목</option>
+							<option value="BCONTENTS">내용</option>
+							<option value="BMID">작성자</option>
+						</select>
+						 <input class="form-control" type="search" placeholder="검색어를 입력해주세요" aria-label="Search" name="searchValue" id="searchInput" style="border: 1px solid #ddd;">
+						<button class="search-btn" onclick="searchValue()" style="border: 1px solid #ddd; height: auto;">
 							<img src="${pageContext.request.contextPath }/resources/assets/img/update/search-icon.png" style="width: 90%; height: auto;">
 						</button>
 					</div>
@@ -71,7 +72,7 @@
 								</tr>
 							</thead>
 
-							<tbody class="reserveArea" style="border-top: 1px solid #eaeaea;">
+							<tbody id="boardListArea" class="reserveArea" style="border-top: 1px solid #eaeaea;">
 								<c:forEach items="${boardList}" var="board">
 									<tr>
 										<td style="padding: 12px; width: 10%; text-align: center;">${board.bno}</td>
@@ -129,7 +130,50 @@
 	var loginType = $('#loginType').val();
 	var loginId = $('#loginId').val();	
 	
-	
+	function searchValue(){
+		var searchVal = $('#searchInput').val();	
+		var selectType = $('#selectType').val();	
+		console.log(searchVal);
+		console.log(selectType);
+		if(searchVal.length < 2){
+			alert('검색어는 2글자 이상 입력해주세요');
+			location.reload();
+		}
+		$.ajax({
+			type: "get",
+			url: "${pageContext.request.contextPath }/searchBoardJson",
+			data : {"searchValue" : searchVal,
+					"selectType" : selectType},
+			dataType : "json",
+			success:function(boardList){
+				console.log(boardList);
+				var element = $('#boardListArea');
+				var output = "";
+				var count = 0;
+				if(boardList.length <= 0){
+					alert("검색결과가 없습니다.");
+					return null;
+				} else{
+					for(var i = 0; i<boardList.length;i++){
+							output += '<tr>';
+							output += '<td style="padding: 12px; width: 10%; text-align: center;">'+boardList[i].bno+'</td>';
+							output += '<td style="padding: 12px; width: 30%;"><a href="${pageContext.request.contextPath }/ViewBoardInfo?bno='+boardList[i].bno+'"> <span>'+boardList[i].btitle+'</span>'
+							output += '</a>';
+							output += '</td>';
+							output += '<td style="padding: 12px; width: 20%;"><span>'+boardList[i].bmid+'</span></td>';
+							output += '<td style="padding: 12px; width: 15%; text-align: center;"><span>'+boardList[i].bdate+'</span></td>';
+							output += '<td style="padding: 12px; width: 5%; text-align: center;"><span>'+boardList[i].bcount+'</span></td>';
+							output += '</tr>';
+					}
+					if(count == boardList.length){
+						alert("검색결과가 없습니다.");
+						return null;
+					}
+				}
+				element.html(output);
+			}
+		});
+		}
 	
 	function boardWritePage() {
 		console.log("글작성 버튼 클릭");
