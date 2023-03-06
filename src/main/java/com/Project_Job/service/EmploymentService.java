@@ -672,16 +672,22 @@ public class EmploymentService {
 
 	// 열람 기업 목록
 	public void updateReciname(String cmciname, String viewId) {
-		String selectResult = epdao.checkCmciname(cmciname);
+		String selectResult = epdao.checkCmciname(cmciname, viewId);
 		System.out.println("updateReciname 호출");
+		System.out.println("cmciname"+cmciname);
+		System.out.println("viewId"+viewId);
+		System.out.println("select" + selectResult);
 		if (selectResult == null) {
-			String checkciname = epdao.checkCmcinameViewId(viewId);
-			cmciname = cmciname + "!@#";
-			if (checkciname.equals("x")) {
-				epdao.removeReciname(cmciname, viewId);
-			} else {
-				epdao.updateReciname(cmciname, viewId);
-			}
+			//String checkciname = epdao.checkCmcinameViewId(viewId);
+			//if (checkciname.equals("x")) {
+			String selectResult2 = epdao.checkCmciname("", viewId);
+				if(selectResult2 ==null) {
+					epdao.removeReciname(cmciname, viewId);
+				}else {
+					cmciname = "!@#"+cmciname;
+					epdao.updateReciname(cmciname, viewId);
+				}
+			
 		}
 	}
 
@@ -802,5 +808,4 @@ public class EmploymentService {
 		EmploymentDto epdto = epdao.selectEpInfo(apepnum);
 		return epdto;
 	}
-
 }
