@@ -82,6 +82,7 @@ public class EmploymentController {
 
 	}
 
+	//
 	// 공채 페이지 요청
 	@RequestMapping(value = "/RecruitmentPage")
 	public ModelAndView RecruitmentPage(int pageNum) {
@@ -313,6 +314,15 @@ public class EmploymentController {
 		ArrayList<CinfoDto> cinfoList = new ArrayList<CinfoDto>();
 		int pageIdx = pageNum;
 		int pageIdxMax = cinfoListAll.size() / 10 + 1;
+		int pageBtnIdx = (pageNum - 1) / 5;
+		int startBtn = pageBtnIdx * 5 + 1;
+		int endBtn = startBtn + 4;
+		if (endBtn > pageIdxMax) {
+			endBtn = pageIdxMax;
+		}
+		System.out.println("pageBtnIdx: " + pageBtnIdx);
+		System.out.println("startBtn: " + startBtn);
+		System.out.println("endBtn: " + endBtn);
 		int startIdx = 10 * (pageIdx - 1);
 		int endIdx = startIdx + 9;
 		if (endIdx >= cinfoListAll.size()) {
@@ -323,6 +333,8 @@ public class EmploymentController {
 		}
 		mav.addObject("cinfoList", cinfoList);
 		mav.addObject("pageNum", pageIdx);
+		mav.addObject("startBtn", startBtn);
+		mav.addObject("endBtn", endBtn);
 		mav.addObject("pageIdxMax", pageIdxMax);
 		mav.setViewName("employment/CinfoListPage");
 
