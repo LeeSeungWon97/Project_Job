@@ -50,6 +50,12 @@ ul {
 	align-items: center;
 	display: flex;
 }
+.noScrap{
+	margin: 200px;
+	text-align: center;
+	font-size: large;
+}
+
 </style>
 
 </head>
@@ -75,14 +81,18 @@ ul {
 				</div>
 
 				<div class="col-lg-10 col-xl-8" style="width: 65%;">
-					<div class="card border-0 shadow rounded-3">
+					<div class="card border-0 shadow rounded-3 mainBox">
 
 						<div class="card-body p-4 p-sm-5 mb-3">
 							<h4>스크랩</h4>
 							<ul>
 								<c:choose>
 									<c:when test="${empty myScrap }">
-										<p>스크랩한 공고가 없습니다.</p>
+										<div class="noScrap">
+										<strong>
+										스크랩한 공고가 없습니다.
+										</strong>
+										</div>
 									</c:when>
 									<c:otherwise>
 										<c:forEach items="${myScrap }" var="myScrap">
