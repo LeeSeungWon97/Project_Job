@@ -1,6 +1,7 @@
 package com.Project_Job.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -215,8 +216,44 @@ public class BoardService {
 
 	}
 
-	public ArrayList<Map<String, String>> getReviewCount() {
-		ArrayList<Map<String, String>> reviewCount = bdao.getReviewCount();
+	public ArrayList<Map<String, String>> getReviewCount(ArrayList<CinfoDto> cinfoList) {
+		System.out.println("getReviewCount 호출");
+		ArrayList<Map<String, String>> reviewCount = new ArrayList<Map<String, String>>();
+		for (int i = 0; i < cinfoList.size(); i++) {
+			Map<String,String> review = new HashMap<>();
+			String ciname = cinfoList.get(i).getCiname();
+			String cinum = cinfoList.get(i).getCinum();
+			int count2 = 0;
+			int count3 = 0;
+			int count4 = 0;
+			System.out.println("ciname: " + ciname);
+			ArrayList<String> reviewType = bdao.getReviewType(ciname);
+			for (int j = 0; j < reviewType.size(); j++) {
+				String type = reviewType.get(j);
+				switch (type) {
+				case "2":
+					count2++;
+					break;
+				case "3":
+					count3++;
+					break;
+				case "4":
+					count4++;
+					break;
+				default:
+					break;
+				}
+			}
+			String type2 = String.valueOf(count2);
+			String type3 = String.valueOf(count3);
+			String type4 = String.valueOf(count4);
+			review.put("ciname", ciname);
+			review.put("cinum", cinum);
+			review.put("type2", type2);
+			review.put("type3", type3);
+			review.put("type4", type4);
+			reviewCount.add(review);
+		}
 		return reviewCount;
 	}
 
@@ -227,17 +264,17 @@ public class BoardService {
 		if (!selectTag.equals("ALL")) {
 			Tag = selectTag;
 		}
-		switch(selectType) {
-		case "ALL" :
+		switch (selectType) {
+		case "ALL":
 			boardList = bdao.getSearchAll(searchValue, Tag);
 			break;
-		case "BTITLE" :
+		case "BTITLE":
 			boardList = bdao.getSearchTilte(searchValue, Tag);
 			break;
-		case "BCONTENTS" :
+		case "BCONTENTS":
 			boardList = bdao.getSearchContents(searchValue, Tag);
 			break;
-		case "BMID" :
+		case "BMID":
 			boardList = bdao.getSearchWriter(searchValue, Tag);
 			break;
 		}
