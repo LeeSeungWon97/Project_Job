@@ -521,18 +521,29 @@ public class EmploymentController {
 			return null;
 		}
 	}
-	
+
 	@RequestMapping(value = "/updateApState")
-	public @ResponseBody String updateApState(boolean passResult, String apepnum, String apremid, String memail, String ciname, String epname, String mname) {
+	public @ResponseBody String updateApState(boolean passResult, String apepnum, String apremid, String memail,
+			String ciname, String epname, String mname) {
 		System.out.println("EmploymentController updateApState 호출");
 		String result = "NO";
 		int updateResult = epsvc.updateApState(passResult, apepnum, apremid);
-		if(updateResult == 1) {
+		if (updateResult == 1) {
 			result = "OK";
 		}
-		emsvc.sendAcceptResult(passResult,memail,ciname,epname,mname);
+		emsvc.sendAcceptResult(passResult, memail, ciname, epname, mname);
 		return result;
 	}
 
-
+	@RequestMapping(value = "/deleteApply")
+	public @ResponseBody String deleteApply(String apepnum, String apremid) {
+		System.out.println("EmploymentController updateApState 호출");
+		int deleteResult = epsvc.deleteApply(apepnum, apremid);
+		String result = "NO";
+		if (deleteResult == 1) {
+			result = "OK";
+		}
+		System.out.println(result);
+		return result;
+	}
 }
