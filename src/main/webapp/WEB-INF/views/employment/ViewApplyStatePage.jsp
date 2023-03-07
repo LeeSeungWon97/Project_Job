@@ -61,24 +61,9 @@
 
 											<div class="col-2" style="text-align: center">
 												<button type="button" class="btn btn-danger btn-lg" onclick="viewApplyInfo('${apply.APREMID}')">상세보기</button>
-												<button type="button" class="btn btn-outline-success btn-lg">회신하기</button>
-
+												<button type="button" class="btn btn-outline-success btn-lg" onclick="acceptMember('${apply.APEPNUM }','${apply.APREMID}')">회신하기</button>
 											</div>
 										</div>
-										<!-- <div class="row"
-											style="padding: 10px; margin-left: 100px; margin-right: 100px;">
-											<div class="col-2">
-											
-											</div>
-											<div class="col-7">
-
-											</div>
-											<button type="button" class="btn btn-outline-success btn-lg">회신하기</button>
-											<div class="col-2" style="text-align: center">
-											
-											</div>
-										</div> -->
-
 									</c:forEach>
 								</div>
 
@@ -89,10 +74,11 @@
 									<c:forEach items="${ApplyList}" var="apply">
 										<div class="row" style="padding: 10px; border-bottom-style: dotted;">
 											<div class="col-4">
-												<p class="lead">${apply.EPCINAME}</p>
+												<p class="lead"> <a href="${pageContext.request.contextPath }/viewReciname?viewReciname=${apply.EPCINAME}">   ${apply.EPCINAME}</a></p>
 											</div>
 											<div class="col-6">
-												<p class="lead">공고명 :${apply.EPNAME}</p>
+											<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${apply.EPNUM}">
+												<p class="lead">공고명 :${apply.EPNAME}</p></a>
 												<div class="small mb-1">마감일 : ${apply.EPDEADLINE}</div>
 											</div>
 
@@ -102,20 +88,6 @@
 												</c:if>
 											</div>
 										</div>
-										<!-- <div class="row"
-											style="padding: 10px; margin-left: 100px; margin-right: 100px;">
-											<div class="col-2">
-											
-											</div>
-											<div class="col-7">
-
-											</div>
-											<button type="button" class="btn btn-outline-success btn-lg">회신하기</button>
-											<div class="col-2" style="text-align: center">
-											
-											</div>
-										</div> -->
-
 									</c:forEach>
 								</div>
 							</c:otherwise>
@@ -154,6 +126,23 @@
 					"${pageContext.request.contextPath}/viewApplyInfo?viewId="
 							+ viewId, "이력서 선택",
 					"width=400,height=400,top=10,left=100");
+		}
+		
+		function acceptMember(epnum, id){
+			console.log("acceptMember 클릭");
+			var confirm_Result = confirm("서류접수 통과입니까?");
+			$.ajax({
+				type:"get",
+				url:"${pageContext.request.contextPath}/updateApState",
+				data:{
+					"passResult": confirm_Result,
+					"apepnum": epnum,
+					"apremid": id
+				},
+				success: function(result){
+					console.log(result);
+				}
+			});
 		}
 	</script>
 

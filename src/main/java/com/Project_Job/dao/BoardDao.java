@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Update;
 
 import com.Project_Job.dto.ArrReviewsDto;
 import com.Project_Job.dto.BoardDto;
+import com.Project_Job.dto.EmploymentDto;
 import com.Project_Job.dto.ReplyDto;
 import com.Project_Job.dto.ReviewsDto;
 
@@ -90,5 +91,17 @@ public interface BoardDao {
 	
 	@Select("SELECT RVCINAME,RVTYPE,COUNT(*) AS RVCOUNT FROM REVIEWS GROUP BY RVCINAME, RVTYPE ")
 	ArrayList<Map<String, String>> getReviewCount();
+	
+	@Select("SELECT * FROM BOARDS WHERE BTITLE LIKE '%${searchValue}%' AND BHOPE LIKE  '%${selectTag}%'  ")
+	ArrayList<BoardDto> getSearchTilte(@Param("searchValue") String searchValue, @Param("selectTag") String selectTag);
+
+	@Select("SELECT * FROM BOARDS WHERE BCONTENTS LIKE '%${searchValue}%'  AND BHOPE LIKE  '%${selectTag}%'")
+	ArrayList<BoardDto> getSearchContents(@Param("searchValue") String searchValue, @Param("selectTag") String selectTag);
+
+	@Select("SELECT * FROM BOARDS WHERE BMID LIKE '%${searchValue}%' AND BHOPE LIKE  '%${selectTag}%' ")
+	ArrayList<BoardDto> getSearchWriter(@Param("searchValue") String searchValue, @Param("selectTag") String selectTag);
+	
+	@Select("SELECT * FROM BOARDS WHERE BHOPE = #{selectTag}")
+	ArrayList<BoardDto> getBoardListWithTag(String selectTag);
 
 }

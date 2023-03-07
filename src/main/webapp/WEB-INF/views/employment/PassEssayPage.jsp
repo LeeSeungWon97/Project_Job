@@ -73,9 +73,17 @@
 	color: #79BAEC;
 }
 
+
 .lead {
 	font-size: medium;
 }
+
+.txt_line {
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+  }
+
 </style>
 
 </head>
@@ -112,21 +120,16 @@
 									<div class="row-5 mb-2" >
 										<div class="small mb-1"> <strong>${review.rvciname}-${review.rvdate}-${review.rveptype}-${review.rvobj}</strong> </div>
 									</div>
+
 									<div class="row-7" style="border: 1px solid #ebebeb; padding: 12px; background-color: #F2F2F2; ">
-										<c:forEach items="${review.rvcontents }" varStatus="i"
-											step="2">
 											<div class="row-5">
 												<h5>${review.rvcontents[0]}</h5>
 												<p class="lead">${review.rvcontents[1]}</p>
 											</div>
-										</c:forEach>
 									</div>
 								</div>
-
-
 							</div>
 						</li>
-
 					</c:forEach>
 				</ul>
 				<div class="mx-auto my-auto">

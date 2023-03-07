@@ -1,6 +1,10 @@
 package com.Project_Job.service;
 
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -617,7 +621,6 @@ public class EmploymentService {
 		return ApplyList;
 	}
 
-
 	public MemberDto selectViewInfo(String viewId) {
 		MemberDto member = epdao.selectViewInfo(viewId);
 		return member;
@@ -669,16 +672,22 @@ public class EmploymentService {
 
 	// 열람 기업 목록
 	public void updateReciname(String cmciname, String viewId) {
-		String selectResult = epdao.checkCmciname(cmciname);
+		String selectResult = epdao.checkCmciname(cmciname, viewId);
 		System.out.println("updateReciname 호출");
+		System.out.println("cmciname"+cmciname);
+		System.out.println("viewId"+viewId);
+		System.out.println("select" + selectResult);
 		if (selectResult == null) {
-			String checkciname = epdao.checkCmcinameViewId(viewId);
-			cmciname = cmciname + "!@#";
-			if (checkciname.equals("x")) {
-				epdao.removeReciname(cmciname, viewId);
-			} else {
-				epdao.updateReciname(cmciname, viewId);
-			}
+			//String checkciname = epdao.checkCmcinameViewId(viewId);
+			//if (checkciname.equals("x")) {
+			String selectResult2 = epdao.checkCmciname("", viewId);
+				if(selectResult2 ==null) {
+					epdao.removeReciname(cmciname, viewId);
+				}else {
+					cmciname = "!@#"+cmciname;
+					epdao.updateReciname(cmciname, viewId);
+				}
+			
 		}
 	}
 
@@ -716,16 +725,25 @@ public class EmploymentService {
 		System.out.println("EmploymentService getCiListGson 호출");
 		ArrayList<CinfoDto> ciList = epdao.getCiList(searchValue);
 		System.out.println();
-		for(int i = 0; i<ciList.size();i++) {
+		for (int i = 0; i < ciList.size(); i++) {
 			System.out.println(ciList.get(i));
 		}
 		return new Gson().toJson(ciList);
 	}
 
 	// 기업 상세페이지 공고 찾기
-	public ArrayList<EmploymentDto> cinfoEpList(String cinum) {
-		ArrayList<EmploymentDto> epList = epdao.cinfoEpList(cinum);
-		System.out.println();
+	public ArrayList<EmploymentDto> cinfoEpList(String cinum) throws ParseException {
+		ArrayList<EmploymentDto> epListAll = epdao.cinfoEpList(cinum);
+		ArrayList<EmploymentDto> epList = new ArrayList<EmploymentDto>();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate now = LocalDate.now();
+		for (int i = 0; i < epListAll.size(); i++) {
+			String deadline = epListAll.get(i).getEpdeadline();
+			LocalDate dead = LocalDate.parse(deadline, formatter);
+			if (dead.isAfter(now)) {
+				epList.add(epListAll.get(i));
+			}
+		}
 		return epList;
 	}
 
@@ -785,12 +803,24 @@ public class EmploymentService {
 		return popularCinfo;
 	}
 
-	
 	public EmploymentDto selectEpInfo(String apepnum) {
 		System.out.println("EmploymentService selectEpInfo 호출");
 		EmploymentDto epdto = epdao.selectEpInfo(apepnum);
 		return epdto;
 	}
 
-
+	// 공고지원 현황 상태 업데이트
+	public int updateApState(boolean passResult, String apepnum, String apremid) {
+		System.out.println("EmploymentService updateApState 호출");
+		String state = "F";
+		if(passResult) {
+			state = "T";
+		}
+		System.out.println("apepnum: " + apepnum);
+		System.out.println("apremid: " + apremid);
+		System.out.println("state: " + state);
+		int updateResult = epdao.updateApState(apepnum, apremid, state);
+		System.out.println("updateResult: " + updateResult);
+		return updateResult;
+	}
 }

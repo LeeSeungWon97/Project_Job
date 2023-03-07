@@ -69,20 +69,13 @@ p {
 
 	<!-- Section -->
 	<section id="section">
-		<div class="section-div" style="justify-content:center;">
+		<div class="section-div" style="justify-content: center;">
 			<div class="col-lg-10 col-xl-8 " style="width: 65%;">
 				<div class="card mt-4 mb-4 border-0 shadow rounded-3">
 					<div class="card-body p-4 p-sm-5 mb-3">
 						<div class="row-5 mx-auto mb-5">
 							<h1>${cinfo.ciname }</h1>
 							<h5>${cinfo.ciind }</h5>
-							<div class="d-md-flex justify-content-md-end">
-								<!--  
-								<button type="button" class="btn btn-outline-secondary btn-lg" onclick="deleteInfo()">
-									<i class="bi bi-bookmark-check"></i> 스크랩
-								</button>
-								-->
-							</div>
 						</div>
 
 						<div class="mb-5">
@@ -120,41 +113,47 @@ p {
 							<div class="content">
 
 								<div style="text-align: center; margin: 10px">
-									<c:forEach items="${epList}" var="employ">
-										<c:choose>
-											<c:when test="${employ.epnum == null }">
-												<p>등록된 공고정보가 없습니다.</p>
-											</c:when>
-
-											<c:otherwise>
+									<c:choose>
+										<c:when test="${empty epList }">
+											<p>등록된 공고정보가 없습니다.</p>
+										</c:when>
+										<c:otherwise>
+											<c:forEach items="${epList}" var="employ">
 												<tr style="font-size: 16px;">
-													<td class="emci"><a href=""><span>${employ.epciname }</span></a></td>
-													<td class="emnu"><input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"></td>
-													<td class="emna"><a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }"><span style="color: #333; font-weight: bold;">${employ.epname }</span></a></td>
-													<td class="emde"><span>${employ.epdeadline }</span></td>
+													<td class="emci">
+														<a href="">
+															<span>${employ.epciname }</span>
+														</a>
+													</td>
+													<td class="emnu">
+														<input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐">
+													</td>
+													<td class="emna">
+														<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }">
+															<span style="color: #333; font-weight: bold;">${employ.epname }</span>
+														</a>
+													</td>
+													<td class="emde">
+														<span>${employ.epdeadline }</span>
+													</td>
 													<td class="embu">
-														<button class="mx-1 mt-1" onclick="WriteResume('sideX','${employ.epnum }')" style=" background-color: #ff7e00; border: solid #ff7e00;">
-															<span style="color: white; ">즉시지원</span>
+														<button class="mx-1 mt-1" onclick="WriteResume('sideX','${employ.epnum }','${employ.epdeadline }')" style="background-color: #ff7e00; border: solid #ff7e00;">
+															<span style="color: white;">즉시지원</span>
 														</button>
 													</td>
 												</tr>
-											</c:otherwise>
-										</c:choose>
-									</c:forEach>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</div>
 						</div>
-						
-						
 
 						<div style="text-align: center; margin: 5px">
-							
-								<button type="button" class="btn btn-outline-danger" onclick="backpage()">
-									<i class="bi bi-file-excel"></i> 닫기
-								</button>
-							
+							<button type="button" class="btn btn-outline-danger" onclick="backpage()">
+								<i class="bi bi-file-excel"></i> 닫기
+							</button>
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -191,24 +190,34 @@ p {
 	$(document).ready(function(){
 		selectScrapInfo();
 	});
+	
+	function checkDate(date){
+		var today = new Date();
+		var targetDay = new Date(date);
+		return today > targetDay;
+	}
 </script>
 <script type="text/javascript">
-function WriteResume(sideX, epnum) {
-	console.log(sideX);
-	console.log(epnum);
-	if (loginId == "") {
-		alert("로그인이 필요한 서비스입니다.");
-		location.href = "${pageContext.request.contextPath}/login";
-	} else if (loginType == "C") {
-		alert("일반회원을 위한 서비스입니다.");
-		location.reload();
-	} else {
-		window.open("${pageContext.request.contextPath}/myResume?sideX="+sideX+"&epnum="+epnum,
-				"이력서 선택", "width=400,height=400,top=10,left=100");
+function WriteResume(sideX, epnum, epdeadline) {
+	if(checkDate(epdeadline)){
+		alert("지원 마감");
+	}else{
+		console.log(sideX);
+		console.log(epnum);
+		if (loginId == "") {
+			alert("로그인이 필요한 서비스입니다.");
+			location.href = "${pageContext.request.contextPath}/login";
+		} else if (loginType == "C") {
+			alert("일반회원을 위한 서비스입니다.");
+			location.reload();
+		} else {
+			window.open("${pageContext.request.contextPath}/myResume?sideX="+sideX+"&epnum="+epnum,
+					"이력서 선택", "width=400,height=400,top=10,left=100");
+		}		
 	}
 
 }
-	</script>
+</script>
 
 
 <script type="text/javascript">	

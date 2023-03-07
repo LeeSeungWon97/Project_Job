@@ -31,7 +31,7 @@
 			<div class="card border-0 shadow rounded-3 mt-3 mb-3" style="width: 60%;">
 				<div class="card-body" style="padding: 29px 29px 0;">		
 					<!-- 머리말 -->
-					<div class="Article_header reserveArea" style="border-bottom: 1px solid #e3e6f0; margin-bottom: 20px; padding-bottom: 20px;">
+					<div class="Article_header reserveArea" style="border-bottom: 2px solid #e3e6f0; margin-bottom: 20px; padding-bottom: 20px;">
 						<div class="Article_title" style="margin-bottom: 10px;">
 							<span style="color: #539DDB; font-size: 14px;">태그: ${board.bhope}</span>
 							<h3 style="margin-top: 7px; font-size: 28px;">제목: ${board.btitle}</h3>
@@ -62,19 +62,19 @@
 						</div>
 					</div>
 					<!-- 댓글 출력 -->
-					<div class="comment_box" style="border-top: 1px solid #e3e6f0;">
+					<div class="comment_box" style="border-top: 2px solid #e3e6f0;">
 						<div class="comment_option" style="padding-top: 16px; margin-bottom: 11px;">
 							<div class="pt-1 px-5 pb-1 ">
-								<div class="text-center" style="padding-bottom: 16px;">
+								<div class="text-center">
 									<h3 class="text-gray-900 mb-1" style="font-size: 20px;">댓글 목록</h3>
 								</div>
 								<div id="replyListArea">
 									<c:forEach items="${replyList }" var="reply">
-										<div class="card shadow">
-											<div class="card-body p-3">
+										<div class="comment_area">
+											<div class="p-3">
 												<div class="row no-gutters align-items-center text-xs font-weight-bold">
 													<div class="col">
-														<span class="text-primary">${reply.rewriter }</span><span class="text-uppercase pl-2">작성일: ${reply.redate }</span>
+														<span class="text-primary" style="font-size: 14px;">${reply.rewriter }</span><br><span class="text-uppercase pl-2" style="font-size: 12px;">작성일: ${reply.redate }</span>
 													</div>
 													<div class="col-auto">
 														<c:choose>
@@ -91,10 +91,10 @@
 														</c:choose>
 													</div>
 												</div>
-												<hr class="my-1">
+												<hr class="my-2">
 												<div class="row no-gutters align-items-center">
 													<div class="col">
-														<textarea readonly="readonly" class="retext mb-2 border-0 font-weight-bold text-gray-800 w-100">${reply.recontent }</textarea>
+														<textarea readonly="readonly" class="retext mb-2 border-0 font-weight-bold text-gray-800 w-100 form-control" style="background-color: #F0F2E6;">${reply.recontent }</textarea>
 													</div>
 													<div class="col-auto">
 														<c:if test="${reply.rewriter == sessionScope.loginInfo.mid}">
@@ -110,12 +110,14 @@
 						</div>
 					</div>
 					<!-- 댓글 작성 폼 -->
-					<div class="comment_writer" style="margin: 22px 0 29px; padding: 16px 10px 10px 18px; border: 1px solid #e3e6f0; border-radius: 6px; box-sizing: border-box;">
+					<div class="comment_writer" style="margin: 12px 0 29px; padding: 16px 10px 10px 18px; box-sizing: border-box;">
+						<div class="px-5">
+						<div style=" border: 2px solid #e3e6f0; border-radius: 6px;">
 						<c:if test="${sessionScope.loginType != null }">
-							<div class="pt-1 px-5 pb-1">
+							<div class="pt-4 px-4 pb-4">
 								<form class="user" onsubmit="return replyWrite(this)">
 									<div class="input-group">
-										<input type="text" name="rebno" value="${board.bno }" class="form-control" readonly="readonly">
+										<input type="hidden" name="rebno" value="${board.bno }" class="form-control" readonly="readonly">
 										<c:choose>
 											<c:when test="${sessionScope.loginType == 'P'}">
 												<input type="text" name="rewriter" id="loginId" value="${sessionScope.loginInfo.mid}" class="form-control" readonly="readonly">
@@ -134,6 +136,8 @@
 								</form>
 							</div>
 						</c:if>
+						</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -305,15 +309,15 @@
 							for (var i = 0; i < reList.length; i++) {
 								console.log(reList[i].rewriter + " : "
 										+ reList[i].recontent);
-								output += '<div class="card shadow">';
-								output += '<div class="card-body p-3">';
+								output += '<div class="comment_area">';
+								output += '<div class="p-3">';
 								output += '<div class="row no-gutters align-items-center text-xs font-weight-bold">';
 								output += '<div class="col">';
 
-								output += '<span class="text-primary">';
-								output += reList[i].rewriter + '</span>';
+								output += '<span class="text-primary" style="font-size: 14px;">';
+								output += reList[i].rewriter + '</span><br>';
 
-								output += '<span class="text-uppercase pl-2 text-xs ">'
+								output += '<span class="text-uppercase pl-2 text-xs" style="font-size: 12px;">'
 										+ reList[i].redate + '</span>';
 								output += '</div>';
 								output += '<div class="col-auto align-items-center">';
@@ -336,10 +340,10 @@
 								output += '</button>';
 								output += '</div>';
 								output += '</div>';
-								output += '<hr class="my-1">';
+								output += '<hr class="my-2">';
 								output += '<div class="row no-gutters align-items-center">';
 								output += '<div class="col">';
-								output += '<textarea readonly="readonly"class="retext mb-2 border-0 font-weight-bold text-gray-800 w-100">'
+								output += '<textarea readonly="readonly"class="retext mb-2 border-0 font-weight-bold text-gray-800 w-100 form-control" style="background-color: #F0F2E6;">'
 										+ reList[i].recontent + '</textarea>';
 								output += '</div>';
 								output += '<div class="col-auto">';
