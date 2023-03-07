@@ -62,7 +62,7 @@
 
 .Rvcon {
 	width: 20px;
-	background-color: red;
+	background-color: olive;
 	border-radius: 30%;
 	text-align: center;
 	color: white;
@@ -82,8 +82,7 @@
 <body>
 
 	<!-- topbar -->
-	<a class="top" href="javascript:window.scrollTo(0,0);">
-		<i class="bi bi-caret-up-fill"></i><br> TOP
+	<a class="top" href="javascript:window.scrollTo(0,0);"> <i class="bi bi-caret-up-fill"></i><br> TOP
 	</a>
 
 
@@ -101,27 +100,29 @@
 						<li style="list-style: none; border-bottom: 1px solid #ebebeb; width: 100%;">
 							<div class="d-flex" style="width: 100%; padding: 1rem; align-items: center; display: flex;">
 								<div class="cLogo col-2">
-									<img class="card-img-top" src="${pageContext.request.contextPath }/resources/assets/img/building.png" style="width: 80%; height: auto;">
-									<br>
+									<img class="card-img-top" src="${pageContext.request.contextPath }/resources/assets/img/building.png" style="width: 80%; height: auto;"> <br>
 									<span class="h5">${reviewcount.ciname }</span>
 								</div>
 								<div class="col-2 Rmenu">
+									<div class="Rvcon mb-1">${reviewcount.type1 }</div>
+									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=1&ciname=${reviewcount.ciname }"> <span class="h5 menu">합격자소서</span>
+									</a>
+								</div>
+
+								<div class="col-2 Rmenu">
 									<div class="Rvcon mb-1">${reviewcount.type2 }</div>
-									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=2&ciname=${reviewcount.ciname }">
-										<span class="h5 menu">인적성후기</span>
+									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=2&ciname=${reviewcount.ciname }"> <span class="h5 menu">인적성후기</span>
 									</a>
 								</div>
 
 								<div class="col-2 Rmenu">
 									<div class="Rvcon mb-1">${reviewcount.type3 }</div>
-									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=3&ciname=${reviewcount.ciname }">
-										<span class="h5 menu">면접후기</span>
+									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=3&ciname=${reviewcount.ciname }"> <span class="h5 menu">면접후기</span>
 									</a>
 								</div>
 								<div class="col-2 Rmenu">
 									<div class="Rvcon mb-1">${reviewcount.type4 }</div>
-									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=4&ciname=${reviewcount.ciname }">
-										<span class="h5 menu">최종합격후기</span>
+									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=4&ciname=${reviewcount.ciname }"> <span class="h5 menu">최종합격후기</span>
 									</a>
 								</div>
 
@@ -136,7 +137,7 @@
 				</ul>
 				<div class="mx-auto my-auto">
 					<ul class="pagination">
-						
+
 					</ul>
 				</div>
 			</div>
@@ -205,23 +206,26 @@
 		}
 
 	}
-	
-	function pageLoad(pageBtn){
+
+	function pageLoad(pageBtn) {
 		var pageNum = pageBtn.innerText;
-		location.href = "${pageContext.request.contextPath}/RecruitmentPage?pageNum="+pageNum;
+		location.href = "${pageContext.request.contextPath}/RecruitmentPage?pageNum="
+				+ pageNum;
 	}
-	
-	function createPageBtn(){
+
+	function createPageBtn() {
 		var maxNum = '${pageIdxMax}';
 		var element = $('.pagination');
 		var pageNum = '${pageNum}';
 		var output = "";
 		console.log(maxNum);
-		for(var i = 0; i < maxNum; i++ ){
-			if(i+1 == pageNum){
-				output += '<li class="page-item active"><p class="page-link" onclick="pageLoad(this)">'+(i+1)+'</p></li>';	
-			} else{
-				output += '<li class="page-item"><p class="page-link" onclick="pageLoad(this)">'+(i+1)+'</p></li>';				
+		for (var i = 0; i < maxNum; i++) {
+			if (i + 1 == pageNum) {
+				output += '<li class="page-item active"><p class="page-link" onclick="pageLoad(this)">'
+						+ (i + 1) + '</p></li>';
+			} else {
+				output += '<li class="page-item"><p class="page-link" onclick="pageLoad(this)">'
+						+ (i + 1) + '</p></li>';
 			}
 		}
 		element.html(output);

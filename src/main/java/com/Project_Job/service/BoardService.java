@@ -223,6 +223,7 @@ public class BoardService {
 			Map<String,String> review = new HashMap<>();
 			String ciname = cinfoList.get(i).getCiname();
 			String cinum = cinfoList.get(i).getCinum();
+			int count1 = 0;
 			int count2 = 0;
 			int count3 = 0;
 			int count4 = 0;
@@ -231,6 +232,9 @@ public class BoardService {
 			for (int j = 0; j < reviewType.size(); j++) {
 				String type = reviewType.get(j);
 				switch (type) {
+				case "1":
+					count1++;
+					break;
 				case "2":
 					count2++;
 					break;
@@ -244,11 +248,13 @@ public class BoardService {
 					break;
 				}
 			}
+			String type1 = String.valueOf(count1);
 			String type2 = String.valueOf(count2);
 			String type3 = String.valueOf(count3);
 			String type4 = String.valueOf(count4);
 			review.put("ciname", ciname);
 			review.put("cinum", cinum);
+			review.put("type1", type1);
 			review.put("type2", type2);
 			review.put("type3", type3);
 			review.put("type4", type4);
