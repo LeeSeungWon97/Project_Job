@@ -1,17 +1,18 @@
 package com.Project_Job.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Project_Job.dao.BoardDao;
+import com.Project_Job.dto.ArrResumeDto;
 import com.Project_Job.dto.ArrReviewsDto;
 import com.Project_Job.dto.BoardDto;
-import com.Project_Job.dto.CinfoDto;
+import com.Project_Job.dto.EmploymentDto;
 import com.Project_Job.dto.ReplyDto;
+import com.Project_Job.dto.ResumeDto;
 import com.Project_Job.dto.ReviewsDto;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
