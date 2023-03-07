@@ -133,15 +133,13 @@ p {
 															<span style="color: #333; font-weight: bold;">${employ.epname }</span>
 														</a>
 													</td>
-													<td class="emde">
-														<span>${employ.epdeadline }</span>
-													</td>
 													<td class="embu">
-														<button class="mx-1 mt-1" onclick="WriteResume('sideX','${employ.epnum }','${employ.epdeadline }')" style="background-color: #ff7e00; border: solid #ff7e00;">
+														<button class="mx-1 mt-1" onclick="WriteResume('sideX','${employ.epnum }','${employ.epdeadline }','${employ.epesstate}','${employ.epciname}')" style="background-color: #ff7e00; border: solid #ff7e00;">
 															<span style="color: white;">즉시지원</span>
 														</button>
 													</td>
 												</tr>
+												<br>
 											</c:forEach>
 										</c:otherwise>
 									</c:choose>
@@ -198,12 +196,17 @@ p {
 	}
 </script>
 <script type="text/javascript">
-function WriteResume(sideX, epnum, epdeadline) {
+function WriteResume(sideX, epnum, epdeadline, epesstate, epciname) {
 	if(checkDate(epdeadline)){
 		alert("지원 마감");
 	}else{
 		console.log(sideX);
 		console.log(epnum);
+		console.log(epesstate);
+		var state = 1;
+		if(epesstate == 'Y'){
+			state = 2;
+		}
 		if (loginId == "") {
 			alert("로그인이 필요한 서비스입니다.");
 			location.href = "${pageContext.request.contextPath}/login";
@@ -211,7 +214,7 @@ function WriteResume(sideX, epnum, epdeadline) {
 			alert("일반회원을 위한 서비스입니다.");
 			location.reload();
 		} else {
-			window.open("${pageContext.request.contextPath}/myResume?sideX="+sideX+"&epnum="+epnum,
+			window.open("${pageContext.request.contextPath}/myResume?sideX="+sideX+"&epnum="+epnum+"&state="+state+"&epciname="+epciname,
 					"이력서 선택", "width=400,height=400,top=10,left=100");
 		}		
 	}

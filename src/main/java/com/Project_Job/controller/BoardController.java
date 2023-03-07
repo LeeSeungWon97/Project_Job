@@ -80,15 +80,14 @@ public class BoardController {
 		// 2. 추천수 조회
 		int blikeCount = bsvc.boardLikeCount(bno);
 		mav.addObject("blikeCount", blikeCount);
-		
-		
+
 		String loginType = (String) session.getAttribute("loginType");
 		String loginId = null;
-		System.out.println("loginType"+loginType);
-		if(loginType != null) {
-		loginId = mctrl.callLoginId(loginType);
+		System.out.println("loginType" + loginType);
+		if (loginType != null) {
+			loginId = mctrl.callLoginId(loginType);
 		}
-		
+
 		// 3. 댓글 목록 조회
 		ArrayList<ReplyDto> replyList = bsvc.boardReplyList(bno, loginId);
 		mav.addObject("replyList", replyList);
@@ -96,7 +95,7 @@ public class BoardController {
 		mav.setViewName("board/ViewBoardInfo");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/boardLike")
 	public @ResponseBody String boardLike(String lbno, String lmid) {
 		System.out.println("게시글 추천 처리 요청");
@@ -105,46 +104,46 @@ public class BoardController {
 		String result = bsvc.boardLike(lbno, lmid);
 		return result;
 	}
-	
+
 	@RequestMapping(value = "/replyWrite")
 	public @ResponseBody String replyWrite(ReplyDto reply) {
 		System.out.println("댓글 등록 요청");
 		System.out.println(reply);
 		int insertResult = bsvc.replyWrite(reply);
-		return insertResult+"";
+		return insertResult + "";
 	}
-	
+
 	@RequestMapping(value = "/replyList")
 	public @ResponseBody String replyList(String rebno) {
 		System.out.println("댓글 목록 조회 요청");
 		System.out.println("댓글을 조회할 글번호 : " + rebno);
 		String loginType = (String) session.getAttribute("loginType");
 		String loginId = null;
-		System.out.println("loginType"+loginType);
-		if(loginType != null) {
-		loginId = mctrl.callLoginId(loginType);
+		System.out.println("loginType" + loginType);
+		if (loginType != null) {
+			loginId = mctrl.callLoginId(loginType);
 		}
-		String replyList = bsvc.replyList(rebno,loginId);
+		String replyList = bsvc.replyList(rebno, loginId);
 		return replyList;
-	}	
-	
+	}
+
 	@RequestMapping(value = "/replyLike")
 	public @ResponseBody String replyLike(String rlnum, String rlmid) {
 		System.out.println("댓글 추천 등록 요청");
 		System.out.println("추천할 댓글번호 : " + rlnum);
 		String likeResult = bsvc.replyLike(rlnum, rlmid);
-		
+
 		return likeResult;
 	}
-	
+
 	@RequestMapping(value = "/replyDelete_ajax")
 	public @ResponseBody String replyDelete_ajax(String renum) {
 		System.out.println("댓글 삭제 요청");
 		System.out.println("삭제할 댓글 번호 : " + renum);
 		int deleteResult = bsvc.replyDelete(renum);
 		return deleteResult + "";
-	}	
-	
+	}
+
 	@RequestMapping(value = "/ReviewState")
 	public ModelAndView ReviewState() {
 		ModelAndView mav = new ModelAndView();
@@ -156,8 +155,7 @@ public class BoardController {
 		mav.setViewName("employment/ReviewState");
 		return mav;
 	}
-	
-	
+
 	@RequestMapping(value = "/ReviewWrite")
 	public ModelAndView ReviewWrite(String cinum, String type) {
 		ModelAndView mav = new ModelAndView();
@@ -173,16 +171,16 @@ public class BoardController {
 		mav.addObject("rvtype", type);
 		mav.setViewName("employment/ReviewWrite");
 		return mav;
-	}	
-	
+	}
+
 	@RequestMapping(value = "/ReviewType")
 	public ModelAndView ReviewType(String cinum) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("cinum", cinum);
 		mav.setViewName("ReviewType");
 		return mav;
-	}	
-	
+	}
+
 	@RequestMapping(value = "/WriteReview")
 	public @ResponseBody int WriteReview(ReviewsDto review) {
 		ModelAndView mav = new ModelAndView();
@@ -191,50 +189,45 @@ public class BoardController {
 		review.setRvmid(loginId);
 		System.out.println(review);
 		int insertResult = bsvc.insertReivew(review);
-		
+
 		return insertResult;
-	}	
-	
+	}
+
 	@RequestMapping(value = "/ViewReview")
 	public ModelAndView ViewReview(String rvtype, String ciname) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println("rvtype : "+rvtype);
-		System.out.println("ciname : "+ciname);
+		System.out.println("rvtype : " + rvtype);
+		System.out.println("ciname : " + ciname);
 		ArrayList<ArrReviewsDto> reviewList = bsvc.selectReview(rvtype, ciname);
 		System.out.println(reviewList);
 		mav.addObject("ciname", ciname);
 		mav.addObject("reviewList", reviewList);
 		mav.setViewName("board/ViewReviewWithType");
 		return mav;
-	}	
-	
+	}
+
 	@RequestMapping(value = "/PassEssayPage")
 	public ModelAndView PassEssayPage(String rvtype) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println("rvtype : "+rvtype);
-		ArrayList<ArrReviewsDto> reviewList = bsvc.selectReview(rvtype,"");
+		System.out.println("rvtype : " + rvtype);
+		ArrayList<ArrReviewsDto> reviewList = bsvc.selectReview(rvtype, "");
 		System.out.println(reviewList);
 		mav.addObject("reviewList", reviewList);
 		mav.setViewName("employment/PassEssayPage");
 		return mav;
-	}	
-	
+	}
+
 	@RequestMapping(value = "/searchBoardJson")
 	public @ResponseBody String searchBoardJson(String searchValue, String selectType, String selectTag) {
 		System.out.println("searchBoardJson호출");
-		System.out.println("searchValue"+searchValue);
-		System.out.println("selectType"+selectType);
-		System.out.println("selectTag"+selectTag);
+		System.out.println("searchValue" + searchValue);
+		System.out.println("selectType" + selectType);
+		System.out.println("selectTag" + selectTag);
 		String boardList = "";
-		if(searchValue.equals("ALL")) {
+		if (searchValue.equals("ALL")) {
 			searchValue = "";
 		}
-		
-			boardList = bsvc.searchBoardList(searchValue, selectType, selectTag);
-			return boardList;
-		
-			
-		
-		
-	}	
+		boardList = bsvc.searchBoardList(searchValue, selectType, selectTag);
+		return boardList;
+	}
 }
