@@ -12,6 +12,15 @@
 <link href="${pageContext.request.contextPath }/resources/assets/css/footer.css" rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
+<style type="text/css">
+.menuBar:hover {
+	color: #0d6efd;
+}
+   .clicked {
+        color: gold;
+      }
+</style>
+
 </head>
 <body>
 	<!-- Header -->
@@ -32,38 +41,44 @@
 				<div class="card-body px-5 mt-1">
 					<!--  -->
 					<div style="padding: 10px;" class="list-group reserveArea">
-						<div class="row" style="padding: 10px; border-style: groove;">
-							<div class="col-3">
-								<button onclick="ViewReview('2','${ciname}')">인적성후기</button>
+						
+				
+						<div class="row mb-4" style="padding: 10px; border-style: groove; text-align: center;">
+							<div class="col-4">
+								<button class="menuBar" onclick="ViewReview('2','${ciname}')">인적성후기</button>
 							</div>
 
-							<div class="col-3">
-								<button onclick="ViewReview('3','${ciname}')">면접후기</button>
+							<div class="col-4">
+								<button class="menuBar" onclick="ViewReview('3','${ciname}')">면접후기</button>
 							</div>
 
-							<div class="col-3">
-								<button onclick="ViewReview('4','${ciname}')">최종합격후기</button>
+							<div class="col-4">
+								<button class="menuBar" onclick="ViewReview('4','${ciname}')">최종합격후기</button>
 							</div>
 						</div>
+						
+						
 						<c:forEach items="${reviewList }" var="review">
 							<c:if test="${reviewList.isEmpty()}">
 								<div class="row" style="padding: 10px; border-style: groove;">등록된 후기가 없습니다.</div>
 							</c:if>
-							<div class="row" style="padding: 10px; border-style: groove;">
+							<div class="Rbox mt-1 mb-1" style="border-style: groove;">
+							<div class="row" style="padding: 10px;">
 								<div class="row-2">
 									<div class="small mb-1">${review.rvdate}-${review.rveptype}-${review.rvobj}</div>
 								</div>
 								<div class="row-2">
-									<h1>${review.rvciname}-${review.rvobj}</h1>
+									<h4>${review.rvciname}-${review.rvobj}</h4>
 								</div>
 							</div>
-							<div class="row" style="padding: 10px; border-style: groove;">
+							<div class="row" style="padding: 10px;">
 								<c:forEach items="${review.rvcontents }" varStatus="i" step="2">
 									<div class="row-5">
-										<h3>${review.rvcontents[i.index]}</h3>
+										<h6>${review.rvcontents[i.index]}</h6>
 										<p class="lead">${review.rvcontents[i.index +1]}</p>
 									</div>
 								</c:forEach>
+							</div>
 							</div>
 						</c:forEach>
 					</div>
@@ -98,6 +113,9 @@
 			location.href = "${pageContext.request.contextPath }/ViewReview?rvtype="
 					+ rvtype + "&ciname=" + ciname;
 		}
+		
+	
+
 	</script>
 </body>
 </html>

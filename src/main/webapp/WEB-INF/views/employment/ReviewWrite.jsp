@@ -101,7 +101,7 @@ h1 {
 						<option value="2022 상반기">2022 상반기</option>
 						<option value="2021 하반기">2021 하반기</option>
 						<option value="2021 상반기">2021 상반기</option>
-					</select> <label style="margin: 10px;">2021년부터 등록 가능합니다.</label>
+					</select> <label style="margin: 10px;"><i class="bi bi-exclamation-circle"></i> 2021년부터 등록 가능합니다.</label>
 				</div>
 				<div class="input-group input-group-lg mb-3">
 					<span class="input-group-text" style="justify-content: center;">근무형태</span>
