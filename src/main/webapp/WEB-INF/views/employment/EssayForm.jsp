@@ -4,12 +4,15 @@
 
 <div id="EssayForm">
 	<div class="input-group input-group-lg mb-1">
-		<input type="hidden" class="form-control" name="esmid" value="${sessionScope.loginInfo.mid}"> <input type="hidden" class="form-control" name="esepnum" value="${epnum}"> <input type="hidden" class="form-control" name="escontents" id="escontents">
+		<input type="hidden" class="form-control" name="esmid" value="${sessionScope.loginInfo.mid}">
+		<input type="hidden" class="form-control" name="esepnum" value="${epnum}">
+		<input type="hidden" class="form-control" name="escontents" id="escontents">
 	</div>
 
 
 	<div class="top">
-		<input type="text" readonly class="form-control-plaintext esciname" name="esciname" value="${epciname}"> <input type="text" readonly class="form-control-plaintext epname" value="${epname}" readonly="readonly">
+		<input type="text" readonly class="form-control-plaintext esciname" name="esciname" value="${epciname}">
+		<input type="text" readonly class="form-control-plaintext epname" value="${epname}" readonly="readonly">
 	</div>
 
 	<div>
@@ -31,32 +34,23 @@
 	</div>
 
 	<div class="box">
-		<input type="text" readonly class="form-control-plaintext" name="retell" placeholder="1번질문" value="1번질문">
+		<input type="text" readonly class="form-control-plaintext" name="retell" value="1. 우리회사에 지원한 동기에 대해 적어주세요.">
 		<div class="form-floating">
 			<textarea readonly class="form-control EssayContent area1" id="area1" style="height: 100px"></textarea>
 		</div>
 	</div>
-
-
 	<div class="box">
-		<input type="text" readonly class="form-control-plaintext" placeholder="2번질문" value="2번질문">
-
-
+		<input type="text" readonly class="form-control-plaintext" value="2. 성격의 장단점을 적어주세요.">
 		<div class="form-floating">
 			<textarea readonly class="form-control EssayContent area2" id="area2" style="height: 100px"></textarea>
-
 		</div>
 	</div>
-
 	<div class=" box mb-5">
-		<input type="text" readonly class="form-control-plaintext" placeholder="3번질문" readonly="readonly" value="3번질문">
-
+		<input type="text" readonly class="form-control-plaintext" readonly="readonly" value="3. 입사 후 포부를 적어주세요.">
 		<div class="form-floating">
 			<textarea readonly class="form-control EssayContent area3" id="area3" style="height: 100px"></textarea>
-
 		</div>
 	</div>
-
 </div>
 
 
