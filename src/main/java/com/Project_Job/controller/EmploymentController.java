@@ -21,6 +21,7 @@ import com.Project_Job.dto.MemberDto;
 import com.Project_Job.dto.ResumeDto;
 import com.Project_Job.dto.ScrapDto;
 import com.Project_Job.service.EmploymentService;
+import com.Project_Job.service.MailService;
 
 @Controller
 public class EmploymentController {
@@ -30,6 +31,8 @@ public class EmploymentController {
 	private HttpSession session;
 	@Autowired
 	private MemberController mctrl;
+	@Autowired
+	private MailService emsvc;
 
 	private String requestUrl = "http://localhost:8080/controller/";
 
@@ -520,13 +523,14 @@ public class EmploymentController {
 	}
 	
 	@RequestMapping(value = "/updateApState")
-	public @ResponseBody String updateApState(boolean passResult, String apepnum, String apremid) {
+	public @ResponseBody String updateApState(boolean passResult, String apepnum, String apremid, String memail, String ciname, String epname, String mname) {
 		System.out.println("EmploymentController updateApState 호출");
 		String result = "NO";
 		int updateResult = epsvc.updateApState(passResult, apepnum, apremid);
 		if(updateResult == 1) {
 			result = "OK";
 		}
+		emsvc.sendAcceptResult(passResult,memail,ciname,epname,mname);
 		return result;
 	}
 
