@@ -149,7 +149,9 @@ public class BoardController {
 	public ModelAndView ReviewState() {
 		ModelAndView mav = new ModelAndView();
 		ArrayList<CinfoDto> cinfoList = epsvc.getCiList("");
+		//타입 2일 떄 
 		ArrayList<Map<String, String>> reviewcount = bsvc.getReviewCount();
+		
 		System.out.println(reviewcount);
 		mav.addObject("reviewcount", reviewcount);
 		mav.addObject("cinfoList", cinfoList);

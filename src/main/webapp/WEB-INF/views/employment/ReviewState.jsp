@@ -95,7 +95,7 @@
 			<div class="card mt-4 mb-4 shadow rounded-3 " style="width: 65%;">
 
 				<ul style="width: 100%; padding-right: 2rem; margin-top: 1rem">
-					<c:forEach items="${cinfoList }" var="cinfo">
+					 <c:forEach items="${cinfoList }" var="cinfo">
 						<li style="list-style: none; border-bottom: 1px solid #ebebeb; width: 100%;">
 							<div class="d-flex" style="width: 100%; padding: 1rem; align-items: center; display: flex;">
 								<div class="cLogo col-2">
@@ -104,27 +104,45 @@
 								</div>
 								<div class="col-2 Rmenu">
 									<c:forEach items="${reviewcount }" var="review">
-										<c:if test="${cinfo.ciname == review.RVCINAME && review.RVTYPE == '2'}">
+										
+										<c:choose>
+										<c:when test="${cinfo.ciname == review.RVCINAME && review.RVTYPE == '2'}">
 											<div class="Rvcon mb-1">${review.RVCOUNT }</div>
-										</c:if>
+										</c:when>
+										<c:otherwise>
+										
+										</c:otherwise>
+										</c:choose>									
+											
+										
 									</c:forEach>
 									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=2&ciname=${cinfo.ciname }"><span class="h5 menu">인적성후기</span></a>
 								</div>
 
 								<div class="col-2 Rmenu">
 									<c:forEach items="${reviewcount }" var="review">
-										<c:if test="${cinfo.ciname == review.RVCINAME && review.RVTYPE == '3'}">
+										<c:choose>
+										<c:when test="${cinfo.ciname == review.RVCINAME && review.RVTYPE == '3'}">
 											<div class="Rvcon mb-1">${review.RVCOUNT }</div>
-										</c:if>
+										</c:when>
+										<c:otherwise>
+										
+										</c:otherwise>
+										</c:choose>	
 									</c:forEach>
 
 									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=3&ciname=${cinfo.ciname }"><span class="h5 menu">면접후기</span></a>
 								</div>
 								<div class="col-2 Rmenu">
 									<c:forEach items="${reviewcount }" var="review">
-										<c:if test="${cinfo.ciname == review.RVCINAME && review.RVTYPE == '4'}">
+										<c:choose>
+										<c:when test="${cinfo.ciname == review.RVCINAME && review.RVTYPE == '4'}">
 											<div class="Rvcon mb-1">${review.RVCOUNT }</div>
-										</c:if>
+										</c:when>
+										<c:otherwise>
+										
+										</c:otherwise>
+										</c:choose>	
 									</c:forEach>
 									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=4&ciname=${cinfo.ciname }"><span class="h5 menu">최종합격후기</span></a>
 								</div>
@@ -137,6 +155,9 @@
 						</li>
 
 					</c:forEach>
+
+					
+
 				</ul>
 				<div class="mx-auto my-auto">
 					<ul class="pagination">
