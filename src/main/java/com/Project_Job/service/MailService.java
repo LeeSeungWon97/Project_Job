@@ -40,7 +40,7 @@ public class MailService {
 		String toMail = email;
 		String title = "아이디 찾기 결과입니다.";
 		String content = "홈페이지를 방문해주셔서 감사합니다." + "<br><br>" + "회원님의 아이디는 " + findMid + "입니다." + "<br>";
-//		mailSend(setFrom, toMail, title, content);
+		mailSend(setFrom, toMail, title, content);
 	}
 
 	// 난수발생 메소드(6자리)
@@ -78,6 +78,20 @@ public class MailService {
 		System.out.println(toMail);
 		String title = "비밀번호 찾기 결과입니다.";
 		String content = "홈페이지를 방문해주셔서 감사합니다." + "<br><br>" + "회원님의 비밀번호는 " + FindMpw + "입니다." + "<br>";
-//		mailSend(setFrom, toMail, title, content);
+		mailSend(setFrom, toMail, title, content);
+	}
+
+	// 공고 지원 결과 메일 전송 메소드
+	public void sendAcceptResult(boolean passResult, String memail, String ciname, String epname, String mname) {
+		String setFrom = "icia0803@gmail.com";
+		String toMail = memail;
+		String content = "";
+		if(passResult) {
+			content = epname + "에 지원해주셔서 감사합니다." + mname + "님께서는 합격하셨습니다.";
+		}else {
+			content = epname + "에 지원해주셔서 감사합니다." + mname + "님께서는 아쉽게도 불합격하셨습니다.";
+		}
+		String title = "["+ciname+"] " + epname + " 결과입니다.";
+		mailSend(setFrom, toMail, title, content);
 	}
 }
