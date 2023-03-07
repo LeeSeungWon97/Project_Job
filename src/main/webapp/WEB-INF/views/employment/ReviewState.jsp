@@ -82,7 +82,9 @@
 <body>
 
 	<!-- topbar -->
-	<a class="top" href="javascript:window.scrollTo(0,0);"><i class="bi bi-caret-up-fill"></i><br> TOP</a>
+	<a class="top" href="javascript:window.scrollTo(0,0);">
+		<i class="bi bi-caret-up-fill"></i><br> TOP
+	</a>
 
 
 	<!-- Header -->
@@ -95,42 +97,36 @@
 			<div class="card mt-4 mb-4 shadow rounded-3 " style="width: 65%;">
 
 				<ul style="width: 100%; padding-right: 2rem; margin-top: 1rem">
-					<c:forEach items="${cinfoList }" var="cinfo">
+					<c:forEach items="${reviewcount }" var="reviewcount">
 						<li style="list-style: none; border-bottom: 1px solid #ebebeb; width: 100%;">
 							<div class="d-flex" style="width: 100%; padding: 1rem; align-items: center; display: flex;">
 								<div class="cLogo col-2">
-									<img class="card-img-top" src="${pageContext.request.contextPath }/resources/assets/img/building.png" style="width: 80%; height: auto;"> <br>
-									<span class="h5">${cinfo.ciname }</span>
+									<img class="card-img-top" src="${pageContext.request.contextPath }/resources/assets/img/building.png" style="width: 80%; height: auto;">
+									<br>
+									<span class="h5">${reviewcount.ciname }</span>
 								</div>
 								<div class="col-2 Rmenu">
-									<c:forEach items="${reviewcount }" var="review">
-										<c:if test="${cinfo.ciname == review.RVCINAME && review.RVTYPE == '2'}">
-											<div class="Rvcon mb-1">${review.RVCOUNT }</div>
-										</c:if>
-									</c:forEach>
-									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=2&ciname=${cinfo.ciname }"><span class="h5 menu">인적성후기</span></a>
+									<div class="Rvcon mb-1">${reviewcount.type2 }</div>
+									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=2&ciname=${reviewcount.ciname }">
+										<span class="h5 menu">인적성후기</span>
+									</a>
 								</div>
 
 								<div class="col-2 Rmenu">
-									<c:forEach items="${reviewcount }" var="review">
-										<c:if test="${cinfo.ciname == review.RVCINAME && review.RVTYPE == '3'}">
-											<div class="Rvcon mb-1">${review.RVCOUNT }</div>
-										</c:if>
-									</c:forEach>
-
-									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=3&ciname=${cinfo.ciname }"><span class="h5 menu">면접후기</span></a>
+									<div class="Rvcon mb-1">${reviewcount.type3 }</div>
+									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=3&ciname=${reviewcount.ciname }">
+										<span class="h5 menu">면접후기</span>
+									</a>
 								</div>
 								<div class="col-2 Rmenu">
-									<c:forEach items="${reviewcount }" var="review">
-										<c:if test="${cinfo.ciname == review.RVCINAME && review.RVTYPE == '4'}">
-											<div class="Rvcon mb-1">${review.RVCOUNT }</div>
-										</c:if>
-									</c:forEach>
-									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=4&ciname=${cinfo.ciname }"><span class="h5 menu">최종합격후기</span></a>
+									<div class="Rvcon mb-1">${reviewcount.type4 }</div>
+									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=4&ciname=${reviewcount.ciname }">
+										<span class="h5 menu">최종합격후기</span>
+									</a>
 								</div>
 
 								<div style="margin-left: 15px;">
-									<button class="btn btn-secondary btn-sm" onclick="WriteReview('${cinfo.cinum}')">후기작성하기</button>
+									<button class="btn btn-secondary btn-sm" onclick="WriteReview('${reviewcount.cinum}')">후기작성하기</button>
 								</div>
 
 							</div>
@@ -140,12 +136,7 @@
 				</ul>
 				<div class="mx-auto my-auto">
 					<ul class="pagination">
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">4</a></li>
-						<li class="page-item"><a class="page-link" href="#">5</a></li>
-						<li class="page-item active"><a class="page-link" href="#">다음></a></li>
+						
 					</ul>
 				</div>
 			</div>
@@ -197,7 +188,7 @@
 	var loginType = $('#loginType').val();
 	var loginId = $('#loginId').val();
 	$(document).ready(function() {
-
+		createPageBtn();
 	});
 </script>
 <script type="text/javascript">
@@ -213,6 +204,27 @@
 					+ cinum, "후기작성 ", "width=900,height=1500,top=10,left=100");
 		}
 
+	}
+	
+	function pageLoad(pageBtn){
+		var pageNum = pageBtn.innerText;
+		location.href = "${pageContext.request.contextPath}/RecruitmentPage?pageNum="+pageNum;
+	}
+	
+	function createPageBtn(){
+		var maxNum = '${pageIdxMax}';
+		var element = $('.pagination');
+		var pageNum = '${pageNum}';
+		var output = "";
+		console.log(maxNum);
+		for(var i = 0; i < maxNum; i++ ){
+			if(i+1 == pageNum){
+				output += '<li class="page-item active"><p class="page-link" onclick="pageLoad(this)">'+(i+1)+'</p></li>';	
+			} else{
+				output += '<li class="page-item"><p class="page-link" onclick="pageLoad(this)">'+(i+1)+'</p></li>';				
+			}
+		}
+		element.html(output);
 	}
 </script>
 
