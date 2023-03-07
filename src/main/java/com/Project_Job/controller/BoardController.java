@@ -35,11 +35,27 @@ public class BoardController {
 	private String requestUrl = "http://localhost:8080/controller/";
 
 	@RequestMapping(value = "/BoardListPage")
-	public ModelAndView BoardListPage() {
+	public ModelAndView BoardListPage(int pageNum) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("BoardListPage요청");
+		System.out.println("pageNum: " + pageNum);
 		ArrayList<BoardDto> boardList = bsvc.selectBoardList();
-		mav.addObject("boardList", boardList);
+		ArrayList<BoardDto> board =new ArrayList<BoardDto>();
+		//
+		int pageIdx = pageNum;
+		int pageIdxMax = boardList.size() / 15 + 1;
+		System.out.println("pageIdxMax: " + pageIdxMax);
+		int startIdx = 15 * (pageIdx - 1);
+		int endIdx = startIdx + 14;
+		if (endIdx >= boardList.size()) {
+			endIdx = boardList.size();
+		}
+		for (int i = startIdx; i < endIdx; i++) {
+			board.add(boardList.get(i));
+		}
+		mav.addObject("boardList", board);
+		mav.addObject("pageNum", pageIdx);
+		mav.addObject("pageIdxMax", pageIdxMax);
 		mav.setViewName("board/BoardList");
 		return mav;
 	}

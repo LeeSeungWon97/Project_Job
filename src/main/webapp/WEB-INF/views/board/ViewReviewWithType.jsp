@@ -29,6 +29,81 @@
 	color: #0d6efd;
 }
 
+
+.clicked {
+	color: gold;
+}
+
+/*  */
+* {
+	box-sizing: border-box;
+}
+
+.que:first-child {
+	border-top: 1px solid black;
+}
+
+.que {
+	position: relative;
+	padding: 17px 0;
+	cursor: pointer;
+	font-size: 14px;
+	border-bottom: 1px solid #dddddd;
+}
+
+.que::before {
+	display: inline-block;
+	content: 'Q';
+	font-size: 14px;
+	color: #006633;
+	margin: 0 5px;
+}
+
+/* .que.on>span {
+	font-weight: bold;
+	color: #006633;
+} */
+.anw {
+	display: none;
+	overflow: hidden;
+	font-size: 14px;
+	background-color: #f4f4f2;
+	padding: 27px 0;
+}
+
+.anw::before {
+	display: inline-block;
+	content: 'A';
+	font-size: 14px;
+	font-weight: bold;
+	color: #666;
+	margin: 0 5px;
+}
+
+.arrow-wrap {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translate(0, -50%);
+}
+
+.que .arrow-top {
+	display: none;
+}
+
+.que .arrow-bottom {
+	display: block;
+}
+
+.que.on .arrow-bottom {
+	display: none;
+}
+
+.que.on .arrow-top {
+	display: block;
+}
+/*  */
+=======
 .Rsname {
 	border-bottom: 2px solid #ebebeb;
 }
@@ -50,6 +125,7 @@ display: none;
 summary{
 outline: none;
 }
+
 </style>
 
 </head>
@@ -78,7 +154,11 @@ outline: none;
 					<div style="padding: 10px;" class="list-group reserveArea">
 
 
-						<div class="row mb-4 ViewBox">
+
+						<div class="row mb-4" style="padding: 10px; border-style: groove; text-align: center;">
+
+						
+
 							<div class="col-4">
 								<button class="menuBar" onclick="ViewReview('2','${ciname}')">인적성후기</button>
 							</div>
@@ -98,39 +178,53 @@ outline: none;
 								<div class="row" style="padding: 10px; border-style: groove;">등록된
 									후기가 없습니다.</div>
 							</c:if>
-					
-							
-							<div class="" style=""> 
-							<details class="Onbox">
-								<summary>
-									<div class="row" style="padding: 10px;">
-										<div class="row-2">
-											<div class="small mb-1">${review.rvdate}-${review.rveptype}-${review.rvobj}</div>
-										</div>
-										<div class="row-2 Rsname">
-											<h4>${review.rvciname}-${review.rvobj}</h4>
-										</div>
+
+							<div id="Accordion_wrap">
+								<div class="que">
+									<div class="row-2">
+										<div class="small mb-1">${review.rvdate}-${review.rveptype}-${review.rvobj}</div>
 									</div>
-								</summary>
-
-
-								<div class="Rbox mt-1 mb-1">
-									<div class="row" style="padding: 10px;">
-										<c:forEach items="${review.rvcontents }" varStatus="i"
-											step="2">
-											<div class="row-5">
-												<h6>${review.rvcontents[i.index]}</h6>
-												<p class="lead">${review.rvcontents[i.index +1]}</p>
-											</div>
-										</c:forEach>
+									<div class="row-2">
+										<h4>${review.rvciname}-${review.rvobj}</h4>
+									</div>
+									<div class="arrow-wrap">
+										<span class="arrow-top">↑</span>
+										<span class="arrow-bottom">↓</span>
 									</div>
 								</div>
-
-							</details>
+								<div class="anw">
+									<c:forEach items="${review.rvcontents }" varStatus="i" step="2">
+										<div class="que">
+											<span>${review.rvcontents[i.index]}</span>
+										</div>
+										<div class="anw">
+											<span>${review.rvcontents[i.index +1]}</span>
+										</div>
+									</c:forEach>
+								</div>
 							</div>
 
+							<%-- <div class="Rbox mt-1 mb-1" style="border-style: groove;">
+							<div class="row" style="padding: 10px;">
+								<div class="row-2">
+									<div class="small mb-1">${review.rvdate}-${review.rveptype}-${review.rvobj}</div>
+								</div>
+								<div class="row-2">
+									<h4>${review.rvciname}-${review.rvobj}</h4>
+								</div>
+							</div>
+							<div class="row" style="padding: 10px;">
+								<c:forEach items="${review.rvcontents }" varStatus="i" step="2">
+									<div class="row-5">
+										<h6>${review.rvcontents[i.index]}</h6>
+										<p class="lead">${review.rvcontents[i.index +1]}</p>
+									</div>
+								</c:forEach>
+							</div>
+							</div> --%>
 
 						</c:forEach>
+
 					</div>
 					<!--  -->
 				</div>
@@ -148,6 +242,14 @@ outline: none;
 		var loginType = $('#loginType').val();
 		var loginId = $('#loginId').val();
 		var reviewList = '${reviewList}';
+
+
+		$(".que").click(function() {
+			$(this).next(".anw").stop().slideToggle(300);
+			$(this).toggleClass('on').siblings().removeClass('on');
+		
+		});
+
 
 		/* 		var loginType = "";
 		 var loginId = "";
