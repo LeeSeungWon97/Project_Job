@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>기업정보</title>
+<title>취업후기</title>
 <link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/update/main-icon.png" />
 
 <!-- Bootstrap icons-->
@@ -55,15 +55,32 @@
 	text-align: center;
 	color: #79BAEC;
 }
+
+.Rmenu{
+text-align: center;
+
+}
+.Rvcon{
+	width: 20px;
+  background-color : red;
+  border-radius: 30%;
+	text-align: center;
+	color: white;
+	text-align: center;
+margin-left: 50px;	
+}
+
+.menu{color: black;}
 </style>
+
+
+
 
 </head>
 <body>
 
 	<!-- topbar -->
-	<a class="top" href="javascript:window.scrollTo(0,0);">
-		<i class="bi bi-caret-up-fill"></i><br> TOP
-	</a>
+	<a class="top" href="javascript:window.scrollTo(0,0);"><i class="bi bi-caret-up-fill"></i><br> TOP</a>
 
 
 	<!-- Header -->
@@ -78,52 +95,56 @@
 				<ul style="width: 100%; padding-right: 2rem; margin-top: 1rem">
 					<c:forEach items="${cinfoList }" var="cinfo">
 						<li style="list-style: none; border-bottom: 1px solid #ebebeb; width: 100%;">
-							<div class="" style="width: 100%; padding: 1rem; align-items: center; display: flex;">
+							<div class="d-flex" style="width: 100%; padding: 1rem; align-items: center; display: flex;">
 								<div class="cLogo col-2">
-
 									<img class="card-img-top" src="${pageContext.request.contextPath }/resources/assets/img/building.png" style="width: 80%; height: auto;"> <br> <span class="h5">${cinfo.ciname }</span>
 								</div>
-								<div class="col-2">
+								<div class="col-2 Rmenu">
+							
+									
 									<c:forEach items="${reviewcount }" var="review">
 										<c:if test="${cinfo.ciname == review.RVCINAME && review.RVTYPE == '1'}">
-											<h4 style="text-align: center;">${review.RVCOUNT }</h4>
+										<div class="Rvcon mb-1">
+											${review.RVCOUNT }
+										</div>
 										</c:if>
-									</c:forEach>
-									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=1"><span class="h5">인적성후기</span></a>
-
+								
+											
+									</c:forEach>				
+									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=1"><span class="h5 menu">인적성후기</span></a>
 								</div>
-								<div class="col-2">
+								<div class="col-2 Rmenu">
 									<c:forEach items="${reviewcount }" var="review">
 										<c:if test="${cinfo.ciname == review.RVCINAME && review.RVTYPE == '2'}">
-											<h4 style="text-align: center;">${review.RVCOUNT }</h4>
+												<div class="Rvcon mb-1">
+										 ${review.RVCOUNT }
+											</div>
 										</c:if>
+							
+								
 									</c:forEach>
-									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=2&ciname=${cinfo.ciname }">
-										<span class="h5">인적성후기</span>
-									</a>
+									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=2"><span class="h5 menu">면접질문</span></a>
 								</div>
-								
-								<div class="col-2">
-								
+								<div class="col-2 Rmenu">
 									<c:forEach items="${reviewcount }" var="review">
 										<c:if test="${cinfo.ciname == review.RVCINAME && review.RVTYPE == '3'}">
-											<h4 style="text-align: center;">${review.RVCOUNT }</h4>
+												<div class="Rvcon mb-1">
+											${review.RVCOUNT }
+											</div>
 										</c:if>
 									</c:forEach>
-
-									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=3&ciname=${cinfo.ciname }">
-										<span class="h5">면접후기</span>
-									</a>
+							
+									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=3"><span class="h5 menu">면접후기</span></a>								
 								</div>
-								<div class="col-2">
+								<div class="col-2 Rmenu">
 									<c:forEach items="${reviewcount }" var="review">
 										<c:if test="${cinfo.ciname == review.RVCINAME && review.RVTYPE == '4'}">
-											<h4 style="text-align: center;">${review.RVCOUNT }</h4>
+											<div class="Rvcon mb-1">
+											${review.RVCOUNT }
+											</div>
 										</c:if>
 									</c:forEach>
-									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=4&ciname=${cinfo.ciname }">
-										<span class="h5">최종합격후기</span>
-									</a>
+									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=4"><span class="h5 menu">최종합격후기</span></a>
 								</div>
 
 								<div style="margin-left: 15px;">

@@ -9,7 +9,7 @@
 <style type="text/css">
 .Rcontent {
 	display: inline-block;
-	margin-top: 200px;
+	margin-top: 70px;
 	margin-left: 60px;
 }
 
@@ -35,11 +35,16 @@
 	color: #0d6efd;
 }
 
+.Rcoi{
+margin-top: 100px;
+}
 
 </style>
 </head>
 <body>
-
+	<div class="Rcoi" style="text-align: center;">
+	<h2>작성할 후기를 선택해 주세요 !</h2>
+	</div>
 	<div class="Rcontent mb-2 mt-2">
 
 
