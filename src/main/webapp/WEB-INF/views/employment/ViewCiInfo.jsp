@@ -57,6 +57,12 @@ p {
 .nowRs {
 	margin-bottom: 80px;
 }
+ul{width: 100%; padding-right: 2rem; margin-top: 1rem;}
+li{
+list-style: none;
+width: 100%;
+}
+.mainCon{width: 100%; padding: 1rem; align-items: center; display: flex;}
 </style>
 
 </head>
@@ -118,29 +124,35 @@ p {
 											<p>등록된 공고정보가 없습니다.</p>
 										</c:when>
 										<c:otherwise>
+									<ul style="font-size: 14px;">
 											<c:forEach items="${epList}" var="employ">
-												<tr style="font-size: 16px;">
-													<td class="emci">
+													<li>
+													<div class="mainCon">
+													<div class="emci col-2">
 														<a href="">
 															<span>${employ.epciname }</span>
 														</a>
-													</td>
-													<td class="emnu">
+													</div>
+													<div class="emnu">
 														<input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐">
-													</td>
-													<td class="emna">
+													</div>
+													<div class="emna col-6">
 														<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }">
 															<span style="color: #333; font-weight: bold;">${employ.epname }</span>
 														</a>
-													</td>
-													<td class="embu">
+													</div>
+													<div class="emde col-2">
+														<span>${employ.epdeadline }</span>
+													</div>
+													<div class="embu col-2">
 														<button class="mx-1 mt-1" onclick="WriteResume('sideX','${employ.epnum }','${employ.epdeadline }','${employ.epesstate}','${employ.epciname}')" style="background-color: #ff7e00; border: solid #ff7e00;">
 															<span style="color: white;">즉시지원</span>
 														</button>
-													</td>
-												</tr>
-												<br>
+													</div>
+													</div>
+													</li>
 											</c:forEach>
+												</ul>
 										</c:otherwise>
 									</c:choose>
 								</div>
