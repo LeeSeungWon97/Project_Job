@@ -122,7 +122,7 @@
 									</div>
 
 									<div class="row-7" style="border: 1px solid #ebebeb; padding: 12px; background-color: #F2F2F2; ">
-											<div class="row-5">
+											<div class="row-5 txt_line">
 												<h5>${review.rvcontents[0]}</h5>
 												<p class="lead">${review.rvcontents[1]}</p>
 											</div>

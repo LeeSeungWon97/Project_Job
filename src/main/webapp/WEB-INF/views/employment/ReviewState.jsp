@@ -56,21 +56,23 @@
 	color: #79BAEC;
 }
 
-.Rmenu{
-text-align: center;
-
+.Rmenu {
+	text-align: center;
 }
-.Rvcon{
+
+.Rvcon {
 	width: 20px;
-  background-color : red;
-  border-radius: 30%;
+	background-color: red;
+	border-radius: 30%;
 	text-align: center;
 	color: white;
 	text-align: center;
-margin-left: 50px;	
+	margin-left: 50px;
 }
 
-.menu{color: black;}
+.menu {
+	color: black;
+}
 </style>
 
 
@@ -97,58 +99,38 @@ margin-left: 50px;
 						<li style="list-style: none; border-bottom: 1px solid #ebebeb; width: 100%;">
 							<div class="d-flex" style="width: 100%; padding: 1rem; align-items: center; display: flex;">
 								<div class="cLogo col-2">
-									<img class="card-img-top" src="${pageContext.request.contextPath }/resources/assets/img/building.png" style="width: 80%; height: auto;"> <br> <span class="h5">${cinfo.ciname }</span>
-								</div>
-								<div class="col-2 Rmenu">
-							
-									
-									<c:forEach items="${reviewcount }" var="review">
-										<c:if test="${cinfo.ciname == review.RVCINAME && review.RVTYPE == '1'}">
-										<div class="Rvcon mb-1">
-											${review.RVCOUNT }
-										</div>
-										</c:if>
-								
-											
-									</c:forEach>				
-									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=1"><span class="h5 menu">인적성후기</span></a>
+									<img class="card-img-top" src="${pageContext.request.contextPath }/resources/assets/img/building.png" style="width: 80%; height: auto;"> <br>
+									<span class="h5">${cinfo.ciname }</span>
 								</div>
 								<div class="col-2 Rmenu">
 									<c:forEach items="${reviewcount }" var="review">
 										<c:if test="${cinfo.ciname == review.RVCINAME && review.RVTYPE == '2'}">
-												<div class="Rvcon mb-1">
-										 ${review.RVCOUNT }
-											</div>
+											<div class="Rvcon mb-1">${review.RVCOUNT }</div>
 										</c:if>
-							
-								
 									</c:forEach>
-									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=2"><span class="h5 menu">면접질문</span></a>
+									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=2&ciname=${cinfo.ciname }"><span class="h5 menu">인적성후기</span></a>
 								</div>
+
 								<div class="col-2 Rmenu">
 									<c:forEach items="${reviewcount }" var="review">
 										<c:if test="${cinfo.ciname == review.RVCINAME && review.RVTYPE == '3'}">
-												<div class="Rvcon mb-1">
-											${review.RVCOUNT }
-											</div>
+											<div class="Rvcon mb-1">${review.RVCOUNT }</div>
 										</c:if>
 									</c:forEach>
-							
-									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=3"><span class="h5 menu">면접후기</span></a>								
+
+									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=3&ciname=${cinfo.ciname }"><span class="h5 menu">면접후기</span></a>
 								</div>
 								<div class="col-2 Rmenu">
 									<c:forEach items="${reviewcount }" var="review">
 										<c:if test="${cinfo.ciname == review.RVCINAME && review.RVTYPE == '4'}">
-											<div class="Rvcon mb-1">
-											${review.RVCOUNT }
-											</div>
+											<div class="Rvcon mb-1">${review.RVCOUNT }</div>
 										</c:if>
 									</c:forEach>
-									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=4"><span class="h5 menu">최종합격후기</span></a>
+									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=4&ciname=${cinfo.ciname }"><span class="h5 menu">최종합격후기</span></a>
 								</div>
 
 								<div style="margin-left: 15px;">
-								<button class="btn btn-secondary btn-sm" onclick="WriteReview('${cinfo.cinum}')">후기작성하기</button>
+									<button class="btn btn-secondary btn-sm" onclick="WriteReview('${cinfo.cinum}')">후기작성하기</button>
 								</div>
 
 							</div>
