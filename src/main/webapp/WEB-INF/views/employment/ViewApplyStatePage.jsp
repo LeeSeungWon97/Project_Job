@@ -71,7 +71,7 @@
 								</c:when>
 								<c:otherwise>
 									<div style="padding: 10px;" class="list-group reserveArea">
-										<c:forEach items="${ApplyList}" var="apply">
+										<c:forEach items="${ApplyList}" var="apply" varStatus="i">
 											<div class="row" style="padding: 10px; border-bottom-style: dotted;">
 												<div class="col-4">
 													<p class="lead">
@@ -92,7 +92,7 @@
 														</c:when>
 														<c:otherwise>
 															<div class="small mb-1">이메일을 통해 결과를 확인하세요.</div>
-															<button type="button" class="btn btn-dark btn-lg" onclick="deleteDiv()">확인완료</button>
+															<button type="button" class="btn btn-dark btn-lg" onclick="deleteDiv('${apply.APEPNUM}','${apply.APREMID}')">확인완료</button>
 														</c:otherwise>
 													</c:choose>
 												</div>
@@ -123,7 +123,6 @@
 
 	<script type="text/javascript">
 		function viewApplyInfo(viewId) {
-
 			window.open(
 					"${pageContext.request.contextPath}/viewApplyInfo?viewId="
 							+ viewId, "이력서 선택",
@@ -147,6 +146,19 @@
 					"mname": mname
 				},
 				success : function(result) {
+					location.reload();
+				}
+			});
+		}
+		function deleteDiv(apepnum, apremid){
+			$.ajax({
+				type: "post",
+				url: "${pageContext.request.contextPath}/deleteApply",
+				data:{
+					"apepnum": apepnum,
+					"apremid": apremid
+				},
+				success: function(result){
 					location.reload();
 				}
 			});

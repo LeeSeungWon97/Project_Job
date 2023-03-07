@@ -823,4 +823,13 @@ public class EmploymentService {
 		System.out.println("updateResult: " + updateResult);
 		return updateResult;
 	}
+
+	// 지원현황 삭제 
+	public int deleteApply(String apepnum, String apremid) {
+		System.out.println("EmploymentService deleteApply 호출");
+		System.out.println("apepnum: " + apepnum);
+		System.out.println("apremid: " + apremid);
+		int deleteResult = epdao.deleteApply(apepnum,apremid);
+		return deleteResult;
+	}
 }

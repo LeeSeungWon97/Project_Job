@@ -177,4 +177,7 @@ public interface EmploymentDao {
 
 	@Update("UPDATE APPLYSTATE SET APSTATE = #{state} WHERE APREMID = #{apremid} AND APEPNUM = #{apepnum}")
 	int updateApState(@Param("apepnum") String apepnum, @Param("apremid") String apremid, @Param("state") String state);
+
+	@Delete("DELETE FROM APPLYSTATE WHERE APEPNUM = #{apepnum} AND APREMID = #{apremid}")
+	int deleteApply(@Param("apepnum") String apepnum, @Param("apremid") String apremid);
 }
