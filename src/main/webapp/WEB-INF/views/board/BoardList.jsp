@@ -78,13 +78,12 @@
 			</div>
 			<div class="card-body">
 				<div class="" style="line-height: 2.5;">
-					<ul style="list-style: none; padding: 0; margin: 0; border-top: 1px solid #e1e5e8;"  id="serarchListArea">
+					<ul style="list-style: none; padding: 0; margin: 0; border-top: 1px solid #e1e5e8;" id="serarchListArea">
 
 						<c:forEach items="${boardList}" var="board">
 							<li style="padding: 29px 20px 0;">
 								<div class="topArea">
-									<button style="background: #f0f3f9; padding: 5px; color: #777;" onclick="searchAjaxTag('ALL','ALL','${board.bhope}')"> ${board.bhope}</button>
-								
+									<button style="background: #f0f3f9; padding: 5px; color: #777;" onclick="searchAjaxTag('ALL','ALL','${board.bhope}')">${board.bhope}</button>
 								</div>
 								<div class="contArea" style="padding: 0 15px 25px; border-bottom: 1px solid #e1e5e8;">
 									<div class="title" style="position: relative;">
@@ -107,8 +106,13 @@
 					</ul>
 				</div>
 			</div>
+			<div class="mx-auto my-auto">
+				<ul class="pagination">
+				</ul>
+			</div>
 		</div>
 	</section>
+
 
 	<input type="hidden" id="loginType" value="${sessionScope.loginType }">
 	<c:choose>
@@ -136,6 +140,34 @@
 	var loginType = $('#loginType').val();
 	var loginId = $('#loginId').val();
 
+	$(document).ready(function() {
+		createPageBtn();
+	});
+
+	function pageLoad(pageBtn) {
+		var pageNum = pageBtn.innerText;
+		location.href = "${pageContext.request.contextPath}/BoardListPage?pageNum="
+				+ pageNum;
+	}
+
+	function createPageBtn() {
+		var maxNum = '${pageIdxMax}';
+		var element = $('.pagination');
+		var pageNum = '${pageNum}';
+		var output = "";
+		console.log(maxNum);
+		for (var i = 0; i < maxNum; i++) {
+			if (i + 1 == pageNum) {
+				output += '<li class="page-item active"><p class="page-link" onclick="pageLoad(this)">'
+						+ (i + 1) + '</p></li>';
+			} else {
+				output += '<li class="page-item"><p class="page-link" onclick="pageLoad(this)">'
+						+ (i + 1) + '</p></li>';
+			}
+		}
+		element.html(output);
+	}
+
 	function searchValue() {
 		var searchVal = $('#searchInput').val();
 		var selectType = $('#selectType').val();
@@ -147,74 +179,80 @@
 			alert('검색어는 2글자 이상 입력해주세요');
 			location.reload();
 		}
-		searchAjax(searchVal,selectType,selectTag);	
+		searchAjax(searchVal, selectType, selectTag);
 	}
-	
-	function searchAjaxTag(searchVal,selectType,selectTag){
-		console.log(searchVal+selectType+selectTag);
-		searchAjax(searchVal,selectType,selectTag);	
+
+	function searchAjaxTag(searchVal, selectType, selectTag) {
+		console.log(searchVal + selectType + selectTag);
+		searchAjax(searchVal, selectType, selectTag);
 	}
-	
-	function searchAjax(searchVal,selectType,selectTag){
+
+	function searchAjax(searchVal, selectType, selectTag) {
 		$
-		.ajax({
-			type : "get",
-			url : "${pageContext.request.contextPath }/searchBoardJson",
-			data : {
-				"searchValue" : searchVal,
-				"selectType" : selectType,
-				"selectTag" : selectTag
-			},
-			dataType : "json",
-			success : function(boardList) {
-				console.log(boardList);
-				var element = $('#serarchListArea');
-				var output = "";
-				var count = 0;
-				if (boardList.length <= 0) {
-					alert("검색결과가 없습니다.");
-					return null;
-				} else {
-					for (var i = 0; i < boardList.length; i++) {
-						output += '<li style="padding: 29px 20px 0;">';
-						output += '<div class="topArea">';
-						output += '<a href="" style="background: #f0f3f9; padding: 5px; color: #777;">'
-								+ boardList[i].bhope + '</a>';
-						output += '</div>';
-						output += '<div class="contArea" style="padding: 0 15px 25px; border-bottom: 1px solid #e1e5e8;">';
-						output += '<div class="title" style="position: relative;">';
-						output += '<a href="${pageContext.request.contextPath }/ViewBoardInfo?bno=${board.bno}"> <i class="icoQ_on qnaSpB" style="font-size: 30px;">Q</i> <span style="font-size: 30px; color: black; padding-left: 10px;">'
-								+ boardList[i].btitle + '</span>';
-						output += '</a>';
-						output += '</div>';
-						output += '<div class="summary" style="color: #666; font-size: 20px; margin-bottom: 10px;">';
-						output += '<a href="${pageContext.request.contextPath }/ViewBoardInfo?bno='
-								+ boardList[i].bno
-								+ '"> <span style="color: black; max-height: 3em; line-height: 1.5em;">'
-								+ boardList[i].bcontents + '</span>';
-						output += '</a>';
-						output += '</div>';
-						output += '<div class="detail" style="font-size: 15px;">';
-						output += '<span style="margin-right: 10px;">작성자: '
-								+ boardList[i].bmid
-								+ '</span> <span style="margin-right: 10px;">작성일: '
-								+ boardList[i].bdate
-								+ '</span> <span style="margin-right: 10px;">조회 : '
-								+ boardList[i].bcount
-								+ '</span> <span>추천: '
-								+ boardList[i].breplycount + '</span>';
-						output += '</div>';
-						output += '</div>';
-						output += '</li>';
+				.ajax({
+					type : "get",
+					url : "${pageContext.request.contextPath }/searchBoardJson",
+					data : {
+						"searchValue" : searchVal,
+						"selectType" : selectType,
+						"selectTag" : selectTag
+					},
+					dataType : "json",
+					success : function(boardList) {
+						console.log(boardList);
+						var element = $('#serarchListArea');
+						var output = "";
+						var count = 0;
+						if (boardList.length <= 0) {
+							alert("검색결과가 없습니다.");
+							return null;
+						} else {
+							for (var i = 0; i < boardList.length; i++) {
+								output += '<li style="padding: 29px 20px 0;">';
+								output += '<div class="topArea">';
+
+								output += '<button style="background: #f0f3f9; padding: 5px; color: #777;" onclick="searchAjaxTag(\'ALL\',\'ALL\',\''
+										+ boardList[i].bhope
+										+ '\')">'
+										+ boardList[i].bhope + '</button>';
+								output += '</div>';
+
+								output += '<div class="contArea" style="padding: 0 15px 25px; border-bottom: 1px solid #e1e5e8;">';
+								output += '<div class="title" style="position: relative;">';
+								output += '<a href="${pageContext.request.contextPath }/ViewBoardInfo?bno='
+										+ boardList[i].bno
+										+ '"> <i class="icoQ_on qnaSpB" style="font-size: 30px;">Q</i> <span style="font-size: 30px; color: black; padding-left: 10px;">'
+										+ boardList[i].btitle + '</span>';
+								output += '</a>';
+								output += '</div>';
+								output += '<div class="summary" style="color: #666; font-size: 20px; margin-bottom: 10px;">';
+								output += '<a href="${pageContext.request.contextPath }/ViewBoardInfo?bno='
+										+ boardList[i].bno
+										+ '"> <span style="color: black; max-height: 3em; line-height: 1.5em;">'
+										+ boardList[i].bcontents + '</span>';
+								output += '</a>';
+								output += '</div>';
+								output += '<div class="detail" style="font-size: 15px;">';
+								output += '<span style="margin-right: 10px;">작성자: '
+										+ boardList[i].bmid
+										+ '</span> <span style="margin-right: 10px;">작성일: '
+										+ boardList[i].bdate
+										+ '</span> <span style="margin-right: 10px;">조회 : '
+										+ boardList[i].bcount
+										+ '</span> <span>추천: '
+										+ boardList[i].breplycount + '</span>';
+								output += '</div>';
+								output += '</div>';
+								output += '</li>';
+							}
+							if (count == boardList.length) {
+								alert("검색결과가 없습니다.");
+								return null;
+							}
+						}
+						element.html(output);
 					}
-					if (count == boardList.length) {
-						alert("검색결과가 없습니다.");
-						return null;
-					}
-				}
-				element.html(output);
-			}
-		});
+				});
 	}
 
 	function boardWritePage() {

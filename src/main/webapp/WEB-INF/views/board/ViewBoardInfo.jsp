@@ -14,16 +14,14 @@
 <link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
 </head>
 <body>
-
 	<!-- Header -->
-	<header id="header">
-		<div class="header-div">
-			<div class="logo">
-				<a class="navbar-brand" href="${pageContext.request.contextPath }/"> <img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 80%; height: auto;">
-				</a>
-			</div>
-		</div>
-	</header>
+	<%@ include file="/WEB-INF/views/includes/main/Header.jsp"%>
+
+	<!-- Nav -->
+	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
+	
+	<!-- Header -->
+		
 
 	<!-- Section -->
 	<section id="section">

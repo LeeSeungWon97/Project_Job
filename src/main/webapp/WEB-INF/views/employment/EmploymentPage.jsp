@@ -91,8 +91,7 @@
 <body>
 
 	<!-- topbar -->
-	<a class="top" href="javascript:window.scrollTo(0,0);">
-		<i class="bi bi-caret-up-fill"></i><br> TOP
+	<a class="top" href="javascript:window.scrollTo(0,0);"> <i class="bi bi-caret-up-fill"></i><br> TOP
 	</a>
 
 	<!-- Header -->
@@ -110,8 +109,7 @@
 						<select id="selectType" class="form-select" style="border: 1px solid #ddd; max-width: 120px;">
 							<option value="공고">공고명</option>
 							<option value="기업">기업명</option>
-						</select>
-						<input class="form-control" type="search" placeholder="기업명, 공고제목 등 검색" aria-label="Search" name="searchValue" id="searchInput" style="border: 1px solid #ddd;">
+						</select> <input class="form-control" type="search" placeholder="기업명, 공고제목 등 검색" aria-label="Search" name="searchValue" id="searchInput" style="border: 1px solid #ddd;">
 						<button class="search-btn " onclick="searchValue()" style="border: 1px solid #ddd; height: auto;">
 
 							<img src="${pageContext.request.contextPath }/resources/assets/img/update/search-icon.png" style="width: 90%; height: auto;">
@@ -135,22 +133,12 @@
 					<tbody id="epListArea" style="border-top: none;">
 						<c:forEach items="${epList }" var="employ">
 							<tr>
-								<td class="emci">
-									<a href="${pageContext.request.contextPath }/viewReciname?viewReciname=${employ.epciname }">
-										<span>${employ.epciname }</span>
-									</a>
-								</td>
-								<td class="emnu">
-									<input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐">
-								</td>
-								<td class="emna">
-									<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }">
-										<span style="color: #333; font-weight: bold;">${employ.epname }</span>
-									</a>
-								</td>
-								<td class="emde">
-									<span>${employ.epdeadline }</span>
-								</td>
+								<td class="emci"><a href="${pageContext.request.contextPath }/viewReciname?viewReciname=${employ.epciname }"> <span>${employ.epciname }</span>
+								</a></td>
+								<td class="emnu"><input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"></td>
+								<td class="emna"><a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }"> <span style="color: #333; font-weight: bold;">${employ.epname }</span>
+								</a></td>
+								<td class="emde"><span>${employ.epdeadline }</span></td>
 								<td class="embu">
 									<button class="mt-1" onclick="WriteResume('sideX','${employ.epnum }','${employ.epdeadline }')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">
 										<span style="color: white;">즉시지원</span>

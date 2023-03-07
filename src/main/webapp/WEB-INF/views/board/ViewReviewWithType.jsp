@@ -16,9 +16,80 @@
 .menuBar:hover {
 	color: #0d6efd;
 }
-   .clicked {
-        color: gold;
-      }
+
+.clicked {
+	color: gold;
+}
+
+/*  */
+* {
+	box-sizing: border-box;
+}
+
+.que:first-child {
+	border-top: 1px solid black;
+}
+
+.que {
+	position: relative;
+	padding: 17px 0;
+	cursor: pointer;
+	font-size: 14px;
+	border-bottom: 1px solid #dddddd;
+}
+
+.que::before {
+	display: inline-block;
+	content: 'Q';
+	font-size: 14px;
+	color: #006633;
+	margin: 0 5px;
+}
+
+/* .que.on>span {
+	font-weight: bold;
+	color: #006633;
+} */
+.anw {
+	display: none;
+	overflow: hidden;
+	font-size: 14px;
+	background-color: #f4f4f2;
+	padding: 27px 0;
+}
+
+.anw::before {
+	display: inline-block;
+	content: 'A';
+	font-size: 14px;
+	font-weight: bold;
+	color: #666;
+	margin: 0 5px;
+}
+
+.arrow-wrap {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translate(0, -50%);
+}
+
+.que .arrow-top {
+	display: none;
+}
+
+.que .arrow-bottom {
+	display: block;
+}
+
+.que.on .arrow-bottom {
+	display: none;
+}
+
+.que.on .arrow-top {
+	display: block;
+}
+/*  */
 </style>
 
 </head>
@@ -41,8 +112,8 @@
 				<div class="card-body px-5 mt-1">
 					<!--  -->
 					<div style="padding: 10px;" class="list-group reserveArea">
-						
-				
+
+
 						<div class="row mb-4" style="padding: 10px; border-style: groove; text-align: center;">
 							<div class="col-4">
 								<button class="menuBar" onclick="ViewReview('2','${ciname}')">인적성후기</button>
@@ -56,13 +127,38 @@
 								<button class="menuBar" onclick="ViewReview('4','${ciname}')">최종합격후기</button>
 							</div>
 						</div>
-						
-						
+
+
 						<c:forEach items="${reviewList }" var="review">
 							<c:if test="${reviewList.isEmpty()}">
 								<div class="row" style="padding: 10px; border-style: groove;">등록된 후기가 없습니다.</div>
 							</c:if>
-							<div class="Rbox mt-1 mb-1" style="border-style: groove;">
+							<div id="Accordion_wrap">
+								<div class="que">
+									<div class="row-2">
+										<div class="small mb-1">${review.rvdate}-${review.rveptype}-${review.rvobj}</div>
+									</div>
+									<div class="row-2">
+										<h4>${review.rvciname}-${review.rvobj}</h4>
+									</div>
+									<div class="arrow-wrap">
+										<span class="arrow-top">↑</span>
+										<span class="arrow-bottom">↓</span>
+									</div>
+								</div>
+								<div class="anw">
+									<c:forEach items="${review.rvcontents }" varStatus="i" step="2">
+										<div class="que">
+											<span>${review.rvcontents[i.index]}</span>
+										</div>
+										<div class="anw">
+											<span>${review.rvcontents[i.index +1]}</span>
+										</div>
+									</c:forEach>
+								</div>
+							</div>
+
+							<%-- <div class="Rbox mt-1 mb-1" style="border-style: groove;">
 							<div class="row" style="padding: 10px;">
 								<div class="row-2">
 									<div class="small mb-1">${review.rvdate}-${review.rveptype}-${review.rvobj}</div>
@@ -79,8 +175,9 @@
 									</div>
 								</c:forEach>
 							</div>
-							</div>
+							</div> --%>
 						</c:forEach>
+
 					</div>
 					<!--  -->
 				</div>
@@ -98,7 +195,13 @@
 		var loginType = $('#loginType').val();
 		var loginId = $('#loginId').val();
 		var reviewList = '${reviewList}';
-		
+
+		$(".que").click(function() {
+			$(this).next(".anw").stop().slideToggle(300);
+			$(this).toggleClass('on').siblings().removeClass('on');
+			//$(this).next(".anw").siblings(".anw").slideUp(300); // 1개씩 펼치기
+		});
+
 		/* 		var loginType = "";
 		 var loginId = "";
 		 if( $('#loginType').val() != undefined){
@@ -113,9 +216,6 @@
 			location.href = "${pageContext.request.contextPath }/ViewReview?rvtype="
 					+ rvtype + "&ciname=" + ciname;
 		}
-		
-	
-
 	</script>
 </body>
 </html>
