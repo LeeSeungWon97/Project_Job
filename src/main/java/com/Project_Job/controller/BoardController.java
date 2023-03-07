@@ -15,6 +15,7 @@ import com.Project_Job.dto.ArrResumeDto;
 import com.Project_Job.dto.ArrReviewsDto;
 import com.Project_Job.dto.BoardDto;
 import com.Project_Job.dto.CinfoDto;
+import com.Project_Job.dto.EmploymentDto;
 import com.Project_Job.dto.ReplyDto;
 import com.Project_Job.dto.ReviewsDto;
 import com.Project_Job.service.BoardService;
@@ -145,13 +146,24 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/ReviewState")
-	public ModelAndView ReviewState() {
+	public ModelAndView ReviewState(int pageNum) {
 		ModelAndView mav = new ModelAndView();
-		ArrayList<CinfoDto> cinfoList = epsvc.getCiList("");
-		ArrayList<Map<String, String>> reviewcount = bsvc.getReviewCount();
-		System.out.println(reviewcount);
+		ArrayList<CinfoDto> cinfoListAll = epsvc.getCiList("");
+		ArrayList<CinfoDto> cinfoList = new ArrayList<CinfoDto>();
+		int pageIdx = pageNum;
+		int pageIdxMax = cinfoListAll.size() / 15 + 1;
+		int startIdx = 15 * (pageIdx - 1);
+		int endIdx = startIdx + 14;
+		if (endIdx >= cinfoListAll.size()) {
+			endIdx = cinfoListAll.size();
+		}
+		for (int i = startIdx; i < endIdx; i++) {
+			cinfoList.add(cinfoListAll.get(i));
+		}
+		ArrayList<Map<String, String>> reviewcount = bsvc.getReviewCount(cinfoList);
 		mav.addObject("reviewcount", reviewcount);
-		mav.addObject("cinfoList", cinfoList);
+		mav.addObject("pageNum", pageIdx);
+		mav.addObject("pageIdxMax", pageIdxMax);
 		mav.setViewName("employment/ReviewState");
 		return mav;
 	}

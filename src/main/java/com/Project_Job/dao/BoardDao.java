@@ -11,7 +11,6 @@ import org.apache.ibatis.annotations.Update;
 
 import com.Project_Job.dto.ArrReviewsDto;
 import com.Project_Job.dto.BoardDto;
-import com.Project_Job.dto.EmploymentDto;
 import com.Project_Job.dto.ReplyDto;
 import com.Project_Job.dto.ReviewsDto;
 
@@ -105,6 +104,9 @@ public interface BoardDao {
 			+ " WHERE ( BTITLE LIKE '%${searchValue}%' OR BCONTENTS LIKE '%${searchValue}%' OR BMID LIKE '%${searchValue}%' ) "
 			+ " AND BHOPE LIKE '%${tag}%' ")
 	ArrayList<BoardDto> getSearchAll(@Param("searchValue") String searchValue,@Param("tag") String tag);
+
+	@Select("SELECT RVTYPE FROM REVIEWS WHERE RVCINAME = #{ciname}")
+	ArrayList<String> getReviewType(String ciname);
 	
 	
 
