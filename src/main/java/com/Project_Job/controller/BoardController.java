@@ -222,15 +222,19 @@ public class BoardController {
 	@RequestMapping(value = "/searchBoardJson")
 	public @ResponseBody String searchBoardJson(String searchValue, String selectType, String selectTag) {
 		System.out.println("searchBoardJson호출");
-		System.out.println("searchBoardJson호출"+searchValue);
-		System.out.println("searchBoardJson호출"+selectType);
+		System.out.println("searchValue"+searchValue);
+		System.out.println("selectType"+selectType);
+		System.out.println("selectTag"+selectTag);
 		String boardList = "";
-		if (searchValue.length() >= 2) {
+		if(searchValue.equals("ALL")) {
+			searchValue = "";
+		}
+		
 			boardList = bsvc.searchBoardList(searchValue, selectType, selectTag);
 			return boardList;
-		} else {
-			return null;
-		}
+		
+			
+		
 		
 	}	
 }

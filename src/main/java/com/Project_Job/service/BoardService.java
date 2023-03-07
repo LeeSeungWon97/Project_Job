@@ -225,29 +225,24 @@ public class BoardService {
 	public String searchBoardList(String searchValue, String selectType, String selectTag) {
 		System.out.println("EmploymentService getEpListGson 호출");
 		ArrayList<BoardDto> boardList = new ArrayList<BoardDto>();
-		if (selectTag.equals("ALL")) {
-			if (selectType.equals("BTITLE")) {
-				boardList = bdao.getSearchTilte(searchValue,"");
-			} else if (selectType.equals("BCONTENT")) {
-				boardList = bdao.getSearchContents(searchValue,"");
-			} else if(selectType.equals("BMID")){
-				boardList = bdao.getSearchWriter(searchValue,"");
-			}else {
-				boardList = bdao.getSearchWriter("","");
-			}
-			System.out.println("selectTag all 인경우");
-			
-		} else if(selectType.equals("ALL")){
-			//태그만 있음
-			System.out.println("태그만 있음");
-			boardList = bdao.getBoardListWithTag(selectTag);
-			
-		} else {
-			//둘다 있음
-			System.out.println("태그랑 타입 둘다  있음");
-			boardList = bdao.getSearchTilte(searchValue,selectTag);
+		String Tag = "";
+		if (!selectTag.equals("ALL")) {
+			Tag = selectTag;
 		}
-		
+		switch(selectType) {
+		case "ALL" :
+			boardList = bdao.getSearchAll(searchValue, Tag);
+			break;
+		case "BTITLE" :
+			boardList = bdao.getSearchTilte(searchValue, Tag);
+			break;
+		case "BCONTENTS" :
+			boardList = bdao.getSearchContents(searchValue, Tag);
+			break;
+		case "BMID" :
+			boardList = bdao.getSearchWriter(searchValue, Tag);
+			break;
+		}
 		for (int i = 0; i < boardList.size(); i++) {
 			System.err.println(boardList.get(i));
 		}

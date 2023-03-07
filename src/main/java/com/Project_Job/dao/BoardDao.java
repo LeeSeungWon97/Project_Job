@@ -101,7 +101,11 @@ public interface BoardDao {
 	@Select("SELECT * FROM BOARDS WHERE BMID LIKE '%${searchValue}%' AND BHOPE LIKE  '%${selectTag}%' ")
 	ArrayList<BoardDto> getSearchWriter(@Param("searchValue") String searchValue, @Param("selectTag") String selectTag);
 	
-	@Select("SELECT * FROM BOARDS WHERE BHOPE = #{selectTag}")
-	ArrayList<BoardDto> getBoardListWithTag(String selectTag);
+	@Select("SELECT * FROM BOARDS "
+			+ " WHERE ( BTITLE LIKE '%${searchValue}%' OR BCONTENTS LIKE '%${searchValue}%' OR BMID LIKE '%${searchValue}%' ) "
+			+ " AND BHOPE LIKE '%${tag}%' ")
+	ArrayList<BoardDto> getSearchAll(@Param("searchValue") String searchValue,@Param("tag") String tag);
+	
+	
 
 }
