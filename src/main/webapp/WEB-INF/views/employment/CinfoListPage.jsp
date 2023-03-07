@@ -151,17 +151,35 @@
 		var maxNum = '${pageIdxMax}';
 		var element = $('.pagination');
 		var pageNum = '${pageNum}';
-		var output = "";
+		var startBtn = '${startBtn}';
+		var endBtn = '${endBtn}';
+		var output = '<li class="page-item"><p class="page-link" onclick="prePage('+pageNum+')">이전</p></li>';
 		console.log(maxNum);
-		for(var i = 0; i < maxNum; i++ ){
+		for(var i = startBtn-1; i < endBtn; i++ ){
 			if(i+1 == pageNum){
 				output += '<li class="page-item active"><p class="page-link" onclick="pageLoad(this)">'+(i+1)+'</p></li>';	
 			} else{
 				output += '<li class="page-item"><p class="page-link" onclick="pageLoad(this)">'+(i+1)+'</p></li>';				
 			}
 		}
+		output += '<li class="page-item"><p class="page-link" onclick="nextPage('+pageNum+')">다음</p></li>';
 		element.html(output);
 	}
+	
+	function prePage(pageNum){
+		if(pageNum > 1){
+			pageNum -= 1;
+			location.href = "${pageContext.request.contextPath}/CinfoListPage?pageNum="+pageNum;			
+		}
+	}
+	function nextPage(pageNum){
+		var maxNum = '${pageIdxMax}';
+		if(pageNum < maxNum){
+			pageNum += 1;
+			location.href = "${pageContext.request.contextPath}/CinfoListPage?pageNum="+pageNum;			
+		}
+	}
+	
 </script>
 <script type="text/javascript">
 	function WriteResume() {
