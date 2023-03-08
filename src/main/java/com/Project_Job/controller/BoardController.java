@@ -304,4 +304,17 @@ public class BoardController {
 		boardList = bsvc.searchBoardList(searchValue, selectType, selectTag);
 		return boardList;
 	}
+	
+	@RequestMapping(value = "/ViewEssayPage")
+	public ModelAndView ViewEssayPage(String rvnum) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("ViewEssayPage 호출");
+		System.out.println("review: " + rvnum);
+		ArrReviewsDto review = bsvc.selectEssay(rvnum);
+		System.out.println("review : "+review);
+		mav.addObject("review", review);
+		mav.setViewName("employment/ViewEssayPage");
+		return mav;
+	}
+	
 }

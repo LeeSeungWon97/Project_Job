@@ -1,6 +1,7 @@
 package com.Project_Job.dto;
 
 public class ReviewsDto {
+	private String rvnum;
 	private String rvciname;
 	private String rvdate;
 	private String rveptype;
@@ -11,6 +12,13 @@ public class ReviewsDto {
 	private String rvtype;
 	private String rvstate;
 	
+	
+	public String getRvnum() {
+		return rvnum;
+	}
+	public void setRvnum(String rvnum) {
+		this.rvnum = rvnum;
+	}
 	public String getRvciname() {
 		return rvciname;
 	}

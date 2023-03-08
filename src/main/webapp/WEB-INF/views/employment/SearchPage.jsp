@@ -70,8 +70,7 @@
 <body>
 
 	<!-- topbar -->
-	<a class="top" href="javascript:window.scrollTo(0,0);">
-		<i class="bi bi-caret-up-fill"></i><br> TOP
+	<a class="top" href="javascript:window.scrollTo(0,0);"> <i class="bi bi-caret-up-fill"></i><br> TOP
 	</a>
 
 	<!-- Header -->
@@ -116,16 +115,11 @@
 									<c:otherwise>
 										<c:forEach items="${epList }" var="employ">
 											<tr>
-												<td>
-													<a href="${pageContext.request.contextPath }/viewEpInfo?epnum=${employ.epnum }"> ${employ.epciname }</a>
-												</td>
-												<td>
-													<input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐">
-													&nbsp; ${employ.epname }
-												</td>
+												<td><a href="${pageContext.request.contextPath }/viewReciname?viewReciname=${employ.epciname }"> ${employ.epciname } </a></td>
+												<td><input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐"> &nbsp; <a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum }"> <span style="color: #333; font-weight: bold;">${employ.epname }</span>
+												</a></td>
 												<td>${employ.epdeadline }</td>
-												<td>
-													<c:choose>
+												<td><c:choose>
 														<c:when test="${employ.epesstate == 'x' }">
 															<button class="mt-1" onclick="WriteResume1('sideX','${employ.epnum }','${employ.epdeadline }')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">
 																<span style="color: white;">즉시지원</span>
@@ -136,8 +130,7 @@
 																<span style="color: white;">즉시지원</span>
 															</button>
 														</c:otherwise>
-													</c:choose>
-												</td>
+													</c:choose></td>
 											</tr>
 										</c:forEach>
 									</c:otherwise>
@@ -161,11 +154,9 @@
 									<c:otherwise>
 										<c:forEach items="${ciList }" var="ciList">
 											<tr>
-												<td>
-													<a href="${pageContext.request.contextPath }/viewCiInfo?cinum=${ciList.cinum}"> ${ciList.ciname }</a>
-												</td>
+												<td><a href="${pageContext.request.contextPath }/viewCiInfo?cinum=${ciList.cinum}"> ${ciList.ciname }</a></td>
 												<td>${ciList.citype }
-													<td>${ciList.cileader }</td>
+												<td>${ciList.cileader }</td>
 											</tr>
 										</c:forEach>
 									</c:otherwise>
@@ -319,5 +310,6 @@ function WriteResume2(epnum, epciname, epname, epdeadline) {
 		}
 		
 	
-</script></ht
+</script>
+</ht
 												ml>

@@ -3,6 +3,7 @@ package com.Project_Job.dto;
 import java.util.Arrays;
 
 public class ArrReviewsDto {
+	private String rvnum;
 	private String rvciname;
 	private String rvdate;
 	private String rveptype;
@@ -12,6 +13,13 @@ public class ArrReviewsDto {
 	private String[] rvcontents;
 	private String rvtype;
 	private String rvstate;
+	
+	public String getRvnum() {
+		return rvnum;
+	}
+	public void setRvnum(String rvnum) {
+		this.rvnum = rvnum;
+	}
 	public String getRvciname() {
 		return rvciname;
 	}
