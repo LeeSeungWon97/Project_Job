@@ -97,7 +97,7 @@ h2 {
 
 
 				<div class="col-lg-10 col-xl-8" style="width: 65%;">
-					<div class="card border-0 shadow rounded-3">
+					<div class="card shadow rounded-3" style="border: 1px solid #e0e0e0;">
 						<div class="card-body p-4 p-sm-5 mb-3">
 							<h1 style="text-align: center;">열람기업</h1>
 							<div class="row">

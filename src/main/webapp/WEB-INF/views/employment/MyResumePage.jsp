@@ -67,7 +67,7 @@ h2 {
 				</div>
 
 				<div class="col-lg-10 col-xl-8" style="width: 70%;">
-					<div class="card border-0 shadow rounded-3">
+					<div class="card  shadow rounded-3" style="border: 1px solid #e0e0e0;">
 						<div class="card-body p-4 p-sm-5 mb-3">
 							<%@ include file="/WEB-INF/views/employment/ResumeForm.jsp"%>
 						</div>
