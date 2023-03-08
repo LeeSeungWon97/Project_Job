@@ -122,6 +122,9 @@
 									</div>
 
 									<div class="row-7" style="border: 1px solid #ebebeb; padding: 12px; background-color: #F2F2F2; ">
+									<button onclick="viewEssay('${review.rvnum}')">
+									자소서열람
+									</button>
 											<div class="row-5 txt_line">
 												<h5>${review.rvcontents[0]}</h5>
 												<p class="lead">${review.rvcontents[1]}</p>
@@ -194,6 +197,14 @@
 		}
 
 	}
+	
+	function viewEssay(review){
+		console.log("review : " + review );
+		window.open("${pageContext.request.contextPath}/ViewEssayPage?rvnum="
+				+ review, "합격자소서 ", "width=900,height=1500,top=10,left=100");
+	}
+	
+	
 </script>
 
 

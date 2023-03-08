@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Select;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -19,11 +20,13 @@ import org.springframework.stereotype.Service;
 import com.Project_Job.dao.EmploymentDao;
 import com.Project_Job.dto.ArrEssayDto;
 import com.Project_Job.dto.ArrResumeDto;
+import com.Project_Job.dto.ArrReviewsDto;
 import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.EmploymentDto;
 import com.Project_Job.dto.EssayDto;
 import com.Project_Job.dto.MemberDto;
 import com.Project_Job.dto.ResumeDto;
+import com.Project_Job.dto.ReviewsDto;
 import com.Project_Job.dto.ScrapDto;
 import com.google.gson.Gson;
 
@@ -832,4 +835,6 @@ public class EmploymentService {
 		int deleteResult = epdao.deleteApply(apepnum,apremid);
 		return deleteResult;
 	}
+
+	
 }

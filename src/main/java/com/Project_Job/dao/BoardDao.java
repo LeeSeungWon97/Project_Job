@@ -79,7 +79,7 @@ public interface BoardDao {
 			+ " WHERE ( RE.REWRITER = CM.CMID ) AND REBNO = #{rebno} ORDER BY RENUM ")
 	ArrayList<ReplyDto> selectReplyListC(String rebno);
 	
-	@Insert("INSERT INTO REVIEWS VALUES(#{rvciname},#{rvdate},#{rveptype},#{rvobj},#{rvdif},#{rvmid},#{rvcontents},#{rvtype},#{rvstate})")
+	@Insert("INSERT INTO REVIEWS VALUES(#{rvnum},#{rvciname},#{rvdate},#{rveptype},#{rvobj},#{rvdif},#{rvmid},#{rvcontents},#{rvtype},#{rvstate})")
 	int insertReivew(ReviewsDto review);
 	
 	@Select("SELECT * FROM REVIEWS WHERE RVTYPE LIKE  '%${rvtype}%' AND RVCINAME LIKE '%${ciname}%' ")
@@ -107,6 +107,17 @@ public interface BoardDao {
 
 	@Select("SELECT RVTYPE FROM REVIEWS WHERE RVCINAME = #{ciname}")
 	ArrayList<String> getReviewType(String ciname);
+	
+	@Select("SELECT MAX(RVNUM) FROM REVIEWS ")
+	String selectMaxRvnum();
+
+	@Select("SELECT * FROM REVIEWS WHERE RVNUM = #{rvnum} ")
+	ArrReviewsDto selectEssay(String rvnum);
+
+	@Select("SELECT * FROM REVIEWS WHERE RVNUM = #{rvnum} ")
+	ReviewsDto selectEssay2(String rvnum);
+	
+	
 	
 	
 
