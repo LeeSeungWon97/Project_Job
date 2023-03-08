@@ -40,19 +40,30 @@ public class BoardController {
 		System.out.println("BoardListPage요청");
 		System.out.println("pageNum: " + pageNum);
 		ArrayList<BoardDto> boardList = bsvc.selectBoardList();
-		ArrayList<BoardDto> board =new ArrayList<BoardDto>();
+		ArrayList<BoardDto> board = new ArrayList<BoardDto>();
 		//
 		int pageIdx = pageNum;
-		int pageIdxMax = boardList.size() / 15 + 1;
+		int pageIdxMax = boardList.size() / 5;
+		if (boardList.size() % 5 != 0) {
+			pageIdxMax += 1;
+		}
 		System.out.println("pageIdxMax: " + pageIdxMax);
-		int startIdx = 15 * (pageIdx - 1);
-		int endIdx = startIdx + 14;
+		int startIdx = 5 * (pageIdx - 1);
+		int endIdx = startIdx + 4;
 		if (endIdx >= boardList.size()) {
 			endIdx = boardList.size();
 		}
 		for (int i = startIdx; i < endIdx; i++) {
 			board.add(boardList.get(i));
 		}
+		int pageBtnIdx = (pageNum - 1) / 5;
+		int startBtn = pageBtnIdx * 5 + 1;
+		int endBtn = startBtn + 4;
+		if (endBtn > pageIdxMax) {
+			endBtn = pageIdxMax;
+		}
+		mav.addObject("startBtn", startBtn);
+		mav.addObject("endBtn", endBtn);
 		mav.addObject("boardList", board);
 		mav.addObject("pageNum", pageIdx);
 		mav.addObject("pageIdxMax", pageIdxMax);
@@ -167,7 +178,10 @@ public class BoardController {
 		ArrayList<CinfoDto> cinfoListAll = epsvc.getCiList("");
 		ArrayList<CinfoDto> cinfoList = new ArrayList<CinfoDto>();
 		int pageIdx = pageNum;
-		int pageIdxMax = cinfoListAll.size() / 15 + 1;
+		int pageIdxMax = cinfoListAll.size() / 15;
+		if (cinfoListAll.size() % 15 != 0) {
+			pageIdxMax += 1;
+		}
 		int startIdx = 15 * (pageIdx - 1);
 		int endIdx = startIdx + 14;
 		if (endIdx >= cinfoListAll.size()) {
@@ -177,6 +191,14 @@ public class BoardController {
 			cinfoList.add(cinfoListAll.get(i));
 		}
 		ArrayList<Map<String, String>> reviewcount = bsvc.getReviewCount(cinfoList);
+		int pageBtnIdx = (pageNum - 1) / 5;
+		int startBtn = pageBtnIdx * 5 + 1;
+		int endBtn = startBtn + 4;
+		if (endBtn > pageIdxMax) {
+			endBtn = pageIdxMax;
+		}
+		mav.addObject("startBtn", startBtn);
+		mav.addObject("endBtn", endBtn);
 		mav.addObject("reviewcount", reviewcount);
 		mav.addObject("pageNum", pageIdx);
 		mav.addObject("pageIdxMax", pageIdxMax);
