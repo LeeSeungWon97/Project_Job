@@ -82,7 +82,8 @@
 <body>
 
 	<!-- topbar -->
-	<a class="top" href="javascript:window.scrollTo(0,0);"> <i class="bi bi-caret-up-fill"></i><br> TOP
+	<a class="top" href="javascript:window.scrollTo(0,0);">
+		<i class="bi bi-caret-up-fill"></i><br> TOP
 	</a>
 
 
@@ -100,29 +101,34 @@
 						<li style="list-style: none; border-bottom: 1px solid #ebebeb; width: 100%;">
 							<div class="d-flex" style="width: 100%; padding: 1rem; align-items: center; display: flex;">
 								<div class="cLogo col-2">
-									<img class="card-img-top" src="${pageContext.request.contextPath }/resources/assets/img/building.png" style="width: 80%; height: auto;"> <br>
+									<img class="card-img-top" src="${pageContext.request.contextPath }/resources/assets/img/building.png" style="width: 80%; height: auto;">
+									<br>
 									<span class="h5">${reviewcount.ciname }</span>
 								</div>
 								<div class="col-2 Rmenu">
 									<div class="Rvcon mb-1">${reviewcount.type1 }</div>
-									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=1&ciname=${reviewcount.ciname }"> <span class="h5 menu">합격자소서</span>
+									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=1&ciname=${reviewcount.ciname }">
+										<span class="h5 menu">합격자소서</span>
 									</a>
 								</div>
 
 								<div class="col-2 Rmenu">
 									<div class="Rvcon mb-1">${reviewcount.type2 }</div>
-									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=2&ciname=${reviewcount.ciname }"> <span class="h5 menu">인적성후기</span>
+									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=2&ciname=${reviewcount.ciname }">
+										<span class="h5 menu">인적성후기</span>
 									</a>
 								</div>
 
 								<div class="col-2 Rmenu">
 									<div class="Rvcon mb-1">${reviewcount.type3 }</div>
-									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=3&ciname=${reviewcount.ciname }"> <span class="h5 menu">면접후기</span>
+									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=3&ciname=${reviewcount.ciname }">
+										<span class="h5 menu">면접후기</span>
 									</a>
 								</div>
 								<div class="col-2 Rmenu">
 									<div class="Rvcon mb-1">${reviewcount.type4 }</div>
-									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=4&ciname=${reviewcount.ciname }"> <span class="h5 menu">최종합격후기</span>
+									<a href="${pageContext.request.contextPath }/ViewReview?rvtype=4&ciname=${reviewcount.ciname }">
+										<span class="h5 menu">최종합격후기</span>
 									</a>
 								</div>
 
@@ -143,26 +149,6 @@
 			</div>
 		</div>
 	</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<input type="hidden" id="loginType" value="${sessionScope.loginType }">
 	<c:choose>
 		<c:when test="${sessionScope.loginType == 'P'}">
@@ -201,15 +187,19 @@
 			alert("일반회원을 위한 서비스입니다.");
 			location.reload();
 		} else {
+			var popupWidth = 900;
+			var popupHeight = 1500;
+			var popupX = (window.screen.width/2)-(popupWidth/2);
+			var popupY = (window.screen.height/2)-(popupHeight/2);
 			window.open("${pageContext.request.contextPath}/ReviewType?cinum="
-					+ cinum, "후기작성 ", "width=900,height=1500,top=10,left=100");
+					+ cinum, "후기작성 ", "width="+popupWidth+",height="+popupHeight+",top="+popupY+",left="+popupX);
 		}
 
 	}
 
 	function pageLoad(pageBtn) {
 		var pageNum = pageBtn.innerText;
-		location.href = "${pageContext.request.contextPath}/RecruitmentPage?pageNum="
+		location.href = "${pageContext.request.contextPath}/ReviewState?pageNum="
 				+ pageNum;
 	}
 
@@ -234,14 +224,14 @@
 	function prePage(pageNum){
 		if(pageNum > 1){
 			pageNum -= 1;
-			location.href = "${pageContext.request.contextPath}/RecruitmentPage?pageNum="+pageNum;			
+			location.href = "${pageContext.request.contextPath}/ReviewState?pageNum="+pageNum;			
 		}
 	}
 	function nextPage(pageNum){
 		var maxNum = '${pageIdxMax}';
 		if(pageNum < maxNum){
 			pageNum += 1;
-			location.href = "${pageContext.request.contextPath}/RecruitmentPage?pageNum="+pageNum;			
+			location.href = "${pageContext.request.contextPath}/ReviewState?pageNum="+pageNum;			
 		}
 	}
 </script>

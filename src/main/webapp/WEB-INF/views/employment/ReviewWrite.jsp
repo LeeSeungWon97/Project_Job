@@ -74,7 +74,8 @@ h1 {
 	<header id="header">
 		<div class="header-div">
 			<div class="logo">
-				<a class="navbar-brand" href="${pageContext.request.contextPath }/"> <img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 80%; height: auto;">
+				<a class="navbar-brand" href="${pageContext.request.contextPath }/">
+					<img src="${pageContext.request.contextPath }/resources/assets/img/update/main-logo.png" style="width: 80%; height: auto;">
 				</a>
 			</div>
 		</div>
@@ -88,12 +89,14 @@ h1 {
 
 			<div class="mainbox mb-3">
 				<!--본문 -->
-				
+
 				<div class="input-group input-group-lg mb-3">
-					<span class="input-group-text" style="justify-content: center;">기업명</span> <input type="text" class="form-control" name="" value="${cinfo.ciname }" style="background-color: white;">
+					<span class="input-group-text" style="justify-content: center;">기업명</span>
+					<input type="text" class="form-control" name="" value="${cinfo.ciname }" style="background-color: white;">
 				</div>
 				<div class="input-group input-group-lg mb-3">
-					<span class="input-group-text" style="justify-content: center;">응시년도</span> <select name="rvdate" id="rvdate" class="form-control">
+					<span class="input-group-text" style="justify-content: center;">응시년도</span>
+					<select name="rvdate" id="rvdate" class="form-control">
 						<option value="">응시년도를 선택해주세요</option>
 						<option value="2023년 하반기">2023년 하반기</option>
 						<option value="2023 상반기">2023 상반기</option>
@@ -101,19 +104,21 @@ h1 {
 						<option value="2022 상반기">2022 상반기</option>
 						<option value="2021 하반기">2021 하반기</option>
 						<option value="2021 상반기">2021 상반기</option>
-					</select> <label style="margin: 10px;"><i class="bi bi-exclamation-circle"></i> 2021년부터 등록 가능합니다.</label>
+					</select>
+					<label style="margin: 10px;"><i class="bi bi-exclamation-circle"></i> 2021년부터 등록 가능합니다.</label>
 				</div>
 				<div class="input-group input-group-lg mb-3">
 					<span class="input-group-text" style="justify-content: center;">근무형태</span>
-					<select name="rveptype" id="rveptype" class="form-control">	
+					<select name="rveptype" id="rveptype" class="form-control">
 						<option value="">근무형태를 선택해주세요</option>
 						<option value="신입">신입</option>
 						<option value="인턴">인턴</option>
 						<option value="경력">경력</option>
-					</select>				
+					</select>
 				</div>
 				<div class="input-group input-group-lg mb-3">
-					<span class="input-group-text" style="justify-content: center;">지원분야</span> <select name="rvobj" id="rvobj" class="form-control">
+					<span class="input-group-text" style="justify-content: center;">지원분야</span>
+					<select name="rvobj" id="rvobj" class="form-control">
 						<option value="">지원분야를 선택해주세요</option>
 						<option value="경영,사무">경영,사무</option>
 						<option value="마케팅,광고,홍보">마케팅,광고,홍보</option>
@@ -132,7 +137,8 @@ h1 {
 					</select>
 				</div>
 				<div class="input-group input-group-lg mb-3">
-					<span class="input-group-text" style="justify-content: center;">면접 난이도</span> <select name="rvdif" id="rvdif" class="form-control">
+					<span class="input-group-text" style="justify-content: center;">면접 난이도</span>
+					<select name="rvdif" id="rvdif" class="form-control">
 						<option value="">난이도를 선택해주세요</option>
 						<option value="매우쉬움">매우쉬움</option>
 						<option value="쉬움">쉬움</option>
@@ -141,7 +147,7 @@ h1 {
 						<option value="매우 어려움">매우 어려움</option>
 					</select>
 				</div>
-				
+
 
 				<div id="EssayReview" class="d-none">
 					<div id="EssayForm">
@@ -210,12 +216,12 @@ h1 {
 						</div>
 					</div>
 					<div id="QnAarea">
-					<div class="box">
-						<input type="text" class="form-control-plaintext" placeholder="면접 질문과 그에 대한 답변을 적어주세요. " value="면접 질문과 그에 대한 답변을 적어주세요.">
-						<div class="form-floating">
-							<textarea class="form-control " id="" style="height: 100px"></textarea>
+						<div class="box">
+							<input type="text" class="form-control-plaintext" placeholder="면접 질문과 그에 대한 답변을 적어주세요. " value="면접 질문과 그에 대한 답변을 적어주세요.">
+							<div class="form-floating">
+								<textarea class="form-control " id="" style="height: 100px"></textarea>
+							</div>
 						</div>
-					</div>
 					</div>
 					<div style="text-align: center;" class="mt-2">
 						<button type="button" class="btn btn-secondary  modifyBtn" onclick="addSearchKeyB()">
@@ -250,7 +256,7 @@ h1 {
 						</div>
 					</div>
 					<div class="box">
-						<input type="text" class="form-control-plaintext" readonly="readonly"" placeholder="취업 준비생에게 조언을 한다면?" value="취업 준비생에게 조언을 한다면?">
+						<input type="text" class="form-control-plaintext" readonly="readonly" " placeholder="취업 준비생에게 조언을 한다면?" value="취업 준비생에게 조언을 한다면?">
 						<div class="form-floating">
 							<textarea class="form-control " id="" style="height: 100px"></textarea>
 						</div>
@@ -271,12 +277,14 @@ h1 {
 				<div id="resumeForm">
 					<div class="mb-3">
 						<h5>
-							<img src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png" style="width: 30px; height: 20px;"> 학력
+							<img src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png" style="width: 30px; height: 20px;">
+							학력
 						</h5>
 						<div class="input-group" id="reeduData">
 							<c:forEach items="${Resume.reedu }" varStatus="i" step="2">
 								<div class="input-group">
-									<input type="text" class="form-control resumeContent reedu" value="${Resume.reedu[i.index]}" style="height: 60px;" readonly="readonly"> <input type="text" class="form-control resumeContent reedu" value="${Resume.reedu[i.index + 1]}" style="width: 300px; height: 60px;" readonly="readonly">
+									<input type="text" class="form-control resumeContent reedu" value="${Resume.reedu[i.index]}" style="height: 60px;" readonly="readonly">
+									<input type="text" class="form-control resumeContent reedu" value="${Resume.reedu[i.index + 1]}" style="width: 300px; height: 60px;" readonly="readonly">
 								</div>
 							</c:forEach>
 						</div>
@@ -284,12 +292,14 @@ h1 {
 					</div>
 					<div class="mb-3">
 						<h5>
-							<img alt="" src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png" style="width: 30px; height: 20px;"> 경력
+							<img alt="" src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png" style="width: 30px; height: 20px;">
+							경력
 						</h5>
 						<div class="input-group" id="recarrerData">
 							<c:forEach items="${Resume.recarrer }" varStatus="i" step="2">
 								<div class="input-group">
-									<input type="text" class="form-control resumeContent recarrer" value="${Resume.recarrer[i.index]}" style="height: 60px;" readonly="readonly"> <input type="text" class="form-control resumeContent recarrer" value="${Resume.recarrer[i.index + 1]}" style="width: 300px; height: 60px;" readonly="readonly">
+									<input type="text" class="form-control resumeContent recarrer" value="${Resume.recarrer[i.index]}" style="height: 60px;" readonly="readonly">
+									<input type="text" class="form-control resumeContent recarrer" value="${Resume.recarrer[i.index + 1]}" style="width: 300px; height: 60px;" readonly="readonly">
 								</div>
 							</c:forEach>
 						</div>
@@ -297,12 +307,14 @@ h1 {
 					</div>
 					<div class="mb-3">
 						<h5>
-							<img alt="" src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png" style="width: 30px; height: 20px;"> 인턴/대외활동
+							<img alt="" src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png" style="width: 30px; height: 20px;">
+							인턴/대외활동
 						</h5>
 						<div class="input-group" id="reactData">
 							<c:forEach items="${Resume.react }" varStatus="i" step="2">
 								<div class="input-group">
-									<input type="text" class="form-control resumeContent react" value="${Resume.react[i.index]}" style="height: 60px;" readonly="readonly"> <input type="text" class="form-control resumeContent react" value="${Resume.react[i.index + 1]}" style="width: 300px; height: 60px;" readonly="readonly">
+									<input type="text" class="form-control resumeContent react" value="${Resume.react[i.index]}" style="height: 60px;" readonly="readonly">
+									<input type="text" class="form-control resumeContent react" value="${Resume.react[i.index + 1]}" style="width: 300px; height: 60px;" readonly="readonly">
 								</div>
 							</c:forEach>
 						</div>
@@ -310,12 +322,14 @@ h1 {
 					</div>
 					<div class="mb-5">
 						<h5>
-							<img alt="" src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png" style="width: 30px; height: 20px;"> 자격증
+							<img alt="" src="${pageContext.request.contextPath }/resources/assets/img/resumeRd.png" style="width: 30px; height: 20px;">
+							자격증
 						</h5>
 						<div class="input-group" id="relicenseData">
 							<c:forEach items="${Resume.relicense }" varStatus="i" step="2">
 								<div class="input-group">
-									<input type="text" class="form-control resumeContent react" value="${Resume.relicense[i.index]}" style="height: 60px;" readonly="readonly"> <input type="text" class="form-control resumeContent react" value="${Resume.relicense[i.index + 1]}" style="width: 300px; height: 60px;" readonly="readonly">
+									<input type="text" class="form-control resumeContent react" value="${Resume.relicense[i.index]}" style="height: 60px;" readonly="readonly">
+									<input type="text" class="form-control resumeContent react" value="${Resume.relicense[i.index + 1]}" style="width: 300px; height: 60px;" readonly="readonly">
 								</div>
 							</c:forEach>
 						</div>
@@ -379,8 +393,7 @@ h1 {
 		function delSearchKeyA() {
 			$("#EssayForm div:last").remove();
 		}
-			
-		
+
 		function addSearchKeyB() {
 			var rowItem = '<div class="box">';
 			rowItem += '<input type="text" class="form-control-plaintext reviewQ"  placeholder="면접 질문과 그에 대한 답변을 적어주세요. " value="면접 질문과 그에 대한 답변을 적어주세요.">';
@@ -395,38 +408,27 @@ h1 {
 		function delSearchKeyB() {
 			$("#QnAarea div:last").remove();
 		}
-			
-		
-		
-		
-		
-			
-		
-		
-		
+
 		function WriteReview() {
 			var rvdate = $('#rvdate').val();
 			var rveptype = $('#rveptype').val();
 			var rvobj = $('#rvobj').val();
 			var rvdif = $('#rvdif').val();
-			
-			if(rvdate.length <1){
+
+			if (rvdate.length < 1) {
 				alert('응시년도를 선택해주세요');
 				return false;
-			}else if(rveptype.length <1){
+			} else if (rveptype.length < 1) {
 				alert('근무형태를 선택해주세요');
 				return false;
-			}else if(rvobj.length <1){
+			} else if (rvobj.length < 1) {
 				alert('지원분야를 선택해주세요');
 				return false;
-			}else if(rvdif.length <1){
+			} else if (rvdif.length < 1) {
 				alert('난이도를 선택해주세요');
 				return false;
-			} 
-			
-			
-			
-			
+			}
+
 			var rvcontents = document.getElementsByClassName("answer");
 			var rvcontentsData = "";
 			var reviewQ = document.getElementsByClassName("reviewQ");
@@ -456,21 +458,20 @@ h1 {
 					"rvdif" : rvdif,
 					"rvdate" : rvdate,
 					"rvstate" : '0'
-					
+
 				},
 				async : false,
 				success : function(result) {
 					console.log(result);
-					if(result == 1){
-					alert("등록 요청 완료!");
-					window.close();
-					}else{
-						alert("등록 요청 실패");							
+					if (result == 1) {
+						alert("등록 요청 완료!");
+						window.close();
+					} else {
+						alert("등록 요청 실패");
 					}
 				}
 			});
 		}
-		//location.href = "${pageContext.request.contextPath}/myResume";
 	</script>
 
 

@@ -109,20 +109,39 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${epList }" var="employ">
-									<tr>
-										<td>
-											<a href="${pageContext.request.contextPath }/viewEpInfo?epnum=${employ.epnum }"> ${employ.epciname }</a>
-										</td>
-										<td>${employ.epname }<input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐">
-										</td>
-										<td>${employ.epdeadline }</td>
-										<td>
-											<button class="btn btn-secondary mt-1" onclick="WriteResume()" style="min-width: 75px; font-size: 20%;">즉시지원</button>
-										</td>
-									</tr>
-								</c:forEach>
-
+								<c:choose>
+									<c:when test="${empty epList}">
+										<td colspan="4">검색결과가 없습니다.</td>
+									</c:when>
+									<c:otherwise>
+										<c:forEach items="${epList }" var="employ">
+											<tr>
+												<td>
+													<a href="${pageContext.request.contextPath }/viewEpInfo?epnum=${employ.epnum }"> ${employ.epciname }</a>
+												</td>
+												<td>
+													<input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐">
+													&nbsp; ${employ.epname }
+												</td>
+												<td>${employ.epdeadline }</td>
+												<td>
+													<c:choose>
+														<c:when test="${employ.epesstate == 'x' }">
+															<button class="mt-1" onclick="WriteResume1('sideX','${employ.epnum }','${employ.epdeadline }')" style="font-size: 14px; background-color: #ff7e00; border: solid #ff7e00;">
+																<span style="color: white;">즉시지원</span>
+															</button>
+														</c:when>
+														<c:otherwise>
+															<button class="mt-1" onclick="WriteResume2('${employ.epnum }','${employ.epciname }','${employ.epname }','${employ.epdeadline }')" style="min-width: 85px; font-size: 14px; background-color: #19ce60; border: solid #19ce60;">
+																<span style="color: white;">즉시지원</span>
+															</button>
+														</c:otherwise>
+													</c:choose>
+												</td>
+											</tr>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
 							</tbody>
 						</table>
 						<table class="table table-hover d_none" id="section2" style="border-radius: 50px; text-align: center;">
@@ -135,15 +154,22 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${ciList }" var="employ">
-									<tr>
-										<td>${employ.ciname }</td>
-										<td>${employ.citype }
-										<td>${employ.cileader }</td>
-
-									</tr>
-								</c:forEach>
-
+								<c:choose>
+									<c:when test="${empty ciList }">
+										<td colspan="3">검색결과가 없습니다.</td>
+									</c:when>
+									<c:otherwise>
+										<c:forEach items="${ciList }" var="ciList">
+											<tr>
+												<td>
+													<a href="${pageContext.request.contextPath }/viewCiInfo?cinum=${ciList.cinum}"> ${ciList.ciname }</a>
+												</td>
+												<td>${ciList.citype }
+													<td>${ciList.cileader }</td>
+											</tr>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
 							</tbody>
 						</table>
 					</div>
@@ -184,7 +210,17 @@
 	});
 </script>
 <script type="text/javascript">
-	function WriteResume(sideX, epnum) {
+function checkDate(date){
+	var today = new Date();
+	var targetDay = new Date(date);
+	return today > targetDay;
+}
+
+function WriteResume1(sideX, epnum, epdeadline) {
+	console.log(epdeadline);
+	if(checkDate(epdeadline)){
+		alert("지원 마감");
+	} else{
 		var popupWidth = 900;
 		var popupHeight = 950;
 		var popupX = (window.screen.width/2)-(popupWidth/2);
@@ -192,8 +228,29 @@
 		console.log(sideX);
 		console.log(epnum);
 		window.open("${pageContext.request.contextPath}/myResume?sideX="+sideX+"&epnum="+epnum+"&state=1",
-				"이력서 선택", "width="+popupWidth+",height="+popupHeight+",top="+popupY+",left="+popupX);
+				"이력서 선택", "width="+popupWidth+",height="+popupHeight+",top="+popupY+",left="+popupX);			
 	}
+}
+
+function WriteResume2(epnum, epciname, epname, epdeadline) {
+	if(checkDate(epdeadline)){
+		alert("지원 마감");
+	} else{
+		var popupWidth = 900;
+		var popupHeight = 950;
+		var popupX = (window.screen.width/2)-(popupWidth/2);
+		var popupY = (window.screen.height/2)-(popupHeight/2);
+		
+		console.log(epnum + epciname + epname);
+		if (loginType == "C") {
+			alert("일반회원을 위한 서비스입니다.");
+			location.reload();
+		} else {
+			window.open("${pageContext.request.contextPath }/myResume?epnum="+ epnum + "&epciname=" + epciname+"&state=2&sideX=sideX",
+					"이력서 선택", "width="+popupWidth+",height="+popupHeight+",top="+popupY+",left="+popupX);
+		}			
+	}
+}
 </script>
 
 
@@ -261,6 +318,6 @@
 		
 		}
 		
-	</script>
-
-</html>
+	
+</script></ht
+												ml>
