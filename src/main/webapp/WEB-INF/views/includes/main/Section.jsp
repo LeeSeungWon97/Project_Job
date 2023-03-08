@@ -161,7 +161,7 @@
 						<ul style="list-style: none; padding-left: 0;">
 							<c:forEach items="${popularCompany }" var="popularCompany" varStatus="i">
 								<li>
-									<span>${i.index + 1 }. </span>
+									<span>Top ${i.index + 1 } </span>
 									<a href="${pageContext.request.contextPath }/viewCiInfo?cinum=${popularCompany.cinum}"> 
 										<span>${popularCompany.ciname }</span>
 									</a>
