@@ -138,7 +138,6 @@
 	var loginType = $('#loginType').val();
 	var loginId = $('#loginId').val();		
 	$(document).ready(function(){
-		selectScrapInfo();
 		createPageBtn();
 	});
 	
@@ -215,22 +214,7 @@
 		}
 		
 		}
-		
-		function selectScrapInfo(){
-			$.ajax( { 
-				type : "get",
-				url : "${pageContext.request.contextPath }/selectScrapInfo",
-				async:false,
-				dataType:"json",
-				success : function(scrapList){
-						 for(var scrapinfo of scrapList){
-						 $("#"+scrapinfo.spepnum).addClass("scrap_click");
-						 }
-					
-				}
-			} );			
-		}
-		
+				
 		function searchValue(){
 			var searchVal = $('#searchInput').val();		
 			console.log(searchVal);

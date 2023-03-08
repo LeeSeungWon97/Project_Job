@@ -284,10 +284,15 @@ public class EmploymentController {
 	@RequestMapping(value = "/selectScrapInfo")
 	public @ResponseBody String selectScrapInfo() {
 		if (session.getAttribute("loginInfo") != null) {
-			MemberDto loginMInfo = (MemberDto) session.getAttribute("loginInfo");
-			String smid = loginMInfo.getMid();
-			String scrapInfo = epsvc.selectScrapInfo(smid);
-			return scrapInfo;
+			String loginType = (String) session.getAttribute("loginType");
+			if (loginType.equals("P")) {
+				MemberDto loginMInfo = (MemberDto) session.getAttribute("loginInfo");
+				String smid = loginMInfo.getMid();
+				String scrapInfo = epsvc.selectScrapInfo(smid);
+				return scrapInfo;
+			} else {
+				return null;
+			}
 		} else {
 			return null;
 		}
