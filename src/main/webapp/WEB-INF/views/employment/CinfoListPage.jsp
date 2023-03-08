@@ -76,9 +76,9 @@
 	<!-- Section -->
 	<section id="section">
 		<div class="section-div" style="justify-content: center;">
-			<div class="card mt-4 mb-4 shadow rounded-3 " style="width: 65%;">
+			<div class="card mt-4 mb-4 shadow rounded-3 " style="width: 65%; border: 1px solid #e0e0e0;">
 				<div class="d-flex justify-content-center">
-					<div class="input-group mx-3 mt-4" style="width: 100%;">
+					<div class="input-group mx-3 mt-4" style="width: 80%;">
 						<input class="form-control" type="search" placeholder="기업명 검색" aria-label="Search" name="searchValue" id="searchInput" style="border: 1px solid #ddd;">
 						<button class="search-btn " onclick="searchValue()" style="border: 1px solid #ddd; height: auto;">
 							<img src="${pageContext.request.contextPath }/resources/assets/img/update/search-icon.png" style="width: 90%; height: auto;">
@@ -138,7 +138,6 @@
 	var loginType = $('#loginType').val();
 	var loginId = $('#loginId').val();		
 	$(document).ready(function(){
-		selectScrapInfo();
 		createPageBtn();
 	});
 	
@@ -215,22 +214,7 @@
 		}
 		
 		}
-		
-		function selectScrapInfo(){
-			$.ajax( { 
-				type : "get",
-				url : "${pageContext.request.contextPath }/selectScrapInfo",
-				async:false,
-				dataType:"json",
-				success : function(scrapList){
-						 for(var scrapinfo of scrapList){
-						 $("#"+scrapinfo.spepnum).addClass("scrap_click");
-						 }
-					
-				}
-			} );			
-		}
-		
+				
 		function searchValue(){
 			var searchVal = $('#searchInput').val();		
 			console.log(searchVal);

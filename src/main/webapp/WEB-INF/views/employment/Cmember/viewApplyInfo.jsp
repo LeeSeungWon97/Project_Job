@@ -70,7 +70,7 @@ h2 {
 		<div class="section-div" style="justify-content: center;">
 			<div class="col-lg-10 col-xl-8 my-4" style="width: 60%;">
 					<div class="card border-0 shadow rounded-3">
-						<div class="card-body p-4 p-sm-5 mb-3">	
+						<div class="card-body p-4 p-sm-5">	
 							<!-- ResumeForm -->
 							<h1 style="text-align: center;">이력서</h1>
 								<div id="resumeForm">
@@ -208,8 +208,13 @@ h2 {
 								</div>
 
 							</div>
+							<div class="d-flex justify-content-center mb-3">
+								<button type="button" class="btn btn-outline-danger" onclick="history.back()">
+									<i class="bi bi-file-excel"></i> 닫기
+								</button>
+							</div>
 						</div>
-
+					
 					</div>
 				</div>
 		</section>

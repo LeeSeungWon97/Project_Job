@@ -88,6 +88,7 @@ public class EmploymentController {
 		mav.addObject("startBtn", startBtn);
 		mav.addObject("endBtn", endBtn);
 		mav.addObject("pageIdxMax", pageIdxMax);
+		mav.addObject("navType", "employment");
 		mav.setViewName("employment/EmploymentPage");
 		return mav;
 
@@ -125,6 +126,7 @@ public class EmploymentController {
 		mav.addObject("epList", epList);
 		mav.addObject("pageNum", pageIdx);
 		mav.addObject("pageIdxMax", pageIdxMax);
+		mav.addObject("navType", "recruitment");
 		mav.setViewName("employment/RecruitmentPage");
 		return mav;
 	}
@@ -285,10 +287,15 @@ public class EmploymentController {
 	@RequestMapping(value = "/selectScrapInfo")
 	public @ResponseBody String selectScrapInfo() {
 		if (session.getAttribute("loginInfo") != null) {
-			MemberDto loginMInfo = (MemberDto) session.getAttribute("loginInfo");
-			String smid = loginMInfo.getMid();
-			String scrapInfo = epsvc.selectScrapInfo(smid);
-			return scrapInfo;
+			String loginType = (String) session.getAttribute("loginType");
+			if (loginType.equals("P")) {
+				MemberDto loginMInfo = (MemberDto) session.getAttribute("loginInfo");
+				String smid = loginMInfo.getMid();
+				String scrapInfo = epsvc.selectScrapInfo(smid);
+				return scrapInfo;
+			} else {
+				return null;
+			}
 		} else {
 			return null;
 		}
@@ -358,6 +365,7 @@ public class EmploymentController {
 		mav.addObject("startBtn", startBtn);
 		mav.addObject("endBtn", endBtn);
 		mav.addObject("pageIdxMax", pageIdxMax);
+		mav.addObject("navType", "cinfoList");
 		mav.setViewName("employment/CinfoListPage");
 
 		return mav;
@@ -523,6 +531,7 @@ public class EmploymentController {
 		mav.addObject("pageNum", pageIdx);
 		mav.addObject("pageIdxMax", pageIdxMax);
 		mav.addObject("ResumeList", resumeList);
+		mav.addObject("navType", "viewResume");
 		mav.setViewName("employment/Cmember/viewResumeInfo");
 		return mav;
 	}

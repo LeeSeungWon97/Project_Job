@@ -148,7 +148,7 @@
 						<table class="table table-bordered">
 							<tr>
 								<th scope="col"><a href="${pageContext.request.contextPath }/calendar">공채달력</a></th>
-								<th scope="col"><a href="${pageContext.request.contextPath }/PassEssayPage?rvtype=1">합격자소서</a></th>
+								<th scope="col"><a href="${pageContext.request.contextPath }/PassEssayPage?rvtype=1&pageNum=1">합격자소서</a></th>
 								<th scope="col"><a href="${pageContext.request.contextPath }/ReviewState?pageNum=1">취업후기</a></th>
 							</tr>
 						</table>

@@ -5,14 +5,38 @@ nav{
 	justify-content: center;
 	align-items: center;
 	border-bottom: solid #539DDB; 
+ 
+}
+
+
+ul, li, li a {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+li a {
+  padding: 5px;
+
+  transition: all .2s;
+}
+
+
+.test001{
+  background:#539DDB; 
+
+}
+
+.test001 a{
+	color: white;
 }
 
 .navigator{
 	width: 1280px;
 	text-align: center;
 	display: flex;
-}
 
+}
 .nav-div{
 	width: 20%;
 	height: 50px;

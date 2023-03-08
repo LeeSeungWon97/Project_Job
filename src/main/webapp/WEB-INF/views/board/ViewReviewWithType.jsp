@@ -1,26 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.Date"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>공고작성</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>좋은 직장을 위한 취업플랫폼, 굿잡</title>
 <link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png">
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath }/resources/assets/css/header.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath }/resources/assets/css/section.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath }/resources/assets/css/footer.css" rel="stylesheet" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
-<!--  -->
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-<!--  -->
 
 <style type="text/css">
 .menuBar:hover {
@@ -31,13 +32,15 @@
 	color: gold;
 }
 
-/* * {
-	box-sizing: border-box;
-} */
 
-.que:first-child {
-	border-top: 1px solid black;
+* {
+	box-sizing: border-box;
 }
+/*
+.que:first-child {
+	border-bottom: 1px solid black;
+}
+*/
 
 .que {
 	position: relative;
@@ -98,6 +101,10 @@
 }
 /*  */
 
+.Rsname {
+	border-bottom: 2px solid #ebebeb;
+}
+
 
 
 .sel {
@@ -118,13 +125,11 @@
 	<%@ include file="/WEB-INF/views/includes/main/Header.jsp"%>
 	<!-- Nav -->
 	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
-	<!-- Header -->
-	
 
 	<!-- Section -->
 	<section id="section">
 		<div class="section-div" style="justify-content: center;">
-			<div class="card border-0 shadow rounded-3 mt-3 mb-3" style="width: 60%;">
+			<div class="card  shadow rounded-3 mt-3 mb-3" style="width: 60%; border: 1px solid #e0e0e0;">
 
 				<div class="card-body px-5 mt-1">
 					<!--  -->
@@ -187,6 +192,15 @@
 		</div>
 	</section>
 
+	<!-- Footer-->
+	<%@ include file="/WEB-INF/views/includes/main/Footer.jsp"%>
+	
+	<!-- Bootstrap core JS-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core theme JS-->
+	<script src="${pageContext.request.contextPath }/resources/assets/js/scripts.js"></script>
+	
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript">
 		var viewBno = '${board.bno }';

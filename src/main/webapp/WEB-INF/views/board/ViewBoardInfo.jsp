@@ -1,17 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.Date"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
 <title>글상세보기</title>
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
 <link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/main-icon.png">
 <link href="${pageContext.request.contextPath }/resources/assets/css/header.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath }/resources/assets/css/nav.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath }/resources/assets/css/section.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath }/resources/assets/css/footer.css" rel="stylesheet" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="${pageContext.request.contextPath }/resources/assets/css/styles.css" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 	<!-- Header -->
@@ -19,15 +27,12 @@
 
 	<!-- Nav -->
 	<%@ include file="/WEB-INF/views/includes/main/Nav.jsp"%>
-	
-	<!-- Header -->
-		
 
 	<!-- Section -->
 	<section id="section">
 		<div class="section-div" style="justify-content: center;">
-			<div class="card border-0 shadow rounded-3 mt-3 mb-3" style="width: 60%;">
-				<div class="card-body" style="padding: 29px 29px 0;">		
+			<div class="card shadow rounded-3 mt-4 mb-4" style="width: 65%; border: 1px solid #e0e0e0;">
+				<div class="card-body" style="padding: 29px 29px 0;">
 					<!-- 머리말 -->
 					<div class="Article_header reserveArea" style="border-bottom: 2px solid #e3e6f0; margin-bottom: 20px; padding-bottom: 20px;">
 						<div class="Article_title" style="margin-bottom: 10px;">
@@ -44,7 +49,7 @@
 								<span style="margin-right: 8px;">${board.bdate }</span> <span>조회: ${board.bcount }</span>
 							</div>
 						</div>
-					</div>	
+					</div>
 					<!-- 내용 -->
 					<div class="content_area">
 						<p style="line-height: 1.8;">
@@ -72,7 +77,8 @@
 											<div class="p-3">
 												<div class="row no-gutters align-items-center text-xs font-weight-bold">
 													<div class="col">
-														<span class="text-primary" style="font-size: 14px;">${reply.rewriter }</span><br><span class="text-uppercase pl-2" style="font-size: 12px;">작성일: ${reply.redate }</span>
+														<span class="text-primary" style="font-size: 14px;">${reply.rewriter }</span><br>
+														<span class="text-uppercase pl-2" style="font-size: 12px;">작성일: ${reply.redate }</span>
 													</div>
 													<div class="col-auto">
 														<c:choose>
@@ -95,9 +101,14 @@
 														<textarea readonly="readonly" class="retext mb-2 border-0 font-weight-bold text-gray-800 w-100 form-control" style="background-color: #F0F2E6;">${reply.recontent }</textarea>
 													</div>
 													<div class="col-auto">
-														<c:if test="${reply.rewriter == sessionScope.loginInfo.mid}">
-															<button class="btn btn-sm btn-danger btn-user" onclick="replyDelete_ajax('${reply.renum}')">삭제</button>
-														</c:if>
+														<c:choose>
+															<c:when test="${sessionScope.loginType == 'P' }">
+																<c:if test="${reply.rewriter == sessionScope.loginInfo.mid}">
+																	<button class="btn btn-sm btn-danger btn-user" onclick="replyDelete_ajax('${reply.renum}')">삭제</button>
+																</c:if>
+															</c:when>
+														</c:choose>
+
 													</div>
 												</div>
 											</div>
@@ -108,39 +119,51 @@
 						</div>
 					</div>
 					<!-- 댓글 작성 폼 -->
-					<div class="comment_writer" style="margin: 12px 0 29px; padding: 16px 10px 10px 18px; box-sizing: border-box;">
+					<div class="comment_writer" style="margin: 12px 0 12px; padding: 16px 10px 10px 18px; box-sizing: border-box;">
 						<div class="px-5">
-						<div style=" border: 2px solid #e3e6f0; border-radius: 6px;">
-						<c:if test="${sessionScope.loginType != null }">
-							<div class="pt-4 px-4 pb-4">
-								<form class="user" onsubmit="return replyWrite(this)">
-									<div class="input-group">
-										<input type="hidden" name="rebno" value="${board.bno }" class="form-control" readonly="readonly">
-										<c:choose>
-											<c:when test="${sessionScope.loginType == 'P'}">
-												<input type="text" name="rewriter" id="loginId" value="${sessionScope.loginInfo.mid}" class="form-control" readonly="readonly">
-											</c:when>
-											<c:otherwise>
-												<input type="text" name="rewriter" id="loginId" value="${sessionScope.loginInfo.cmid}" class="form-control" readonly="readonly">
-											</c:otherwise>
-										</c:choose>
-									</div>
-									<div class="form-group">
-										<textarea name="recontent" id="inputrecontent" class="form-control" rows="3" placeholder="댓글을 남겨보세요"></textarea>
-									</div>
-									<div class="mt-1" style="text-align: center;">
-										<button type="submit" class="btn btn-dark btn-user btn-block">댓글작성</button>
-									</div>
-								</form>
-							</div>
-						</c:if>
+							<c:if test="${sessionScope.loginType != null }">
+								<div class="pt-4 px-4 pb-4" style="border: 2px solid #e3e6f0; border-radius: 6px;">
+									<form class="user" onsubmit="return replyWrite(this)">
+										<div class="input-group">
+											<input type="hidden" name="rebno" value="${board.bno }" class="form-control" readonly="readonly">
+											<c:choose>
+												<c:when test="${sessionScope.loginType == 'P'}">
+													<input type="text" name="rewriter" id="loginId" value="${sessionScope.loginInfo.mid}" class="form-control" readonly="readonly">
+												</c:when>
+												<c:otherwise>
+													<input type="text" name="rewriter" id="loginId" value="${sessionScope.loginInfo.cmid}" class="form-control" readonly="readonly">
+												</c:otherwise>
+											</c:choose>
+										</div>
+										<div class="form-group">
+											<textarea name="recontent" id="inputrecontent" class="form-control" rows="3" placeholder="댓글을 남겨보세요"></textarea>
+										</div>
+										<div class="mt-1" style="text-align: center;">
+											<button type="submit" class="btn btn-dark btn-user btn-block">댓글작성</button>
+										</div>
+									</form>
+								</div>
+							</c:if>
 						</div>
-						</div>
+					</div>
+					<div class="mb-3" style="text-align: center;">
+						<button type="button" class="btn btn-outline-danger" onclick="history.back()">
+							<i class="bi bi-file-excel"></i> 닫기
+						</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+
+	<!-- Footer-->
+	<%@ include file="/WEB-INF/views/includes/main/Footer.jsp"%>
+
+	<!-- Bootstrap core JS-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core theme JS-->
+	<script src="${pageContext.request.contextPath }/resources/assets/js/scripts.js"></script>
 
 
 
@@ -214,7 +237,7 @@
 			} else {
 				alert('로그인 후 추천 가능합니다.');
 				location.href = "${pageContext.request.contextPath}/login";
-				
+
 			}
 		}
 
@@ -251,8 +274,6 @@
 
 			return false;
 		}
-
-		
 
 		function boardLike(bno) {
 			console.log(loginId);

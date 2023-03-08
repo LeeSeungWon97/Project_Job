@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>좋은 직장을 위한 취업플랫폼, 굿잡</title>
+<title>인재정보</title>
 <link rel="icon" href="${pageContext.request.contextPath }/resources/assets/img/update/main-icon.png" />
 
 <!-- Bootstrap icons-->
@@ -40,8 +40,9 @@
 	margin: 30px;
 	margin-right: auto;
 	margin-left: auto;
-	border: 1px solid #ebebeb;
-	box-shadow: 0 1px 20px 0 rgba(75, 0, 206, 0.15);
+	box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+	border-radius: 0.3rem;
+	border: 1px solid #e0e0e0;
 }
 
 h1 {
@@ -88,6 +89,9 @@ h6 {
 
 .con2 {
 	margin-top: 5px;
+}
+.page-link {
+	cursor: pointer;
 }
 </style>
 </head>

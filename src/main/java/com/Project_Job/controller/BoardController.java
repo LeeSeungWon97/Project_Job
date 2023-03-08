@@ -67,6 +67,7 @@ public class BoardController {
 		mav.addObject("boardList", board);
 		mav.addObject("pageNum", pageIdx);
 		mav.addObject("pageIdxMax", pageIdxMax);
+		mav.addObject("navType", "boardList");
 		mav.setViewName("board/BoardList");
 		return mav;
 	}
@@ -257,11 +258,34 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/PassEssayPage")
-	public ModelAndView PassEssayPage(String rvtype) {
+	public ModelAndView PassEssayPage(String rvtype,int pageNum) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("rvtype : " + rvtype);
-		ArrayList<ArrReviewsDto> reviewList = bsvc.selectReview(rvtype, "");
-		System.out.println(reviewList);
+		ArrayList<ArrReviewsDto> reviewListAll = bsvc.selectReview(rvtype, "");
+		ArrayList<ArrReviewsDto> reviewList = new ArrayList<ArrReviewsDto>();
+		int pageIdx = pageNum;
+		int pageIdxMax = reviewListAll.size() / 10;
+		if (reviewListAll.size() % 10 != 0) {
+			pageIdxMax += 1;
+		}
+		int startIdx = 10 * (pageIdx - 1);
+		int endIdx = startIdx + 9;
+		if (endIdx >= reviewListAll.size()) {
+			endIdx = reviewListAll.size();
+		}
+		for (int i = startIdx; i < endIdx; i++) {
+			reviewList.add(reviewListAll.get(i));
+		}
+		int pageBtnIdx = (pageNum - 1) / 5;
+		int startBtn = pageBtnIdx * 5 + 1;
+		int endBtn = startBtn + 4;
+		if (endBtn > pageIdxMax) {
+			endBtn = pageIdxMax;
+		}
+		mav.addObject("startBtn", startBtn);
+		mav.addObject("endBtn", endBtn);
+		mav.addObject("pageNum", pageIdx);
+		mav.addObject("pageIdxMax", pageIdxMax);
 		mav.addObject("reviewList", reviewList);
 		mav.setViewName("employment/PassEssayPage");
 		return mav;

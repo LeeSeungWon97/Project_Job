@@ -22,6 +22,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 
+<style type="text/css">
+	.page-link {
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
 	<!-- Header -->
@@ -34,9 +39,9 @@
 	<section id="section">
 
 
-		<div class="card mt-4 mb-4 shadow rounded-3" style="width: 1000px; border: 1px solid #e3e6f0;">
+		<div class="card mt-4 mb-4  shadow rounded-3" style="width: 850px; border: 1px solid #e0e0e0;">
 
-			<div class="d-flex justify-content-between">
+			<div class="d-flex justify-content-between" style="padding-left: 2rem; padding-right: 2rem;">
 				<div class="mt-4 mb-3">
 					<div class="input-group mx-3" style="width: 100%;">
 						<select id="selectType" class="form-select" style="border: 1px solid #ddd; max-width: 120px;">
@@ -47,7 +52,6 @@
 						</select>
 						<select id="selectTag" class="form-select" style="border: 1px solid #ddd; max-width: 120px;">
 							<option value="ALL">전체</option>
-							<option value="기타">기타</option>
 							<option value="경영,사무">경영,사무</option>
 							<option value="마케팅,광고,홍보">마케팅,광고,홍보</option>
 							<option value="IT인터넷">IT인터넷</option>
@@ -62,8 +66,9 @@
 							<option value="의료">의료</option>
 							<option value="미디어">미디어</option>
 							<option value="전문,특수직">전문,특수직</option>
+							<option value="기타">기타</option>
 						</select>
-						<input class="form-control" type="search" placeholder="검색어를 입력해주세요" aria-label="Search" name="searchValue" id="searchInput" style="border: 1px solid #ddd;">
+						<input class="form-control" type="search" placeholder="검색어를 입력해주세요" aria-label="Search" name="searchValue" id="searchInput" style="border: 1px solid #ddd; width:40%;">
 						<button class="search-btn" onclick="searchValue()" style="border: 1px solid #ddd; height: auto;">
 							<img src="${pageContext.request.contextPath }/resources/assets/img/update/search-icon.png" style="width: 90%; height: auto;">
 						</button>
@@ -79,13 +84,13 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<div class="" style="line-height: 2.5;">
+				<div class="" style="line-height: 2.0;">
 					<ul style="list-style: none; padding: 0; margin: 0; border-top: 1px solid #e1e5e8;" id="serarchListArea">
 
 						<c:forEach items="${boardList}" var="board">
 							<li style="padding: 29px 20px 0;">
-								<div class="topArea">
-									<button style="background: #f0f3f9; padding: 5px; color: #777;" onclick="searchAjaxTag('ALL','ALL','${board.bhope}')">${board.bhope}</button>
+								<div class="topArea" style="padding-left: 15px;">
+									<button style="background: #f0f3f9;  color: #777; font-size: 15px;" onclick="searchAjaxTag('ALL','ALL','${board.bhope}')">${board.bhope}</button>
 								</div>
 								<div class="contArea" style="padding: 0 15px 25px; border-bottom: 1px solid #e1e5e8;">
 									<div class="title" style="position: relative;">
