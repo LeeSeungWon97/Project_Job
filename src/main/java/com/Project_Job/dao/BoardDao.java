@@ -22,7 +22,7 @@ public interface BoardDao {
 	@Insert("INSERT INTO BOARDS VALUES( #{bno},#{bmid},#{btitle},#{bcontents},SYSDATE,#{bhope},'0','0' )")
 	int BoardWrite(BoardDto board);
 
-	@Select("SELECT * FROM BOARDS ")
+	@Select("SELECT BNO, BMID, BTITLE, BCONTENTS, TO_CHAR(BDATE,'YYYY-MM-DD') AS BDATE, BHOPE, BCOUNT, BREPLYCOUNT FROM BOARDS ")
 	ArrayList<BoardDto> selectBoardList();
 
 	@Select("SELECT * FROM BOARDS WHERE BNO = #{bno}")
