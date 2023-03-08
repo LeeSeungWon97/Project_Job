@@ -87,6 +87,7 @@ public class EmploymentController {
 		mav.addObject("startBtn", startBtn);
 		mav.addObject("endBtn", endBtn);
 		mav.addObject("pageIdxMax", pageIdxMax);
+		mav.addObject("navType", "employment");
 		mav.setViewName("employment/EmploymentPage");
 		return mav;
 
@@ -124,6 +125,7 @@ public class EmploymentController {
 		mav.addObject("epList", epList);
 		mav.addObject("pageNum", pageIdx);
 		mav.addObject("pageIdxMax", pageIdxMax);
+		mav.addObject("navType", "recruitment");
 		mav.setViewName("employment/RecruitmentPage");
 		return mav;
 	}
@@ -362,6 +364,7 @@ public class EmploymentController {
 		mav.addObject("startBtn", startBtn);
 		mav.addObject("endBtn", endBtn);
 		mav.addObject("pageIdxMax", pageIdxMax);
+		mav.addObject("navType", "cinfoList");
 		mav.setViewName("employment/CinfoListPage");
 
 		return mav;
@@ -527,6 +530,7 @@ public class EmploymentController {
 		mav.addObject("pageNum", pageIdx);
 		mav.addObject("pageIdxMax", pageIdxMax);
 		mav.addObject("ResumeList", resumeList);
+		mav.addObject("navType", "viewResume");
 		mav.setViewName("employment/Cmember/viewResumeInfo");
 		return mav;
 	}
