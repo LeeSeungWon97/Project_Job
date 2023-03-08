@@ -1,7 +1,6 @@
 package com.Project_Job.dao;
 
 import java.util.ArrayList;
-
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
@@ -12,11 +11,13 @@ import org.apache.ibatis.annotations.Update;
 
 //import com.Project_Job.dto.ApplyStateDto;
 import com.Project_Job.dto.ArrResumeDto;
+import com.Project_Job.dto.ArrReviewsDto;
 import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.EmploymentDto;
 import com.Project_Job.dto.EssayDto;
 import com.Project_Job.dto.MemberDto;
 import com.Project_Job.dto.ResumeDto;
+import com.Project_Job.dto.ReviewsDto;
 import com.Project_Job.dto.ScrapDto;
 
 public interface EmploymentDao {
@@ -180,4 +181,7 @@ public interface EmploymentDao {
 
 	@Delete("DELETE FROM APPLYSTATE WHERE APEPNUM = #{apepnum} AND APREMID = #{apremid}")
 	int deleteApply(@Param("apepnum") String apepnum, @Param("apremid") String apremid);
+	
+	
+	
 }

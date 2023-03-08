@@ -197,6 +197,21 @@ public class BoardService {
 	}
 
 	public int insertReivew(ReviewsDto review) {
+		System.out.println("BoardService replyWrite()");
+		String maxRvnum = bdao.selectMaxRvnum();
+		System.out.println("RENUM 최대값 : " + maxRvnum);
+		String rvnum = "RV";
+		if (maxRvnum == null) {
+			rvnum = rvnum + String.format("%05d", 1);
+			System.out.println("처음 번호 : " + rvnum);
+		} else {
+			int rvcodeNum = Integer.parseInt(maxRvnum.replace("RV", "")) + 1;
+			rvnum = rvnum + String.format("%05d", rvcodeNum);
+		}
+		System.out.println("recode : " + rvnum);
+
+		review.setRvnum(rvnum);
+		
 		int insertResult = bdao.insertReivew(review);
 		return insertResult;
 	}
@@ -288,6 +303,17 @@ public class BoardService {
 			System.err.println(boardList.get(i));
 		}
 		return new Gson().toJson(boardList);
+	}
+	
+	public ArrReviewsDto selectEssay(String rvnum) {
+		ArrReviewsDto review = bdao.selectEssay(rvnum);
+		ReviewsDto review2 = bdao.selectEssay2(rvnum);
+			if (review2.getRvcontents() != null) {
+				String[] rvcont = review2.getRvcontents().split("!@#");
+				review.setRvcontents(rvcont);
+			}
+			System.out.println(review);
+		return review;
 	}
 
 }

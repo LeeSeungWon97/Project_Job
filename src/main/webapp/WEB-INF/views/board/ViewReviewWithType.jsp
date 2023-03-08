@@ -22,6 +22,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 
+
 <style type="text/css">
 .menuBar:hover {
 	color: #0d6efd;
@@ -49,6 +50,7 @@
 	border-bottom: 1px solid #dddddd;
 }
 
+
 .que::before {
 	display: inline-block;
 	content: 'Q';
@@ -57,10 +59,7 @@
 	margin: 0 5px;
 }
 
-/* .que.on>span {
-	font-weight: bold;
-	color: #006633;
-} */
+
 .anw {
 	display: none;
 	overflow: hidden;
@@ -106,34 +105,17 @@
 	border-bottom: 2px solid #ebebeb;
 }
 
-.ViewBox {
-	padding: 10px;
-	border-style: outset;
-	text-align: center;
-}
 
-details>summary {
-	list-style: none;
-}
-
-summary::-webkit-details-marker {
-	display: none;
-}
-
-details summary::-webkit-details-marker {
-	display: none;
-}
-
-summary {
-	outline: none;
-}
 
 .sel {
 	display: inline-block;
 }
 
 .sel:hover {
-	background-color: #0dcaf0;
+	background-color: #539DDB;
+}
+.checkBtn {
+	background-color: #539DDB;
 }
 </style>
 
@@ -155,28 +137,25 @@ summary {
 
 
 
-						<div class="row mb-2" style="border-style: groove; text-align: center; height: 50px;">
+						<div class="row mb-4" style="border-style: groove; text-align: center; height: 50px" id="btnArea">
+							<input type="hidden" value="${reviewList[0].rvtype }" id="checkRvtype">
+							<button id="btn1" style="width: 25%" class="menuBar sel" onclick="ViewReview('1','${ciname}',this)">합격자소서</button>
 
-							<button style="width: 25%; color: black;" class="menuBar sel" onclick="ViewReview('1','${ciname}')">합격자소서</button>
+							<button id="btn2" style="width: 25%" class="menuBar sel" onclick="ViewReview('2','${ciname}',this)">인적성후기</button>
 
-							<button style="width: 25%; color: black;" class="menuBar sel" onclick="ViewReview('2','${ciname}')">인적성후기</button>
+							<button id="btn3" style="width: 25%" class="menuBar sel" onclick="ViewReview('3','${ciname}',this)">면접후기</button>
 
-							<button style="width: 25%; color: black;" class="menuBar sel" onclick="ViewReview('3','${ciname}')">면접후기</button>
-
-							<button style="width: 25%; color: black;" class="menuBar sel" onclick="ViewReview('4','${ciname}')">최종합격후기</button>
+							<button id="btn4" style="width: 25%" class="menuBar sel" onclick="ViewReview('4','${ciname}',this)">최종합격후기</button>
 
 						</div>
-						<!--							<div class="col-3 sel">
-  -->
-
-						<c:forEach items="${reviewList }" var="review">
-							<c:choose>
-								<c:when test="${review == null }">
-
-								</c:when>
-								<c:otherwise>
-
-									<div id="Accordion_wrap">
+					
+						<c:choose>
+							<c:when test="${empty reviewList}">
+								<div class="small mb-1">등록된 후기가 없습니다. </div>
+							</c:when>						
+							<c:otherwise>
+								<c:forEach items="${reviewList }" var="review">
+								<div id="Accordion_wrap">
 										<div class="que">
 											<div class="row-2">
 												<div class="small mb-1">${review.rvdate}-${review.rveptype}-${review.rvobj}</div>
@@ -200,11 +179,9 @@ summary {
 											</c:forEach>
 										</div>
 									</div>
-								</c:otherwise>
-							</c:choose>
-
-						</c:forEach>
-
+									</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<!--  -->
 				</div>
@@ -231,23 +208,39 @@ summary {
 		var loginType = $('#loginType').val();
 		var loginId = $('#loginId').val();
 		var reviewList = '${reviewList}';
-
+		
+		
+		
 		$(".que").click(function() {
 			$(this).next(".anw").stop().slideToggle(300);
 			$(this).toggleClass('on').siblings().removeClass('on');
 
 		});
-
-		/* 		var loginType = "";
-		 var loginId = "";
-		 if( $('#loginType').val() != undefined){
-		 loginType = $('#loginType').val();
-		 loginId = $('#loginId').val();	
-		 } */
+		
+		var checkBtn = 	'${rvtype}';	
 
 		$(document).ready(function() {
+			var btnObj =$('#checkRvtype').val();
+			
+			switch(btnObj){
+			case "1":
+				$('#btn1').addClass("checkBtn");	
+				break;
+			case "2":
+				$('#btn2').addClass("checkBtn");	
+				break;
+			case "3":
+				$('#btn3').addClass("checkBtn");	
+				break;
+			case "4":
+				$('#btn4').addClass("checkBtn");	
+				break;
+			}
+			
 		});
-		function ViewReview(rvtype, ciname) {
+		
+		function ViewReview(rvtype, ciname, selBtn) {
+			
 			console.log(rvtype);
 			location.href = "${pageContext.request.contextPath }/ViewReview?rvtype="
 					+ rvtype + "&ciname=" + ciname;
