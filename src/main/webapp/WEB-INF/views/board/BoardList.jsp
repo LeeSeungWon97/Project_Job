@@ -44,7 +44,8 @@
 							<option value="BTITLE">제목</option>
 							<option value="BCONTENTS">내용</option>
 							<option value="BMID">작성자</option>
-						</select> <select id="selectTag" class="form-select" style="border: 1px solid #ddd; max-width: 120px;">
+						</select>
+						<select id="selectTag" class="form-select" style="border: 1px solid #ddd; max-width: 120px;">
 							<option value="ALL">전체</option>
 							<option value="기타">기타</option>
 							<option value="경영,사무">경영,사무</option>
@@ -61,7 +62,8 @@
 							<option value="의료">의료</option>
 							<option value="미디어">미디어</option>
 							<option value="전문,특수직">전문,특수직</option>
-						</select> <input class="form-control" type="search" placeholder="검색어를 입력해주세요" aria-label="Search" name="searchValue" id="searchInput" style="border: 1px solid #ddd;">
+						</select>
+						<input class="form-control" type="search" placeholder="검색어를 입력해주세요" aria-label="Search" name="searchValue" id="searchInput" style="border: 1px solid #ddd;">
 						<button class="search-btn" onclick="searchValue()" style="border: 1px solid #ddd; height: auto;">
 							<img src="${pageContext.request.contextPath }/resources/assets/img/update/search-icon.png" style="width: 90%; height: auto;">
 						</button>
@@ -87,11 +89,14 @@
 								</div>
 								<div class="contArea" style="padding: 0 15px 25px; border-bottom: 1px solid #e1e5e8;">
 									<div class="title" style="position: relative;">
-										<a href="${pageContext.request.contextPath }/ViewBoardInfo?bno=${board.bno}"> <i class="icoQ_on qnaSpB" style="font-size: 30px;">Q</i> <span style="font-size: 30px; color: black; padding-left: 10px;">제목: ${board.btitle}</span>
+										<a href="${pageContext.request.contextPath }/ViewBoardInfo?bno=${board.bno}">
+											<i class="icoQ_on qnaSpB" style="font-size: 30px;">Q</i>
+											<span style="font-size: 30px; color: black; padding-left: 10px;">제목: ${board.btitle}</span>
 										</a>
 									</div>
 									<div class="summary" style="color: #666; font-size: 20px; margin-bottom: 10px;">
-										<a href="${pageContext.request.contextPath }/ViewBoardInfo?bno=${board.bno}"> <span style="color: black; max-height: 3em; line-height: 1.5em;">내용: ${board.bcontents}</span>
+										<a href="${pageContext.request.contextPath }/ViewBoardInfo?bno=${board.bno}">
+											<span style="color: black; max-height: 3em; line-height: 1.5em;">내용: ${board.bcontents}</span>
 										</a>
 									</div>
 									<div class="detail" style="font-size: 15px;">
@@ -154,9 +159,12 @@
 		var maxNum = '${pageIdxMax}';
 		var element = $('.pagination');
 		var pageNum = '${pageNum}';
-		var output = "";
+		var startBtn = '${startBtn}';
+		var endBtn = '${endBtn}';
+		var output = '<li class="page-item"><p class="page-link" onclick="prePage('
+				+ pageNum + ')">이전</p></li>';
 		console.log(maxNum);
-		for (var i = 0; i < maxNum; i++) {
+		for (var i = startBtn - 1; i < endBtn; i++) {
 			if (i + 1 == pageNum) {
 				output += '<li class="page-item active"><p class="page-link" onclick="pageLoad(this)">'
 						+ (i + 1) + '</p></li>';
@@ -165,7 +173,24 @@
 						+ (i + 1) + '</p></li>';
 			}
 		}
+		output += '<li class="page-item"><p class="page-link" onclick="nextPage('
+				+ pageNum + ')">다음</p></li>';
 		element.html(output);
+	}
+	function prePage(pageNum) {
+		if (pageNum > 1) {
+			pageNum -= 1;
+			location.href = "${pageContext.request.contextPath}/BoardListPage?pageNum="
+					+ pageNum;
+		}
+	}
+	function nextPage(pageNum) {
+		var maxNum = '${pageIdxMax}';
+		if (pageNum < maxNum) {
+			pageNum += 1;
+			location.href = "${pageContext.request.contextPath}/BoardListPage?pageNum="
+					+ pageNum;
+		}
 	}
 
 	function searchValue() {

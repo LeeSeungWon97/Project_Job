@@ -64,8 +64,16 @@ public class EmploymentController {
 		ArrayList<EmploymentDto> epListAll = epsvc.getEpList("employ");
 		ArrayList<EmploymentDto> epList = new ArrayList<EmploymentDto>();
 		int pageIdx = pageNum;
-		int pageIdxMax = epListAll.size() / 15 + 1;
-		System.out.println("pageIdxMax: " + pageIdxMax);
+		int pageIdxMax = epListAll.size() / 15;
+		if (epListAll.size() % 15 != 0) {
+			pageIdxMax += 1;
+		}
+		int pageBtnIdx = (pageNum - 1) / 5;
+		int startBtn = pageBtnIdx * 5 + 1;
+		int endBtn = startBtn + 4;
+		if (endBtn > pageIdxMax) {
+			endBtn = pageIdxMax;
+		}
 		int startIdx = 15 * (pageIdx - 1);
 		int endIdx = startIdx + 14;
 		if (endIdx >= epListAll.size()) {
@@ -76,6 +84,8 @@ public class EmploymentController {
 		}
 		mav.addObject("epList", epList);
 		mav.addObject("pageNum", pageIdx);
+		mav.addObject("startBtn", startBtn);
+		mav.addObject("endBtn", endBtn);
 		mav.addObject("pageIdxMax", pageIdxMax);
 		mav.setViewName("employment/EmploymentPage");
 		return mav;
@@ -91,7 +101,10 @@ public class EmploymentController {
 		ArrayList<EmploymentDto> epListAll = epsvc.getEpList("recruitment");
 		ArrayList<EmploymentDto> epList = new ArrayList<EmploymentDto>();
 		int pageIdx = pageNum;
-		int pageIdxMax = epListAll.size() / 15 + 1;
+		int pageIdxMax = epListAll.size() / 15;
+		if (epListAll.size() % 15 != 0) {
+			pageIdxMax += 1;
+		}
 		int startIdx = 15 * (pageIdx - 1);
 		int endIdx = startIdx + 14;
 		if (endIdx >= epListAll.size()) {
@@ -100,6 +113,14 @@ public class EmploymentController {
 		for (int i = startIdx; i < endIdx; i++) {
 			epList.add(epListAll.get(i));
 		}
+		int pageBtnIdx = (pageNum - 1) / 5;
+		int startBtn = pageBtnIdx * 5 + 1;
+		int endBtn = startBtn + 4;
+		if (endBtn > pageIdxMax) {
+			endBtn = pageIdxMax;
+		}
+		mav.addObject("startBtn", startBtn);
+		mav.addObject("endBtn", endBtn);
 		mav.addObject("epList", epList);
 		mav.addObject("pageNum", pageIdx);
 		mav.addObject("pageIdxMax", pageIdxMax);
@@ -313,16 +334,16 @@ public class EmploymentController {
 		ArrayList<CinfoDto> cinfoListAll = epsvc.getCiList("");
 		ArrayList<CinfoDto> cinfoList = new ArrayList<CinfoDto>();
 		int pageIdx = pageNum;
-		int pageIdxMax = cinfoListAll.size() / 10 + 1;
+		int pageIdxMax = cinfoListAll.size() / 10;
+		if (cinfoListAll.size() % 10 != 0) {
+			pageIdxMax += 1;
+		}
 		int pageBtnIdx = (pageNum - 1) / 5;
 		int startBtn = pageBtnIdx * 5 + 1;
 		int endBtn = startBtn + 4;
 		if (endBtn > pageIdxMax) {
 			endBtn = pageIdxMax;
 		}
-		System.out.println("pageBtnIdx: " + pageBtnIdx);
-		System.out.println("startBtn: " + startBtn);
-		System.out.println("endBtn: " + endBtn);
 		int startIdx = 10 * (pageIdx - 1);
 		int endIdx = startIdx + 9;
 		if (endIdx >= cinfoListAll.size()) {
@@ -475,11 +496,31 @@ public class EmploymentController {
 	}
 
 	@RequestMapping(value = "/viewResumeInfo")
-	public ModelAndView viewResumeInfo() {
+	public ModelAndView viewResumeInfo(int pageNum) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("viewResumeInfo호출");
-		ArrayList<ArrResumeDto> resumeList = epsvc.viewResumeInfo();
-		System.out.println(resumeList);
+		ArrayList<ArrResumeDto> resumeListAll = epsvc.viewResumeInfo();
+		ArrayList<ArrResumeDto> resumeList = new ArrayList<ArrResumeDto>();
+		int pageIdx = pageNum;
+		int pageIdxMax = resumeListAll.size() / 9 + 1;
+		int startIdx = 9 * (pageIdx - 1);
+		int endIdx = startIdx + 8;
+		if (endIdx >= resumeListAll.size()) {
+			endIdx = resumeListAll.size();
+		}
+		for (int i = startIdx; i < endIdx; i++) {
+			resumeList.add(resumeListAll.get(i));
+		}
+		int pageBtnIdx = (pageNum - 1) / 5;
+		int startBtn = pageBtnIdx * 5 + 1;
+		int endBtn = startBtn + 4;
+		if (endBtn > pageIdxMax) {
+			endBtn = pageIdxMax;
+		}
+		mav.addObject("startBtn", startBtn);
+		mav.addObject("endBtn", endBtn);
+		mav.addObject("pageNum", pageIdx);
+		mav.addObject("pageIdxMax", pageIdxMax);
 		mav.addObject("ResumeList", resumeList);
 		mav.setViewName("employment/Cmember/viewResumeInfo");
 		return mav;

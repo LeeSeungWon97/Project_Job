@@ -82,6 +82,7 @@
 	text-align: center;
 	color: #79BAEC;
 }
+
 .page-link {
 	cursor: pointer;
 }
@@ -101,71 +102,71 @@
 
 	<!-- Section -->
 	<section id="section">
-		
-			<div class="card mt-4 mb-4 border-0 shadow rounded-3" style="width: 1280px;">
-				<div class="table-responsive">
-					<div class="d-flex justify-content-center">
-						<div class="input-group mx-3 mt-4 mb-4" style="width: 100%;">
-							<select id="selectType" class="form-select" style="border: 1px solid #ddd; max-width: 120px;">
-								<option value="공고">공고명</option>
-								<option value="기업">기업명</option>
-							</select>
-							<input class="form-control" type="search" placeholder="기업명, 공고제목 등 검색" aria-label="Search" name="searchValue" id="searchInput" style="border: 1px solid #ddd;">
-							<button class="search-btn " onclick="searchValue()" style="border: 1px solid #ddd; height: auto;">
 
-								<img src="${pageContext.request.contextPath }/resources/assets/img/update/search-icon.png" style="width: 90%; height: auto;">
-							</button>
-						</div>
+		<div class="card mt-4 mb-4 border-0 shadow rounded-3" style="width: 1280px;">
+			<div class="table-responsive">
+				<div class="d-flex justify-content-center">
+					<div class="input-group mx-3 mt-4 mb-4" style="width: 100%;">
+						<select id="selectType" class="form-select" style="border: 1px solid #ddd; max-width: 120px;">
+							<option value="공고">공고명</option>
+							<option value="기업">기업명</option>
+						</select>
+						<input class="form-control" type="search" placeholder="기업명, 공고제목 등 검색" aria-label="Search" name="searchValue" id="searchInput" style="border: 1px solid #ddd;">
+						<button class="search-btn " onclick="searchValue()" style="border: 1px solid #ddd; height: auto;">
+
+							<img src="${pageContext.request.contextPath }/resources/assets/img/update/search-icon.png" style="width: 90%; height: auto;">
+						</button>
 					</div>
-					<table class="table">
-						<thead style="background-color: #f9f9f8; border-top: 1px solid black;">
-							<tr style="color: #888; text-align: center;">
-								<th scope="col">기업명</th>
-								<th scope="col"></th>
-								<th scope="col">제목</th>
-								<th scope="col">경력</th>
-								<th scope="col">마감일</th>
-								<th scope="col"></th>
+				</div>
+				<table class="table">
+					<thead style="background-color: #f9f9f8; border-top: 1px solid black;">
+						<tr style="color: #888; text-align: center;">
+							<th scope="col">기업명</th>
+							<th scope="col"></th>
+							<th scope="col">제목</th>
+							<th scope="col">경력</th>
+							<th scope="col">마감일</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody id="epListArea" style="border-top: none;">
+						<c:forEach items="${epList }" var="employ">
+							<tr>
+								<td class="reci">
+									<a href="${pageContext.request.contextPath }/viewReciname?viewReciname=${employ.epciname }">
+										<span>${employ.epciname }</span>
+									</a>
+								</td>
+								<td class="renu">
+									<input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐">
+								</td>
+								<td class="rena">
+									<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum}">
+										<span style="color: #333; font-weight: bold;">${employ.epname }</span>
+									</a>
+								</td>
+								<td class="reed">
+									<span>${employ.epedu }</span>
+								</td>
+								<td class="rede">
+									<span>${employ.epdeadline }</span>
+								</td>
+								<td class="rebu">
+									<button class="mt-1" onclick="WriteResume('${employ.epnum }','${employ.epciname }','${employ.epname }','${employ.epdeadline }')" style="min-width: 85px; font-size: 14px; background-color: #19ce60; border: solid #19ce60;">
+										<span style="color: white;">즉시지원</span>
+									</button>
+								</td>
 							</tr>
-						</thead>
-						<tbody id="epListArea" style="border-top: none;">
-							<c:forEach items="${epList }" var="employ">
-								<tr>
-									<td class="reci">
-										<a href="${pageContext.request.contextPath }/viewReciname?viewReciname=${employ.epciname }">
-											<span>${employ.epciname }</span>
-										</a>
-									</td>
-									<td class="renu">
-										<input type="button" class="scrap" id="${employ.epnum }" onclick="checkVal('${employ.epnum }', this)" value="⭐">
-									</td>
-									<td class="rena">
-										<a href="${pageContext.request.contextPath }/ViewEpInfo?epnum=${employ.epnum}">
-											<span style="color: #333; font-weight: bold;">${employ.epname }</span>
-										</a>
-									</td>
-									<td class="reed">
-										<span>${employ.epedu }</span>
-									</td>
-									<td class="rede">
-										<span>${employ.epdeadline }</span>
-									</td>
-									<td class="rebu">
-										<button class="mt-1" onclick="WriteResume('${employ.epnum }','${employ.epciname }','${employ.epname }','${employ.epdeadline }')" style="min-width: 85px; font-size: 14px; background-color: #19ce60; border: solid #19ce60;">
-											<span style="color: white;">즉시지원</span>
-										</button>
-									</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-				<div class="mx-auto my-auto">
-					<ul class="pagination">
-					</ul>
-				</div>
+						</c:forEach>
+					</tbody>
+				</table>
 			</div>
-		
+			<div class="mx-auto my-auto">
+				<ul class="pagination">
+				</ul>
+			</div>
+		</div>
+
 	</section>
 
 	<input type="hidden" id="loginType" value="${sessionScope.loginType }">
@@ -222,16 +223,32 @@
 		var maxNum = '${pageIdxMax}';
 		var element = $('.pagination');
 		var pageNum = '${pageNum}';
-		var output = "";
+		var startBtn = '${startBtn}';
+		var endBtn = '${endBtn}';
+		var output = '<li class="page-item"><p class="page-link" onclick="prePage('+pageNum+')">이전</p></li>';
 		console.log(maxNum);
-		for(var i = 0; i < maxNum; i++ ){
+		for(var i = startBtn-1; i < endBtn; i++ ){
 			if(i+1 == pageNum){
 				output += '<li class="page-item active"><p class="page-link" onclick="pageLoad(this)">'+(i+1)+'</p></li>';	
 			} else{
 				output += '<li class="page-item"><p class="page-link" onclick="pageLoad(this)">'+(i+1)+'</p></li>';				
 			}
 		}
+		output += '<li class="page-item"><p class="page-link" onclick="nextPage('+pageNum+')">다음</p></li>';
 		element.html(output);
+	}
+	function prePage(pageNum){
+		if(pageNum > 1){
+			pageNum -= 1;
+			location.href = "${pageContext.request.contextPath}/RecruitmentPage?pageNum="+pageNum;			
+		}
+	}
+	function nextPage(pageNum){
+		var maxNum = '${pageIdxMax}';
+		if(pageNum < maxNum){
+			pageNum += 1;
+			location.href = "${pageContext.request.contextPath}/RecruitmentPage?pageNum="+pageNum;			
+		}
 	}
 	
 	function WriteResume(epnum, epciname, epname, epdeadline) {
