@@ -103,10 +103,10 @@
 	<!-- Section -->
 	<section id="section">
 
-		<div class="card mt-4 mb-4 border-0 shadow rounded-3" style="width: 1280px;">
+		<div class="card mt-4 mb-4 shadow rounded-3" style="width: 1280px; border: 1px solid #e0e0e0;">
 			<div class="table-responsive">
 				<div class="d-flex justify-content-center">
-					<div class="input-group mx-3 mt-4 mb-4" style="width: 100%;">
+					<div class="input-group mx-3 mt-4 mb-4" style="width: 80%;">
 						<select id="selectType" class="form-select" style="border: 1px solid #ddd; max-width: 120px;">
 							<option value="공고">공고명</option>
 							<option value="기업">기업명</option>

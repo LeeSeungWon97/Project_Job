@@ -77,7 +77,7 @@ width: 100%;
 	<section id="section">
 		<div class="section-div" style="justify-content: center;">
 			<div class="col-lg-10 col-xl-8 " style="width: 65%;">
-				<div class="card mt-4 mb-4 border-0 shadow rounded-3">
+				<div class="card mt-4 mb-4 shadow rounded-3" style="border: 1px solid #e0e0e0;">
 					<div class="card-body p-4 p-sm-5 mb-3">
 						<div class="row-5 mx-auto mb-5">
 							<h1>${cinfo.ciname }</h1>

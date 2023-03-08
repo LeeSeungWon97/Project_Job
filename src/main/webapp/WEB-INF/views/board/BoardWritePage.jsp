@@ -27,7 +27,7 @@
 	<!-- Section -->
 	<section id="section">
 		<div class="section-div" style="justify-content: center;">
-			<div class="card border-0 shadow rounded-3 mt-3 mb-3" style="width: 60%;">
+			<div class="card  shadow rounded-3 mt-3 mb-3" style="width: 60%; border: 1px solid #e0e0e0;">
 				<span class="h3 mt-2" style="text-align: center;">공고 작성</span>
 
 				<div class="card-body px-5 mt-1">
@@ -70,12 +70,17 @@
 							</select> 
 							<!-- <input name="bhope" type="text" id="inputTag" placeholder="#태그입력(#으로 구분해주세요.)" class="form-control form-control-user"> -->
 						</div>
-						<div class="form-group mb-3" style="text-align: center;">
+						<div class="form-group mb-2" style="text-align: center;">
 							<button class="btn btn-dark btn-lg" type="submit">글작성</button>
 						</div>
 					</form>
 
 				</div>
+				<div class="mb-3" style="text-align: center;">
+						<button type="button" class="btn btn-outline-danger" onclick="history.back()">
+							<i class="bi bi-file-excel"></i> 닫기
+						</button>
+					</div>
 			</div>
 		</div>
 	</section>

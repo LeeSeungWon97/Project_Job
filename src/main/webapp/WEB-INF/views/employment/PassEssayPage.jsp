@@ -102,7 +102,7 @@
 	<!-- Section -->
 	<section id="section">
 		<div class="section-div" style="justify-content: center;">
-			<div class="card mt-4 mb-4 shadow rounded-3 " style="width: 65%;">
+			<div class="card mt-4 mb-4  shadow rounded-3 " style="width: 65%; border: 1px solid #e0e0e0;">
 				<div class="mt-2" style="text-align: center;">
 					<h3>합격자소서</h3>
 				</div>

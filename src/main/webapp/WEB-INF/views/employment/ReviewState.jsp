@@ -93,7 +93,7 @@
 	<!-- Section -->
 	<section id="section">
 		<div class="section-div" style="justify-content: center;">
-			<div class="card mt-4 mb-4 shadow rounded-3 " style="width: 65%;">
+			<div class="card mt-4 mb-4 shadow rounded-3 " style="width: 65%; border: 1px solid #e0e0e0;">
 
 				<ul style="width: 100%; padding-right: 2rem; margin-top: 1rem">
 					<c:forEach items="${reviewcount }" var="reviewcount">
