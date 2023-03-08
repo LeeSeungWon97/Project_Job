@@ -67,6 +67,7 @@ public class BoardController {
 		mav.addObject("boardList", board);
 		mav.addObject("pageNum", pageIdx);
 		mav.addObject("pageIdxMax", pageIdxMax);
+		mav.addObject("navType", "boardList");
 		mav.setViewName("board/BoardList");
 		return mav;
 	}
