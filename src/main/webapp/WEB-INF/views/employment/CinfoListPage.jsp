@@ -180,23 +180,7 @@
 		}
 	}
 	
-</script>
-<script type="text/javascript">
-	function WriteResume() {
-		if (loginId == "") {
-			alert("로그인이 필요한 서비스입니다.");
-			location.href = "${pageContext.request.contextPath}/login";
-		} else if (loginType == "C") {
-			alert("일반회원을 위한 서비스입니다.");
-			location.reload();
-		} else {
-			window.open("${pageContext.request.contextPath}/WriteResumePage",
-					"이력서 선택", "width=400,height=400,top=10,left=100");
-		}
-
-	}
-	</script>
-	
+</script>	
 
 <script type="text/javascript">	
 		function checkVal(checkedName, selBtn){
@@ -291,10 +275,7 @@
 					}
 				});
 			}
-		}	
-		
-		
-		
+		}		
 	</script>
 
 </html>
