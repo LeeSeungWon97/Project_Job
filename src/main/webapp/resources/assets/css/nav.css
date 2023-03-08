@@ -24,7 +24,11 @@ li a {
 
 .test001{
   background:#539DDB; 
-  
+
+}
+
+.test001 a{
+	color: white;
 }
 
 .navigator{
