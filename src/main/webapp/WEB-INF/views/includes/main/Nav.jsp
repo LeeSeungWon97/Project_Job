@@ -9,6 +9,7 @@
 		<li class="nav-div<c:if test="${navType == 'cinfoList'}"> test001</c:if>"><a href="${pageContext.request.contextPath }/CinfoListPage?pageNum=1">기업정보</a></li>
 		<li class="nav-div<c:if test="${navType == 'viewResume'}"> test001</c:if>"><a href="${pageContext.request.contextPath }/viewResumeInfo?pageNum=1">인재정보</a></li>
 		<li class="nav-div<c:if test="${navType == 'boardList'}"> test001</c:if>" ><a href="${pageContext.request.contextPath }/BoardListPage?pageNum=1">커뮤니티</a></li>
+		
 	</ul> 
 </nav>
 

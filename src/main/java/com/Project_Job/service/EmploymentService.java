@@ -2,17 +2,21 @@ package com.Project_Job.service;
 
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Select;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +40,145 @@ public class EmploymentService {
 	@Autowired
 	private EmploymentDao epdao;
 
+	
+//	public int jobInsert1() {
+//		int insertResult = 0;
+//		
+//		try {
+//			String domainUrl = "https://www.jobkorea.co.kr";
+//			// 잡코리아 공채정보 페이지 URL 주소
+//			String url = "https://www.jobkorea.co.kr/starter";
+//			
+//			// 웹 페이지 파싱
+//			Document doc = Jsoup.connect(url).get();
+//						
+//			// 선택자로 이동
+//			Elements liElements = doc.select("#devStarterForm > div.filterListArea > ul > li:nth-child(1)");
+//			
+//			// 상세 페이지 이동 URL
+//			String employmentLink = liElements.select("div.info > div.tit > a").attr("href");
+//			String cinfoLink = liElements.select("div.co > div.coTit > a").attr("href");
+//
+//			// 상세페이지 파싱
+//			Document employDoc = Jsoup.connect(domainUrl+employmentLink).get();
+//			Document cinfoDoc = Jsoup.connect(cinfoLink).get();
+//			
+//			// EMPLOYMENT 테이블 데이터 추출
+//			Elements epElements = employDoc.select("#container > section > div.readSumWrap.clear > article");
+//			String deadline = liElements.select("div.side > span.day").text();
+//			String[] date = getPostDead(deadline,"공채");
+//			EmploymentDto employment = epCrolling(epElements,date);
+//			System.out.println(employment.toString());
+//			if(epdao.checkEp(employment.getEpname(), employment.getEpciname()) == null) {
+//				insertResult = epdao.insertEmployments(employment);
+//			}
+//			
+//			// CINFO 테이블 데이터 추출
+//			
+//			
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		System.out.println("insertResult: " + insertResult);
+//		
+//		return insertResult;
+//	}
+//	
+//	private String[] getPostDead(String deadline, String type) {
+//		DateFormat inputFormat = null;
+//		String[] date = new String[2];
+//		if(type.equals("공채")){ 
+//			System.out.println("공채 날짜 변환 요청");
+//			deadline = deadline.substring(1,deadline.length()-3);
+//			inputFormat = new SimpleDateFormat("yyyy.MM.dd", Locale.ENGLISH);
+//		} else if(type.equals("채용")) {
+//			inputFormat = new SimpleDateFormat("MM/dd", Locale.ENGLISH);
+//		}
+//		DateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd");
+//		try {
+//		    Date dead = inputFormat.parse(deadline);
+//		    Calendar calendar = Calendar.getInstance();
+//		    calendar.setTime(dead);
+//		    calendar.add(Calendar.DAY_OF_MONTH, -14);
+//		    Date post = calendar.getTime();
+//		    date[0]=outputFormat.format(post);
+//		    date[1]=outputFormat.format(dead);
+//		    
+//		  
+//		} catch (ParseException e) {
+//		    e.printStackTrace();
+//		}
+//		return date;
+//	}
+//	
+//	private EmploymentDto epCrolling(Elements elements, String[] date) {
+//		Elements title = elements.select("div.sumTit > h3");
+//		// 공고제목 + 기업명
+//		String epname = title.text();
+//		String epciname = title.select("div > span").text();
+//		
+//		// 지원자격 데이터
+//		String epcareer = getHtmlText(elements, "경력");
+//		String epedu = getHtmlText(elements,"학력");
+//		String eptreat = getHtmlText(elements, "우대");
+//		
+//		// 근무조건 데이터
+//		String eptype = getHtmlText(elements, "고용형태");
+//		String epmoney = getHtmlText(elements, "급여");
+//		String eparea = getHtmlText(elements, "지역");
+//		String eptime = getHtmlText(elements, "시간");
+//		
+//		EmploymentDto ep = new EmploymentDto();
+//		ep.setEpnum(makeEpnum());
+//		ep.setEpname(epname);
+//		ep.setEpciname(epciname);
+//		ep.setEpcareer(epcareer);
+//		ep.setEpedu(epedu);
+//		ep.setEptreat(eptreat);
+//		ep.setEptype(eptype);
+//		ep.setEpmoney(epmoney);
+//		ep.setEparea(eparea);
+//		ep.setEptime(eptime);
+//		ep.setEppost(date[0]);
+//		ep.setEpdeadline(date[1]);
+//		ep.setEpstate("Y");
+//		ep.setEpesstate("Y");
+//		return ep;
+//	}
+//	
+//	private String getHtmlText(Elements elements, String type) {
+//		String getString = "-";
+//		if(elements != null && !type.equals("우대")) {
+//			Element selectedElement = elements.select("dt:contains("+type+")").first();
+//			if(selectedElement != null) {
+//				getString = selectedElement.nextElementSibling().text();
+//			}
+//		} else if(elements != null && type.equals("우대")) {
+//			Element selectedElement = elements.select("dt:contains("+type+")").first();
+//			if(selectedElement != null) {
+//				Element nextElement = selectedElement.nextElementSibling();	
+//				if(nextElement != null) {
+//					Element treat = nextElement.select("#dlPref > dd:nth-child(2) > span").first();
+//					getString = treat.text();
+//				}
+//			}
+//		}
+//		return getString;
+//	}
+//	
+//	private String makeEpnum() {
+//		String epnum = "";
+//		String maxEpnum = epdao.selectMaxEpnum();
+//		if (maxEpnum == null) {
+//			epnum = "EP" + String.format("%03d", 1);
+//		} else {
+//			int num = Integer.parseInt(maxEpnum.replace("EP", "")) + 1;
+//			epnum = "EP" + String.format("%03d", num);
+//		}
+//		return epnum;
+//	}
+	
 	public int jobInsert1() throws Exception {
 		// 1. 잡코리아 채용정보 페이지 URL
 		String jobUrl = "https://www.jobkorea.co.kr/recruit/joblist?menucode=local&localorder=1";
@@ -183,6 +326,8 @@ public class EmploymentService {
 		System.out.println("등록된 공고 수 : " + insertResult);
 		return insertResult;
 	}
+	
+	
 
 	public String getWPList(String ciname) {
 		System.out.println("Service getWPList 요청");
@@ -193,7 +338,7 @@ public class EmploymentService {
 
 	public int jobInsert2() throws Exception {
 		// 1. 잡코리아 채용정보 페이지 URL
-		String jobUrl = "https://www.jobkorea.co.kr/recruit/joblist?menucode=local&localorder=1";
+		String jobUrl = "https://www.jobkorea.co.kr/starter/";
 
 		// 2. Jsoup URL 접속
 		Document doc = Jsoup.connect(jobUrl).get();
@@ -797,10 +942,12 @@ public class EmploymentService {
 		ArrayList<String> popularEpNum = epdao.selectPopularEpNum();
 		for (int i = 0; i < popularEpNum.size(); i++) {
 			String epnum = popularEpNum.get(i);
+			System.out.println("epnum: " + epnum);
 			EmploymentDto epInfo = epdao.selectEpInfo(epnum);
 			String ciname = epInfo.getEpciname();
 			System.out.println("ciname: " + ciname);
 			CinfoDto cinfo = epdao.selectCinfo(ciname);
+			System.out.println("cinfo: " + cinfo.toString());
 			popularCinfo.add(cinfo);
 		}
 		return popularCinfo;
@@ -835,6 +982,5 @@ public class EmploymentService {
 		int deleteResult = epdao.deleteApply(apepnum,apremid);
 		return deleteResult;
 	}
-
 	
 }

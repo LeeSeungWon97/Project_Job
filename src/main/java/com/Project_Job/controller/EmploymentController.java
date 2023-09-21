@@ -342,8 +342,8 @@ public class EmploymentController {
 		ArrayList<CinfoDto> cinfoListAll = epsvc.getCiList("");
 		ArrayList<CinfoDto> cinfoList = new ArrayList<CinfoDto>();
 		int pageIdx = pageNum;
-		int pageIdxMax = cinfoListAll.size() / 10;
-		if (cinfoListAll.size() % 10 != 0) {
+		int pageIdxMax = cinfoListAll.size() / 5;
+		if (cinfoListAll.size() % 5 != 0) {
 			pageIdxMax += 1;
 		}
 		int pageBtnIdx = (pageNum - 1) / 5;
@@ -352,8 +352,8 @@ public class EmploymentController {
 		if (endBtn > pageIdxMax) {
 			endBtn = pageIdxMax;
 		}
-		int startIdx = 10 * (pageIdx - 1);
-		int endIdx = startIdx + 9;
+		int startIdx = 5 * (pageIdx - 1);
+		int endIdx = startIdx + 4;
 		if (endIdx >= cinfoListAll.size()) {
 			endIdx = cinfoListAll.size();
 		}

@@ -11,7 +11,7 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
-<a href ="${pageContext.request.contextPath }/jobInsert1">insert 공고 정보</a>
+<a href ="${pageContext.request.contextPath }/jobInsert1">채용공고 크롤링 요청</a>
 <a href ="${pageContext.request.contextPath }/jobInsert2">insert 회사 상세정보</a>
 </body>
 </html>

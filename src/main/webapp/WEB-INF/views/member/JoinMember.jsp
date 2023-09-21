@@ -52,6 +52,7 @@
 							<div class="input-group input-group-lg mb-3">
 								<input type="text" class="form-control" id="mname" name="mname" placeholder="이름" onchange="checkName()">
 							</div>
+							<label>생년월일</label>
 							<div class="input-group input-group-lg mb-3">
 								<input type="date" class="form-control" id="mbirth" name="mbirth" placeholder="생년월일" onchange="checkBirth()" min="1900-01-01" max="">
 							</div>
@@ -220,11 +221,11 @@
 					isCheckPw = true;
 				} else {
 					ischeckPw = false;
-					alert("비밀번호는 영문+숫자+특수문자(!,@,#,$,%)가 포함되어야 합니다.");
+					alert("비밀번호는 영문+숫자+특수문자(!,@,#,$,%)가 포함된 8~16글자여야 합니다.");
 				}
 			} else {
 				ischeckPw = false;
-				alert("비밀번호는 8~16글자 입니다.");
+				alert("비밀번호는 영문+숫자+특수문자(!,@,#,$,%)가 포함된 8~16글자여야 합니다.");
 			}
 			console.log("isCheckPw: " + isCheckPw);
 		}
@@ -237,6 +238,7 @@
 				isCheckPwVal = true;
 			} else {
 				isCheckPwVal = false;
+				alert("비밀번호가 맞지 않습니다. 다시 확인해주세요");
 			}
 			console.log("isCheckPwVal: " + isCheckPwVal);
 		}

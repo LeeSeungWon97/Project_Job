@@ -9,15 +9,12 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-//import com.Project_Job.dto.ApplyStateDto;
 import com.Project_Job.dto.ArrResumeDto;
-import com.Project_Job.dto.ArrReviewsDto;
 import com.Project_Job.dto.CinfoDto;
 import com.Project_Job.dto.EmploymentDto;
 import com.Project_Job.dto.EssayDto;
 import com.Project_Job.dto.MemberDto;
 import com.Project_Job.dto.ResumeDto;
-import com.Project_Job.dto.ReviewsDto;
 import com.Project_Job.dto.ScrapDto;
 
 public interface EmploymentDao {

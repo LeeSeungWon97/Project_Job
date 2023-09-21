@@ -22,7 +22,7 @@
 			<input type="password" id="newPwCheck" class="form-control">
 			<br>
 
-			<input type="button" id="changeBtn" class="btn btn-outline-primary btn-lg" value="변경" onclick="changePw()">
+			<input type="button" id="changeBtn" class="btn btn-outline-primary btn-lg" value="변경" onclick="changeNewPw()">
 		</div>
 	</div>
 
@@ -101,7 +101,9 @@
 			console.log("isCheckNewPw: " + isCheckNewPw);
 		}
 
-		function changePw() {
+		
+		
+		function changeNewPw() {
 			console.log("비밀번호 변경 요청");
 			checkCurrentPw();
 			if (ischeckCpw) {
@@ -113,7 +115,9 @@
 							alert("새 비밀번호는 현재 비밀번호와 달라야합니다.");
 						} else {
 							alert("변경확인");
-							window.opener.document.getElementById('pw').value = document.getElementById('newPw').value;
+							var newPw = $('#newPw').val();
+							console.log(newPw);
+							$(window.opener.document).find('.pw').val(newPw);
 							window.close();
 						}
 					}

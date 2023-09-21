@@ -74,6 +74,13 @@ public class ReviewsDto {
 		this.rvstate = rvstate;
 	}
 	
+	@Override
+	public String toString() {
+		return "ReviewsDto [rvnum=" + rvnum + ", rvciname=" + rvciname + ", rvdate=" + rvdate + ", rveptype=" + rveptype
+				+ ", rvobj=" + rvobj + ", rvdif=" + rvdif + ", rvmid=" + rvmid + ", rvcontents=" + rvcontents
+				+ ", rvtype=" + rvtype + ", rvstate=" + rvstate + "]";
+	}
+	
 	
 	
 	

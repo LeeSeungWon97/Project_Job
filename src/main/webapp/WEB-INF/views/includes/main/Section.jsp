@@ -159,14 +159,17 @@
 						<h5>인기 기업 Top 5</h5>
 						<hr>
 						<ul style="list-style: none; padding-left: 0;">
-							<c:forEach items="${popularCompany }" var="popularCompany" varStatus="i">
-								<li>
-									<span>Top ${i.index + 1 } </span>
-									<a href="${pageContext.request.contextPath }/viewCiInfo?cinum=${popularCompany.cinum}"> 
-										<span>${popularCompany.ciname }</span>
-									</a>
-								</li>
-							</c:forEach>
+						
+									<c:forEach items="${popularCompany }" var="popularCompany" varStatus="i">
+										<li>
+											<span>Top ${i.index + 1 } </span>
+											<a href="${pageContext.request.contextPath }/viewCiInfo?cinum=${popularCompany.cinum}">
+												<span>${popularCompany.ciname }</span>
+											</a>
+										</li>
+									</c:forEach>
+						
+													
 						</ul>
 					</div>
 				</div>

@@ -135,7 +135,7 @@
 		function changePw() {
 			console.log("changePw() 호출");
 			window.open("${pageContext.request.contextPath }/changePw",
-					"비밀번호 변경", "width=400,height=400,top=10,left=100");
+					"비밀번호 변경", "width=600,height=400,top=10,left=100");
 		}
 
 		function changeInfo() {

@@ -89,6 +89,7 @@ public class BoardController {
 		if (insertResult > 0) {
 			mav.addObject("msg", "글작성완료!");
 			mav.addObject("url", "BoardListPage");
+			mav.addObject("pageNum",1);
 			mav.setViewName("AlertScreen");
 		} else {
 			mav.addObject("msg", "입력 정보를 다시 확인해주세요!");

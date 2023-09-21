@@ -209,7 +209,7 @@ public class BoardService {
 			rvnum = rvnum + String.format("%05d", rvcodeNum);
 		}
 		System.out.println("recode : " + rvnum);
-
+		System.out.println("review[]: " + review.toString());
 		review.setRvnum(rvnum);
 		
 		int insertResult = bdao.insertReivew(review);
